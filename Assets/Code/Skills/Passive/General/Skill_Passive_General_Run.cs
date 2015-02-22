@@ -17,7 +17,7 @@ public class Skill_Passive_General_Run : SkillEntity, Skill
 	{
     }
 
-    public int getID()
+    public int getSkillID()
     {
         return id;
     }

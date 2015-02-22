@@ -6,7 +6,7 @@ public interface Skill
 
     string getSkillText();
     string getType();
-    int getID();
+    int getSkillID();
     string getSkillDescription();
     string getSkillGroup();
     int getPrice();

@@ -36,7 +36,7 @@ public class RPG_Camera : MonoBehaviour {
     private static float halfPlaneHeight;
     private static float halfPlaneWidth;
 
-    private bool guiMode;
+    private bool guiMode = false;
 
     void Awake() {
         instance = this;

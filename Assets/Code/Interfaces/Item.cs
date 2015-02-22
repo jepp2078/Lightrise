@@ -11,4 +11,6 @@ public interface Item
     string getItemSlot();
     int getArmor();
     int getPrice();
+    int getInventoryID();
+    void setInventoryID(int id);
 }

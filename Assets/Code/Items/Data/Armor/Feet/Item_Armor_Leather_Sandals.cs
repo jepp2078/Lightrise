@@ -8,9 +8,10 @@ public class Item_Armor_Leather_Sandals : ItemEntity, Armor, Item, Equipable
 	private static string itemSlot = "Feet";
 	private static string armorType = "Leather";
 	private static string itemName = "Leather Sandals "+"(+0 Armor)";
-	private static string itemDescription = "Fasionable leather sandals";
+	private static string itemDescription = "Fashionable leather sandals";
 	private static int armor = 0;
 	private static int price = 20;
+    private static int inventoryID = 999;
 	
 	public Item_Armor_Leather_Sandals(int x, int y) :
 		base(id, itemName, x, y)
@@ -44,4 +45,14 @@ public class Item_Armor_Leather_Sandals : ItemEntity, Armor, Item, Equipable
 	public int getPrice() {
 		return price;
 	}
+
+    public int getInventoryID()
+    {
+        return inventoryID;
+    }
+
+    public void setInventoryID(int id)
+    {
+        inventoryID = id;
+    }
 }

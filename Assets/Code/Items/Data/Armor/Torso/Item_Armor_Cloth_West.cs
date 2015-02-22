@@ -11,6 +11,8 @@ private static int id = 4;
 	private static string itemDescription = "Old cloth west. It itches.";
 	private static int armor = 2;
 	private static int price = 20;
+    private static int inventoryID = 999;
+
 	
 	public Item_Armor_Cloth_West(int x, int y) :
 		base(id, itemName, x, y)
@@ -44,4 +46,14 @@ private static int id = 4;
 	public int getPrice() {
 		return price;
 	}
+
+    public int getInventoryID()
+    {
+        return inventoryID;
+    }
+
+    public void setInventoryID(int id)
+    {
+        inventoryID = id;
+    }
 }

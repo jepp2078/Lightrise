@@ -6,9 +6,10 @@ public class PlayerObject : PlayerEntity {
     private List<Item> inventory = new List<Item>();
     private List<Item> equipmentList = new List<Item>();
     private List<Skill> skillList = new List<Skill>();
+    private List<HotbarAble> hotbar = new List<HotbarAble>();
     private float str = 5, dex = 5, intel = 5, vit = 5, wis = 5;
     private float health, tempHealth, mana, tempMana, stamina, tempStamina, baseHealth = 100, baseMana = 100, baseStamina = 100,  bonusHealth = 0, bonusMana = 0, bonusStamina = 0;
-    private int invSize, baseInvSize = 200;
+    private int invSize, baseInvSize = 200, inventoryIDCount = 0;
     private float meleeWepMod, spellMod, rangedWepMod, healthMod = 0, manaMod = 0, staminaMod = 0;
     private float unarmedDmg, armedDmg, magicDmg, rangedDmg;
     private float rangedRange = 5;
@@ -38,6 +39,11 @@ public class PlayerObject : PlayerEntity {
             {
                 case 0: skillList.Insert(0, new Skill_Passive_General_Run()); break;
             }
+        }
+
+        for (int i = 0; i < 9; i++)
+        {
+            hotbar.Add(null);
         }
     }
 
@@ -162,6 +168,11 @@ public class PlayerObject : PlayerEntity {
 		if(e is Item){
 			if(inventory.Count < baseInvSize){
 				inventory.Add(e);
+                if (e.getInventoryID() == 999)
+                {
+                    e.setInventoryID(inventoryIDCount);
+                    inventoryIDCount++;
+                }
 				bool spaceLeft = true;
 				return spaceLeft;
 			}
@@ -169,9 +180,47 @@ public class PlayerObject : PlayerEntity {
 		return false;
 	}
 
+    public void skillListAdd(Skill inputSkill)
+    {
+        if (inputSkill is Skill)
+        {
+            skillList.Insert(inputSkill.getSkillID(), inputSkill);    
+        }
+    }
+
+    public void hotbarAdd(HotbarAble input, int hotbarSlot)
+    {
+        if (input is HotbarAble)
+        {
+            hotbar.Insert(hotbarSlot, input);
+        }
+    }
+
+    public void hotbarRemove(int hotbarSlot)
+    {
+        hotbar.Insert(hotbarSlot, null);
+    }
+
+    public HotbarAble getHotbarType(int hotbarSlot)
+    {
+        return hotbar[hotbarSlot];
+    }
+
     public void inventoryRemove(int index)
     {
         inventory.RemoveAt(index);
+    }
+
+    public Item getInventoryItem(int inventoryID)
+    {
+        for (int i = 0; i < inventory.Count; i++)
+        {
+            if (inventory[i].getInventoryID() == inventoryID)
+            {
+                return inventory[i];
+            }
+        }
+        return null;
     }
 
     public float getWeaponMod(string type)
@@ -468,6 +517,11 @@ public class PlayerObject : PlayerEntity {
     public string getSkillName(int skillID)
     {
         return skillList[skillID].getSkillText();
+    }
+
+    public string getSkillType(int skillID)
+    {
+        return skillList[skillID].getType();
     }
 
     public string getSkillLevel(int skillID)

@@ -11,6 +11,8 @@ public class Item_Armor_Cloth_Hood : ItemEntity, Armor, Item, Equipable
 	private static string itemDescription = "Old Cloth hood. It's on your head.";
 	private static int armor = 1;
 	private static int price = 20;
+    private static int inventoryID = 999;
+
 	
 	public Item_Armor_Cloth_Hood(int x, int y) :
 		base(id, itemName, x, y)
@@ -44,4 +46,13 @@ public class Item_Armor_Cloth_Hood : ItemEntity, Armor, Item, Equipable
 	public int getPrice() {
 		return price;
 	}
+    public int getInventoryID()
+    {
+        return inventoryID;
+    }
+
+    public void setInventoryID(int id)
+    {
+        inventoryID = id;
+    }
 }

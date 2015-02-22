@@ -17,9 +17,9 @@ public class Function : MonoBehaviour {
         }
     }
 
-    public static string equipItem(int invSlot)
+    public static string equipItem(Item item)
     {
-        return Player.player.equip(invSlot);
+        return Player.player.equip(item.getInventoryID());
     }
 
     public static string dequipItem(int equipSlot)
@@ -34,7 +34,7 @@ public class Function : MonoBehaviour {
 			PlayerObject temptempPlayer = (PlayerObject)player;
 			try{
 				for(int i = 0 ; i<temptempPlayer.getInvSize() ; i++){
-					inventory += temptempPlayer.getInventory(i).getItemText()+"\n";
+                    inventory += temptempPlayer.getInventory(i).getItemText() + " " + temptempPlayer.getInventory(i).getInventoryID() + "\n";
 				}
 				return inventory;
 			}catch{
@@ -138,5 +138,25 @@ public class Function : MonoBehaviour {
 		return null;
 	}
 
+    public static void putOnHotbar(HotbarAble instance, int hotbarSlot)
+    {
+        if(instance is HotbarAble)
+            Player.player.hotbarAdd(instance, hotbarSlot);
+    }
+
+    public static void removeFromHotbar(int hotbarSlot)
+    {
+        Player.player.hotbarRemove(hotbarSlot);
+    }
+
+    public static void hotbarUse(int hotbarSlot)
+    {
+        HotbarAble hotbarType = Player.player.getHotbarType(hotbarSlot);
+        if (hotbarType is Weapon)
+        {
+            Debug.Log(dequipItem(6));
+            Debug.Log(equipItem(Player.player.getInventoryItem(hotbarType.getInventoryID())));
+        }
+    }
    
 }

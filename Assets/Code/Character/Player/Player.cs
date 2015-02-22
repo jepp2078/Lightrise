@@ -14,6 +14,11 @@ public class Player : MonoBehaviour {
         player.changeStats(5, 5, 5, 5, 5);
         player.refillVitals();
         player.skillGain(23.80f, 0); //See skillID identify pdf for skill id list
+        player.hotbarAdd((HotbarAble)player.getInventoryItem(0), 0);
+        player.hotbarAdd((HotbarAble)player.getInventoryItem(1), 1);
+        Debug.Log(Function.showEquipment());
+        Debug.Log(Function.showInventory());
+
         InvokeRepeating("serverTick", 0, 0.0825F); //TEMP value. We might need to change how fast the server ticks? 1/12 of a sec right now.
     }
 
@@ -31,6 +36,21 @@ public class Player : MonoBehaviour {
             {
                 RPG_Camera.instance.setGuiMode(true);
             }
+        }
+        if (Input.GetButton("Hotbar1") && Time.time > guiHelperNext)
+        {
+            guiHelperNext = Time.time + guiHelper;
+            Function.hotbarUse(0);
+            Debug.Log(Function.showEquipment());
+            Debug.Log(Function.showInventory());
+        }
+
+        if (Input.GetButton("Hotbar2") && Time.time > guiHelperNext)
+        {
+            guiHelperNext = Time.time + guiHelper;
+            Function.hotbarUse(1);
+            Debug.Log(Function.showEquipment());
+            Debug.Log(Function.showInventory());
         }
     }
 
