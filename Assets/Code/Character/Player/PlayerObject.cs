@@ -24,10 +24,10 @@ public class PlayerObject : PlayerEntity {
             equipmentList.Add(null);
             switch (i)
             {
-                case 0: equipmentList.Insert(0, new Item_Armor_Cloth_Sack(0, 0)); break;
-                case 1: equipmentList.Insert(1, new Item_Armor_Cloth_West(0, 0)); ; break;
-                case 4: equipmentList.Insert(4, new Item_Armor_Cloth_Pants(0, 0)); break;
-                case 5: equipmentList.Insert(5, new Item_Armor_Leather_Sandals(0, 0)); break;
+                case 0: equipmentList[0] =  new Item_Armor_Cloth_Sack(0, 0); break;
+                case 1: equipmentList[1] =  new Item_Armor_Cloth_West(0, 0); ; break;
+                case 4: equipmentList[4] = new Item_Armor_Cloth_Pants(0, 0); break;
+                case 5: equipmentList[5] = new Item_Armor_Leather_Sandals(0, 0); break;
                 case 6: inventoryAdd(new Item_Weapon_GreatBow(0, 0)); inventoryAdd(new Item_Weapon_GreatSword(0, 0)); break;
             }
         }
@@ -206,9 +206,15 @@ public class PlayerObject : PlayerEntity {
         return hotbar[hotbarSlot];
     }
 
-    public void inventoryRemove(int index)
+    public void inventoryRemove(int inventoryID)
     {
-        inventory.RemoveAt(index);
+        for (int i = 0; i < inventory.Count; i++)
+        {
+            if (inventory[i].getInventoryID() == inventoryID)
+            {
+                inventory.RemoveAt(i);
+            }
+        }
     }
 
     public Item getInventoryItem(int inventoryID)
@@ -222,6 +228,17 @@ public class PlayerObject : PlayerEntity {
         }
         return null;
     }
+
+	public int getEquipmentIDinSlot(int slot)
+	{
+		try{
+		return equipmentList [slot].getInventoryID();
+		}catch
+		{
+			return -1;
+		}
+
+	}
 
     public float getWeaponMod(string type)
     {
@@ -244,100 +261,99 @@ public class PlayerObject : PlayerEntity {
         return damageMod;
     }
 
-    	public string equip(int i){
+    public string equip(int i){
 		try{
-		Item equipmentIn = inventory[i];
+		Item equipmentIn = getInventoryItem(i);
 
 		if(equipmentIn is Equipable){
 			if(((Equipable) equipmentIn).getItemSlot() == "Main Hand"){
 				if(equipmentList[6] == null){
-				 equipmentList.Insert(6, equipmentIn);
-				 inventory.RemoveAt(i);
+				 equipmentList[6] = equipmentIn;
+                 inventoryRemove(i);
 				}else{
 					inventoryRemove(i);
 					inventoryAdd(equipmentList[6]);
-					equipmentList.Insert(6, equipmentIn);
+                    equipmentList[6] = equipmentIn;
 				}
 			}else if(((Equipable) equipmentIn).getItemSlot() == "Off Hand"){
 				if(equipmentList[7] == null){
-					 equipmentList.Insert(7, equipmentIn);
-					 inventory.RemoveAt(i);
+                    equipmentList[7] = equipmentIn;
+                     inventoryRemove(i);
 					}else{
 						inventoryRemove(i);
 						inventoryAdd(equipmentList[7]);
-						equipmentList.Insert(7, equipmentIn);
+                        equipmentList[7] = equipmentIn;
 					}
 			}else if(((Equipable) equipmentIn).getItemSlot() == "Head"){
 				if(equipmentList[0] == null){
-					 equipmentList.Insert(0, equipmentIn);
-					 inventory.RemoveAt(i);
+                    equipmentList[0] = equipmentIn; inventoryRemove(i);
 					}else{
 						inventoryRemove(i);
 						inventoryAdd(equipmentList[0]);
-						equipmentList.Insert(0, equipmentIn);
-					}
+                        equipmentList[0] = equipmentIn;
+                    }
 			}else if(((Equipable) equipmentIn).getItemSlot() == "Torso"){
 				if(equipmentList[1] == null){
-					 equipmentList.Insert(1, equipmentIn);
-					 inventory.RemoveAt(i);
+                      equipmentList[1] = equipmentIn;
+					  inventoryRemove(i);
 					}else{
 						inventoryRemove(i);
 						inventoryAdd(equipmentList[1]);
-						equipmentList.Insert(1, equipmentIn);
+                        equipmentList[1] = equipmentIn;
 					}
 			}else if(((Equipable) equipmentIn).getItemSlot() == "Legs"){
 				if(equipmentList[4] == null){
-					 equipmentList.Insert(4, equipmentIn);
-					 inventory.RemoveAt(i);
+                    equipmentList[4] = equipmentIn;
+                     inventoryRemove(i);
 					}else{
 						inventoryRemove(i);
 						inventoryAdd(equipmentList[4]);
-						equipmentList.Insert(4, equipmentIn);
+                        equipmentList[4] = equipmentIn;
 					}
 			}else if(((Equipable) equipmentIn).getItemSlot() == "Feet"){
 				if(equipmentList[5] == null){
-					 equipmentList.Insert(5, equipmentIn);
-					 inventory.RemoveAt(i);
+                    equipmentList[5] = equipmentIn;
+                     inventoryRemove(i);
 					}else{
 						inventoryRemove(i);
 						inventoryAdd(equipmentList[5]);
-						equipmentList.Insert(5, equipmentIn);
+                        equipmentList[5] = equipmentIn;
 					}
 			}else if(((Equipable) equipmentIn).getItemSlot() == "Hands"){
 				if(equipmentList[3] == null){
-					 equipmentList.Insert(3, equipmentIn);
-					 inventory.RemoveAt(i);
+                    equipmentList[3] = equipmentIn;
+                     inventoryRemove(i);
 					}else{
 						inventoryRemove(i);
 						inventoryAdd(equipmentList[3]);
-						equipmentList.Insert(3, equipmentIn);
+                        equipmentList[3] = equipmentIn;
 					}
 			}else if(((Equipable) equipmentIn).getItemSlot() == "Arms"){
 				if(equipmentList[2] == null){
-					 equipmentList.Insert(2, equipmentIn);
-					 inventory.RemoveAt(i);
+                    equipmentList[2] = equipmentIn;
+                     inventoryRemove(i);
 					}else{
 						inventoryRemove(i);
 						inventoryAdd(equipmentList[2]);
-						equipmentList.Insert(2, equipmentIn);
+                        equipmentList[2] = equipmentIn;
 					}
 			}else if(((Equipable) equipmentIn).getItemSlot() == "Neck"){
 				if(equipmentList[8] == null){
-					 equipmentList.Insert(8, equipmentIn);
-					 inventory.RemoveAt(i);
+                    equipmentList[8] = equipmentIn;
+                     inventoryRemove(i);
 					}else{
 						inventoryRemove(i);
 						inventoryAdd(equipmentList[8]);
-						equipmentList.Insert(8, equipmentIn);
+                        equipmentList[8] = equipmentIn;
 					}
 			}else if(((Equipable) equipmentIn).getItemSlot() == "Fingers"){
 				if(equipmentList[9] == null){
-					 equipmentList.Insert(9, equipmentIn);
-					 inventory.RemoveAt(i);
+                    equipmentList[9] = equipmentIn;
+                     inventoryRemove(i);
 					}else{
 						inventoryRemove(i);
 						inventoryAdd(equipmentList[9]);
-						equipmentList.Insert(9, equipmentIn);
+                        equipmentList[9] = equipmentIn;
 					}
 			}
 			return "You equip "+ equipmentIn.getItemText()+" on your "+equipmentIn.getItemSlot()+"!";
@@ -352,7 +368,7 @@ public class PlayerObject : PlayerEntity {
 		Item item = equipmentList[i];
 		if(item != null){
 			if(inventoryAdd(equipmentList[i]) == true){
-				equipmentList.Insert(i,null);
+				equipmentList[i] = null;
 				return "You take off "+item.getItemText();
 			}else{
 				return "No space in inventory";

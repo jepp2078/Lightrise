@@ -154,8 +154,10 @@ public class Function : MonoBehaviour {
         HotbarAble hotbarType = Player.player.getHotbarType(hotbarSlot);
         if (hotbarType is Weapon)
         {
-            Debug.Log(dequipItem(6));
-            Debug.Log(equipItem(Player.player.getInventoryItem(hotbarType.getInventoryID())));
+			if(Player.player.getEquipmentIDinSlot(6) == -1 || hotbarType.getInventoryID() != Player.player.getEquipmentIDinSlot(6)){
+                Debug.Log(hotbarType.getInventoryID());
+            	Debug.Log(equipItem(Player.player.getInventoryItem(hotbarType.getInventoryID())));
+			}
         }
     }
    
