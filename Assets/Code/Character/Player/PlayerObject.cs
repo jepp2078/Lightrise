@@ -24,8 +24,8 @@ public class PlayerObject : PlayerEntity {
             equipmentList.Add(null);
             switch (i)
             {
-                case 0: equipmentList[0] =  new Item_Armor_Cloth_Sack(0, 0); break;
-                case 1: equipmentList[1] =  new Item_Armor_Cloth_West(0, 0); ; break;
+                case 0: equipmentList[0] = new Item_Armor_Cloth_Sack(0, 0); break;
+                case 1: equipmentList[1] = new Item_Armor_Cloth_West(0, 0); break;
                 case 4: equipmentList[4] = new Item_Armor_Cloth_Pants(0, 0); break;
                 case 5: equipmentList[5] = new Item_Armor_Leather_Sandals(0, 0); break;
                 case 6: inventoryAdd(new Item_Weapon_GreatBow(0, 0)); inventoryAdd(new Item_Weapon_GreatSword(0, 0)); break;
