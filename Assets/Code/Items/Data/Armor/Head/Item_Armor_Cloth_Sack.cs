@@ -6,9 +6,9 @@ public class Item_Armor_Cloth_Sack : ItemEntity, Armor, Item, Equipable
 private static int id = 2;
 	private static string itemSlot = "Head";
 	private static string armorType = "Cloth";
-	private static string itemName = "Cloth Sack "+"(+1 Armor)";
+	private static string itemName = "Cloth Sack";
 	private static string itemDescription = "Old potato sack. It's on your head.";
-	private static int armor = 1;
+    private float[] protections = new float[15] { 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 	private static int price = 20;
     private static int inventoryID = 999;
 
@@ -26,8 +26,8 @@ private static int id = 2;
 		return armorType;
 	}
 
-	public int getArmor() {
-		return armor;
+	public float[] getProtections() {
+		return protections;
 	}
 
 	public string getItemText() {

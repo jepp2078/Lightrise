@@ -11,11 +11,12 @@ public class PlayerObject : PlayerEntity {
     private float str = 5, dex = 5, intel = 5, vit = 5, wis = 5;
     private float health, tempHealth, mana, tempMana, stamina, tempStamina, baseHealth = 100, baseMana = 100, baseStamina = 100,  bonusHealth = 0, bonusMana = 0, bonusStamina = 0;
     private int invSize, baseInvSize = 200, inventoryIDCount = 0;
-    private float meleeWepMod, spellMod, rangedWepMod, healthMod = 0, manaMod = 0, staminaMod = 0;
+    private float[] protections = new float[15] { 1, 1, 1, 1, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0, 0, 0 }; //arrow, bludgeoning, piercing, slashing, acid, arcane, cold, fire, holy, impact, lightning, unholy, malediction, mental, infliction
+    private float meleeWepMod, spellMod, rangedWepMod, healthMod = 0, manaMod = 0, staminaMod = 0; //damage formula weapon [ (0.2 * MS + 0.05 * WS + 0.03 * WM) + WD - AR ] 
     private float unarmedDmg, armedDmg, magicDmg, rangedDmg;
     private float rangedRange = 5;
     private float critChance = 1;
-    private int arrows = 0, gold = 0, mandrake = 0, ash = 0, sulfur = 0, raisin = 0, nacra = 0, bone = 0;
+    private int arrows = 0, gold = 0;//, mandrake = 0, ash = 0, sulfur = 0, raisin = 0, nacra = 0, bone = 0;
 
 	// Use this for initialization
     public PlayerObject(int id, int x, int y) : base(id, x, y)
@@ -40,6 +41,7 @@ public class PlayerObject : PlayerEntity {
             {
                 case 0: skillList.Insert(0, new Skill_Passive_General_Run()); break;
                 case 1: skillList.Insert(1, new Skill_Active_General_Rest()); break;
+                case 2: skillList.Insert(2, new Skill_Passive_General_Sprint()); break;
             }
         }
 
@@ -266,7 +268,6 @@ public class PlayerObject : PlayerEntity {
     public string equip(int i){
 		try{
 		Item equipmentIn = getInventoryItem(i);
-
 		if(equipmentIn is Equipable){
 			if(((Equipable) equipmentIn).getItemSlot() == "Main Hand"){
 				if(equipmentList[6] == null){
@@ -280,64 +281,87 @@ public class PlayerObject : PlayerEntity {
 			}else if(((Equipable) equipmentIn).getItemSlot() == "Off Hand"){
 				if(equipmentList[7] == null){
                     equipmentList[7] = equipmentIn;
+                    setProtections(equipmentIn.getProtections(), true);
                      inventoryRemove(i);
 					}else{
 						inventoryRemove(i);
 						inventoryAdd(equipmentList[7]);
+                        setProtections(equipmentList[7].getProtections(), false);
                         equipmentList[7] = equipmentIn;
+                        setProtections(equipmentList[7].getProtections(),true);
+
 					}
 			}else if(((Equipable) equipmentIn).getItemSlot() == "Head"){
 				if(equipmentList[0] == null){
-                    equipmentList[0] = equipmentIn; inventoryRemove(i);
+                    equipmentList[0] = equipmentIn; 
+                    inventoryRemove(i);
+                    setProtections(equipmentIn.getProtections(), true);
 					}else{
 						inventoryRemove(i);
 						inventoryAdd(equipmentList[0]);
+                        setProtections(equipmentList[7].getProtections(), false);
                         equipmentList[0] = equipmentIn;
+                        setProtections(equipmentList[7].getProtections(),true);
                     }
 			}else if(((Equipable) equipmentIn).getItemSlot() == "Torso"){
 				if(equipmentList[1] == null){
                       equipmentList[1] = equipmentIn;
 					  inventoryRemove(i);
+                      setProtections(equipmentIn.getProtections(), true);
 					}else{
 						inventoryRemove(i);
 						inventoryAdd(equipmentList[1]);
+                        setProtections(equipmentList[1].getProtections(), false);
                         equipmentList[1] = equipmentIn;
+                        setProtections(equipmentList[1].getProtections(),true);
 					}
 			}else if(((Equipable) equipmentIn).getItemSlot() == "Legs"){
 				if(equipmentList[4] == null){
                     equipmentList[4] = equipmentIn;
                      inventoryRemove(i);
+                     setProtections(equipmentIn.getProtections(), true);
 					}else{
 						inventoryRemove(i);
-						inventoryAdd(equipmentList[4]);
+                        inventoryAdd(equipmentList[4]);
+                        setProtections(equipmentList[4].getProtections(), false);
                         equipmentList[4] = equipmentIn;
+                        setProtections(equipmentList[4].getProtections(), true);
 					}
 			}else if(((Equipable) equipmentIn).getItemSlot() == "Feet"){
 				if(equipmentList[5] == null){
                     equipmentList[5] = equipmentIn;
                      inventoryRemove(i);
+                     setProtections(equipmentIn.getProtections(), true);
 					}else{
 						inventoryRemove(i);
-						inventoryAdd(equipmentList[5]);
+                        inventoryAdd(equipmentList[5]);
+                        setProtections(equipmentList[5].getProtections(), false);
                         equipmentList[5] = equipmentIn;
+                        setProtections(equipmentList[5].getProtections(), true);
 					}
 			}else if(((Equipable) equipmentIn).getItemSlot() == "Hands"){
 				if(equipmentList[3] == null){
                     equipmentList[3] = equipmentIn;
                      inventoryRemove(i);
+                     setProtections(equipmentIn.getProtections(), true);
 					}else{
-						inventoryRemove(i);
-						inventoryAdd(equipmentList[3]);
+                        inventoryRemove(i);
+                        inventoryAdd(equipmentList[3]);
+                        setProtections(equipmentList[3].getProtections(), false);
                         equipmentList[3] = equipmentIn;
-					}
+                        setProtections(equipmentList[3].getProtections(), true);
+                    }
 			}else if(((Equipable) equipmentIn).getItemSlot() == "Arms"){
 				if(equipmentList[2] == null){
                     equipmentList[2] = equipmentIn;
                      inventoryRemove(i);
+                     setProtections(equipmentIn.getProtections(), true);
 					}else{
-						inventoryRemove(i);
-						inventoryAdd(equipmentList[2]);
+                        inventoryRemove(i);
+                        inventoryAdd(equipmentList[2]);
+                        setProtections(equipmentList[2].getProtections(), false);
                         equipmentList[2] = equipmentIn;
+                        setProtections(equipmentList[2].getProtections(), true);
 					}
 			}else if(((Equipable) equipmentIn).getItemSlot() == "Neck"){
 				if(equipmentList[8] == null){
@@ -395,19 +419,26 @@ public class PlayerObject : PlayerEntity {
 		return weapon;
 	}
 
-    public float getArmor()
+    public float[] getProtections()
     {
-        int armorInt = 0;
-        try
-        {
-            for (int i = 0; i < 5; i++)
-                armorInt += equipmentList[i].getArmor();
-        }
-        catch 
-        {
+        return protections;
+    }
 
+    public void setProtections(float[] protectionsIn, bool add)
+    {
+        if(add){
+            for (int i = 0; i < protections.Length; i++)
+            {
+                protections[i] += protectionsIn[i];
+            }
         }
-        return (float)(1 - armorInt * 0.01);
+        else
+        {
+            for (int i = 0; i < protections.Length; i++)
+            {
+                protections[i] -= protectionsIn[i];
+            }
+        }
     }
 
     public bool setHealth(float damage, float healing, bool regen)

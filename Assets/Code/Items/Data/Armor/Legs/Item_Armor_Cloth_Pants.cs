@@ -9,7 +9,7 @@ public class Item_Armor_Cloth_Pants : ItemEntity, Armor, Item, Equipable
 	private static string armorType = "Cloth";
 	private static string itemName = "Cloth Pants "+"(+1 Armor)";
 	private static string itemDescription = "Old cloth pants.";
-	private static int armor = 1;
+    private float[] protections = new float[15] { 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 	private static int price = 20;
     private static int inventoryID = 999;
 
@@ -27,8 +27,8 @@ public class Item_Armor_Cloth_Pants : ItemEntity, Armor, Item, Equipable
 		return armorType;
 	}
 
-	public int getArmor() {
-		return armor;
+	public float[] getProtections() {
+		return protections;
 	}
 
 	public string getItemText() {

@@ -51,9 +51,9 @@ public class Item_Weapon_Unarmed : ItemEntity, Weapon, Item, Equipable, HotbarAb
         return itemDescription;
     }
 
-    public int getArmor()
+    public float[] getProtections()
     {
-        return 0;
+        return new float[0];
     }
 
     public int getPrice()

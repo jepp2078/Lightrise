@@ -45,8 +45,8 @@ public class Item_Weapon_GreatBow : ItemEntity, Weapon, Item, Equipable, HotbarA
 		return itemDescription;
 	}
 
-	public int getArmor() {
-		return 0;
+	public float[] getProtections() {
+        return new float[0];
 	}
 	
 	public int getPrice() {

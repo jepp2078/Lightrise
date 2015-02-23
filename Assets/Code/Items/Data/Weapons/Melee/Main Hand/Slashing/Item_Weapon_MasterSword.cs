@@ -46,8 +46,8 @@ public class Item_Weapon_MasterSword : ItemEntity, Weapon, Item, Equipable, Hotb
 		return itemDescription;
 	}
 	
-	public int getArmor() {
-		return 0;
+	public float[] getProtections() {
+		return new float[0];
 	}
 	
 	public int getPrice() {

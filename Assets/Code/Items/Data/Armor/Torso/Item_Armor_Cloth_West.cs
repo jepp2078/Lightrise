@@ -9,7 +9,7 @@ private static int id = 4;
 	private static string armorType = "Cloth";
 	private static string itemName = "Cloth West "+"(+2 Armor)";
 	private static string itemDescription = "Old cloth west. It itches.";
-	private static int armor = 2;
+    private float[] protections = new float[15] { 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 	private static int price = 20;
     private static int inventoryID = 999;
 
@@ -27,8 +27,8 @@ private static int id = 4;
 		return armorType;
 	}
 
-	public int getArmor() {
-		return armor;
+	public float[] getProtections() {
+		return protections;
 	}
 
 	public string getItemText() {

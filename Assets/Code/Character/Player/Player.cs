@@ -15,8 +15,7 @@ public class Player : MonoBehaviour {
         player = new PlayerObject(0, 0, 0);
         instance = this;
         player.changeStats(5, 5, 5, 5, 5);
-        //player.refillVitals();
-        player.skillGain(98.90f, 0); //See skillID identify pdf for skill id list
+        player.refillVitals();
         player.hotbarAdd((HotbarAble)player.getInventoryItem(0), 0);
         player.hotbarAdd((HotbarAble)player.getInventoryItem(1), 1);
         player.hotbarAdd((HotbarAble)player.getSkill(1), 2);
@@ -66,8 +65,9 @@ public class Player : MonoBehaviour {
 	void gameLogic () {
         if (Input.GetButton("Sprint"))
         {
-            if (player.setStamina(0.125f, 0)) //sprint skill needs to modify this (Stamina cost)s
+            if (player.setStamina(0.225f-player.getSkillEffect(2), 0)) //sprint skill needs to modify this (Stamina cost)s
             {
+                Player.instance.gainSkill(0.0833f/60f, 2);
                 RPG_Controller.instance.walkSpeed = 10;
             }
             else
@@ -79,18 +79,21 @@ public class Player : MonoBehaviour {
         {
             RPG_Controller.instance.walkSpeed = RPG_Controller.instance.baseWalkSpeed + player.getSkillEffect(0); //See skillID identify pdf for skill id list
         }
-	}
 
-    void serverTick()
-    {
-        if(serverTicks%48 == 0){
-            player.setHealth(0, (0.66f + player.getRegenModifiers(1)),true); // Think about skill to modify this?
-            player.setMana(0, (0.66f + player.getRegenModifiers(3))); 
+        if (serverTicks % 48 == 0)
+        {
+            player.setHealth(0, (0.66f + player.getRegenModifiers(1)), true); // Think about skill to modify this?
+            player.setMana(0, (0.66f + player.getRegenModifiers(3)));
         }
         if (serverTicks % 24 == 0)
         {
             player.setStamina(0, (0.66f + player.getRegenModifiers(2))); // Think about skill to modify this?
+            Debug.Log(Function.status());
         }
+	}
+
+    void serverTick()
+    {
         gameLogic();
         updateCooldowns();
         updateSpellDurations();
@@ -100,7 +103,7 @@ public class Player : MonoBehaviour {
             serverTicks = 0;
         }
 
-        //Debug.Log(Function.status());
+        
     }
 
     public void gainSkill(float gain, int skillID)
@@ -121,7 +124,7 @@ public class Player : MonoBehaviour {
 
     public void updateSpellDurations()
     {
-        for (int i = 0; i < cooldownList.Count; i++)
+        for (int i = 0; i < spellDurationList.Count; i++)
         {
             if (spellDurationList[i].setCurrentDuration(0.0825F))
             {

@@ -5,7 +5,7 @@ public interface Armor
 {
     string getItemSlot();
     string getArmorType();
-    int getArmor();
+    float[] getProtections();
     string getName();
     string getItemDescription();
 }

@@ -7,11 +7,11 @@ public class Item_Armor_Leather_Sandals : ItemEntity, Armor, Item, Equipable
 	private static int id = 0;
 	private static string itemSlot = "Feet";
 	private static string armorType = "Leather";
-	private static string itemName = "Leather Sandals "+"(+0 Armor)";
+	private static string itemName = "Leather Sandals";
 	private static string itemDescription = "Fashionable leather sandals";
-	private static int armor = 0;
 	private static int price = 20;
     private static int inventoryID = 999;
+    private float[] protections = new float[15] { 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 	
 	public Item_Armor_Leather_Sandals(int x, int y) :
 		base(id, itemName, x, y)
@@ -26,8 +26,8 @@ public class Item_Armor_Leather_Sandals : ItemEntity, Armor, Item, Equipable
 		return armorType;
 	}
 
-	public int getArmor() {
-		return armor;
+	public float[] getProtections() {
+		return protections;
 	}
 
 	public string getItemText() {

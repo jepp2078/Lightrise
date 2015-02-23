@@ -75,6 +75,7 @@
      <Compile Include="Assets\Code\Skills\Active\General\Skill_Active_General_Rest.cs" />
      <Compile Include="Assets\Code\Skills\Logic\SkillEntity.cs" />
      <Compile Include="Assets\Code\Skills\Passive\General\Skill_Passive_General_Run.cs" />
+     <Compile Include="Assets\Code\Skills\Passive\General\Skill_Passive_General_Sprint.cs" />
      <None Include="Assets\Standard Assets\Tessellation Shaders\BumpedSpecularSmooth.shader" />
      <None Include="Assets\Standard Assets\Tessellation Shaders\BumpedSpecularDisplacement.shader" />
   </ItemGroup>
