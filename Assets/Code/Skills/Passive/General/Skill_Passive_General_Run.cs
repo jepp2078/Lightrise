@@ -58,24 +58,42 @@ public class Skill_Passive_General_Run : SkillEntity, Skill
 
     public bool setSkillLevel(float change)
     {
+        float oldSkillLevel = getSkillLevel();
         skillLevel += change;
-        if (skillLevel >= 25)
+        if (Mathf.Floor(oldSkillLevel) < Mathf.Floor(skillLevel))
         {
-            effect = 0.125f;
+            Debug.Log("Skill level in " + getSkillText() + " has increased to " + Mathf.Floor(skillLevel) + "!");
         }
-        else if (skillLevel >= 50)
+        if (skillLevel >= 100)
         {
-            effect = 0.25f;
+            if (Mathf.Floor(oldSkillLevel) < 100)
+            {
+                Debug.Log(getSkillText() + " is surging!");
+            } effect = 0.50f;
+            skillLevel = 100;
+            return false;
         }
         else if (skillLevel >= 75)
         {
-            effect = 0.375f;
+            if (Mathf.Floor(oldSkillLevel) < 75)
+            {
+                Debug.Log(getSkillText() + " has reached a new level!");
+            } effect = 0.375f;
         }
-        else if (skillLevel >= 100)
+        else if (skillLevel >= 50)
         {
-            effect = 0.50f;
-            skillLevel = 100;
-            return false;
+            if (Mathf.Floor(oldSkillLevel) < 50)
+            {
+                Debug.Log(getSkillText() + " has reached a new level!");
+            } effect = 0.25f;
+        }
+        else if (skillLevel >= 25)
+        {
+            if (Mathf.Floor(oldSkillLevel) < 25)
+            {
+                Debug.Log(getSkillText() + " has reached a new level!");
+            }
+            effect = 0.125f;
         }
         else
         {

@@ -1,0 +1,77 @@
+-debug
+-target:library
+-nowarn:0169
+-out:Temp/Assembly-CSharp.dll
+-r:"C:/Program Files (x86)/UnityPRO/Editor/Data/Managed/UnityEngine.dll"
+-r:Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll
+-r:Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll
+-r:"C:/Program Files (x86)/UnityPRO/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.3/UnityEngine.UI.dll"
+-r:"C:/Program Files (x86)/UnityPRO/Editor/Data/Managed/UnityEditor.dll"
+-define:UNITY_4_6_3
+-define:UNITY_4_6
+-define:UNITY_STANDALONE_WIN
+-define:ENABLE_MICROPHONE
+-define:ENABLE_TEXTUREID_MAP
+-define:ENABLE_UNITYEVENTS
+-define:ENABLE_NEW_HIERARCHY 
+-define:ENABLE_AUDIO_FMOD
+-define:UNITY_STANDALONE
+-define:ENABLE_TERRAIN
+-define:ENABLE_SUBSTANCE
+-define:ENABLE_GENERICS
+-define:INCLUDE_IL2CPP
+-define:INCLUDE_WP8SUPPORT
+-define:ENABLE_MOVIES
+-define:ENABLE_WWW
+-define:ENABLE_IMAGEEFFECTS
+-define:ENABLE_4_6_FEATURES
+-define:INCLUDE_WP_BLUE_SUPPORT
+-define:ENABLE_WEBCAM
+-define:INCLUDE_METROSUPPORT
+-define:RENDER_SOFTWARE_CURSOR
+-define:ENABLE_NETWORK
+-define:ENABLE_PHYSICS
+-define:UNITY5_SCRIPTING_IN_UNITY4
+-define:ENABLE_CACHING
+-define:ENABLE_CLOTH
+-define:ENABLE_2D_PHYSICS
+-define:ENABLE_SHADOWS
+-define:ENABLE_AUDIO
+-define:ENABLE_NAVMESH_CARVING
+-define:ENABLE_DUCK_TYPING
+-define:ENABLE_SINGLE_INSTANCE_BUILD_SETTING
+-define:ENABLE_MONO
+-define:ENABLE_PROFILER
+-define:UNITY_EDITOR
+-define:UNITY_EDITOR_WIN
+"Assets/Code/Character/(MMO)RPG Camera & Controller/Scripts/RPG_Animation.cs"
+"Assets/Code/Character/(MMO)RPG Camera & Controller/Scripts/RPG_Animation_CharacterFadeOnly.cs"
+"Assets/Code/Character/(MMO)RPG Camera & Controller/Scripts/RPG_Camera.cs"
+"Assets/Code/Character/(MMO)RPG Camera & Controller/Scripts/RPG_Controller.cs"
+Assets/Code/Character/Player/Player.cs
+Assets/Code/Character/Player/PlayerEntity.cs
+Assets/Code/Character/Player/PlayerObject.cs
+Assets/Code/Function/Function.cs
+Assets/Code/Interfaces/Armor.cs
+Assets/Code/Interfaces/Castable.cs
+Assets/Code/Interfaces/Equipable.cs
+Assets/Code/Interfaces/HotbarAble.cs
+Assets/Code/Interfaces/Item.cs
+Assets/Code/Interfaces/Skill.cs
+Assets/Code/Interfaces/Weapon.cs
+Assets/Code/Items/Data/Armor/Feet/Item_Armor_Leather_Sandals.cs
+Assets/Code/Items/Data/Armor/Head/Item_Armor_Cloth_Hood.cs
+Assets/Code/Items/Data/Armor/Head/Item_Armor_Cloth_Sack.cs
+Assets/Code/Items/Data/Armor/Legs/Item_Armor_Cloth_Pants.cs
+Assets/Code/Items/Data/Armor/Torso/Item_Armor_Cloth_West.cs
+"Assets/Code/Items/Data/Weapons/Melee/Main Hand/Slashing/Item_Weapon_GreatSword.cs"
+"Assets/Code/Items/Data/Weapons/Melee/Main Hand/Slashing/Item_Weapon_MasterSword.cs"
+Assets/Code/Items/Data/Weapons/Ranged/Bow/Item_Weapon_GreatBow.cs
+Assets/Code/Items/Data/Weapons/Unarmed/Blunt/Item_Weapon_Unarmed.cs
+Assets/Code/Items/Logic/ItemContainer/ItemContainer.cs
+Assets/Code/Items/Logic/ItemEntity.cs
+Assets/Code/Skills/Active/General/Skill_Active_General_Rest.cs
+Assets/Code/Skills/Logic/SkillEntity.cs
+Assets/Code/Skills/Passive/General/Skill_Passive_General_Run.cs
+-r:"C:/Program Files (x86)/UnityPRO/Editor/Data/Mono\lib/mono/unity\System.Runtime.Serialization.dll"
+-r:"C:/Program Files (x86)/UnityPRO/Editor/Data/Mono\lib/mono/unity\System.Xml.Linq.dll"
