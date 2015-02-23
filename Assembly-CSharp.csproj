@@ -55,6 +55,7 @@
      <Compile Include="Assets\Code\Character\Player\PlayerObject.cs" />
      <Compile Include="Assets\Code\Function\Function.cs" />
      <Compile Include="Assets\Code\Interfaces\Armor.cs" />
+     <Compile Include="Assets\Code\Interfaces\Castable.cs" />
      <Compile Include="Assets\Code\Interfaces\Equipable.cs" />
      <Compile Include="Assets\Code\Interfaces\HotbarAble.cs" />
      <Compile Include="Assets\Code\Interfaces\Item.cs" />
@@ -71,6 +72,7 @@
      <Compile Include="Assets\Code\Items\Data\Weapons\Unarmed\Blunt\Item_Weapon_Unarmed.cs" />
      <Compile Include="Assets\Code\Items\Logic\ItemContainer\ItemContainer.cs" />
      <Compile Include="Assets\Code\Items\Logic\ItemEntity.cs" />
+     <Compile Include="Assets\Code\Skills\Active\General\Skill_Active_General_Rest.cs" />
      <Compile Include="Assets\Code\Skills\Logic\SkillEntity.cs" />
      <Compile Include="Assets\Code\Skills\Passive\General\Skill_Passive_General_Run.cs" />
      <None Include="Assets\Standard Assets\Tessellation Shaders\BumpedSpecularSmooth.shader" />

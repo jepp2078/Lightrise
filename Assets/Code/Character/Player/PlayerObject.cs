@@ -38,6 +38,7 @@ public class PlayerObject : PlayerEntity {
             switch (i)
             {
                 case 0: skillList.Insert(0, new Skill_Passive_General_Run()); break;
+                case 1: skillList.Insert(1, new Skill_Active_General_Rest()); break;
             }
         }
 
@@ -544,5 +545,10 @@ public class PlayerObject : PlayerEntity {
     {
         string skillLevel = skillList[skillID].getSkillLevel().ToString("0.00");
         return skillLevel;
+    }
+
+    public Castable getSkill(int skillID)
+    {
+        return (Castable) skillList[skillID];
     }
 }

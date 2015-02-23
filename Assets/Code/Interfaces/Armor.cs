@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-interface Armor
+public interface Armor
 {
     string getItemSlot();
     string getArmorType();

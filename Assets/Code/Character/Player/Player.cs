@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour {
     public static PlayerObject player;
+    private List<Castable> cooldownList = new List<Castable>();
     public static Player instance;
     public int serverTicks = 0;
     private float guiHelper = 0.5f;
@@ -12,12 +14,13 @@ public class Player : MonoBehaviour {
         player = new PlayerObject(0, 0, 0);
         instance = this;
         player.changeStats(5, 5, 5, 5, 5);
-        player.refillVitals();
+        //player.refillVitals();
         player.skillGain(23.80f, 0); //See skillID identify pdf for skill id list
         player.hotbarAdd((HotbarAble)player.getInventoryItem(0), 0);
         player.hotbarAdd((HotbarAble)player.getInventoryItem(1), 1);
-        Debug.Log(Function.showEquipment());
-        Debug.Log(Function.showInventory());
+        Player.player.getSkill(1).cast(); //Testing rest skill
+        Player.player.getSkill(1).setCurrentCooldown(Player.player.getSkill(1).getCooldown());
+        cooldownList.Add(Player.player.getSkill(1));
 
         InvokeRepeating("serverTick", 0, 0.0825F); //TEMP value. We might need to change how fast the server ticks? 1/12 of a sec right now.
     }
@@ -41,16 +44,13 @@ public class Player : MonoBehaviour {
         {
             guiHelperNext = Time.time + guiHelper;
             Function.hotbarUse(0);
-            Debug.Log(Function.showEquipment());
-            Debug.Log(Function.showInventory());
         }
 
         if (Input.GetButton("Hotbar2") && Time.time > guiHelperNext)
         {
             guiHelperNext = Time.time + guiHelper;
             Function.hotbarUse(1);
-            Debug.Log(Function.showEquipment());
-            Debug.Log(Function.showInventory());
+
         }
     }
 
@@ -88,6 +88,8 @@ public class Player : MonoBehaviour {
         {
             serverTicks = 0;
         }
+
+        Debug.Log(Function.status());
     }
 
     public void gainSkill(float gain, int skillID)
@@ -95,5 +97,17 @@ public class Player : MonoBehaviour {
         player.skillGain(gain, skillID);
         Debug.Log("Gained " + gain + " in skill " + player.getSkillName(skillID));
         Debug.Log("Run: " + player.getSkillLevel(skillID));
+    }
+
+    public void updateCooldowns()
+    {
+        for (int i = 0; i < cooldownList.Count;i++)
+        {
+            if (cooldownList[i].setCurrentCooldown(0.0825F))
+            {
+                Debug.Log("Skill came off cooldown");
+                cooldownList.RemoveAt(i);
+            }
+        }
     }
 }
