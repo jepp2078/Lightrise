@@ -93,6 +93,7 @@ public class Player : MonoBehaviour {
         }
         gameLogic();
         updateCooldowns();
+        updateSpellDurations();
         serverTicks++;
         if (serverTicks > 100000)
         {
@@ -114,6 +115,17 @@ public class Player : MonoBehaviour {
             if (cooldownList[i].setCurrentCooldown(0.0825F))
             {
                 cooldownList.RemoveAt(i);
+            }
+        }
+    }
+
+    public void updateSpellDurations()
+    {
+        for (int i = 0; i < cooldownList.Count; i++)
+        {
+            if (spellDurationList[i].setCurrentDuration(0.0825F))
+            {
+                spellDurationList.RemoveAt(i);
             }
         }
     }
