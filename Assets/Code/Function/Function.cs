@@ -159,6 +159,28 @@ public class Function : MonoBehaviour {
             	Debug.Log(equipItem(Player.player.getInventoryItem(hotbarType.getInventoryID())));
 			}
         }
+        else if (hotbarType is Castable)
+        {
+            Player.player.setActiveSkill((Castable)hotbarType);
+        }
+    }
+
+    public static string performAction()
+    {
+        Castable skill = Player.player.getActiveSkill();
+        if (skill.getCurrentCooldown() == 0)
+        {
+            skill.cast();
+            skill.setCurrentCooldown(skill.getCooldown());
+            Player.instance.addCooldown(skill);
+            skill.updateGainPrCast();
+            Player.instance.gainSkill(skill.getGainPrCast(), ((Skill)skill).getSkillID());
+            return skill.getCastMsg();
+        }
+        else
+        {
+            return "Skill " + ((Skill)skill).getSkillText() + " is on cooldown!";
+        }
     }
    
 }

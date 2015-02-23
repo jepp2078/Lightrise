@@ -5,9 +5,10 @@ using System.Collections.Generic;
 public class Player : MonoBehaviour {
     public static PlayerObject player;
     private List<Castable> cooldownList = new List<Castable>();
+    private List<Castable> spellDurationList = new List<Castable>();
     public static Player instance;
     public int serverTicks = 0;
-    private float guiHelper = 0.5f;
+    private float guiHelper = 0.2f;
     private float guiHelperNext = 0.0f;
 	// Use this for initialization
 	void Start () {
@@ -15,12 +16,10 @@ public class Player : MonoBehaviour {
         instance = this;
         player.changeStats(5, 5, 5, 5, 5);
         //player.refillVitals();
-        player.skillGain(23.80f, 0); //See skillID identify pdf for skill id list
+        player.skillGain(98.90f, 0); //See skillID identify pdf for skill id list
         player.hotbarAdd((HotbarAble)player.getInventoryItem(0), 0);
         player.hotbarAdd((HotbarAble)player.getInventoryItem(1), 1);
-        Player.player.getSkill(1).cast(); //Testing rest skill
-        Player.player.getSkill(1).setCurrentCooldown(Player.player.getSkill(1).getCooldown());
-        cooldownList.Add(Player.player.getSkill(1));
+        player.hotbarAdd((HotbarAble)player.getSkill(1), 2);
 
         InvokeRepeating("serverTick", 0, 0.0825F); //TEMP value. We might need to change how fast the server ticks? 1/12 of a sec right now.
     }
@@ -50,7 +49,17 @@ public class Player : MonoBehaviour {
         {
             guiHelperNext = Time.time + guiHelper;
             Function.hotbarUse(1);
-
+        }
+        if (Input.GetButton("Hotbar3") && Time.time > guiHelperNext)
+        {
+            guiHelperNext = Time.time + guiHelper;
+            Function.hotbarUse(2);
+        }
+        if (Input.GetButton("action") && Time.time > guiHelperNext)
+        {
+            guiHelperNext = Time.time + guiHelper;
+            if(player.getActiveSkill() != null)
+                Debug.Log(Function.performAction());
         }
     }
 
@@ -75,7 +84,7 @@ public class Player : MonoBehaviour {
     void serverTick()
     {
         if(serverTicks%48 == 0){
-            player.setHealth(0, (0.66f + player.getRegenModifiers(1))); // Think about skill to modify this?
+            player.setHealth(0, (0.66f + player.getRegenModifiers(1)),true); // Think about skill to modify this?
             player.setMana(0, (0.66f + player.getRegenModifiers(3))); 
         }
         if (serverTicks % 24 == 0)
@@ -83,20 +92,19 @@ public class Player : MonoBehaviour {
             player.setStamina(0, (0.66f + player.getRegenModifiers(2))); // Think about skill to modify this?
         }
         gameLogic();
+        updateCooldowns();
         serverTicks++;
         if (serverTicks > 100000)
         {
             serverTicks = 0;
         }
 
-        Debug.Log(Function.status());
+        //Debug.Log(Function.status());
     }
 
     public void gainSkill(float gain, int skillID)
     {
         player.skillGain(gain, skillID);
-        Debug.Log("Gained " + gain + " in skill " + player.getSkillName(skillID));
-        Debug.Log("Run: " + player.getSkillLevel(skillID));
     }
 
     public void updateCooldowns()
@@ -105,9 +113,13 @@ public class Player : MonoBehaviour {
         {
             if (cooldownList[i].setCurrentCooldown(0.0825F))
             {
-                Debug.Log("Skill came off cooldown");
                 cooldownList.RemoveAt(i);
             }
         }
+    }
+
+    public void addCooldown(Castable skill)
+    {
+        cooldownList.Add(skill);
     }
 }

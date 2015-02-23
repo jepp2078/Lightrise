@@ -7,6 +7,7 @@ public class PlayerObject : PlayerEntity {
     private List<Item> equipmentList = new List<Item>();
     private List<Skill> skillList = new List<Skill>();
     private List<HotbarAble> hotbar = new List<HotbarAble>();
+    private Castable activeSkill = null;
     private float str = 5, dex = 5, intel = 5, vit = 5, wis = 5;
     private float health, tempHealth, mana, tempMana, stamina, tempStamina, baseHealth = 100, baseMana = 100, baseStamina = 100,  bonusHealth = 0, bonusMana = 0, bonusStamina = 0;
     private int invSize, baseInvSize = 200, inventoryIDCount = 0;
@@ -409,8 +410,16 @@ public class PlayerObject : PlayerEntity {
         return (float)(1 - armorInt * 0.01);
     }
 
-    public bool setHealth(float damage, float healing)
+    public bool setHealth(float damage, float healing, bool regen)
     {
+        if (damage == 0 && !regen)
+        {
+            Debug.Log("You were healed for " + healing.ToString("0.00"));
+        }
+        else if(healing == 0 && !regen)
+        {
+            Debug.Log("You were damaged for " + damage.ToString("0.00"));
+        }
         tempHealth -= damage;
         tempHealth += healing;
         if (tempHealth <= 0)
@@ -547,8 +556,19 @@ public class PlayerObject : PlayerEntity {
         return skillLevel;
     }
 
-    public Castable getSkill(int skillID)
+    public Skill getSkill(int skillID)
     {
-        return (Castable) skillList[skillID];
+        return skillList[skillID];
+    }
+
+    public void setActiveSkill(Castable skill)
+    {
+        activeSkill = skill;
+        Debug.Log(((Skill)activeSkill).getSkillText());
+    }
+
+    public Castable getActiveSkill()
+    {
+        return activeSkill;
     }
 }

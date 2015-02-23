@@ -52,6 +52,11 @@ public class RPG_Controller : MonoBehaviour {
 
         if (Input.GetButton("Horizontal Strafe"))
         {
+            if (((Castable)Player.player.getSkill(1)).getState())
+            {
+                Debug.Log("Getting up");
+                ((Castable)Player.player.getSkill(1)).stopEffect();
+            }
             horizontalStrafe = Input.GetAxis("Horizontal Strafe") < 0 ? -1f : Input.GetAxis("Horizontal Strafe") > 0 ? 1f : 0f;
             serverTickIn = Player.instance.serverTicks;
             if (serverTickCurrent != serverTickIn)
@@ -63,6 +68,11 @@ public class RPG_Controller : MonoBehaviour {
 
         if (Input.GetButton("Vertical"))
         {
+            if (((Castable)Player.player.getSkill(1)).getState())
+            {
+                Debug.Log("Getting up");
+                ((Castable)Player.player.getSkill(1)).stopEffect();
+            }
             vertical = Input.GetAxis("Vertical") < 0 ? -1f : Input.GetAxis("Vertical") > 0 ? 1f : 0f;
             serverTickIn = Player.instance.serverTicks;
             if (serverTickCurrent != serverTickIn)
@@ -86,6 +96,11 @@ public class RPG_Controller : MonoBehaviour {
             playerDirWorld.y = fallingThreshold;
             
             if (Input.GetButtonDown("Jump")) {
+                if (((Castable)Player.player.getSkill(1)).getState())
+                {
+                    Debug.Log("Getting up");
+                    ((Castable)Player.player.getSkill(1)).stopEffect();
+                }
                 playerDirWorld.y = jumpHeight;
                 if (RPG_Animation.instance != null)
                     RPG_Animation.instance.Jump(); // the pattern for calling animations is always the same: just add some lines under line 77 and write an if statement which
