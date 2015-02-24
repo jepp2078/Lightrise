@@ -18,7 +18,6 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
     private static float currentDuration = 0;
     private static bool activated = false;
     private static string castMsg = "You begin resting";
-    private static string fadeMsg = "You stop resting";
     private static float gainPrCast = 1.0f;
     private static float cooldown = 5f;
     private static float currentCooldown = 0f;
@@ -242,6 +241,5 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
     public void updateGainPrCast()
     {
         gainPrCast = 1.1f - (getSkillLevel()/100);
-        Debug.Log(gainPrCast);
     }
 }

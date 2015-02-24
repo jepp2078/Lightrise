@@ -47,9 +47,9 @@ public class RPG_Camera : MonoBehaviour {
         distance = Mathf.Clamp(distance, 0.05f, distanceMax);
         desiredDistance = distance;
 
-        halfFieldOfView = (Camera.mainCamera.fieldOfView / 2) * Mathf.Deg2Rad;
-        planeAspect = Camera.mainCamera.aspect;
-        halfPlaneHeight = Camera.mainCamera.nearClipPlane * Mathf.Tan(halfFieldOfView);
+        halfFieldOfView = (Camera.main.fieldOfView / 2) * Mathf.Deg2Rad;
+        planeAspect = Camera.main.aspect;
+        halfPlaneHeight = Camera.main.nearClipPlane * Mathf.Tan(halfFieldOfView);
         halfPlaneWidth = halfPlaneHeight * planeAspect;
 
         mouseX = 0f;
@@ -62,8 +62,8 @@ public class RPG_Camera : MonoBehaviour {
         GameObject cameraPivot;
         RPG_Camera cameraScript;
 
-        if (Camera.mainCamera != null)
-            cameraUsed = Camera.mainCamera.gameObject;
+        if (Camera.main != null)
+            cameraUsed = Camera.main.gameObject;
         else {
             cameraUsed = new GameObject("Main Camera");
             cameraUsed.AddComponent("Camera");
@@ -138,7 +138,7 @@ public class RPG_Camera : MonoBehaviour {
 
         if (guiMode == false)
         {
-            RPG_Controller.instance.transform.rotation = Quaternion.Euler(RPG_Controller.instance.transform.eulerAngles.x, Camera.mainCamera.transform.eulerAngles.y, RPG_Controller.instance.transform.eulerAngles.z);
+            RPG_Controller.instance.transform.rotation = Quaternion.Euler(RPG_Controller.instance.transform.eulerAngles.x, Camera.main.transform.eulerAngles.y, RPG_Controller.instance.transform.eulerAngles.z);
 
         }
 
@@ -170,7 +170,7 @@ public class RPG_Camera : MonoBehaviour {
         }
 
 
-        distance -= Camera.mainCamera.nearClipPlane;
+        distance -= Camera.main.nearClipPlane;
 
         if (lastDistance < distance || !constraint)
             distance = Mathf.SmoothDamp(lastDistance, distance, ref distanceVel, camDistanceSpeed);
@@ -243,7 +243,7 @@ public class RPG_Camera : MonoBehaviour {
 
 
         if (Physics.Linecast(from, to, out hitInfo) && hitInfo.collider.tag != "Player")
-            closestDistance = hitInfo.distance - Camera.mainCamera.nearClipPlane;
+            closestDistance = hitInfo.distance - Camera.main.nearClipPlane;
         
         if (Physics.Linecast(from - transform.right * halfPlaneWidth + transform.up * halfPlaneHeight, clipPlane.UpperLeft, out hitInfo) && hitInfo.collider.tag != "Player")
             if (hitInfo.distance < closestDistance || closestDistance == -1)
@@ -289,11 +289,11 @@ public class RPG_Camera : MonoBehaviour {
     public static ClipPlaneVertexes GetClipPlaneAt(Vector3 pos) {
         var clipPlane = new ClipPlaneVertexes();
 
-        if (Camera.mainCamera == null)
+        if (Camera.main == null)
             return clipPlane;
 
-        Transform transform = Camera.mainCamera.transform;
-        float offset = Camera.mainCamera.nearClipPlane;
+        Transform transform = Camera.main.transform;
+        float offset = Camera.main.nearClipPlane;
 
         clipPlane.UpperLeft = pos - transform.right * halfPlaneWidth;
         clipPlane.UpperLeft += transform.up * halfPlaneHeight;

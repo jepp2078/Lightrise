@@ -3,11 +3,16 @@ using System.Collections;
 
 public class Item_Weapon_GreatSword : ItemEntity, Weapon, Item, Equipable, HotbarAble
 {
-	private static int id = 5;
-	private static string itemName = "Great Sword "+"(+13-34 Damage)";
-	private static string itemDescription = "Plain old Great Sword.";
+	private static int id = 999;
+	private static string itemName = "Great Sword";
+	private static string itemDescription = "A beginners great sword";
 	private static int price = 20;
     private static int hotbarSlot = 0;
+    private static float damage = 0.30f;
+    private static float attackSpeed = 0.40f;
+    private static float durability = 60f;
+    private static float weaponRank = 0.0f;
+    private static float weight = 3.3f;
     private static int inventoryID = 999;
 
 	
@@ -16,14 +21,13 @@ public class Item_Weapon_GreatSword : ItemEntity, Weapon, Item, Equipable, Hotba
     }
 	
 	
-	public int getDamage(){
-        int damage = Random.Range(21, 34);
+	public float getDamage(){
 		return damage;
 		
 	}
 	
 	public string getType(){
-		string type = "melee";
+		string type = "great sword";
 		return type;
 	}
 	
@@ -76,5 +80,39 @@ public class Item_Weapon_GreatSword : ItemEntity, Weapon, Item, Equipable, Hotba
     public int getSkillID()
     {
         return 999;
+    }
+
+
+    public float getAttackspeed()
+    {
+        return attackSpeed;
+    }
+
+
+    public float getWeight()
+    {
+        return weight;
+    }
+
+
+    public float getDurability()
+    {
+        return durability;
+    }
+
+    public bool setDurability(float change)
+    {
+        durability -= change;
+        if (durability <= 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+
+    public float getWeaponRank()
+    {
+        return weaponRank;
     }
 }

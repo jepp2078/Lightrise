@@ -4,14 +4,16 @@ using System.Collections;
 public class Item_Armor_Cloth_Hood : ItemEntity, Armor, Item, Equipable
 {
 
-	private static int id = 1;
+	private static int id = 999;
 	private static string itemSlot = "Head";
-	private static string armorType = "Cloth";
 	private static string itemName = "Cloth Hood";
-	private static string itemDescription = "Old Cloth hood. It's on your head.";
+	private static string itemDescription = "Hood made out of old dusty cloth";
     private float[] protections = new float[15] { 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 	private static int price = 20;
     private static int inventoryID = 999;
+    private static float encumbrance = 1.0f;
+    private static float weight = 3.0f;
+    private static float durability = 40;
 
 	
 	public Item_Armor_Cloth_Hood(int x, int y) :
@@ -21,10 +23,6 @@ public class Item_Armor_Cloth_Hood : ItemEntity, Armor, Item, Equipable
 	
 	public string getItemSlot(){
 		return itemSlot;
-	}
-
-	public string getArmorType() {
-		return armorType;
 	}
 
 	public float[] getProtections() {
@@ -54,5 +52,32 @@ public class Item_Armor_Cloth_Hood : ItemEntity, Armor, Item, Equipable
     public void setInventoryID(int id)
     {
         inventoryID = id;
+    }
+
+    public float getEncumbrance()
+    {
+        return encumbrance;
+    }
+
+
+    public float getWeight()
+    {
+        return weight;
+    }
+
+
+    public float getDurability()
+    {
+        return durability;
+    }
+
+    public bool setDurability(float change)
+    {
+        durability -= change;
+        if (durability <= 0)
+        {
+            return true;
+        }
+        return false;
     }
 }

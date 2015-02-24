@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_5_3;UNITY_4_5;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_3;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_IL2CPP;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;UNITY5_SCRIPTING_IN_UNITY4;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -59,6 +59,7 @@
      <Compile Include="Assets\Code\Interfaces\Equipable.cs" />
      <Compile Include="Assets\Code\Interfaces\HotbarAble.cs" />
      <Compile Include="Assets\Code\Interfaces\Item.cs" />
+     <Compile Include="Assets\Code\Interfaces\Learnable.cs" />
      <Compile Include="Assets\Code\Interfaces\Skill.cs" />
      <Compile Include="Assets\Code\Interfaces\Weapon.cs" />
      <Compile Include="Assets\Code\Items\Data\Armor\Feet\Item_Armor_Leather_Sandals.cs" />
@@ -67,17 +68,32 @@
      <Compile Include="Assets\Code\Items\Data\Armor\Legs\Item_Armor_Cloth_Pants.cs" />
      <Compile Include="Assets\Code\Items\Data\Armor\Torso\Item_Armor_Cloth_West.cs" />
      <Compile Include="Assets\Code\Items\Data\Weapons\Melee\Main Hand\Slashing\Item_Weapon_GreatSword.cs" />
-     <Compile Include="Assets\Code\Items\Data\Weapons\Melee\Main Hand\Slashing\Item_Weapon_MasterSword.cs" />
-     <Compile Include="Assets\Code\Items\Data\Weapons\Ranged\Bow\Item_Weapon_GreatBow.cs" />
-     <Compile Include="Assets\Code\Items\Data\Weapons\Unarmed\Blunt\Item_Weapon_Unarmed.cs" />
+     <Compile Include="Assets\Code\Items\Data\Weapons\Ranged\Arrow\Item_Weapon_GreatBow.cs" />
      <Compile Include="Assets\Code\Items\Logic\ItemContainer\ItemContainer.cs" />
      <Compile Include="Assets\Code\Items\Logic\ItemEntity.cs" />
      <Compile Include="Assets\Code\Skills\Active\General\Skill_Active_General_Rest.cs" />
+     <Compile Include="Assets\Code\Skills\Active\General\Skill_Active_General_Revive.cs" />
      <Compile Include="Assets\Code\Skills\Logic\SkillEntity.cs" />
+     <Compile Include="Assets\Code\Skills\Passive\General\Skill_Passive_General_Constitution.cs" />
+     <Compile Include="Assets\Code\Skills\Passive\General\Skill_Passive_General_Crouch_Walk.cs" />
+     <Compile Include="Assets\Code\Skills\Passive\General\Skill_Passive_General_Defense.cs" />
+     <Compile Include="Assets\Code\Skills\Passive\General\Skill_Passive_General_Diving.cs" />
+     <Compile Include="Assets\Code\Skills\Passive\General\Skill_Passive_General_Fortitude.cs" />
+     <Compile Include="Assets\Code\Skills\Passive\General\Skill_Passive_General_Perseverance.cs" />
+     <Compile Include="Assets\Code\Skills\Passive\General\Skill_Passive_General_Reflex.cs" />
+     <Compile Include="Assets\Code\Skills\Passive\General\Skill_Passive_General_Riding.cs" />
+     <Compile Include="Assets\Code\Skills\Passive\General\Skill_Passive_General_Rigor.cs" />
      <Compile Include="Assets\Code\Skills\Passive\General\Skill_Passive_General_Run.cs" />
      <Compile Include="Assets\Code\Skills\Passive\General\Skill_Passive_General_Sprint.cs" />
+     <Compile Include="Assets\Code\Skills\Passive\General\Skill_Passive_General_Survivalist.cs" />
+     <Compile Include="Assets\Code\Skills\Passive\General\Skill_Passive_General_Swimming.cs" />
+     <Compile Include="Assets\Code\Skills\Passive\General\Skill_Passive_General_Toughness.cs" />
+     <Compile Include="Assets\Code\Skills\Passive\General\Skill_Passive_General_Willpower.cs" />
      <None Include="Assets\Standard Assets\Tessellation Shaders\BumpedSpecularSmooth.shader" />
      <None Include="Assets\Standard Assets\Tessellation Shaders\BumpedSpecularDisplacement.shader" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>E:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.3/UnityEngine.UI.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">

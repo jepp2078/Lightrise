@@ -3,11 +3,16 @@ using System.Collections;
 
 public class Item_Weapon_GreatBow : ItemEntity, Weapon, Item, Equipable, HotbarAble
 {
-	private static int id = 7;
-	private static string itemName = "Great Bow "+"(+10-25 Damage)";
-	private static string itemDescription = "Plain old Great Bow.";
-	private static int price = 20;
+	private static int id = 999;
+	private static string itemName = "Great Bow";
+	private static string itemDescription = "A beginners great bow.";
+    private static int price = 20;
     private static int hotbarSlot = 0;
+    private static float damage = 0.30f;
+    private static float attackSpeed = 0.60f;
+    private static float durability = 60f;
+    private static float weaponRank = 0.0f;
+    private static float weight = 3.3f;
     private static int inventoryID = 999;
 
 	
@@ -16,8 +21,7 @@ public class Item_Weapon_GreatBow : ItemEntity, Weapon, Item, Equipable, HotbarA
     {
 	}
 	
-	public int getDamage(){
-		int damage = Random.Range(15, 25);
+	public float getDamage(){
 		return damage;
 		
 	}
@@ -33,7 +37,7 @@ public class Item_Weapon_GreatBow : ItemEntity, Weapon, Item, Equipable, HotbarA
 	}
 	
 	public string getDamageType(){
-		string damageType = "piercing";
+		string damageType = "arrow";
 		return damageType;
 	}
 
@@ -75,5 +79,39 @@ public class Item_Weapon_GreatBow : ItemEntity, Weapon, Item, Equipable, HotbarA
     public int getSkillID()
     {
         return 999;
+    }
+
+
+    public float getAttackspeed()
+    {
+        return attackSpeed;
+    }
+
+
+    public float getWeight()
+    {
+        return weight;
+    }
+
+
+    public float getDurability()
+    {
+        return durability;
+    }
+
+    public bool setDurability(float change)
+    {
+        durability -= change;
+        if (durability <= 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+
+    public float getWeaponRank()
+    {
+        return weaponRank;
     }
 }

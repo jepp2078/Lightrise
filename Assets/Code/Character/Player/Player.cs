@@ -10,15 +10,17 @@ public class Player : MonoBehaviour {
     public int serverTicks = 0;
     private float guiHelper = 0.2f;
     private float guiHelperNext = 0.0f;
-	// Use this for initialization
+
+	// Use this for initialization and testing
 	void Start () {
         player = new PlayerObject(0, 0, 0);
         instance = this;
-        player.changeStats(5, 5, 5, 5, 5);
+        player.changeStats(5, 5, 5, 5, 5, 5, 0, 0, 0);
         player.refillVitals();
         player.hotbarAdd((HotbarAble)player.getInventoryItem(0), 0);
         player.hotbarAdd((HotbarAble)player.getInventoryItem(1), 1);
         player.hotbarAdd((HotbarAble)player.getSkill(1), 2);
+        player.hotbarAdd((HotbarAble)player.getSkill(14), 3);
 
         InvokeRepeating("serverTick", 0, 0.0825F); //TEMP value. We might need to change how fast the server ticks? 1/12 of a sec right now.
     }
@@ -54,6 +56,11 @@ public class Player : MonoBehaviour {
             guiHelperNext = Time.time + guiHelper;
             Function.hotbarUse(2);
         }
+        if (Input.GetButton("Hotbar4") && Time.time > guiHelperNext)
+        {
+            guiHelperNext = Time.time + guiHelper;
+            Function.hotbarUse(3);
+        }
         if (Input.GetButton("action") && Time.time > guiHelperNext)
         {
             guiHelperNext = Time.time + guiHelper;
@@ -63,17 +70,18 @@ public class Player : MonoBehaviour {
     }
 
 	void gameLogic () {
-        if (Input.GetButton("Sprint"))
+        if (Input.GetButton("Sprint") && !Input.GetButton("Crouch"))
         {
-            if (player.setStamina(0.225f-player.getSkillEffect(2), 0)) //sprint skill needs to modify this (Stamina cost)s
+            if (player.setStamina(0.225f-player.getSkillEffect(2), 0))
             {
                 Player.instance.gainSkill(0.0833f/60f, 2);
                 RPG_Controller.instance.walkSpeed = 10;
             }
-            else
-            {
-                RPG_Controller.instance.walkSpeed = RPG_Controller.instance.baseWalkSpeed+player.getSkillEffect(0); //See skillID identify pdf for skill id list
-            }
+        }
+        else if (Input.GetButton("Crouch") && RPG_Camera.instance.getGuiMode() == false)
+        {
+                Player.instance.gainSkill(0.0833f / 60f, 3);
+                RPG_Controller.instance.walkSpeed = 4 + player.getSkillEffect(3);
         }
         else
         {

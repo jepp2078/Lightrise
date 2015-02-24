@@ -3,14 +3,16 @@ using System.Collections;
 
 public class Item_Armor_Cloth_Sack : ItemEntity, Armor, Item, Equipable
 {
-private static int id = 2;
+private static int id = 999;
 	private static string itemSlot = "Head";
-	private static string armorType = "Cloth";
 	private static string itemName = "Cloth Sack";
-	private static string itemDescription = "Old potato sack. It's on your head.";
+	private static string itemDescription = "Old potato sack.";
     private float[] protections = new float[15] { 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 	private static int price = 20;
     private static int inventoryID = 999;
+    private static float encumbrance = 1.0f;
+    private static float weight = 3.0f;
+    private static float durability = 40;
 
 	
 	public Item_Armor_Cloth_Sack(int x, int y) : 
@@ -20,10 +22,6 @@ private static int id = 2;
 	
 	public string getItemSlot(){
 		return itemSlot;
-	}
-
-	public string getArmorType() {
-		return armorType;
 	}
 
 	public float[] getProtections() {
@@ -54,5 +52,32 @@ private static int id = 2;
     public void setInventoryID(int id)
     {
         inventoryID = id;
+    }
+
+    public float getEncumbrance()
+    {
+        return encumbrance;
+    }
+
+
+    public float getWeight()
+    {
+        return weight;
+    }
+
+
+    public float getDurability()
+    {
+        return durability;
+    }
+
+    public bool setDurability(float change)
+    {
+        durability -= change;
+        if (durability <= 0)
+        {
+            return true;
+        }
+        return false;
     }
 }

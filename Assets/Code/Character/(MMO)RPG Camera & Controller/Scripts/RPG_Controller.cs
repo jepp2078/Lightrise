@@ -29,7 +29,7 @@ public class RPG_Controller : MonoBehaviour {
 
 	
 	void Update () {
-        if (Camera.mainCamera == null)
+        if (Camera.main == null)
             return;
 
         if (characterController == null) {
@@ -61,8 +61,10 @@ public class RPG_Controller : MonoBehaviour {
             serverTickIn = Player.instance.serverTicks;
             if (serverTickCurrent != serverTickIn)
             {
-                Player.instance.gainSkill(0.0833f / 60f, 0);
-                serverTickCurrent = serverTickIn;
+                if (!Input.GetButton("Crouch") && !Input.GetButton("Sprint")) { 
+                    Player.instance.gainSkill(0.0833f / 60f, 0);
+                    serverTickCurrent = serverTickIn;
+                }
             }
         }
 
@@ -77,8 +79,11 @@ public class RPG_Controller : MonoBehaviour {
             serverTickIn = Player.instance.serverTicks;
             if (serverTickCurrent != serverTickIn)
             {
-                Player.instance.gainSkill(0.0833f / 60f, 0);
-                serverTickCurrent = serverTickIn;
+                if (!Input.GetButton("Crouch") && !Input.GetButton("Sprint"))
+                {
+                    Player.instance.gainSkill(0.0833f / 60f, 0);
+                    serverTickCurrent = serverTickIn;
+                }
             }
         }
             

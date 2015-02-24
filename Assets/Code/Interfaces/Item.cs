@@ -12,4 +12,5 @@ public interface Item
     int getPrice();
     int getInventoryID();
     void setInventoryID(int id);
+    float getWeight();
 }

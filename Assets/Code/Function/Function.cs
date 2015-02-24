@@ -3,20 +3,6 @@ using System.Collections;
 
 public class Function : MonoBehaviour {
 
-    public static float getWeaponDamage(PlayerEntity player){
-	    Item weapon = ((PlayerObject) player).getWeapon();
-	    if(weapon is Item){
-		    Weapon tempWeapon = (Weapon) weapon;
-		    string weaponType = tempWeapon.getType();
-		    float damageMod = ((PlayerObject) player).getWeaponMod(weaponType);
-		    return tempWeapon.getDamage() + damageMod;
-        }
-        else
-        {
-            return 0;
-        }
-    }
-
     public static string equipItem(Item item)
     {
         return Player.player.equip(item.getInventoryID());
