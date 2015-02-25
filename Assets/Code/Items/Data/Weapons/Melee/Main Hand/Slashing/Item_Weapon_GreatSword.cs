@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Item_Weapon_GreatSword : ItemEntity, Weapon, Item, Equipable, HotbarAble
 {
@@ -14,6 +15,8 @@ public class Item_Weapon_GreatSword : ItemEntity, Weapon, Item, Equipable, Hotba
     private static float weaponRank = 0.0f;
     private static float weight = 3.3f;
     private static int inventoryID = 999;
+    private static RawImage icon;
+    Texture texture;
 
 	
 	public Item_Weapon_GreatSword(int x, int y) : base(id, itemName, x, y)
@@ -115,4 +118,10 @@ public class Item_Weapon_GreatSword : ItemEntity, Weapon, Item, Equipable, Hotba
     {
         return weaponRank;
     }
+
+    public RawImage getIcon()
+    {
+        return icon;
+    }
+
 }

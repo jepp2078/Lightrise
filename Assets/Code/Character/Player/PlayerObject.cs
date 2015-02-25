@@ -597,9 +597,19 @@ public class PlayerObject : PlayerEntity {
         return gold;
     }
 
-    public void setGold(int gold)
+    public bool setGold(int goldIn)
     {
-        this.gold += gold;
+        int tempGold = gold;
+        gold += goldIn;
+        if (gold < 0)
+        {
+            gold = tempGold;
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     public float getSkillEffect(int skillID)

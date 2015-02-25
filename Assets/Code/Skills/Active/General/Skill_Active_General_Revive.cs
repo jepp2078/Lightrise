@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Castable  {
 
@@ -21,6 +22,8 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
     private static float gainPrCast = 1.0f;
     private static float cooldown = 20f;
     private static float currentCooldown = 0f;
+    private static RawImage icon;
+    Texture texture;
 
     public Skill_Active_General_Revive() :
 		base(id, skillName)
@@ -223,5 +226,9 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
     public void updateGainPrCast()
     {
         gainPrCast = 1.1f - (getSkillLevel()/100);
+    }
+    public RawImage getIcon()
+    {
+        return icon;
     }
 }

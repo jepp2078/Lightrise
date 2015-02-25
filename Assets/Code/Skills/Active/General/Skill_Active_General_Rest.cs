@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castable  {
 
@@ -21,12 +22,19 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
     private static float gainPrCast = 1.0f;
     private static float cooldown = 5f;
     private static float currentCooldown = 0f;
+    private static RawImage icon;
+    Texture texture;
 
     public Skill_Active_General_Rest() :
 		base(id, skillName)
 	{
+        texture = Resources.Load("misc_rest", typeof(Texture)) as Texture;
     }
 
+    void OnGUI()
+    {
+        icon.texture = texture;
+    }
     public int getSkillID()
     {
         return id;
@@ -241,5 +249,10 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
     public void updateGainPrCast()
     {
         gainPrCast = 1.1f - (getSkillLevel()/100);
+    }
+
+    public RawImage getIcon()
+    {
+        return icon;
     }
 }

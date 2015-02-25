@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public interface HotbarAble {
@@ -7,5 +8,6 @@ public interface HotbarAble {
     int getHotbarSlot();
     int getInventoryID();
     int getSkillID();
+    RawImage getIcon();
 	
 }

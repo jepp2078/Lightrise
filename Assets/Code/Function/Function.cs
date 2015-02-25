@@ -128,6 +128,9 @@ public class Function : MonoBehaviour {
     {
         if(instance is HotbarAble)
             Player.player.hotbarAdd(instance, hotbarSlot);
+            Debug.Log("working so far");
+        if(hotbarSlot == 2)
+            hotbarGuiFunction.instance.setHotbarIcon(instance.getIcon(), hotbarSlot);
     }
 
     public static void removeFromHotbar(int hotbarSlot)

@@ -17,10 +17,10 @@ public class Player : MonoBehaviour {
         instance = this;
         player.changeStats(5, 5, 5, 5, 5, 5, 0, 0, 0);
         player.refillVitals();
-        player.hotbarAdd((HotbarAble)player.getInventoryItem(0), 0);
-        player.hotbarAdd((HotbarAble)player.getInventoryItem(1), 1);
-        player.hotbarAdd((HotbarAble)player.getSkill(1), 2);
-        player.hotbarAdd((HotbarAble)player.getSkill(14), 3);
+        Function.putOnHotbar((HotbarAble)player.getInventoryItem(0), 0);
+        Function.putOnHotbar((HotbarAble)player.getInventoryItem(1), 1);
+        Function.putOnHotbar((HotbarAble)player.getSkill(1), 2);
+        Function.putOnHotbar((HotbarAble)player.getSkill(14), 3);
 
         InvokeRepeating("serverTick", 0, 0.0825F); //TEMP value. We might need to change how fast the server ticks? 1/12 of a sec right now.
     }

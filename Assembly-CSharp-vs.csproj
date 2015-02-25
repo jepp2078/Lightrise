@@ -54,6 +54,7 @@
      <Compile Include="Assets\Code\Character\Player\PlayerEntity.cs" />
      <Compile Include="Assets\Code\Character\Player\PlayerObject.cs" />
      <Compile Include="Assets\Code\Function\Function.cs" />
+     <Compile Include="Assets\Code\GUI\Hotbar\hotbarGuiFunction.cs" />
      <Compile Include="Assets\Code\Interfaces\Armor.cs" />
      <Compile Include="Assets\Code\Interfaces\Castable.cs" />
      <Compile Include="Assets\Code\Interfaces\Equipable.cs" />
