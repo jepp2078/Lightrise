@@ -12,20 +12,20 @@ public class hotbarGuiFunction : MonoBehaviour {
     {
         instance = this;
     }
-    public void setHotbarIcon(int hotbarSlot)
-    {
-        input = hotbarSlot;
+    //public void setHotbarIcon(int hotbarSlot)
+    //{
+    //    input = hotbarSlot;
 
-        OnGui();
-    }
+    //    OnGui();
+    //}
 
-    void OnGui()
-    {
-        switch (input)
-        {
-            case 2: tempIcon = inputIn; break;
-        }
-        hotbar2.texture = tempIcon.texture;
-    }
+    //void OnGui()
+    //{
+    //    switch (input)
+    //    {
+    //        case 2: tempIcon = inputIn; break;
+    //    }
+    //    hotbar2.texture = tempIcon.texture;
+    //}
 
 }
