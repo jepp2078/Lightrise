@@ -1,0 +1,404 @@
+Initialize engine version: 4.6.3f1 (4753d8b6ef2b)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 560 Ti   (ID=0x1200)
+    Vendor:   NVIDIA
+    VRAM:     971 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Jepp2078\Documents\GitHub\Lightrise--Holy-Peace\Exe_tests\test_01_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Jepp2078\Documents\GitHub\Lightrise--Holy-Peace\Exe_tests\test_01_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Jepp2078\Documents\GitHub\Lightrise--Holy-Peace\Exe_tests\test_01_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\Jepp2078\Documents\GitHub\Lightrise--Holy-Peace\Exe_tests\test_01_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\Jepp2078\Documents\GitHub\Lightrise--Holy-Peace\Exe_tests\test_01_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Jepp2078\Documents\GitHub\Lightrise--Holy-Peace\Exe_tests\test_01_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Jepp2078\Documents\GitHub\Lightrise--Holy-Peace\Exe_tests\test_01_Data\Managed\Assembly-UnityScript-firstpass.dll (this message is harmless)
+Loading C:\Users\Jepp2078\Documents\GitHub\Lightrise--Holy-Peace\Exe_tests\test_01_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\Jepp2078\Documents\GitHub\Lightrise--Holy-Peace\Exe_tests\test_01_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Jepp2078\Documents\GitHub\Lightrise--Holy-Peace\Exe_tests\test_01_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.059 seconds
+desktop: 1920x1080 60Hz; virtual: 3840x1080 at -1920,0
+<RI> Initializing input.
+<RI> Input initialized.
+Platform assembly: C:\Users\Jepp2078\Documents\GitHub\Lightrise--Holy-Peace\Exe_tests\test_01_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Jepp2078\Documents\GitHub\Lightrise--Holy-Peace\Exe_tests\test_01_Data\Managed\System.dll (this message is harmless)
+working so far
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+working so far
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+working so far
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+working so far
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Health: 200.00/200 
+Stamina: 200.00/200 
+Mana: 200.00/200
+
+Strength: 10 
+Dexterity: 10 
+Intellect: 10 
+Vitality: 10 
+Wisdom: 10
+Quickness: 10
+Gold: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Health: 200.00/200 
+Stamina: 200.00/200 
+Mana: 200.00/200
+
+Strength: 10 
+Dexterity: 10 
+Intellect: 10 
+Vitality: 10 
+Wisdom: 10
+Quickness: 10
+Gold: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Health: 200.00/200 
+Stamina: 200.00/200 
+Mana: 200.00/200
+
+Strength: 10 
+Dexterity: 10 
+Intellect: 10 
+Vitality: 10 
+Wisdom: 10
+Quickness: 10
+Gold: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Health: 200.00/200 
+Stamina: 200.00/200 
+Mana: 200.00/200
+
+Strength: 10 
+Dexterity: 10 
+Intellect: 10 
+Vitality: 10 
+Wisdom: 10
+Quickness: 10
+Gold: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Health: 200.00/200 
+Stamina: 199.76/200 
+Mana: 200.00/200
+
+Strength: 10 
+Dexterity: 10 
+Intellect: 10 
+Vitality: 10 
+Wisdom: 10
+Quickness: 10
+Gold: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Health: 200.00/200 
+Stamina: 195.69/200 
+Mana: 200.00/200
+
+Strength: 10 
+Dexterity: 10 
+Intellect: 10 
+Vitality: 10 
+Wisdom: 10
+Quickness: 10
+Gold: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Health: 200.00/200 
+Stamina: 196.35/200 
+Mana: 200.00/200
+
+Strength: 10 
+Dexterity: 10 
+Intellect: 10 
+Vitality: 10 
+Wisdom: 10
+Quickness: 10
+Gold: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Health: 200.00/200 
+Stamina: 197.01/200 
+Mana: 200.00/200
+
+Strength: 10 
+Dexterity: 10 
+Intellect: 10 
+Vitality: 10 
+Wisdom: 10
+Quickness: 10
+Gold: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Health: 200.00/200 
+Stamina: 197.67/200 
+Mana: 200.00/200
+
+Strength: 10 
+Dexterity: 10 
+Intellect: 10 
+Vitality: 10 
+Wisdom: 10
+Quickness: 10
+Gold: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Health: 200.00/200 
+Stamina: 198.33/200 
+Mana: 200.00/200
+
+Strength: 10 
+Dexterity: 10 
+Intellect: 10 
+Vitality: 10 
+Wisdom: 10
+Quickness: 10
+Gold: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Health: 200.00/200 
+Stamina: 198.99/200 
+Mana: 200.00/200
+
+Strength: 10 
+Dexterity: 10 
+Intellect: 10 
+Vitality: 10 
+Wisdom: 10
+Quickness: 10
+Gold: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Health: 200.00/200 
+Stamina: 199.65/200 
+Mana: 200.00/200
+
+Strength: 10 
+Dexterity: 10 
+Intellect: 10 
+Vitality: 10 
+Wisdom: 10
+Quickness: 10
+Gold: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Health: 200.00/200 
+Stamina: 196.49/200 
+Mana: 200.00/200
+
+Strength: 10 
+Dexterity: 10 
+Intellect: 10 
+Vitality: 10 
+Wisdom: 10
+Quickness: 10
+Gold: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Health: 200.00/200 
+Stamina: 191.75/200 
+Mana: 200.00/200
+
+Strength: 10 
+Dexterity: 10 
+Intellect: 10 
+Vitality: 10 
+Wisdom: 10
+Quickness: 10
+Gold: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Health: 200.00/200 
+Stamina: 190.61/200 
+Mana: 200.00/200
+
+Strength: 10 
+Dexterity: 10 
+Intellect: 10 
+Vitality: 10 
+Wisdom: 10
+Quickness: 10
+Gold: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Health: 200.00/200 
+Stamina: 191.27/200 
+Mana: 200.00/200
+
+Strength: 10 
+Dexterity: 10 
+Intellect: 10 
+Vitality: 10 
+Wisdom: 10
+Quickness: 10
+Gold: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Health: 200.00/200 
+Stamina: 191.93/200 
+Mana: 200.00/200
+
+Strength: 10 
+Dexterity: 10 
+Intellect: 10 
+Vitality: 10 
+Wisdom: 10
+Quickness: 10
+Gold: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Health: 200.00/200 
+Stamina: 192.59/200 
+Mana: 200.00/200
+
+Strength: 10 
+Dexterity: 10 
+Intellect: 10 
+Vitality: 10 
+Wisdom: 10
+Quickness: 10
+Gold: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Health: 200.00/200 
+Stamina: 193.25/200 
+Mana: 200.00/200
+
+Strength: 10 
+Dexterity: 10 
+Intellect: 10 
+Vitality: 10 
+Wisdom: 10
+Quickness: 10
+Gold: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Health: 200.00/200 
+Stamina: 193.91/200 
+Mana: 200.00/200
+
+Strength: 10 
+Dexterity: 10 
+Intellect: 10 
+Vitality: 10 
+Wisdom: 10
+Quickness: 10
+Gold: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Health: 200.00/200 
+Stamina: 194.57/200 
+Mana: 200.00/200
+
+Strength: 10 
+Dexterity: 10 
+Intellect: 10 
+Vitality: 10 
+Wisdom: 10
+Quickness: 10
+Gold: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Health: 200.00/200 
+Stamina: 195.23/200 
+Mana: 200.00/200
+
+Strength: 10 
+Dexterity: 10 
+Intellect: 10 
+Vitality: 10 
+Wisdom: 10
+Quickness: 10
+Gold: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Health: 200.00/200 
+Stamina: 195.89/200 
+Mana: 200.00/200
+
+Strength: 10 
+Dexterity: 10 
+Intellect: 10 
+Vitality: 10 
+Wisdom: 10
+Quickness: 10
+Gold: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Health: 200.00/200 
+Stamina: 196.55/200 
+Mana: 200.00/200
+
+Strength: 10 
+Dexterity: 10 
+Intellect: 10 
+Vitality: 10 
+Wisdom: 10
+Quickness: 10
+Gold: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Health: 200.00/200 
+Stamina: 197.21/200 
+Mana: 200.00/200
+
+Strength: 10 
+Dexterity: 10 
+Intellect: 10 
+Vitality: 10 
+Wisdom: 10
+Quickness: 10
+Gold: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
+Health: 200.00/200 
+Stamina: 197.87/200 
+Mana: 200.00/200
+
+Strength: 10 
+Dexterity: 10 
+Intellect: 10 
+Vitality: 10 
+Wisdom: 10
+Quickness: 10
+Gold: 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 56)
+
