@@ -2,9 +2,20 @@
 using System.Collections;
 
 public class Function : MonoBehaviour {
-
+    public static Function instance;
+    void Start()
+    {
+        instance = this;
+    }
     public static string equipItem(Item item)
     {
+        if (item is Weapon)
+        {
+            GameObject reach = (GameObject)Instantiate(((Weapon)item).getWeaponReach());
+            reach.transform.parent = Player.playerObject.transform;
+            reach.transform.position = Player.playerObject.transform.position;
+            reach.transform.rotation = Player.playerObject.transform.rotation;
+        }
         return Player.player.equip(item.getInventoryID());
     }
 
@@ -128,7 +139,6 @@ public class Function : MonoBehaviour {
     {
         if(instance is HotbarAble)
             Player.player.hotbarAdd(instance, hotbarSlot);
-            Debug.Log("working so far");
         //if(hotbarSlot == 2)
         //    hotbarGuiFunction.instance.setHotbarIcon(instance.getIcon(), hotbarSlot);
     }
@@ -144,7 +154,6 @@ public class Function : MonoBehaviour {
         if (hotbarType is Weapon)
         {
 			if(Player.player.getEquipmentIDinSlot(6) == -1 || hotbarType.getInventoryID() != Player.player.getEquipmentIDinSlot(6)){
-                Debug.Log(hotbarType.getInventoryID());
             	Debug.Log(equipItem(Player.player.getInventoryItem(hotbarType.getInventoryID())));
 			}
         }
@@ -170,6 +179,28 @@ public class Function : MonoBehaviour {
         {
             return "Skill " + ((Skill)skill).getSkillText() + " is on cooldown!";
         }
+    }
+
+    public static string performAttack(Weapon weapon)
+    {
+        GameObject collision = GameObject.Find("Reach");
+        Collider[] hitColliders = Physics.OverlapSphere(collision.transform.position, weapon.getWeaponReachFloat());
+        for (int i = 0; i < hitColliders.Length; i++)
+        {
+            if (hitColliders[i].gameObject.name == "Player2")
+            {
+                GameObject playerHit = hitColliders[i].gameObject;
+                Function controller = (Function) playerHit.GetComponent("Function");
+                GameObject test = GameObject.Find("Player2");
+            }
+        }
+        
+       return "";
+    }
+
+    public static void takeDamage(float damage)
+    {
+        Player.player.setHealth(damage,0, false);
     }
    
 }

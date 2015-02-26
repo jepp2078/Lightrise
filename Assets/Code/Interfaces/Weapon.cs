@@ -9,4 +9,6 @@ public interface Weapon
     string getItemDescription();
     string getItemSlot();
     float getWeaponRank();
+    Object getWeaponReach();
+    float getWeaponReachFloat();
 }

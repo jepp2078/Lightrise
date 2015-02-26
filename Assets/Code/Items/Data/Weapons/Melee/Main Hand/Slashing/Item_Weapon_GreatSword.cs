@@ -15,12 +15,15 @@ public class Item_Weapon_GreatSword : ItemEntity, Weapon, Item, Equipable, Hotba
     private static float weaponRank = 0.0f;
     private static float weight = 3.3f;
     private static int inventoryID = 999;
+    private static float reachFloat = 0.5f;
+    private static GameObject reach;
     private static RawImage icon;
     Texture texture;
 
 	
 	public Item_Weapon_GreatSword(int x, int y) : base(id, itemName, x, y)
     {
+        reach = (GameObject) Resources.Load("GreatSword_Reach");
     }
 	
 	
@@ -124,4 +127,13 @@ public class Item_Weapon_GreatSword : ItemEntity, Weapon, Item, Equipable, Hotba
         return icon;
     }
 
+    public Object getWeaponReach()
+    {
+        return reach;
+    }
+
+    public float getWeaponReachFloat()
+    {
+        return reachFloat;
+    }
 }

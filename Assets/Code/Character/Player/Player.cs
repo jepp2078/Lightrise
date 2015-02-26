@@ -4,16 +4,18 @@ using System.Collections.Generic;
 
 public class Player : MonoBehaviour {
     public static PlayerObject player;
+    public static GameObject playerObject;
     private List<Castable> cooldownList = new List<Castable>();
     private List<Castable> spellDurationList = new List<Castable>();
     public static Player instance;
     public int serverTicks = 0;
-    private float guiHelper = 0.2f;
+    private float guiHelper = 0.5f;
     private float guiHelperNext = 0.0f;
 
 	// Use this for initialization and testing
 	void Start () {
         player = new PlayerObject(0, 0, 0);
+        playerObject = GameObject.Find("PlayerChar");
         instance = this;
         player.changeStats(5, 5, 5, 5, 5, 5, 0, 0, 0);
         player.refillVitals();
@@ -64,8 +66,16 @@ public class Player : MonoBehaviour {
         if (Input.GetButton("action") && Time.time > guiHelperNext)
         {
             guiHelperNext = Time.time + guiHelper;
-            if(player.getActiveSkill() != null)
+            if (player.getActiveSkill() != null && player.getEquipment(6) == null)
+            {
                 Debug.Log(Function.performAction());
+            }
+            else if (player.getEquipment(6) != null)
+            {
+                Function.performAttack((Weapon)player.getEquipment(6));
+                Debug.Log("attack");
+            }
+
         }
     }
 

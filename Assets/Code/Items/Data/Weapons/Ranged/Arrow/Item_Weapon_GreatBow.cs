@@ -121,4 +121,21 @@ public class Item_Weapon_GreatBow : ItemEntity, Weapon, Item, Equipable, HotbarA
     {
         return icon;
     }
+
+
+    public float getWeaponReach()
+    {
+        throw new System.NotImplementedException();
+    }
+
+
+    Object Weapon.getWeaponReach()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public float getWeaponReachFloat()
+    {
+        throw new System.NotImplementedException();
+    }
 }
