@@ -7,9 +7,10 @@ public class Player : MonoBehaviour {
     public static GameObject playerObject;
     private List<Castable> cooldownList = new List<Castable>();
     private List<Castable> spellDurationList = new List<Castable>();
+    private float attackCooldown = 0f;
     public static Player instance;
     public int serverTicks = 0;
-    private float guiHelper = 0.5f;
+    private float guiHelper = 0.3333f;
     private float guiHelperNext = 0.0f;
 
 	// Use this for initialization and testing
@@ -42,6 +43,20 @@ public class Player : MonoBehaviour {
                 RPG_Camera.instance.setGuiMode(true);
             }
         }
+        if (Input.GetButton("action") && Time.time > guiHelperNext)
+        {
+            guiHelperNext = Time.time + guiHelper;
+            if (player.getActiveSkill() != null && !(player.getEquipment(6) is Weapon))
+            {
+                Debug.Log(Function.performAction());
+            }
+            else if (player.getEquipment(6) is Weapon && attackCooldown == 0)
+            {
+                Function.performAttack((Weapon)player.getEquipment(6));
+                Debug.Log("attack");
+            }
+
+        }
         if (Input.GetButton("Hotbar1") && Time.time > guiHelperNext)
         {
             guiHelperNext = Time.time + guiHelper;
@@ -62,20 +77,6 @@ public class Player : MonoBehaviour {
         {
             guiHelperNext = Time.time + guiHelper;
             Function.hotbarUse(3);
-        }
-        if (Input.GetButton("action") && Time.time > guiHelperNext)
-        {
-            guiHelperNext = Time.time + guiHelper;
-            if (player.getActiveSkill() != null && player.getEquipment(6) == null)
-            {
-                Debug.Log(Function.performAction());
-            }
-            else if (player.getEquipment(6) != null)
-            {
-                Function.performAttack((Weapon)player.getEquipment(6));
-                Debug.Log("attack");
-            }
-
         }
     }
 
@@ -115,6 +116,7 @@ public class Player : MonoBehaviour {
         gameLogic();
         updateCooldowns();
         updateSpellDurations();
+        updateAttackCooldown();
         serverTicks++;
         if (serverTicks > 100000)
         {
@@ -150,9 +152,24 @@ public class Player : MonoBehaviour {
             }
         }
     }
+    public void updateAttackCooldown()
+    {
+        if (attackCooldown > 0)
+        {
+            attackCooldown -= 0.0825F;
+        }
+        if (attackCooldown < 0)
+        {
+            attackCooldown = 0f;
+        }
+    }
 
     public void addCooldown(Castable skill)
     {
         cooldownList.Add(skill);
+    }
+    public void addAttackCooldown(float cooldown)
+    {
+        attackCooldown += cooldown;
     }
 }

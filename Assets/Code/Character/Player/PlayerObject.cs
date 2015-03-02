@@ -14,7 +14,7 @@ public class PlayerObject : PlayerEntity {
     private int invSize, baseInvSize = 200, inventoryIDCount = 0;
     private float encumbrance = 0;
     private float[] protections = new float[15] { 1, 1, 1, 1, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0, 0, 0 }; //arrow, bludgeoning, piercing, slashing, acid, arcane, cold, fire, holy, impact, lightning, unholy, malediction, mental, infliction
-    private float healthMod = 0, manaMod = 0, staminaMod = 0; //damage formula weapon [ (0.2 * MS + 0.05 * WS + 0.03 * WM) + WD - AR ] 
+    private float healthMod = 0, manaMod = 0, staminaMod = 0;  
     private float rangedRange = 5;
     private float critChance = 1;
     private int arrows = 0, gold = 0;//, mandrake = 0, ash = 0, sulfur = 0, raisin = 0, nacra = 0, bone = 0;

@@ -9,13 +9,6 @@ public class Function : MonoBehaviour {
     }
     public static string equipItem(Item item)
     {
-        if (item is Weapon)
-        {
-            GameObject reach = (GameObject)Instantiate(((Weapon)item).getWeaponReach());
-            reach.transform.parent = Player.playerObject.transform;
-            reach.transform.position = Player.playerObject.transform.position;
-            reach.transform.rotation = Player.playerObject.transform.rotation;
-        }
         return Player.player.equip(item.getInventoryID());
     }
 
@@ -183,22 +176,26 @@ public class Function : MonoBehaviour {
 
     public static string performAttack(Weapon weapon)
     {
-        GameObject collision = GameObject.Find("Reach");
-        Collider[] hitColliders = Physics.OverlapSphere(collision.transform.position, weapon.getWeaponReachFloat());
-        for (int i = 0; i < hitColliders.Length; i++)
+        if (weapon is Melee) //damage formula weapon [ (0.2 * MS + 0.05 * WS + 0.03 * WM) + WD - AR ]
         {
-            if (hitColliders[i].gameObject.name == "Player2")
-            {
-                GameObject playerHit = hitColliders[i].gameObject;
-                Function controller = (Function) playerHit.GetComponent("Function");
-                GameObject test = GameObject.Find("Player2");
-            }
+            GameObject reach = (GameObject)Instantiate(((Melee)weapon).getWeaponReach());
+            reach.transform.parent = Player.playerObject.transform;
+            reach.transform.position = Player.playerObject.transform.position;
+            reach.transform.rotation = Player.playerObject.transform.rotation;
+            float damage = (0.2f*Player.player.getStat("str")+0.05f*100+0.03f*100)+weapon.getDamage(); //the two 100's are weapon skills and mastery
+            string damageType = weapon.getDamageType();
+            WeaponHitInfo info = reach.GetComponentInChildren<WeaponHitInfo>();
+            info.damage = damage;
+            info.damageType = damageType;
+            float speed = ((weapon.getAttackspeed() * 5) - (0.008f * 120 + 0.002f * 100));
+            Debug.Log(speed);
+            Player.instance.addAttackCooldown(speed);
         }
         
        return "";
     }
 
-    public static void takeDamage(float damage)
+    public static void takeDamage(float damage, string damageType)
     {
         Player.player.setHealth(damage,0, false);
     }

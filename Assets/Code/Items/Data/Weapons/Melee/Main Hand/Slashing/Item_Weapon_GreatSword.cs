@@ -2,14 +2,14 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class Item_Weapon_GreatSword : ItemEntity, Weapon, Item, Equipable, HotbarAble
+public class Item_Weapon_GreatSword : ItemEntity, Weapon, Item, Equipable, HotbarAble, Melee
 {
 	private static int id = 999;
-	private static string itemName = "Great Sword";
-	private static string itemDescription = "A beginners great sword";
+    private static string itemName = "Troll Clubber";
+	private static string itemDescription = "A great sword made for slashing trolls!";
 	private static int price = 20;
     private static int hotbarSlot = 0;
-    private static float damage = 0.30f;
+    private static float damage = 0.42f;
     private static float attackSpeed = 0.40f;
     private static float durability = 60f;
     private static float weaponRank = 0.0f;
