@@ -12,6 +12,11 @@ public class WeaponHitInfo : MonoBehaviour {
             Debug.Log("You hit " + other.gameObject.name + " for " + damage + " " + damageType + " damage!");
             other.gameObject.GetComponent<NpcFunction>().takeDamage(damage, damageType);
             Destroy(transform.parent.gameObject);
+        }else if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("You hit " + other.gameObject.name + " for " + damage + " " + damageType + " damage!");
+            other.gameObject.GetComponent<Function>().takeDamage(damage, damageType);
+            Destroy(transform.parent.gameObject);
         }
         else
         {

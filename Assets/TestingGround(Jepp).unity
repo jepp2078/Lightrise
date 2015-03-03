@@ -646,7 +646,7 @@ GameObject:
   - 23: {fileID: 260941983}
   m_Layer: 0
   m_Name: Capsule
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4753,6 +4753,10 @@ Prefab:
     - target: {fileID: 452718, guid: cc33268e4c44b3f43b96020fad78d94d, type: 2}
       propertyPath: m_RootOrder
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 152716, guid: cc33268e4c44b3f43b96020fad78d94d, type: 2}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc33268e4c44b3f43b96020fad78d94d, type: 2}

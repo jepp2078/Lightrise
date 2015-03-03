@@ -73,6 +73,7 @@ public class Function : MonoBehaviour {
             GameObject reach = (GameObject)Instantiate(((Melee)weapon).getWeaponReach());
             reach.transform.parent = playerInstance.playerObject.transform;
             reach.transform.position = playerInstance.playerObject.transform.position;
+            reach.transform.position += new Vector3(0f, 0f, 0.54f);
             reach.transform.rotation = playerInstance.playerObject.transform.rotation;
             float damage = (0.2f * playerInstance.player.getStat("str") + 0.05f * 100 + 0.03f * 100) + weapon.getDamage(); //the two 100's are weapon skills and mastery
             string damageType = weapon.getDamageType();

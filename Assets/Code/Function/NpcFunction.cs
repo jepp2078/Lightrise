@@ -4,7 +4,10 @@ using System.Collections;
 public class NpcFunction : MonoBehaviour
 {
     public Npc npcInstance;
-
+    public string equipItem(Item item)
+    {
+        return npcInstance.npc.equip(item.getInventoryID());
+    }
     public string status()
     {
         string tempStats = npcInstance.npc.getStatus();
@@ -14,10 +17,26 @@ public class NpcFunction : MonoBehaviour
     public void hotbarUse(int hotbarSlot)
     {
         HotbarAble hotbarType = npcInstance.npc.getHotbarType(hotbarSlot);
-        if (hotbarType is Castable)
+        if (hotbarType is Weapon)
+        {
+            if (npcInstance.npc.getEquipmentIDinSlot(6) == -1 || hotbarType.getInventoryID() != npcInstance.npc.getEquipmentIDinSlot(6))
+            {
+                equipItem(npcInstance.npc.getInventoryItem(hotbarType.getInventoryID()));
+            }
+        }
+        else if (hotbarType is Castable)
         {
             npcInstance.npc.setActiveSkill((Castable)hotbarType);
         }
+    }
+    public void putOnHotbar(HotbarAble instance, int hotbarSlot)
+    {
+        if (instance is HotbarAble)
+        {
+            npcInstance.npc.hotbarAdd(instance, hotbarSlot);
+        }
+        //if(hotbarSlot == 2)
+        //    hotbarGuiFunction.instance.setHotbarIcon(instance.getIcon(), hotbarSlot);
     }
 
     public string performAction()
@@ -45,6 +64,7 @@ public class NpcFunction : MonoBehaviour
             GameObject reach = (GameObject)Instantiate(((Melee)weapon).getWeaponReach());
             reach.transform.parent = npcInstance.npcObject.transform;
             reach.transform.position = npcInstance.npcObject.transform.position;
+            reach.transform.position += new Vector3(0f, 0f, 0.54f);
             reach.transform.rotation = npcInstance.npcObject.transform.rotation;
             float damage = (0.2f * npcInstance.npc.getStat("str") + 0.05f * 100 + 0.03f * 100) + weapon.getDamage(); //the two 100's are weapon skills and mastery
             string damageType = weapon.getDamageType();
