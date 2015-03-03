@@ -41,23 +41,23 @@ public class PlayerObject : MonoBehaviour {
             skillList.Add(null);
             switch (i)
             {
-                case 0: skillList.Insert(0, new Skill_Passive_General_Run()); skillList[0].setPlayerInstance(playerInstance); break;
-                case 1: skillList.Insert(1, new Skill_Active_General_Rest()); skillList[1].setPlayerInstance(playerInstance); break;
-                case 2: skillList.Insert(2, new Skill_Passive_General_Sprint()); skillList[2].setPlayerInstance(playerInstance); break;
-                case 3: skillList.Insert(3, new Skill_Passive_General_Crouch_Walk()); skillList[3].setPlayerInstance(playerInstance); break;
-                case 4: skillList.Insert(4, new Skill_Passive_General_Constitution()); skillList[4].setPlayerInstance(playerInstance); break;
-                case 5: skillList.Insert(5, new Skill_Passive_General_Defense()); skillList[5].setPlayerInstance(playerInstance); break;
-                case 6: skillList.Insert(6, new Skill_Passive_General_Fortitude()); skillList[6].setPlayerInstance(playerInstance); break;
+                case 0: skillList.Insert(0, new Skill_Passive_General_Run()); skillList[0].setPlayerInstance(playerInstance, null); break;
+                case 1: skillList.Insert(1, new Skill_Active_General_Rest()); skillList[1].setPlayerInstance(playerInstance, null); break;
+                case 2: skillList.Insert(2, new Skill_Passive_General_Sprint()); skillList[2].setPlayerInstance(playerInstance, null); break;
+                case 3: skillList.Insert(3, new Skill_Passive_General_Crouch_Walk()); skillList[3].setPlayerInstance(playerInstance, null); break;
+                case 4: skillList.Insert(4, new Skill_Passive_General_Constitution()); skillList[4].setPlayerInstance(playerInstance, null); break;
+                case 5: skillList.Insert(5, new Skill_Passive_General_Defense()); skillList[5].setPlayerInstance(playerInstance, null); break;
+                case 6: skillList.Insert(6, new Skill_Passive_General_Fortitude()); skillList[6].setPlayerInstance(playerInstance, null); break;
                 //7 = Skill_Passive_General_Preseverance()
-                case 8: skillList.Insert(8, new Skill_Passive_General_Reflex()); skillList[8].setPlayerInstance(playerInstance); break;
-                case 9: skillList.Insert(9, new Skill_Passive_General_Rigor()); skillList[9].setPlayerInstance(playerInstance); break;
+                case 8: skillList.Insert(8, new Skill_Passive_General_Reflex()); skillList[8].setPlayerInstance(playerInstance, null); break;
+                case 9: skillList.Insert(9, new Skill_Passive_General_Rigor()); skillList[9].setPlayerInstance(playerInstance, null); break;
                 //10 = Skill_Passive_General_Survivalist()
                 //11 = Skill_Passive_General_Thoughness()
-                case 12: skillList.Insert(12, new Skill_Passive_General_Willpower()); skillList[12].setPlayerInstance(playerInstance); break;
-                case 13: skillList.Insert(13, new Skill_Passive_General_Diving()); skillList[13].setPlayerInstance(playerInstance); break;
-                case 14: skillList.Insert(14, new Skill_Active_General_Revive()); skillList[14].setPlayerInstance(playerInstance); break;
-                case 15: skillList.Insert(15, new Skill_Passive_General_Riding()); skillList[15].setPlayerInstance(playerInstance); break;
-                case 16: skillList.Insert(16, new Skill_Passive_General_Swimming()); skillList[16].setPlayerInstance(playerInstance); break;
+                case 12: skillList.Insert(12, new Skill_Passive_General_Willpower()); skillList[12].setPlayerInstance(playerInstance, null); break;
+                case 13: skillList.Insert(13, new Skill_Passive_General_Diving()); skillList[13].setPlayerInstance(playerInstance, null); break;
+                case 14: skillList.Insert(14, new Skill_Active_General_Revive()); skillList[14].setPlayerInstance(playerInstance, null); break;
+                case 15: skillList.Insert(15, new Skill_Passive_General_Riding()); skillList[15].setPlayerInstance(playerInstance, null); break;
+                case 16: skillList.Insert(16, new Skill_Passive_General_Swimming()); skillList[16].setPlayerInstance(playerInstance, null); break;
             }
         }
 

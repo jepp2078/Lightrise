@@ -25,6 +25,7 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
     private static RawImage icon;
     Texture texture;
     private Player playerInstance;
+    private Npc npcInstance;
 
     public Skill_Active_General_Revive() :
 		base(id, skillName)
@@ -228,14 +229,16 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
     {
         gainPrCast = 1.1f - (getSkillLevel()/100);
     }
+
     public RawImage getIcon()
     {
         return icon;
     }
 
-
-    public void setPlayerInstance(Player player)
+    public void setPlayerInstance(Player player, Npc npc)
     {
         playerInstance = player;
+        npcInstance = npc;
     }
 }
+

@@ -7,10 +7,10 @@ public class WeaponHitInfo : MonoBehaviour {
 	// Use this for initialization
 
     void OnTriggerStay(Collider other) {
-        if (other.gameObject.name == "Test_Dummy")
+        if (other.gameObject.tag == "npc")
         {
             Debug.Log("You hit " + other.gameObject.name + " for " + damage + " " + damageType + " damage!");
-            other.gameObject.GetComponent<Function>().takeDamage(damage, damageType);
+            other.gameObject.GetComponent<NpcFunction>().takeDamage(damage, damageType);
             Destroy(transform.parent.gameObject);
         }
         else

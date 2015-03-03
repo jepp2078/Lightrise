@@ -13,5 +13,5 @@ public interface Skill
     float getSkillLevel();
     float getEffect();
     bool setSkillLevel(float change);
-    void setPlayerInstance(Player player);
+    void setPlayerInstance(Player player, Npc npc);
 }

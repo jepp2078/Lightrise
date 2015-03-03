@@ -13,6 +13,7 @@ public class Skill_Passive_General_Rigor : SkillEntity, Skill
     private static float skillLevel = 1f;
     private static float effect = 0f;
     public static Player playerInstance;
+    private Npc npcInstance;
 
     public Skill_Passive_General_Rigor() :
 		base(id, skillName)
@@ -106,8 +107,9 @@ public class Skill_Passive_General_Rigor : SkillEntity, Skill
         }
         return true;
     }
-    public void setPlayerInstance(Player player)
+    public void setPlayerInstance(Player player, Npc npc)
     {
         playerInstance = player;
+        npcInstance = npc;
     }
 }

@@ -25,6 +25,7 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
     private static RawImage icon;
     Texture texture;
     private Player playerInstance;
+    private Npc npcInstance;
 
     public Skill_Active_General_Rest() :
 		base(id, skillName)
@@ -258,8 +259,9 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
     }
 
 
-    public void setPlayerInstance(Player player)
+    public void setPlayerInstance(Player player, Npc npc)
     {
         playerInstance = player;
+        npcInstance = npc;
     }
 }
