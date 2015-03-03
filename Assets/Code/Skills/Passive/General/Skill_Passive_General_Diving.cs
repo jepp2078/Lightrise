@@ -11,6 +11,7 @@ public class Skill_Passive_General_Diving : SkillEntity, Skill
     private static int price = 0;
     private static float skillLevel = 1f;
     private static float effect = 0f;
+    public static Player playerInstance;
 
     public Skill_Passive_General_Diving() :
 		base(id, skillName)
@@ -69,7 +70,7 @@ public class Skill_Passive_General_Diving : SkillEntity, Skill
             if (Mathf.Floor(oldSkillLevel) < 100)
             {
                 Debug.Log(getSkillText() + " is surging!");
-                Player.player.setLungCapacity(10);
+                playerInstance.player.setLungCapacity(10);
             }
             skillLevel = 100;
             return false;
@@ -79,7 +80,7 @@ public class Skill_Passive_General_Diving : SkillEntity, Skill
             if (Mathf.Floor(oldSkillLevel) < 75)
             {
                 Debug.Log(getSkillText() + " has reached a new level!");
-                Player.player.setLungCapacity(10);
+                playerInstance.player.setLungCapacity(10);
             } 
         }
         else if (skillLevel >= 50)
@@ -87,7 +88,7 @@ public class Skill_Passive_General_Diving : SkillEntity, Skill
             if (Mathf.Floor(oldSkillLevel) < 50)
             {
                 Debug.Log(getSkillText() + " has reached a new level!");
-                Player.player.setLungCapacity(10);
+                playerInstance.player.setLungCapacity(10);
             } 
         }
         else if (skillLevel >= 25)
@@ -95,7 +96,7 @@ public class Skill_Passive_General_Diving : SkillEntity, Skill
             if (Mathf.Floor(oldSkillLevel) < 25)
             {
                 Debug.Log(getSkillText() + " has reached a new level!");
-                Player.player.setLungCapacity(10);
+                playerInstance.player.setLungCapacity(10);
             }
         }
         else
@@ -103,5 +104,9 @@ public class Skill_Passive_General_Diving : SkillEntity, Skill
             effect = 0f;
         }
         return true;
+    }
+    public void setPlayerInstance(Player player)
+    {
+        playerInstance = player;
     }
 }

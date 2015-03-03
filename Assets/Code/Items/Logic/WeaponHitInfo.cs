@@ -9,7 +9,8 @@ public class WeaponHitInfo : MonoBehaviour {
     void OnTriggerStay(Collider other) {
         if (other.gameObject.name == "Test_Dummy")
         {
-            Debug.Log("we hit something");
+            Debug.Log("You hit " + other.gameObject.name + " for " + damage + " " + damageType + " damage!");
+            other.gameObject.GetComponent<Function>().takeDamage(damage, damageType);
             Destroy(transform.parent.gameObject);
         }
         else

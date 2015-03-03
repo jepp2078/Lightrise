@@ -24,6 +24,7 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
     private static float currentCooldown = 0f;
     private static RawImage icon;
     Texture texture;
+    private Player playerInstance;
 
     public Skill_Active_General_Revive() :
 		base(id, skillName)
@@ -230,5 +231,11 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
     public RawImage getIcon()
     {
         return icon;
+    }
+
+
+    public void setPlayerInstance(Player player)
+    {
+        playerInstance = player;
     }
 }

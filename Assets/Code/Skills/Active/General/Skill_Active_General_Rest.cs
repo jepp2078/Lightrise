@@ -24,6 +24,7 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
     private static float currentCooldown = 0f;
     private static RawImage icon;
     Texture texture;
+    private Player playerInstance;
 
     public Skill_Active_General_Rest() :
 		base(id, skillName)
@@ -139,9 +140,9 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
     {
         if (!activated)
         {
-            Player.player.setRegenModifiers(1, effect);
-            Player.player.setRegenModifiers(2, effect);
-            Player.player.setRegenModifiers(3, effect);
+            playerInstance.player.setRegenModifiers(1, effect);
+            playerInstance.player.setRegenModifiers(2, effect);
+            playerInstance.player.setRegenModifiers(3, effect);
             activated = true;
         }
     }
@@ -150,9 +151,9 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
     {
         if (activated)
         {
-            Player.player.setRegenModifiers(1, -effect);
-            Player.player.setRegenModifiers(2, -effect);
-            Player.player.setRegenModifiers(3, -effect);
+            playerInstance.player.setRegenModifiers(1, -effect);
+            playerInstance.player.setRegenModifiers(2, -effect);
+            playerInstance.player.setRegenModifiers(3, -effect);
             activated = false;
         }
     }
@@ -254,5 +255,11 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
     public RawImage getIcon()
     {
         return icon;
+    }
+
+
+    public void setPlayerInstance(Player player)
+    {
+        playerInstance = player;
     }
 }

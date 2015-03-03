@@ -12,10 +12,11 @@ public class Skill_Passive_General_Perseverance : SkillEntity, Skill, Learnable
     private static int price = 500;
     private static float skillLevel = 1f;
     private static float effect = 0f;
+    public static Player playerInstance;
 
     public Skill_Passive_General_Perseverance() :
 		base(id, skillName)
-	{
+    {
     }
 
     public int getSkillID()
@@ -63,16 +64,16 @@ public class Skill_Passive_General_Perseverance : SkillEntity, Skill, Learnable
         skillLevel += change;
         switch (Mathf.FloorToInt(skillLevel))
         {
-            case 10: if (effect < 1) effect = 1; Player.player.changeStats(0, 0, 0, 0, 0, 0, 0, 1, 0); break;
-            case 20: if (effect < 2) effect = 2; Player.player.changeStats(0, 0, 0, 0, 0, 0, 0, 1, 0); break;
-            case 30: if (effect < 3) effect = 3; Player.player.changeStats(0, 0, 0, 0, 0, 0, 0, 1, 0); break;
-            case 40: if (effect < 4) effect = 4; Player.player.changeStats(0, 0, 0, 0, 0, 0, 0, 1, 0); break;
-            case 50: if (effect < 5) effect = 5; Player.player.changeStats(0, 0, 0, 0, 0, 0, 0, 1, 0); break;
-            case 60: if (effect < 6) effect = 6; Player.player.changeStats(0, 0, 0, 0, 0, 0, 0, 1, 0); break;
-            case 70: if (effect < 7) effect = 7; Player.player.changeStats(0, 0, 0, 0, 0, 0, 0, 1, 0); break;
-            case 80: if (effect < 8) effect = 8; Player.player.changeStats(0, 0, 0, 0, 0, 0, 0, 1, 0); break;
-            case 90: if (effect < 9) effect = 9; Player.player.changeStats(0, 0, 0, 0, 0, 0, 0, 1, 0); break;
-            case 100: if (effect < 10) effect = 10; Player.player.changeStats(0, 0, 0, 0, 0, 0, 0, 1, 0); break;
+            case 10: if (effect < 1) effect = 1; playerInstance.player.changeStats(0, 0, 0, 0, 0, 0, 0, 1, 0); break;
+            case 20: if (effect < 2) effect = 2; playerInstance.player.changeStats(0, 0, 0, 0, 0, 0, 0, 1, 0); break;
+            case 30: if (effect < 3) effect = 3; playerInstance.player.changeStats(0, 0, 0, 0, 0, 0, 0, 1, 0); break;
+            case 40: if (effect < 4) effect = 4; playerInstance.player.changeStats(0, 0, 0, 0, 0, 0, 0, 1, 0); break;
+            case 50: if (effect < 5) effect = 5; playerInstance.player.changeStats(0, 0, 0, 0, 0, 0, 0, 1, 0); break;
+            case 60: if (effect < 6) effect = 6; playerInstance.player.changeStats(0, 0, 0, 0, 0, 0, 0, 1, 0); break;
+            case 70: if (effect < 7) effect = 7; playerInstance.player.changeStats(0, 0, 0, 0, 0, 0, 0, 1, 0); break;
+            case 80: if (effect < 8) effect = 8; playerInstance.player.changeStats(0, 0, 0, 0, 0, 0, 0, 1, 0); break;
+            case 90: if (effect < 9) effect = 9; playerInstance.player.changeStats(0, 0, 0, 0, 0, 0, 0, 1, 0); break;
+            case 100: if (effect < 10) effect = 10; playerInstance.player.changeStats(0, 0, 0, 0, 0, 0, 0, 1, 0); break;
 
         }
         if (Mathf.Floor(oldSkillLevel) < Mathf.Floor(skillLevel))
@@ -114,10 +115,14 @@ public class Skill_Passive_General_Perseverance : SkillEntity, Skill, Learnable
 
     public bool canLearn()
     {
-        if (Player.player.getStaminaFloat() >= 300)
+        if (playerInstance.player.getStaminaFloat() >= 300)
         {
             return true;
         }
         return false;
+    }
+    public void setPlayerInstance(Player player)
+    {
+        playerInstance = player;
     }
 }

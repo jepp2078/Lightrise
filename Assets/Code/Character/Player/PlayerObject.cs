@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class PlayerObject : PlayerEntity {
+public class PlayerObject : MonoBehaviour {
     private List<Item> inventory = new List<Item>();
     private List<Item> equipmentList = new List<Item>();
     private List<Skill> skillList = new List<Skill>();
@@ -18,9 +18,10 @@ public class PlayerObject : PlayerEntity {
     private float rangedRange = 5;
     private float critChance = 1;
     private int arrows = 0, gold = 0;//, mandrake = 0, ash = 0, sulfur = 0, raisin = 0, nacra = 0, bone = 0;
+    public Player playerInstance;
 
 	// Use this for initialization
-    public PlayerObject(int id, int x, int y) : base(id, x, y)
+    void Start () 
     {
         for (int i = 0; i < 10; i++)
         {
@@ -40,25 +41,23 @@ public class PlayerObject : PlayerEntity {
             skillList.Add(null);
             switch (i)
             {
-                case 0: skillList.Insert(0, new Skill_Passive_General_Run()); break;
-                case 1: skillList.Insert(1, new Skill_Active_General_Rest()); break;
-                case 2: skillList.Insert(2, new Skill_Passive_General_Sprint()); break;
-                case 3: skillList.Insert(3, new Skill_Passive_General_Crouch_Walk()); break;
-                case 4: skillList.Insert(4, new Skill_Passive_General_Constitution()); break;
-                case 5: skillList.Insert(5, new Skill_Passive_General_Defense()); break;
-                case 6: skillList.Insert(6, new Skill_Passive_General_Fortitude()); break;
+                case 0: skillList.Insert(0, new Skill_Passive_General_Run()); skillList[0].setPlayerInstance(playerInstance); break;
+                case 1: skillList.Insert(1, new Skill_Active_General_Rest()); skillList[1].setPlayerInstance(playerInstance); break;
+                case 2: skillList.Insert(2, new Skill_Passive_General_Sprint()); skillList[2].setPlayerInstance(playerInstance); break;
+                case 3: skillList.Insert(3, new Skill_Passive_General_Crouch_Walk()); skillList[3].setPlayerInstance(playerInstance); break;
+                case 4: skillList.Insert(4, new Skill_Passive_General_Constitution()); skillList[4].setPlayerInstance(playerInstance); break;
+                case 5: skillList.Insert(5, new Skill_Passive_General_Defense()); skillList[5].setPlayerInstance(playerInstance); break;
+                case 6: skillList.Insert(6, new Skill_Passive_General_Fortitude()); skillList[6].setPlayerInstance(playerInstance); break;
                 //7 = Skill_Passive_General_Preseverance()
-                case 8: skillList.Insert(8, new Skill_Passive_General_Reflex()); break;
-                case 9: skillList.Insert(9, new Skill_Passive_General_Rigor()); break;
+                case 8: skillList.Insert(8, new Skill_Passive_General_Reflex()); skillList[8].setPlayerInstance(playerInstance); break;
+                case 9: skillList.Insert(9, new Skill_Passive_General_Rigor()); skillList[9].setPlayerInstance(playerInstance); break;
                 //10 = Skill_Passive_General_Survivalist()
                 //11 = Skill_Passive_General_Thoughness()
-                case 12: skillList.Insert(12, new Skill_Passive_General_Willpower()); break;
-                case 13: skillList.Insert(13, new Skill_Passive_General_Diving()); break;
-                case 14: skillList.Insert(14, new Skill_Active_General_Revive()); break;
-                case 15: skillList.Insert(15, new Skill_Passive_General_Riding()); break;
-                case 16: skillList.Insert(16, new Skill_Passive_General_Swimming()); break;
-
-                
+                case 12: skillList.Insert(12, new Skill_Passive_General_Willpower()); skillList[12].setPlayerInstance(playerInstance); break;
+                case 13: skillList.Insert(13, new Skill_Passive_General_Diving()); skillList[13].setPlayerInstance(playerInstance); break;
+                case 14: skillList.Insert(14, new Skill_Active_General_Revive()); skillList[14].setPlayerInstance(playerInstance); break;
+                case 15: skillList.Insert(15, new Skill_Passive_General_Riding()); skillList[15].setPlayerInstance(playerInstance); break;
+                case 16: skillList.Insert(16, new Skill_Passive_General_Swimming()); skillList[16].setPlayerInstance(playerInstance); break;
             }
         }
 
@@ -486,7 +485,7 @@ public class PlayerObject : PlayerEntity {
         }
     }
 
-    public bool setHealth(float damage, float healing, bool regen)
+    public bool setHealth(float damage, float healing, bool regen, string type)
     {
         if (damage == 0 && !regen)
         {
@@ -494,7 +493,7 @@ public class PlayerObject : PlayerEntity {
         }
         else if(healing == 0 && !regen)
         {
-            Debug.Log("You were damaged for " + damage.ToString("0.00"));
+            Debug.Log("You took " + damage.ToString("0.00") + " "+ type +" damage!");
         }
         tempHealth -= damage;
         tempHealth += healing;

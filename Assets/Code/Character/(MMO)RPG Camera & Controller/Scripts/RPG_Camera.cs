@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
-public class RPG_Camera : MonoBehaviour {
+public class RPG_Camera : MonoBehaviour
+{
 
     public static RPG_Camera instance;
 
@@ -30,7 +31,7 @@ public class RPG_Camera : MonoBehaviour {
     private float distanceVel;
     private bool camBottom;
     private bool constraint;
-    
+
     private static float halfFieldOfView;
     private static float planeAspect;
     private static float halfPlaneHeight;
@@ -38,12 +39,14 @@ public class RPG_Camera : MonoBehaviour {
 
     private bool guiMode = false;
 
-    void Awake() {
+    void Awake()
+    {
         instance = this;
     }
 
 
-    void Start() {
+    void Start()
+    {
         distance = Mathf.Clamp(distance, 0.05f, distanceMax);
         desiredDistance = distance;
 
@@ -53,18 +56,20 @@ public class RPG_Camera : MonoBehaviour {
         halfPlaneWidth = halfPlaneHeight * planeAspect;
 
         mouseX = 0f;
-        mouseY = 15f;        
+        mouseY = 15f;
     }
 
 
-    public static void CameraSetup() {
+    public static void CameraSetup()
+    {
         GameObject cameraUsed;
         GameObject cameraPivot;
         RPG_Camera cameraScript;
 
         if (Camera.main != null)
             cameraUsed = Camera.main.gameObject;
-        else {
+        else
+        {
             cameraUsed = new GameObject("Main Camera");
             cameraUsed.AddComponent("Camera");
             cameraUsed.tag = "MainCamera";
@@ -77,14 +82,16 @@ public class RPG_Camera : MonoBehaviour {
         cameraPivot = GameObject.Find("cameraPivot") as GameObject;
         cameraScript.cameraPivot = cameraPivot.transform;
     }
-    
-    
-    void LateUpdate() {
-        if (cameraPivot == null) {
+
+
+    void LateUpdate()
+    {
+        if (cameraPivot == null)
+        {
             Debug.Log("Error: No cameraPivot found! Please read the manual for further instructions.");
             return;
         }
-       
+
         GetInput();
 
         GetDesiredPosition();
@@ -92,10 +99,11 @@ public class RPG_Camera : MonoBehaviour {
         PositionUpdate();
 
         CharacterFade();
-	}
+    }
 
 
-    void GetInput() {
+    void GetInput()
+    {
 
         if (distance > 0.1)
         { // distance > 0.05 would be too close, so 0.1 is fine
@@ -153,7 +161,8 @@ public class RPG_Camera : MonoBehaviour {
     }
 
 
-    void GetDesiredPosition() {
+    void GetDesiredPosition()
+    {
         distance = desiredDistance;
         desiredPosition = GetCameraPosition(mouseYSmooth, mouseXSmooth, distance);
 
@@ -162,7 +171,8 @@ public class RPG_Camera : MonoBehaviour {
 
         closestDistance = CheckCameraClipPlane(cameraPivot.position, desiredPosition);
 
-        if (closestDistance != -1) {
+        if (closestDistance != -1)
+        {
             distance = closestDistance;
             desiredPosition = GetCameraPosition(mouseYSmooth, mouseXSmooth, distance);
 
@@ -174,7 +184,7 @@ public class RPG_Camera : MonoBehaviour {
 
         if (lastDistance < distance || !constraint)
             distance = Mathf.SmoothDamp(lastDistance, distance, ref distanceVel, camDistanceSpeed);
-        
+
         if (distance < 0.05)
             distance = 0.05f;
 
@@ -184,7 +194,8 @@ public class RPG_Camera : MonoBehaviour {
     }
 
 
-    void PositionUpdate() {
+    void PositionUpdate()
+    {
         transform.position = desiredPosition;
 
         if (distance > 0.05)
@@ -192,40 +203,46 @@ public class RPG_Camera : MonoBehaviour {
     }
 
 
-    void CharacterFade() {
+    void CharacterFade()
+    {
         if (RPG_Animation.instance == null)
             return;
-        
+
         if (distance < firstPersonThreshold)
-		    RPG_Animation.instance.renderer.enabled = false;
-	
-	    else if (distance < characterFadeThreshold) {
+            RPG_Animation.instance.renderer.enabled = false;
+
+        else if (distance < characterFadeThreshold)
+        {
             RPG_Animation.instance.renderer.enabled = true;
 
             float characterAlpha = 1 - (characterFadeThreshold - distance) / (characterFadeThreshold - firstPersonThreshold);
             if (RPG_Animation.instance.renderer.material.color.a != characterAlpha)
                 RPG_Animation.instance.renderer.material.color = new Color(RPG_Animation.instance.renderer.material.color.r, RPG_Animation.instance.renderer.material.color.g, RPG_Animation.instance.renderer.material.color.b, characterAlpha);
-			    
-	    } else {
+
+        }
+        else
+        {
 
             RPG_Animation.instance.renderer.enabled = true;
 
             if (RPG_Animation.instance.renderer.material.color.a != 1)
                 RPG_Animation.instance.renderer.material.color = new Color(RPG_Animation.instance.renderer.material.color.r, RPG_Animation.instance.renderer.material.color.g, RPG_Animation.instance.renderer.material.color.b, 1);
-		}
+        }
     }
 
 
-    Vector3 GetCameraPosition(float xAxis, float yAxis, float distance) {
+    Vector3 GetCameraPosition(float xAxis, float yAxis, float distance)
+    {
         Vector3 offset = new Vector3(0, 0, -distance);
         Quaternion rotation = Quaternion.Euler(xAxis, yAxis, 0);
         return cameraPivot.position + rotation * offset;
     }
 
 
-    float CheckCameraClipPlane(Vector3 from, Vector3 to) {
+    float CheckCameraClipPlane(Vector3 from, Vector3 to)
+    {
         var closestDistance = -1f;
-                  
+
         RaycastHit hitInfo;
 
         ClipPlaneVertexes clipPlane = GetClipPlaneAt(to);
@@ -234,7 +251,7 @@ public class RPG_Camera : MonoBehaviour {
         Debug.DrawLine(clipPlane.UpperRight, clipPlane.LowerRight);
         Debug.DrawLine(clipPlane.LowerRight, clipPlane.LowerLeft);
         Debug.DrawLine(clipPlane.LowerLeft, clipPlane.UpperLeft);
-     
+
         Debug.DrawLine(from, to, Color.red);
         Debug.DrawLine(from - transform.right * halfPlaneWidth + transform.up * halfPlaneHeight, clipPlane.UpperLeft, Color.cyan);
         Debug.DrawLine(from + transform.right * halfPlaneWidth + transform.up * halfPlaneHeight, clipPlane.UpperRight, Color.cyan);
@@ -244,7 +261,7 @@ public class RPG_Camera : MonoBehaviour {
 
         if (Physics.Linecast(from, to, out hitInfo) && hitInfo.collider.tag != "Player")
             closestDistance = hitInfo.distance - Camera.main.nearClipPlane;
-        
+
         if (Physics.Linecast(from - transform.right * halfPlaneWidth + transform.up * halfPlaneHeight, clipPlane.UpperLeft, out hitInfo) && hitInfo.collider.tag != "Player")
             if (hitInfo.distance < closestDistance || closestDistance == -1)
                 closestDistance = Vector3.Distance(hitInfo.point + transform.right * halfPlaneWidth - transform.up * halfPlaneHeight, from);
@@ -252,11 +269,11 @@ public class RPG_Camera : MonoBehaviour {
         if (Physics.Linecast(from + transform.right * halfPlaneWidth + transform.up * halfPlaneHeight, clipPlane.UpperRight, out hitInfo) && hitInfo.collider.tag != "Player")
             if (hitInfo.distance < closestDistance || closestDistance == -1)
                 closestDistance = Vector3.Distance(hitInfo.point - transform.right * halfPlaneWidth - transform.up * halfPlaneHeight, from);
-        
+
         if (Physics.Linecast(from - transform.right * halfPlaneWidth - transform.up * halfPlaneHeight, clipPlane.LowerLeft, out hitInfo) && hitInfo.collider.tag != "Player")
             if (hitInfo.distance < closestDistance || closestDistance == -1)
                 closestDistance = Vector3.Distance(hitInfo.point + transform.right * halfPlaneWidth + transform.up * halfPlaneHeight, from);
-        
+
         if (Physics.Linecast(from + transform.right * halfPlaneWidth - transform.up * halfPlaneHeight, clipPlane.LowerRight, out hitInfo) && hitInfo.collider.tag != "Player")
             if (hitInfo.distance < closestDistance || closestDistance == -1)
                 closestDistance = Vector3.Distance(hitInfo.point - transform.right * halfPlaneWidth + transform.up * halfPlaneHeight, from);
@@ -266,8 +283,10 @@ public class RPG_Camera : MonoBehaviour {
     }
 
 
-    float ClampAngle(float angle, float min, float max) {
-        while (angle < -360 || angle > 360) {
+    float ClampAngle(float angle, float min, float max)
+    {
+        while (angle < -360 || angle > 360)
+        {
             if (angle < -360)
                 angle += 360;
             if (angle > 360)
@@ -278,7 +297,8 @@ public class RPG_Camera : MonoBehaviour {
     }
 
 
-    public struct ClipPlaneVertexes {
+    public struct ClipPlaneVertexes
+    {
         public Vector3 UpperLeft;
         public Vector3 UpperRight;
         public Vector3 LowerLeft;
@@ -286,7 +306,8 @@ public class RPG_Camera : MonoBehaviour {
     }
 
 
-    public static ClipPlaneVertexes GetClipPlaneAt(Vector3 pos) {
+    public static ClipPlaneVertexes GetClipPlaneAt(Vector3 pos)
+    {
         var clipPlane = new ClipPlaneVertexes();
 
         if (Camera.main == null)
@@ -311,12 +332,13 @@ public class RPG_Camera : MonoBehaviour {
         clipPlane.LowerRight -= transform.up * halfPlaneHeight;
         clipPlane.LowerRight += transform.forward * offset;
 
-        
+
         return clipPlane;
     }
 
 
-    public void RotateWithCharacter() {
+    public void RotateWithCharacter()
+    {
         float rotation = Input.GetAxis("Horizontal") * RPG_Controller.instance.turnSpeed;
         mouseX += rotation;
     }

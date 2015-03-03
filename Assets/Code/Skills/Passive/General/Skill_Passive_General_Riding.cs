@@ -11,6 +11,7 @@ public class Skill_Passive_General_Riding : SkillEntity, Skill
     private static int price = 0;
     private static float skillLevel = 1f;
     private static float effect = 0f;
+    public static Player playerInstance;
 
     public Skill_Passive_General_Riding() :
 		base(id, skillName)
@@ -100,5 +101,9 @@ public class Skill_Passive_General_Riding : SkillEntity, Skill
             effect = 0f;
         }
         return true;
+    }
+    public void setPlayerInstance(Player player)
+    {
+        playerInstance = player;
     }
 }

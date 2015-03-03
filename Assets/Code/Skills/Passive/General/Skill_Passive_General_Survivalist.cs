@@ -12,6 +12,7 @@ public class Skill_Passive_General_Survivalist : SkillEntity, Skill, Learnable
     private static int price = 200;
     private static float skillLevel = 1f;
     private static float effect = 0f;
+    public static Player playerInstance;
 
     public Skill_Passive_General_Survivalist() :
 		base(id, skillName)
@@ -114,10 +115,14 @@ public class Skill_Passive_General_Survivalist : SkillEntity, Skill, Learnable
 
     public bool canLearn()
     {
-        if (Player.player.getStat("wis") >= 30)
+        if (playerInstance.player.getStat("wis") >= 30)
         {
             return true;
         }
         return false;
+    }
+    public void setPlayerInstance(Player player)
+    {
+        playerInstance = player;
     }
 }

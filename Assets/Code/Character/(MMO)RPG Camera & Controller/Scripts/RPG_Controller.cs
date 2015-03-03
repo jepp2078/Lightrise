@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
-public class RPG_Controller : MonoBehaviour {
+public class RPG_Controller : MonoBehaviour
+{
 
     public static RPG_Controller instance;
 
@@ -18,21 +19,25 @@ public class RPG_Controller : MonoBehaviour {
     private Vector3 rotation = Vector3.zero;
     private int serverTickIn;
     private int serverTickCurrent = 0;
+    public Player playerInstance;
 
 
-    void Awake() {
+    void Awake()
+    {
         instance = this;
         characterController = GetComponent("CharacterController") as CharacterController;
 
         RPG_Camera.CameraSetup();
     }
 
-	
-	void Update () {
+
+    void Update()
+    {
         if (Camera.main == null)
             return;
 
-        if (characterController == null) {
+        if (characterController == null)
+        {
             Debug.Log("Error: No Character Controller component found! Please add one to the GameObject which has this script attached.");
             return;
         }
@@ -40,29 +45,31 @@ public class RPG_Controller : MonoBehaviour {
         GetInput();
 
         StartMotor();
-	}
+    }
 
 
-    void GetInput() {
-        
+    void GetInput()
+    {
+
         //MovementKeys():
-        
+
         float horizontalStrafe = 0f;
         float vertical = 0f;
 
         if (Input.GetButton("Horizontal Strafe"))
         {
-            if (((Castable)Player.player.getSkill(1)).getState())
+            if (((Castable)playerInstance.player.getSkill(1)).getState())
             {
                 Debug.Log("Getting up");
-                ((Castable)Player.player.getSkill(1)).stopEffect();
+                ((Castable)playerInstance.player.getSkill(1)).stopEffect();
             }
             horizontalStrafe = Input.GetAxis("Horizontal Strafe") < 0 ? -1f : Input.GetAxis("Horizontal Strafe") > 0 ? 1f : 0f;
-            serverTickIn = Player.instance.serverTicks;
+            serverTickIn = playerInstance.instance.serverTicks;
             if (serverTickCurrent != serverTickIn)
             {
-                if (!Input.GetButton("Crouch") && !Input.GetButton("Sprint")) { 
-                    Player.instance.gainSkill(0.0833f / 60f, 0);
+                if (!Input.GetButton("Crouch") && !Input.GetButton("Sprint"))
+                {
+                    playerInstance.instance.gainSkill(0.0833f / 60f, 0);
                     serverTickCurrent = serverTickIn;
                 }
             }
@@ -70,41 +77,43 @@ public class RPG_Controller : MonoBehaviour {
 
         if (Input.GetButton("Vertical"))
         {
-            if (((Castable)Player.player.getSkill(1)).getState())
+            if (((Castable)playerInstance.player.getSkill(1)).getState())
             {
                 Debug.Log("Getting up");
-                ((Castable)Player.player.getSkill(1)).stopEffect();
+                ((Castable)playerInstance.player.getSkill(1)).stopEffect();
             }
             vertical = Input.GetAxis("Vertical") < 0 ? -1f : Input.GetAxis("Vertical") > 0 ? 1f : 0f;
-            serverTickIn = Player.instance.serverTicks;
+            serverTickIn = playerInstance.instance.serverTicks;
             if (serverTickCurrent != serverTickIn)
             {
                 if (!Input.GetButton("Crouch") && !Input.GetButton("Sprint"))
                 {
-                    Player.instance.gainSkill(0.0833f / 60f, 0);
+                    playerInstance.instance.gainSkill(0.0833f / 60f, 0);
                     serverTickCurrent = serverTickIn;
                 }
             }
         }
-            
+
         playerDir = horizontalStrafe * Vector3.right + vertical * Vector3.forward;
         if (RPG_Animation.instance != null)
             RPG_Animation.instance.SetCurrentMoveDir(playerDir);
 
-        if (characterController.isGrounded) {    
+        if (characterController.isGrounded)
+        {
             playerDirWorld = transform.TransformDirection(playerDir);
-            
+
             if (Mathf.Abs(playerDir.x) + Mathf.Abs(playerDir.z) > 1)
                 playerDirWorld.Normalize();
-            
+
             playerDirWorld *= walkSpeed;
             playerDirWorld.y = fallingThreshold;
-            
-            if (Input.GetButtonDown("Jump")) {
-                if (((Castable)Player.player.getSkill(1)).getState())
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                if (((Castable)playerInstance.player.getSkill(1)).getState())
                 {
                     Debug.Log("Getting up");
-                    ((Castable)Player.player.getSkill(1)).stopEffect();
+                    ((Castable)playerInstance.player.getSkill(1)).stopEffect();
                 }
                 playerDirWorld.y = jumpHeight;
                 if (RPG_Animation.instance != null)
@@ -116,7 +125,8 @@ public class RPG_Controller : MonoBehaviour {
     }
 
 
-    void StartMotor() {
+    void StartMotor()
+    {
         playerDirWorld.y -= gravity * Time.deltaTime;
         characterController.Move(playerDirWorld * Time.deltaTime);
 
