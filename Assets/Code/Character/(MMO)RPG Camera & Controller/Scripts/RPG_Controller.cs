@@ -20,20 +20,20 @@ public class RPG_Controller : MonoBehaviour
     private int serverTickIn;
     private int serverTickCurrent = 0;
     public Player playerInstance;
-
+    public Camera cameraInstance;
 
     void Awake()
     {
         instance = this;
         characterController = GetComponent("CharacterController") as CharacterController;
 
-        RPG_Camera.CameraSetup();
+        //RPG_Camera.CameraSetup();
     }
 
 
     void Update()
     {
-        if (Camera.main == null)
+        if (cameraInstance == null)
             return;
 
         if (characterController == null)
@@ -131,7 +131,5 @@ public class RPG_Controller : MonoBehaviour
         characterController.Move(playerDirWorld * Time.deltaTime);
 
         transform.Rotate(rotation);
-        if (!Input.GetMouseButton(0))
-            RPG_Camera.instance.RotateWithCharacter();
     }
 }

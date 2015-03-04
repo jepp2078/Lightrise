@@ -3,6 +3,6 @@ using System.Collections;
 
 public interface Melee
 {
-    Object getWeaponReach();
+    Object getWeaponHitbox();
     float getWeaponReachFloat();
 }

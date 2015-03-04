@@ -9,7 +9,18 @@ public class WeaponHitInfo : MonoBehaviour {
 	// Use this for initialization
 
     void OnTriggerStay(Collider other) {
-        if (other.gameObject.tag == "npc")
+        calculateDamage(other);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        //calculateDamage(other);
+    }
+
+    void calculateDamage(Collider other)
+    {
+
+        if (other.gameObject.tag == "npc" && playerInstance != null)
         {
             float armorValue = 0;
             switch (damageType)
@@ -26,9 +37,28 @@ public class WeaponHitInfo : MonoBehaviour {
             {
                 playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponMasterySkillId(weapon.getType()));
             }
-        }else if (other.gameObject.tag == "Player")
+
+        }
+
+        else if (other.gameObject.tag == "Player")
         {
+            if (playerInstance != null)
+            {
+                if (playerInstance == other.gameObject.GetComponent<Player>())
+                {
+                    destroy();
+                    return;
+                }
+                playerInstance.gainSkill((1.1f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponSkillId(weapon.getType()));
+
+                if (playerInstance.player.getWeaponSkill(null, weapon.getType()) != 0)
+                {
+                    playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponMasterySkillId(weapon.getType()));
+                }
+            }
+
             float armorValue = 0;
+
             switch (damageType)
             {
                 case "slashing": armorValue = other.gameObject.GetComponent<PlayerObject>().getProtection(damageType); break;
@@ -43,6 +73,13 @@ public class WeaponHitInfo : MonoBehaviour {
 
     public void destroy()
     {
-        Destroy(this.transform.parent.gameObject);
+        if (this.transform.parent != null){
+            Destroy(this.transform.parent.gameObject);
+        }
+        else
+        {
+            Destroy(this.transform.gameObject); 
+
+        }
     }
 }

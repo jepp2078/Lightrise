@@ -127,7 +127,7 @@ public class Item_Weapon_Troll_Clubber : ItemEntity, Weapon, Item, Equipable, Ho
         return icon;
     }
 
-    public Object getWeaponReach()
+    public Object getWeaponHitbox()
     {
         return reach;
     }

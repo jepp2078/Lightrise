@@ -14,6 +14,8 @@ public class Player : MonoBehaviour {
     private float guiHelper = 0.3333f;
     private float guiHelperNext = 0.0f;
 
+    public RPG_Camera rpgCamera;
+
 	// Use this for initialization and testing
 	void Start () {
         player.changeStats(20, 20, 20, 20, 20, 20, 0, 0, 0);
@@ -28,17 +30,17 @@ public class Player : MonoBehaviour {
         if (Input.GetButton("toggleGUI") && Time.time > guiHelperNext)
         {
             guiHelperNext = Time.time + guiHelper;
-            bool current = RPG_Camera.instance.getGuiMode();
+            bool current = rpgCamera.instance.getGuiMode();
             if (current)
             {
-                RPG_Camera.instance.setGuiMode(false);
+                rpgCamera.instance.setGuiMode(false);
             }
             else
             {
-                RPG_Camera.instance.setGuiMode(true);
+                rpgCamera.instance.setGuiMode(true);
             }
         }
-        if (Input.GetButton("action") && Time.time > guiHelperNext && RPG_Camera.instance.getGuiMode() == false)
+        if (Input.GetButton("action") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
         {
             guiHelperNext = Time.time + guiHelper;
             if (player.getActiveSkill() != null && !(player.getEquipment(6) is Weapon))
@@ -51,23 +53,23 @@ public class Player : MonoBehaviour {
             }
 
         }
-        if (Input.GetButton("Hotbar1") && Time.time > guiHelperNext && RPG_Camera.instance.getGuiMode() == false)
+        if (Input.GetButton("Hotbar1") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
         {
             guiHelperNext = Time.time + guiHelper;
             func.hotbarUse(0);
         }
 
-        if (Input.GetButton("Hotbar2") && Time.time > guiHelperNext && RPG_Camera.instance.getGuiMode() == false)
+        if (Input.GetButton("Hotbar2") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
         {
             guiHelperNext = Time.time + guiHelper;
             func.hotbarUse(1);
         }
-        if (Input.GetButton("Hotbar3") && Time.time > guiHelperNext && RPG_Camera.instance.getGuiMode() == false)
+        if (Input.GetButton("Hotbar3") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
         {
             guiHelperNext = Time.time + guiHelper;
             func.hotbarUse(2);
         }
-        if (Input.GetButton("Hotbar4") && Time.time > guiHelperNext && RPG_Camera.instance.getGuiMode() == false)
+        if (Input.GetButton("Hotbar4") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
         {
             guiHelperNext = Time.time + guiHelper;
             func.hotbarUse(3);
@@ -75,7 +77,7 @@ public class Player : MonoBehaviour {
     }
 
 	void gameLogic () {
-        if (Input.GetButton("Sprint") && !Input.GetButton("Crouch") && RPG_Camera.instance.getGuiMode() == false)
+        if (Input.GetButton("Sprint") && !Input.GetButton("Crouch") && rpgCamera.instance.getGuiMode() == false)
         {
             if (player.setStamina(0.225f-player.getSkillEffect(2), 0))
             {
@@ -83,7 +85,7 @@ public class Player : MonoBehaviour {
                 RPG_Controller.instance.walkSpeed = 10;
             }
         }
-        else if (Input.GetButton("Crouch") && RPG_Camera.instance.getGuiMode() == false)
+        else if (Input.GetButton("Crouch") && rpgCamera.instance.getGuiMode() == false)
         {
                 instance.gainSkill(0.0833f / 60f, 3);
                 RPG_Controller.instance.walkSpeed = 4 + player.getSkillEffect(3);

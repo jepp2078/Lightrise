@@ -4,7 +4,7 @@ using System.Collections;
 public class RPG_Camera : MonoBehaviour
 {
 
-    public static RPG_Camera instance;
+    public RPG_Camera instance;
 
     public Transform cameraPivot;
     public float distance = 5f;
@@ -32,16 +32,20 @@ public class RPG_Camera : MonoBehaviour
     private bool camBottom;
     private bool constraint;
 
-    private static float halfFieldOfView;
-    private static float planeAspect;
-    private static float halfPlaneHeight;
-    private static float halfPlaneWidth;
+    private float halfFieldOfView;
+    private float planeAspect;
+    private float halfPlaneHeight;
+    private float halfPlaneWidth;
 
     private bool guiMode = false;
+
+    private Player playerInstance;
+    private Camera cameraInstance;
 
     void Awake()
     {
         instance = this;
+        cameraInstance = this.gameObject.GetComponent<Camera>();
     }
 
 
@@ -50,9 +54,9 @@ public class RPG_Camera : MonoBehaviour
         distance = Mathf.Clamp(distance, 0.05f, distanceMax);
         desiredDistance = distance;
 
-        halfFieldOfView = (Camera.main.fieldOfView / 2) * Mathf.Deg2Rad;
-        planeAspect = Camera.main.aspect;
-        halfPlaneHeight = Camera.main.nearClipPlane * Mathf.Tan(halfFieldOfView);
+        halfFieldOfView = (cameraInstance.fieldOfView / 2) * Mathf.Deg2Rad;
+        planeAspect = cameraInstance.aspect;
+        halfPlaneHeight = cameraInstance.nearClipPlane * Mathf.Tan(halfFieldOfView);
         halfPlaneWidth = halfPlaneHeight * planeAspect;
 
         mouseX = 0f;
@@ -60,14 +64,14 @@ public class RPG_Camera : MonoBehaviour
     }
 
 
-    public static void CameraSetup()
+    public void CameraSetup()
     {
         GameObject cameraUsed;
         GameObject cameraPivot;
         RPG_Camera cameraScript;
 
-        if (Camera.main != null)
-            cameraUsed = Camera.main.gameObject;
+        if (cameraInstance != null)
+            cameraUsed = cameraInstance.gameObject;
         else
         {
             cameraUsed = new GameObject("Main Camera");
@@ -146,7 +150,7 @@ public class RPG_Camera : MonoBehaviour
 
         if (guiMode == false)
         {
-            RPG_Controller.instance.transform.rotation = Quaternion.Euler(RPG_Controller.instance.transform.eulerAngles.x, Camera.main.transform.eulerAngles.y, RPG_Controller.instance.transform.eulerAngles.z);
+            RPG_Controller.instance.transform.rotation = Quaternion.Euler(RPG_Controller.instance.transform.eulerAngles.x, cameraInstance.transform.eulerAngles.y, RPG_Controller.instance.transform.eulerAngles.z);
 
         }
 
@@ -180,7 +184,7 @@ public class RPG_Camera : MonoBehaviour
         }
 
 
-        distance -= Camera.main.nearClipPlane;
+        distance -= cameraInstance.nearClipPlane;
 
         if (lastDistance < distance || !constraint)
             distance = Mathf.SmoothDamp(lastDistance, distance, ref distanceVel, camDistanceSpeed);
@@ -260,7 +264,7 @@ public class RPG_Camera : MonoBehaviour
 
 
         if (Physics.Linecast(from, to, out hitInfo) && hitInfo.collider.tag != "Player")
-            closestDistance = hitInfo.distance - Camera.main.nearClipPlane;
+            closestDistance = hitInfo.distance - cameraInstance.nearClipPlane;
 
         if (Physics.Linecast(from - transform.right * halfPlaneWidth + transform.up * halfPlaneHeight, clipPlane.UpperLeft, out hitInfo) && hitInfo.collider.tag != "Player")
             if (hitInfo.distance < closestDistance || closestDistance == -1)
@@ -306,15 +310,15 @@ public class RPG_Camera : MonoBehaviour
     }
 
 
-    public static ClipPlaneVertexes GetClipPlaneAt(Vector3 pos)
+    public ClipPlaneVertexes GetClipPlaneAt(Vector3 pos)
     {
         var clipPlane = new ClipPlaneVertexes();
 
-        if (Camera.main == null)
+        if (cameraInstance == null)
             return clipPlane;
 
-        Transform transform = Camera.main.transform;
-        float offset = Camera.main.nearClipPlane;
+        Transform transform = cameraInstance.transform;
+        float offset = cameraInstance.nearClipPlane;
 
         clipPlane.UpperLeft = pos - transform.right * halfPlaneWidth;
         clipPlane.UpperLeft += transform.up * halfPlaneHeight;

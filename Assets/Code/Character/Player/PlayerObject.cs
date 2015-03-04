@@ -33,7 +33,6 @@ public class PlayerObject : MonoBehaviour {
         inventoryAdd(new Item_Armor_Scale_Cuirass(0, 0)); equip(3);
         inventoryAdd(new Item_Armor_Scale_Leggings(0, 0)); equip(4);
         inventoryAdd(new Item_Armor_Scale_Boots(0, 0)); equip(5);
-            
 
         for (int i = 0; i < 100; i++)
         {
