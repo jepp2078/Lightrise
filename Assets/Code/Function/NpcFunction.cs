@@ -59,7 +59,7 @@ public class NpcFunction : MonoBehaviour
 
     public string performAttack(Weapon weapon)
     {
-        if (weapon is Melee) //damage formula weapon [ (0.2 * MS + 0.05 * WS + 0.03 * WM) * (WD*10) - (AR * 2) ]
+        if (weapon is Melee) //damage formula weapon [ (0.2 * MS + 0.05 * WS + 0.03 * WM) * (WD*10) - (AR) ]
         {
             GameObject reach = (GameObject)Instantiate(((Melee)weapon).getWeaponReach());
             reach.transform.parent = npcInstance.npcObject.transform;

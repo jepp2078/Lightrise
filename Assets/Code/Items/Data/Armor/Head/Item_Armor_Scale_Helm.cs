@@ -1,21 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Item_Armor_Leather_Sandals : ItemEntity, Armor, Item, Equipable
+public class Item_Armor_Scale_Helm : ItemEntity, Armor, Item, Equipable
 {
 
 	private static int id = 999;
-	private static string itemSlot = "Feet";
-	private static string itemName = "Leather Sandals";
-	private static string itemDescription = "Leather sandals";
+	private static string itemSlot = "Head";
+	private static string itemName = "Scale Helm";
+	private static string itemDescription = "Helm made out of scale armor";
+    private float[] protections = new float[15] { 0, 0.92f, 1.03f, 1.15f, 2.18f, 0, 2.18f, 2.18f, 2.18f, 1.15f, 1.65f, 2.18f, 0, 0, 0 };
 	private static int price = 20;
     private static int inventoryID = 999;
-    private float[] protections = new float[15] { 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-    private static float encumbrance = 1.0f;
+    private static float encumbrance = 7.0f;
     private static float weight = 3.0f;
     private static float durability = 40;
+
 	
-	public Item_Armor_Leather_Sandals(int x, int y) :
+	public Item_Armor_Scale_Helm(int x, int y) :
 		base(id, itemName, x, y)
 	{
     }
@@ -39,11 +40,10 @@ public class Item_Armor_Leather_Sandals : ItemEntity, Armor, Item, Equipable
 	public string getType() {
 		return "armor";
 	}
-	
+
 	public int getPrice() {
 		return price;
 	}
-
     public int getInventoryID()
     {
         return inventoryID;
@@ -53,7 +53,6 @@ public class Item_Armor_Leather_Sandals : ItemEntity, Armor, Item, Equipable
     {
         inventoryID = id;
     }
-
 
     public float getEncumbrance()
     {

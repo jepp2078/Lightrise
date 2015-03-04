@@ -11,6 +11,12 @@ public class WeaponHitInfo : MonoBehaviour {
     void OnTriggerStay(Collider other) {
         if (other.gameObject.tag == "npc")
         {
+            float armorValue = 0;
+            switch (damageType)
+            {
+                case "slashing": armorValue = other.gameObject.GetComponent<NpcObject>().getProtection(damageType); break;
+            }
+            damage -= armorValue;
             Debug.Log("You hit " + other.gameObject.name + " for " + damage + " " + damageType + " damage!");
             other.gameObject.GetComponent<NpcFunction>().takeDamage(damage, damageType);
 
@@ -22,6 +28,12 @@ public class WeaponHitInfo : MonoBehaviour {
             }
         }else if (other.gameObject.tag == "Player")
         {
+            float armorValue = 0;
+            switch (damageType)
+            {
+                case "slashing": armorValue = other.gameObject.GetComponent<PlayerObject>().getProtection(damageType); break;
+            }
+            damage -= armorValue;
             Debug.Log("You hit " + other.gameObject.name + " for " + damage + " " + damageType + " damage!");
             other.gameObject.GetComponent<Function>().takeDamage(damage, damageType);
         }

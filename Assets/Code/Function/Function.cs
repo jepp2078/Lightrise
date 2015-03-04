@@ -66,16 +66,16 @@ public class Function : MonoBehaviour {
         }
     }
 
-    public string performAttack(Weapon weapon)
+    public void performAttack(Weapon weapon)
     {
-        if (weapon is Melee) //damage formula weapon [ (0.2 * MS + 0.05 * WS + 0.03 * WM) + WD - AR ]
+        if (weapon is Melee) //damage formula weapon [ (0.2 * MS + 0.05 * WS + 0.03 * WM) + >((WD*10) - (AR*2)) ]
         {
             GameObject reach = (GameObject)Instantiate(((Melee)weapon).getWeaponReach());
             reach.transform.parent = playerInstance.playerObject.transform;
             reach.transform.position = playerInstance.playerObject.transform.position;
             reach.transform.position += new Vector3(0f, 0f, 0.54f);
             reach.transform.rotation = playerInstance.playerObject.transform.rotation;
-            float damage = (0.2f * playerInstance.player.getStat("str") + playerInstance.player.getWeaponSkillEffect(weapon.getType(), null) + playerInstance.player.getWeaponSkillEffect(null,weapon.getType())) + weapon.getDamage()*10;
+            float damage = (0.2f * playerInstance.player.getStat("str") + playerInstance.player.getWeaponSkillEffect(weapon.getType(), null) + playerInstance.player.getWeaponSkillEffect(null,weapon.getType())) * weapon.getDamage()*10;
             string damageType = weapon.getDamageType();
             WeaponHitInfo info = reach.GetComponentInChildren<WeaponHitInfo>();
             info.damage = damage;
@@ -84,10 +84,7 @@ public class Function : MonoBehaviour {
             info.weapon = weapon;
             float speed = ((weapon.getAttackspeed() * 5) - (0.008f * playerInstance.player.getStat("quick") + 0.003f * playerInstance.player.getWeaponSkill(null, weapon.getType())));
             playerInstance.instance.addAttackCooldown(speed);
-            
          }
-        
-       return "";
     }
 
     public void takeDamage(float damage, string damageType)

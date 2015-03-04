@@ -9,7 +9,7 @@ public class NpcObject : MonoBehaviour
     private List<Skill> skillList = new List<Skill>();
     private List<HotbarAble> hotbar = new List<HotbarAble>();
     private Castable activeSkill = null;
-    private float str = 5, dex = 5, intel = 5, vit = 5, wis = 5, quick = 5;
+    private float str = 0, dex = 0, intel = 0, vit = 0, wis = 0, quick = 0;
     private float health, tempHealth, mana, tempMana, stamina, tempStamina, baseHealth = 0, baseMana = 0, baseStamina = 0, bonusHealth = 0, bonusMana = 0, bonusStamina = 0;
     private float lungCapacity = 60;
     private int invSize, baseInvSize = 200, inventoryIDCount = 0;
@@ -27,15 +27,13 @@ public class NpcObject : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             equipmentList.Add(null);
-            switch (i)
-            {
-                case 0: equipmentList[0] = new Item_Armor_Cloth_Sack(0, 0); break;
-                case 1: equipmentList[1] = new Item_Armor_Cloth_West(0, 0); break;
-                case 4: equipmentList[4] = new Item_Armor_Cloth_Pants(0, 0); break;
-                case 5: equipmentList[5] = new Item_Armor_Leather_Sandals(0, 0); break;
-                case 6: inventoryAdd(new Item_Weapon_GreatBow(0, 0)); inventoryAdd(new Item_Weapon_Troll_Clubber(0, 0)); break;
-            }
         }
+        inventoryAdd(new Item_Weapon_Short_Bow(0, 0));
+        inventoryAdd(new Item_Weapon_Troll_Clubber(0, 0));
+        inventoryAdd(new Item_Armor_Scale_Helm(0, 0)); equip(2);
+        inventoryAdd(new Item_Armor_Scale_Cuirass(0, 0)); equip(3);
+        inventoryAdd(new Item_Armor_Scale_Leggings(0, 0)); equip(4);
+        inventoryAdd(new Item_Armor_Scale_Boots(0, 0)); equip(5);
 
         for (int i = 0; i < 100; i++)
         {
@@ -60,7 +58,9 @@ public class NpcObject : MonoBehaviour
                 case 15: skillList.Insert(15, new Skill_Passive_General_Riding()); skillList[15].setPlayerInstance(null, npcInstance); break;
                 case 16: skillList.Insert(16, new Skill_Passive_General_Swimming()); skillList[16].setPlayerInstance(null, npcInstance); break;
                 case 17: skillList.Insert(17, new Skill_Passive_Weapon_Skill_Great_Sword()); skillList[17].setPlayerInstance(null,npcInstance); break;
-                //18 = Skill_Passive_Combat_Great_Sword_Mastery()        
+                //18 = Skill_Passive_Combat_Great_Sword_Mastery()   
+                case 19: skillList.Insert(19, new Skill_Passive_Weapon_Skill_Archery()); skillList[19].setPlayerInstance(null, npcInstance); break;
+
             }
         }
 
@@ -599,6 +599,14 @@ public class NpcObject : MonoBehaviour
     public float[] getProtections()
     {
         return protections;
+    }
+    public float getProtection(string protection)
+    {
+        switch (protection)
+        {
+            case "slashing": return protections[3];
+        }
+        return 0;
     }
 
     public void setProtections(float[] protectionsIn, bool add)

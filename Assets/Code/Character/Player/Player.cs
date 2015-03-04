@@ -16,7 +16,7 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization and testing
 	void Start () {
-        player.changeStats(15, 15, 15, 15, 15, 15, 0, 0, 0);
+        player.changeStats(20, 20, 20, 20, 20, 20, 0, 0, 0);
         player.refillVitals();
         func.putOnHotbar((HotbarAble)player.getInventoryItem(0), 0);
         func.putOnHotbar((HotbarAble)player.getInventoryItem(1), 1);

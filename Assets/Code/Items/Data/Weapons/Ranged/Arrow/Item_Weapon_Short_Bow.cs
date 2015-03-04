@@ -2,25 +2,29 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class Item_Weapon_GreatBow : ItemEntity, Weapon, Item, Equipable, HotbarAble
+public class Item_Weapon_Short_Bow : ItemEntity, Weapon, Item, Equipable, HotbarAble, Ranged
 {
 	private static int id = 999;
-	private static string itemName = "Great Bow";
-	private static string itemDescription = "A beginners great bow.";
+	private static string itemName = "Short Bow";
+	private static string itemDescription = "A beginners short bow";
     private static int price = 20;
     private static int hotbarSlot = 0;
-    private static float damage = 0.30f;
-    private static float attackSpeed = 0.60f;
+    private static float damage = 0.50f;
+    private static float attackSpeed = 0.50f;
     private static float durability = 60f;
     private static float weaponRank = 0.0f;
     private static float weight = 3.3f;
     private static int inventoryID = 999;
+    private static float projectileSpeed = 10; //Change this later
     private static RawImage icon;
+    private static GameObject projectile;
     Texture texture;
-	
-	public Item_Weapon_GreatBow(int x, int y) :
+
+
+    public Item_Weapon_Short_Bow(int x, int y) :
 		base(id, itemName, x, y)
     {
+        projectile = (GameObject)Resources.Load("Archery_Projectile");
 	}
 	
 	public float getDamage(){
@@ -122,10 +126,14 @@ public class Item_Weapon_GreatBow : ItemEntity, Weapon, Item, Equipable, HotbarA
         return icon;
     }
 
-
-    public float getWeaponReach()
+    public float getProjectileSpeed()
     {
-        throw new System.NotImplementedException();
+        return projectileSpeed;
+    }
+
+    public Object getProjectile()
+    {
+        return projectile;
     }
 
 }
