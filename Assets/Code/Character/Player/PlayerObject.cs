@@ -75,6 +75,7 @@ public class PlayerObject : MonoBehaviour {
             switch (weapon)
             {
                 case "great sword": return getSkillEffect(17);
+                case "bow": return getSkillEffect(19);
             }
         }
         else if (mastery != null)
@@ -93,6 +94,7 @@ public class PlayerObject : MonoBehaviour {
             switch (weapon)
             {
                 case "great sword": return getSkillLevel(17);
+                case "bow": return getSkillLevel(19);
             }
         }
         else if (mastery != null)
@@ -112,6 +114,7 @@ public class PlayerObject : MonoBehaviour {
             switch (weapon)
             {
                 case "great sword": return 17;
+                case "bow": return 19;
             }
         }
         return 0;
@@ -535,6 +538,7 @@ public class PlayerObject : MonoBehaviour {
         switch (protection)
         {
             case "slashing": return protections[3];
+            case "arrow": return protections[0];
         }
         return 0;
     }

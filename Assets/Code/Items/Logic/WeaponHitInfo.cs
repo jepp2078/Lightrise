@@ -26,6 +26,7 @@ public class WeaponHitInfo : MonoBehaviour {
             switch (damageType)
             {
                 case "slashing": armorValue = other.gameObject.GetComponent<NpcObject>().getProtection(damageType); break;
+                case "arrow": armorValue = other.gameObject.GetComponent<NpcObject>().getProtection(damageType); break;
             }
             damage -= armorValue;
             Debug.Log("You hit " + other.gameObject.name + " for " + damage + " " + damageType + " damage!");
@@ -62,6 +63,7 @@ public class WeaponHitInfo : MonoBehaviour {
             switch (damageType)
             {
                 case "slashing": armorValue = other.gameObject.GetComponent<PlayerObject>().getProtection(damageType); break;
+                case "arrow": armorValue = other.gameObject.GetComponent<PlayerObject>().getProtection(damageType); break;
             }
             damage -= armorValue;
             Debug.Log("You hit " + other.gameObject.name + " for " + damage + " " + damageType + " damage!");

@@ -33,7 +33,7 @@ public class Item_Weapon_Short_Bow : ItemEntity, Weapon, Item, Equipable, Hotbar
 	}
 	
 	public string getType(){
-		string type = "ranged";
+		string type = "bow";
 		return type;
 	}
 	
