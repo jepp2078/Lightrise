@@ -71,12 +71,12 @@ public class RPG_Camera : MonoBehaviour
         else
         {
             cameraUsed = new GameObject("Main Camera");
-            cameraUsed.AddComponent("Camera");
+            cameraUsed.AddComponent<Camera>();
             cameraUsed.tag = "MainCamera";
         }
 
         if (!cameraUsed.GetComponent("RPG_Camera"))
-            cameraUsed.AddComponent("RPG_Camera");
+            cameraUsed.AddComponent<RPG_Camera>();
         cameraScript = cameraUsed.GetComponent("RPG_Camera") as RPG_Camera;
 
         cameraPivot = GameObject.Find("cameraPivot") as GameObject;
@@ -209,24 +209,24 @@ public class RPG_Camera : MonoBehaviour
             return;
 
         if (distance < firstPersonThreshold)
-            RPG_Animation.instance.renderer.enabled = false;
+            RPG_Animation.instance.GetComponent<Renderer>().enabled = false;
 
         else if (distance < characterFadeThreshold)
         {
-            RPG_Animation.instance.renderer.enabled = true;
+            RPG_Animation.instance.GetComponent<Renderer>().enabled = true;
 
             float characterAlpha = 1 - (characterFadeThreshold - distance) / (characterFadeThreshold - firstPersonThreshold);
-            if (RPG_Animation.instance.renderer.material.color.a != characterAlpha)
-                RPG_Animation.instance.renderer.material.color = new Color(RPG_Animation.instance.renderer.material.color.r, RPG_Animation.instance.renderer.material.color.g, RPG_Animation.instance.renderer.material.color.b, characterAlpha);
+            if (RPG_Animation.instance.GetComponent<Renderer>().material.color.a != characterAlpha)
+                RPG_Animation.instance.GetComponent<Renderer>().material.color = new Color(RPG_Animation.instance.GetComponent<Renderer>().material.color.r, RPG_Animation.instance.GetComponent<Renderer>().material.color.g, RPG_Animation.instance.GetComponent<Renderer>().material.color.b, characterAlpha);
 
         }
         else
         {
 
-            RPG_Animation.instance.renderer.enabled = true;
+            RPG_Animation.instance.GetComponent<Renderer>().enabled = true;
 
-            if (RPG_Animation.instance.renderer.material.color.a != 1)
-                RPG_Animation.instance.renderer.material.color = new Color(RPG_Animation.instance.renderer.material.color.r, RPG_Animation.instance.renderer.material.color.g, RPG_Animation.instance.renderer.material.color.b, 1);
+            if (RPG_Animation.instance.GetComponent<Renderer>().material.color.a != 1)
+                RPG_Animation.instance.GetComponent<Renderer>().material.color = new Color(RPG_Animation.instance.GetComponent<Renderer>().material.color.r, RPG_Animation.instance.GetComponent<Renderer>().material.color.g, RPG_Animation.instance.GetComponent<Renderer>().material.color.b, 1);
         }
     }
 
@@ -348,13 +348,13 @@ public class RPG_Camera : MonoBehaviour
         if (input == true)
         {
             guiMode = true;
-            Screen.showCursor = true;
+            Cursor.visible = true;
         }
         else
         {
             guiMode = false;
             //Screen.lockCursor = true;
-            Screen.showCursor = false;
+            Cursor.visible = false;
         }
     }
 

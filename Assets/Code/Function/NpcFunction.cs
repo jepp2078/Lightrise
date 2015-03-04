@@ -59,19 +59,19 @@ public class NpcFunction : MonoBehaviour
 
     public string performAttack(Weapon weapon)
     {
-        if (weapon is Melee) //damage formula weapon [ (0.2 * MS + 0.05 * WS + 0.03 * WM) + WD - AR ]
+        if (weapon is Melee) //damage formula weapon [ (0.2 * MS + 0.05 * WS + 0.03 * WM) * (WD*10) - (AR * 2) ]
         {
             GameObject reach = (GameObject)Instantiate(((Melee)weapon).getWeaponReach());
             reach.transform.parent = npcInstance.npcObject.transform;
             reach.transform.position = npcInstance.npcObject.transform.position;
             reach.transform.position += new Vector3(0f, 0f, 0.54f);
             reach.transform.rotation = npcInstance.npcObject.transform.rotation;
-            float damage = (0.2f * npcInstance.npc.getStat("str") + 0.05f * 100 + 0.03f * 100) + weapon.getDamage(); //the two 100's are weapon skills and mastery
+            float damage = (0.2f * npcInstance.npc.getStat("str") + npcInstance.npc.getWeaponSkillEffect(weapon.getType(), null) + npcInstance.npc.getWeaponSkillEffect(null, weapon.getType())) * weapon.getDamage()*10;
             string damageType = weapon.getDamageType();
             WeaponHitInfo info = reach.GetComponentInChildren<WeaponHitInfo>();
             info.damage = damage;
             info.damageType = damageType;
-            float speed = ((weapon.getAttackspeed() * 5) - (0.008f * npcInstance.npc.getStat("quick") + 0.002f * 100)); //The 100 is weapon mastery
+            float speed = ((weapon.getAttackspeed() * 5) - (0.008f * npcInstance.npc.getStat("quick") + 0.003f * npcInstance.npc.getWeaponSkill(null,weapon.getType())));
             npcInstance.instance.addAttackCooldown(speed);
         }
 

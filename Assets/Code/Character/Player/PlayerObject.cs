@@ -9,7 +9,7 @@ public class PlayerObject : MonoBehaviour {
     private List<HotbarAble> hotbar = new List<HotbarAble>();
     private Castable activeSkill = null;
     private float str = 5, dex = 5, intel = 5, vit = 5, wis = 5, quick = 5;
-    private float health, tempHealth, mana, tempMana, stamina, tempStamina, baseHealth = 100, baseMana = 100, baseStamina = 100,  bonusHealth = 0, bonusMana = 0, bonusStamina = 0;
+    private float health, tempHealth, mana, tempMana, stamina, tempStamina, baseHealth = 0, baseMana = 0, baseStamina = 0,  bonusHealth = 0, bonusMana = 0, bonusStamina = 0;
     private float lungCapacity = 60;
     private int invSize, baseInvSize = 200, inventoryIDCount = 0;
     private float encumbrance = 0;
@@ -32,7 +32,7 @@ public class PlayerObject : MonoBehaviour {
                 case 1: equipmentList[1] = new Item_Armor_Cloth_West(0, 0); break;
                 case 4: equipmentList[4] = new Item_Armor_Cloth_Pants(0, 0); break;
                 case 5: equipmentList[5] = new Item_Armor_Leather_Sandals(0, 0); break;
-                case 6: inventoryAdd(new Item_Weapon_GreatBow(0, 0)); inventoryAdd(new Item_Weapon_GreatSword(0, 0)); break;
+                case 6: inventoryAdd(new Item_Weapon_GreatBow(0, 0)); inventoryAdd(new Item_Weapon_Troll_Clubber(0, 0)); break;
             }
         }
 
@@ -58,6 +58,8 @@ public class PlayerObject : MonoBehaviour {
                 case 14: skillList.Insert(14, new Skill_Active_General_Revive()); skillList[14].setPlayerInstance(playerInstance, null); break;
                 case 15: skillList.Insert(15, new Skill_Passive_General_Riding()); skillList[15].setPlayerInstance(playerInstance, null); break;
                 case 16: skillList.Insert(16, new Skill_Passive_General_Swimming()); skillList[16].setPlayerInstance(playerInstance, null); break;
+                case 17: skillList.Insert(17, new Skill_Passive_Weapon_Skill_Great_Sword()); skillList[17].setPlayerInstance(playerInstance, null); break;
+                //18 = Skill_Passive_Combat_Great_Sword_Mastery()        
             }
         }
 
@@ -65,6 +67,67 @@ public class PlayerObject : MonoBehaviour {
         {
             hotbar.Add(null);
         }
+    }
+
+    public float getWeaponSkillEffect(string weapon, string mastery)
+    {
+        if (weapon != null)
+        {
+            switch (weapon)
+            {
+                case "great sword": return getSkillEffect(17);
+            }
+        }
+        else if (mastery != null)
+        {
+            switch (mastery)
+            {
+                case "great sword": if (getSkill(18) != null) return getSkillEffect(17); else return 0;
+            }
+        }
+        return 0;
+    }
+    public float getWeaponSkill(string weapon, string mastery)
+    {
+        if (weapon != null)
+        {
+            switch (weapon)
+            {
+                case "great sword": return getSkillLevel(17);
+            }
+        }
+        else if (mastery != null)
+        {
+            switch (mastery)
+            {
+                case "great sword": if (getSkill(18) != null) return getSkillLevel(18); else return 0;
+            }
+        }
+        return 0;
+    }
+
+    public int getWeaponSkillId(string weapon)
+    {
+        if (weapon != null)
+        {
+            switch (weapon)
+            {
+                case "great sword": return 17;
+            }
+        }
+        return 0;
+    }
+
+    public int getWeaponMasterySkillId(string weapon)
+    {
+        if (weapon != null)
+        {
+            switch (weapon)
+            {
+                case "great sword": return 18;
+            }
+        }
+        return 0;
     }
 
     public float getInvSize()
@@ -631,10 +694,9 @@ public class PlayerObject : MonoBehaviour {
         return skillList[skillID].getType();
     }
 
-    public string getSkillLevel(int skillID)
+    public float getSkillLevel(int skillID)
     {
-        string skillLevel = skillList[skillID].getSkillLevel().ToString("0.00");
-        return skillLevel;
+        return skillList[skillID].getSkillLevel();
     }
 
     public Skill getSkill(int skillID)

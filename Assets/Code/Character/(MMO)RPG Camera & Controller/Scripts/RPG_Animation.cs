@@ -124,47 +124,47 @@ public class RPG_Animation : MonoBehaviour {
     #region Animation Methods 
     
     void Idle() {
-        animation.CrossFade("idle");
+        GetComponent<Animation>().CrossFade("idle");
     }
 
     void Walk() {
-        animation.CrossFade("walk");
+        GetComponent<Animation>().CrossFade("walk");
     }
 
     void StrafeForwardLeft() {
-        animation.CrossFade("strafeforwardleft");
+        GetComponent<Animation>().CrossFade("strafeforwardleft");
     }
 
     void StrafeForwardRight() {
-        animation.CrossFade("strafeforwardright");
+        GetComponent<Animation>().CrossFade("strafeforwardright");
     }
 
     void WalkBack() {
-        animation.CrossFade("walkback");
+        GetComponent<Animation>().CrossFade("walkback");
     }
 
     void StrafeBackLeft() {
-        animation.CrossFade("strafebackleft");
+        GetComponent<Animation>().CrossFade("strafebackleft");
     }
 
     void StrafeBackRight() {
-        animation.CrossFade("strafebackright");
+        GetComponent<Animation>().CrossFade("strafebackright");
     }
         
     void StrafeLeft() {
-        animation.CrossFade("strafeleft");
+        GetComponent<Animation>().CrossFade("strafeleft");
     }
 
     void StrafeRight() {
-        animation.CrossFade("straferight");
+        GetComponent<Animation>().CrossFade("straferight");
     }
 
     public void Jump() { // this method is an exception because it is called by "RPG_Controller" (line 73) if the jump button was hit. Therefore it has the access level "public".
         currentState = CharacterState.Jump;
-        if (animation.IsPlaying("jump"))
-            animation.Stop("jump");
+        if (GetComponent<Animation>().IsPlaying("jump"))
+            GetComponent<Animation>().Stop("jump");
         
-        animation.CrossFade("jump");
+        GetComponent<Animation>().CrossFade("jump");
     }
     #endregion
 }

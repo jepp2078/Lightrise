@@ -16,7 +16,7 @@ public class Npc : MonoBehaviour
     // Use this for initialization and testing
     void Start()
     {
-        npc.changeStats(15, 5, 5, 5, 5, 5, 0, 0, 0);
+        npc.changeStats(15, 15, 15, 15, 15, 15, 0, 0, 0);
         npc.refillVitals();
         func.putOnHotbar((HotbarAble)npc.getInventoryItem(1), 1);
         func.hotbarUse(1);

@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class Item_Weapon_GreatSword : ItemEntity, Weapon, Item, Equipable, HotbarAble, Melee
+public class Item_Weapon_Troll_Clubber : ItemEntity, Weapon, Item, Equipable, HotbarAble, Melee
 {
 	private static int id = 999;
     private static string itemName = "Troll Clubber";
@@ -21,7 +21,7 @@ public class Item_Weapon_GreatSword : ItemEntity, Weapon, Item, Equipable, Hotba
     Texture texture;
 
 	
-	public Item_Weapon_GreatSword(int x, int y) : base(id, itemName, x, y)
+	public Item_Weapon_Troll_Clubber(int x, int y) : base(id, itemName, x, y)
     {
         reach = (GameObject) Resources.Load("GreatSword_Reach");
     }
