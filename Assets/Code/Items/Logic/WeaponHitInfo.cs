@@ -12,11 +12,6 @@ public class WeaponHitInfo : MonoBehaviour {
         calculateDamage(other);
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        //calculateDamage(other);
-    }
-
     void calculateDamage(Collider other)
     {
 

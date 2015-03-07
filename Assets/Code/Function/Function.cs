@@ -114,6 +114,22 @@ public class Function : MonoBehaviour {
 
     public void takeDamage(float damage, string damageType)
     {
+        playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(9) / 100)), 9);
+        switch (damageType)
+        {
+            case "mental": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(12) / 100)), 12); break;
+            case "infliction": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(6) / 100)), 6); break;
+            case "arrow": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(5) / 100)), 5); break;
+            case "piercing": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(5) / 100)), 5); break;
+            case "slashing": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(5) / 100)), 5); break;
+            case "bludgeoning": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(5) / 100)), 5); break;
+            case "acid": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(4) / 100)), 4); break;
+            case "unholy": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(4) / 100)), 4); break;
+            case "fire": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(8) / 100)), 8); break;
+            case "cold": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(8) / 100)), 8); break;
+            case "impact": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(8) / 100)), 8); break;
+            case "lightning": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(8) / 100)), 8); break;
+        }
         playerInstance.player.setHealth(damage, 0, false, damageType);
     }
    
