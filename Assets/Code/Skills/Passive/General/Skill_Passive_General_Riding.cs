@@ -13,6 +13,8 @@ public class Skill_Passive_General_Riding : SkillEntity, Skill
     private static float effect = 0f;
     public static Player playerInstance;
     private Npc npcInstance;
+    private GuiFunction gui;
+
 
     public Skill_Passive_General_Riding() :
 		base(id, skillName)
@@ -64,13 +66,13 @@ public class Skill_Passive_General_Riding : SkillEntity, Skill
         skillLevel += change;
         if (Mathf.Floor(oldSkillLevel) < Mathf.Floor(skillLevel))
         {
-            Debug.Log("Skill level in " + getSkillText() + " has increased to " + Mathf.Floor(skillLevel) + "!");
+            gui.newTextLine("Skill level in " + getSkillText() + " has increased to " + Mathf.Floor(skillLevel) + "!");
         }
         if (skillLevel >= 100)
         {
             if (Mathf.Floor(oldSkillLevel) < 100)
             {
-                Debug.Log(getSkillText() + " is surging!");
+                gui.newTextLine(getSkillText() + " is surging!");
             } effect = 0.25f;
             skillLevel = 100;
             return false;
@@ -79,21 +81,21 @@ public class Skill_Passive_General_Riding : SkillEntity, Skill
         {
             if (Mathf.Floor(oldSkillLevel) < 75)
             {
-                Debug.Log(getSkillText() + " has reached a new level!");
+                gui.newTextLine(getSkillText() + " has reached a new level!");
             } effect = 0.1875f;
         }
         else if (skillLevel >= 50)
         {
             if (Mathf.Floor(oldSkillLevel) < 50)
             {
-                Debug.Log(getSkillText() + " has reached a new level!");
+                gui.newTextLine(getSkillText() + " has reached a new level!");
             } effect = 0.125f;
         }
         else if (skillLevel >= 25)
         {
             if (Mathf.Floor(oldSkillLevel) < 25)
             {
-                Debug.Log(getSkillText() + " has reached a new level!");
+                gui.newTextLine(getSkillText() + " has reached a new level!");
             }
             effect = 0.0625f;
         }
@@ -107,5 +109,11 @@ public class Skill_Passive_General_Riding : SkillEntity, Skill
     {
         playerInstance = player;
         npcInstance = npc;
+    }
+
+    public void setGuiInstance(GuiFunction guiIn, bool player)
+    {
+        if (player)
+            gui = guiIn;
     }
 }

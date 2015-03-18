@@ -60,7 +60,6 @@ public class RPG_Controller : MonoBehaviour
         {
             if (((Castable)playerInstance.player.getSkill(1)).getState())
             {
-                Debug.Log("Getting up");
                 ((Castable)playerInstance.player.getSkill(1)).stopEffect();
             }
             horizontalStrafe = Input.GetAxis("Horizontal Strafe") < 0 ? -1f : Input.GetAxis("Horizontal Strafe") > 0 ? 1f : 0f;
@@ -79,7 +78,6 @@ public class RPG_Controller : MonoBehaviour
         {
             if (((Castable)playerInstance.player.getSkill(1)).getState())
             {
-                Debug.Log("Getting up");
                 ((Castable)playerInstance.player.getSkill(1)).stopEffect();
             }
             vertical = Input.GetAxis("Vertical") < 0 ? -1f : Input.GetAxis("Vertical") > 0 ? 1f : 0f;
@@ -112,7 +110,6 @@ public class RPG_Controller : MonoBehaviour
             {
                 if (((Castable)playerInstance.player.getSkill(1)).getState())
                 {
-                    Debug.Log("Getting up");
                     ((Castable)playerInstance.player.getSkill(1)).stopEffect();
                 }
                 playerDirWorld.y = jumpHeight;

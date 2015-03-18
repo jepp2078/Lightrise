@@ -16,7 +16,6 @@ public class Item_Weapon_Short_Bow : ItemEntity, Weapon, Item, Equipable, Hotbar
     private static float weight = 3.3f;
     private static int inventoryID = 999;
     private static float projectileSpeed = 10; //Change this later
-    private static RawImage icon;
     private static GameObject projectile;
     Texture texture;
 
@@ -25,6 +24,7 @@ public class Item_Weapon_Short_Bow : ItemEntity, Weapon, Item, Equipable, Hotbar
 		base(id, itemName, x, y)
     {
         projectile = (GameObject)Resources.Load("Archery_Projectile");
+        texture = Resources.Load("short_bow", typeof(Texture)) as Texture;
 	}
 	
 	public float getDamage(){
@@ -121,9 +121,9 @@ public class Item_Weapon_Short_Bow : ItemEntity, Weapon, Item, Equipable, Hotbar
         return weaponRank;
     }
 
-    public RawImage getIcon()
+    public Texture getIcon()
     {
-        return icon;
+        return texture;
     }
 
     public float getProjectileSpeed()

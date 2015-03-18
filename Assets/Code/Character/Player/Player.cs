@@ -6,6 +6,7 @@ public class Player : MonoBehaviour {
     public PlayerObject player;
     public GameObject playerObject;
     public Function func;
+    public GuiFunction gui;
     private List<Castable> cooldownList = new List<Castable>();
     private List<Castable> spellDurationList = new List<Castable>();
     private float attackCooldown = 0f;
@@ -22,6 +23,8 @@ public class Player : MonoBehaviour {
         player.refillVitals();
         func.putOnHotbar((HotbarAble)player.getInventoryItem(0), 0);
         func.putOnHotbar((HotbarAble)player.getInventoryItem(1), 1);
+        func.putOnHotbar((HotbarAble)player.getSkill(1), 2);
+        func.putOnHotbar((HotbarAble)player.getSkill(14), 3);
         InvokeRepeating("serverTick", 0, 0.0825F); //TEMP value. We might need to change how fast the server ticks? 1/12 of a sec right now.
     }
 
@@ -45,7 +48,7 @@ public class Player : MonoBehaviour {
             guiHelperNext = Time.time + guiHelper;
             if (player.getActiveSkill() != null && !(player.getEquipment(6) is Weapon))
             {
-                Debug.Log(func.performAction());
+                gui.newTextLine(func.performAction());
             }
             else if (player.getEquipment(6) is Weapon && attackCooldown == 0)
             {
@@ -73,6 +76,43 @@ public class Player : MonoBehaviour {
         {
             guiHelperNext = Time.time + guiHelper;
             func.hotbarUse(3);
+        }
+        if (Input.GetButton("Hotbar5") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
+        {
+            guiHelperNext = Time.time + guiHelper;
+            func.hotbarUse(4);
+        }
+
+        if (Input.GetButton("Hotbar6") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
+        {
+            guiHelperNext = Time.time + guiHelper;
+            func.hotbarUse(5);
+        }
+        if (Input.GetButton("Hotbar7") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
+        {
+            guiHelperNext = Time.time + guiHelper;
+            func.hotbarUse(6);
+        }
+        if (Input.GetButton("Hotbar8") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
+        {
+            guiHelperNext = Time.time + guiHelper;
+            func.hotbarUse(7);
+        }
+        if (Input.GetButton("Hotbar9") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
+        {
+            guiHelperNext = Time.time + guiHelper;
+            func.hotbarUse(8);
+        }
+        if (Input.GetButton("Hotbar0") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
+        {
+            guiHelperNext = Time.time + guiHelper;
+            func.hotbarUse(9);
+        }
+
+        if (Input.GetButton("sheath") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
+        {
+            guiHelperNext = Time.time + guiHelper;
+            func.sheathWeapon();
         }
     }
 

@@ -6,6 +6,7 @@ public class WeaponHitInfo : MonoBehaviour {
     public string damageType;
     public Player playerInstance;
     public Weapon weapon;
+    private GuiFunction gui;
 	// Use this for initialization
 
     void OnTriggerStay(Collider other) {
@@ -14,9 +15,9 @@ public class WeaponHitInfo : MonoBehaviour {
 
     void calculateDamage(Collider other)
     {
-
         if (other.gameObject.tag == "npc" && playerInstance != null)
         {
+            gui = playerInstance.gui;
             float armorValue = 0;
             switch (damageType)
             {
@@ -24,7 +25,7 @@ public class WeaponHitInfo : MonoBehaviour {
                 case "arrow": armorValue = other.gameObject.GetComponent<NpcObject>().getProtection(damageType); break;
             }
             damage -= armorValue;
-            Debug.Log("You hit " + other.gameObject.name + " for " + damage + " " + damageType + " damage!");
+            gui.newTextLine("You hit " + other.gameObject.name + " for " + damage + " " + damageType + " damage!");
             other.gameObject.GetComponent<NpcFunction>().takeDamage(damage, damageType);
 
             playerInstance.gainSkill((1.1f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponSkillId(weapon.getType()));
@@ -45,6 +46,7 @@ public class WeaponHitInfo : MonoBehaviour {
                     destroy();
                     return;
                 }
+                gui = playerInstance.gui;
                 playerInstance.gainSkill((1.1f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponSkillId(weapon.getType()));
 
                 if (playerInstance.player.getWeaponSkill(null, weapon.getType()) != 0)
@@ -61,7 +63,6 @@ public class WeaponHitInfo : MonoBehaviour {
                 case "arrow": armorValue = other.gameObject.GetComponent<PlayerObject>().getProtection(damageType); break;
             }
             damage -= armorValue;
-            Debug.Log("You hit " + other.gameObject.name + " for " + damage + " " + damageType + " damage!");
             other.gameObject.GetComponent<Function>().takeDamage(damage, damageType);
         }
 

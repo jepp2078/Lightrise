@@ -17,13 +17,13 @@ public class Item_Weapon_Troll_Clubber : ItemEntity, Weapon, Item, Equipable, Ho
     private static int inventoryID = 999;
     private static float reachFloat = 0.5f;
     private static GameObject reach;
-    private static RawImage icon;
     Texture texture;
 
 	
 	public Item_Weapon_Troll_Clubber(int x, int y) : base(id, itemName, x, y)
     {
         reach = (GameObject) Resources.Load("GreatSword_Reach");
+        texture = Resources.Load("troll_clubber", typeof(Texture)) as Texture;
     }
 	
 	
@@ -122,9 +122,9 @@ public class Item_Weapon_Troll_Clubber : ItemEntity, Weapon, Item, Equipable, Ho
         return weaponRank;
     }
 
-    public RawImage getIcon()
+    public Texture getIcon()
     {
-        return icon;
+        return texture;
     }
 
     public Object getWeaponHitbox()

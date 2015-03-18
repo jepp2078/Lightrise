@@ -22,14 +22,16 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
     private static float gainPrCast = 1.0f;
     private static float cooldown = 20f;
     private static float currentCooldown = 0f;
-    private static RawImage icon;
     Texture texture;
     private Player playerInstance;
     private Npc npcInstance;
+    private GuiFunction gui;
+
 
     public Skill_Active_General_Revive() :
 		base(id, skillName)
 	{
+        texture = Resources.Load("misc_revive", typeof(Texture)) as Texture;
     }
 
     public int getSkillID()
@@ -77,13 +79,13 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
         skillLevel += change;
         if (Mathf.Floor(oldSkillLevel) < Mathf.Floor(skillLevel))
         {
-            Debug.Log("Skill level in " + getSkillText() + " has increased to " + Mathf.Floor(skillLevel)+"!");
+            gui.newTextLine("Skill level in " + getSkillText() + " has increased to " + Mathf.Floor(skillLevel)+"!");
         }
         if (skillLevel >= 100)
         {
             if (Mathf.Floor(oldSkillLevel) < 100)
             {
-                Debug.Log(getSkillText() + " is surging!");
+                gui.newTextLine(getSkillText() + " is surging!");
             }
             skillLevel = 100;
             return false;
@@ -92,21 +94,21 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
         {
             if (Mathf.Floor(oldSkillLevel) < 75)
             {
-                Debug.Log(getSkillText() + " has reached a new level!");
+                gui.newTextLine(getSkillText() + " has reached a new level!");
             }
         }
         else if (skillLevel >= 50)
         {
             if (Mathf.Floor(oldSkillLevel) < 50)
             {
-                Debug.Log(getSkillText() + " has reached a new level!");
+                gui.newTextLine(getSkillText() + " has reached a new level!");
             }
         }
         else if (skillLevel >= 25)
         {
             if (Mathf.Floor(oldSkillLevel) < 25)
             {
-                Debug.Log(getSkillText() + " has reached a new level!");
+                gui.newTextLine(getSkillText() + " has reached a new level!");
             } 
         }
         return true;
@@ -230,15 +232,20 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
         gainPrCast = 1.1f - (getSkillLevel()/100);
     }
 
-    public RawImage getIcon()
+    public Texture getIcon()
     {
-        return icon;
+        return texture;
     }
 
     public void setPlayerInstance(Player player, Npc npc)
     {
         playerInstance = player;
         npcInstance = npc;
+    }
+    public void setGuiInstance(GuiFunction guiIn, bool player)
+    {
+        if (player)
+            gui = guiIn;
     }
 }
 

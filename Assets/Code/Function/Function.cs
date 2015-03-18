@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Function : MonoBehaviour {
     public Player playerInstance;
+    public GuiFunction gui;
 
     public string equipItem(Item item)
     {
@@ -21,15 +22,32 @@ public class Function : MonoBehaviour {
 
     public void putOnHotbar(HotbarAble instance, int hotbarSlot)
     {
-        if(instance is HotbarAble)
+        if (instance is HotbarAble)
+        {
             playerInstance.player.hotbarAdd(instance, hotbarSlot);
-        //if(hotbarSlot == 2)
-        //    hotbarGuiFunction.instance.setHotbarIcon(instance.getIcon(), hotbarSlot);
+            gui.setHotbarIcon(hotbarSlot, instance.getIcon(), false);
+        }
     }
 
     public void removeFromHotbar(int hotbarSlot)
     {
         playerInstance.player.hotbarRemove(hotbarSlot);
+    }
+
+    public void sheathWeapon()
+    {
+        if (playerInstance.player.isWeaponSheathed())
+        {
+            playerInstance.player.unSheathWeapon();
+            gui.setActiveWeaponIcon(null, false, true);
+        }
+        else
+        {
+            playerInstance.player.sheathWeapon();
+            gui.setActiveWeaponIcon(null, true, true);
+        }
+        playerInstance.player.setActiveSkill(null);
+        gui.setActiveSkillIcon(null, true);
     }
 
     public void hotbarUse(int hotbarSlot)
@@ -39,12 +57,19 @@ public class Function : MonoBehaviour {
         {
             if (playerInstance.player.getEquipmentIDinSlot(6) == -1 || hotbarType.getInventoryID() != playerInstance.player.getEquipmentIDinSlot(6))
             {
-                Debug.Log(equipItem(playerInstance.player.getInventoryItem(hotbarType.getInventoryID())));
+                gui.newTextLine(equipItem(playerInstance.player.getInventoryItem(hotbarType.getInventoryID())));
+                gui.setActiveWeaponIcon(hotbarType.getIcon(), playerInstance.player.isWeaponSheathed(), false);
 			}
         }
         else if (hotbarType is Castable)
         {
             playerInstance.player.setActiveSkill((Castable)hotbarType);
+            gui.setActiveSkillIcon(hotbarType.getIcon(), false);
+        }
+        else
+        {
+            playerInstance.player.setActiveSkill(null);
+            gui.setActiveSkillIcon(null, true);
         }
     }
 
@@ -58,6 +83,8 @@ public class Function : MonoBehaviour {
             playerInstance.instance.addCooldown(skill);
             skill.updateGainPrCast();
             playerInstance.instance.gainSkill(skill.getGainPrCast(), ((Skill)skill).getSkillID());
+            playerInstance.player.setActiveSkill(null);
+            gui.setActiveSkillIcon(null, true);
             return skill.getCastMsg();
         }
         else
@@ -92,10 +119,10 @@ public class Function : MonoBehaviour {
             GameObject hitbox = (GameObject)Instantiate(((Ranged)weapon).getProjectile());
             hitbox.transform.position = playerInstance.playerObject.transform.position;
             Vector3 tempOffset = playerInstance.playerObject.transform.forward;
-            tempOffset.Scale(new Vector3(1f, 0f, 1f));
             hitbox.transform.position += tempOffset;
+            hitbox.transform.position += new Vector3(0f, 0.60f, 0f);
             hitbox.transform.rotation = playerInstance.playerObject.transform.rotation;
-            hitbox.GetComponent<Rigidbody>().AddForce(playerInstance.playerObject.GetComponentInChildren<Camera>().transform.forward * 1000f);
+            hitbox.GetComponent<Rigidbody>().AddForce(playerInstance.playerObject.GetComponentInChildren<Camera>().transform.forward * 3000f);
             float damage = (0.2f * playerInstance.player.getStat("dex") + playerInstance.player.getWeaponSkillEffect(weapon.getType(), null) + playerInstance.player.getWeaponSkillEffect(null, weapon.getType())) * weapon.getDamage() * 10;
             string damageType = weapon.getDamageType();
 

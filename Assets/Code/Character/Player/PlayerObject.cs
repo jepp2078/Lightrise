@@ -8,6 +8,7 @@ public class PlayerObject : MonoBehaviour {
     private List<Skill> skillList = new List<Skill>();
     private List<HotbarAble> hotbar = new List<HotbarAble>();
     private Castable activeSkill = null;
+    private Weapon sheathedWeapon = null;
     private float str = 0, dex = 0, intel = 0, vit = 0, wis = 0, quick = 0;
     private float health, tempHealth, mana, tempMana, stamina, tempStamina, baseHealth = 0, baseMana = 0, baseStamina = 0,  bonusHealth = 0, bonusMana = 0, bonusStamina = 0;
     private float lungCapacity = 60;
@@ -19,6 +20,7 @@ public class PlayerObject : MonoBehaviour {
     private float critChance = 1;
     private int arrows = 0, gold = 0;//, mandrake = 0, ash = 0, sulfur = 0, raisin = 0, nacra = 0, bone = 0;
     public Player playerInstance;
+    public GuiFunction gui;
 
 	// Use this for initialization
     void Start () 
@@ -39,32 +41,62 @@ public class PlayerObject : MonoBehaviour {
             skillList.Add(null);
             switch (i)
             {
-                case 0: skillList.Insert(0, new Skill_Passive_General_Run()); skillList[0].setPlayerInstance(playerInstance, null); break;
-                case 1: skillList.Insert(1, new Skill_Active_General_Rest()); skillList[1].setPlayerInstance(playerInstance, null); break;
-                case 2: skillList.Insert(2, new Skill_Passive_General_Sprint()); skillList[2].setPlayerInstance(playerInstance, null); break;
-                case 3: skillList.Insert(3, new Skill_Passive_General_Crouch_Walk()); skillList[3].setPlayerInstance(playerInstance, null); break;
-                case 4: skillList.Insert(4, new Skill_Passive_General_Constitution()); skillList[4].setPlayerInstance(playerInstance, null); break;
-                case 5: skillList.Insert(5, new Skill_Passive_General_Defense()); skillList[5].setPlayerInstance(playerInstance, null); break;
-                case 6: skillList.Insert(6, new Skill_Passive_General_Fortitude()); skillList[6].setPlayerInstance(playerInstance, null); break;
+                case 0: skillList.Insert(0, new Skill_Passive_General_Run()); skillList[0].setPlayerInstance(playerInstance, null); skillList[0].setGuiInstance(gui, true); break;
+                case 1: skillList.Insert(1, new Skill_Active_General_Rest()); skillList[1].setPlayerInstance(playerInstance, null); skillList[1].setGuiInstance(gui, true); break;
+                case 2: skillList.Insert(2, new Skill_Passive_General_Sprint()); skillList[2].setPlayerInstance(playerInstance, null); skillList[2].setGuiInstance(gui, true); break;
+                case 3: skillList.Insert(3, new Skill_Passive_General_Crouch_Walk()); skillList[3].setPlayerInstance(playerInstance, null); skillList[3].setGuiInstance(gui, true); break;
+                case 4: skillList.Insert(4, new Skill_Passive_General_Constitution()); skillList[4].setPlayerInstance(playerInstance, null); skillList[4].setGuiInstance(gui, true); break;
+                case 5: skillList.Insert(5, new Skill_Passive_General_Defense()); skillList[5].setPlayerInstance(playerInstance, null); skillList[5].setGuiInstance(gui, true); break;
+                case 6: skillList.Insert(6, new Skill_Passive_General_Fortitude()); skillList[6].setPlayerInstance(playerInstance, null); skillList[6].setGuiInstance(gui, true); break;
                 //7 = Skill_Passive_General_Preseverance()
-                case 8: skillList.Insert(8, new Skill_Passive_General_Reflex()); skillList[8].setPlayerInstance(playerInstance, null); break;
-                case 9: skillList.Insert(9, new Skill_Passive_General_Rigor()); skillList[9].setPlayerInstance(playerInstance, null); break;
+                case 8: skillList.Insert(8, new Skill_Passive_General_Reflex()); skillList[8].setPlayerInstance(playerInstance, null); skillList[8].setGuiInstance(gui, true); break;
+                case 9: skillList.Insert(9, new Skill_Passive_General_Rigor()); skillList[9].setPlayerInstance(playerInstance, null); skillList[9].setGuiInstance(gui, true); break;
                 //10 = Skill_Passive_General_Survivalist()
                 //11 = Skill_Passive_General_Thoughness()
-                case 12: skillList.Insert(12, new Skill_Passive_General_Willpower()); skillList[12].setPlayerInstance(playerInstance, null); break;
-                case 13: skillList.Insert(13, new Skill_Passive_General_Diving()); skillList[13].setPlayerInstance(playerInstance, null); break;
-                case 14: skillList.Insert(14, new Skill_Active_General_Revive()); skillList[14].setPlayerInstance(playerInstance, null); break;
-                case 15: skillList.Insert(15, new Skill_Passive_General_Riding()); skillList[15].setPlayerInstance(playerInstance, null); break;
-                case 16: skillList.Insert(16, new Skill_Passive_General_Swimming()); skillList[16].setPlayerInstance(playerInstance, null); break;
-                case 17: skillList.Insert(17, new Skill_Passive_Weapon_Skill_Great_Sword()); skillList[17].setPlayerInstance(playerInstance, null); break;
+                case 12: skillList.Insert(12, new Skill_Passive_General_Willpower()); skillList[12].setPlayerInstance(playerInstance, null); skillList[12].setGuiInstance(gui, true); break;
+                case 13: skillList.Insert(13, new Skill_Passive_General_Diving()); skillList[13].setPlayerInstance(playerInstance, null); skillList[13].setGuiInstance(gui, true); break;
+                case 14: skillList.Insert(14, new Skill_Active_General_Revive()); skillList[14].setPlayerInstance(playerInstance, null); skillList[14].setGuiInstance(gui, true); break;
+                case 15: skillList.Insert(15, new Skill_Passive_General_Riding()); skillList[15].setPlayerInstance(playerInstance, null); skillList[15].setGuiInstance(gui, true); break;
+                case 16: skillList.Insert(16, new Skill_Passive_General_Swimming()); skillList[16].setPlayerInstance(playerInstance, null); skillList[16].setGuiInstance(gui, true); break;
+                case 17: skillList.Insert(17, new Skill_Passive_Weapon_Skill_Great_Sword()); skillList[17].setPlayerInstance(playerInstance, null); skillList[17].setGuiInstance(gui, true); break;
                 //18 = Skill_Passive_Combat_Great_Sword_Mastery()     
-                case 19: skillList.Insert(19, new Skill_Passive_Weapon_Skill_Archery()); skillList[19].setPlayerInstance(playerInstance, null); break;
+                case 19: skillList.Insert(19, new Skill_Passive_Weapon_Skill_Archery()); skillList[19].setPlayerInstance(playerInstance, null); skillList[19].setGuiInstance(gui, true); break;
             }
         }
 
         for (int i = 0; i < 9; i++)
         {
             hotbar.Add(null);
+        }
+    }
+    public bool isWeaponSheathed()
+    {
+        if (sheathedWeapon != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public void sheathWeapon()
+    {
+        if (equipmentList[6] != null)
+        {
+            sheathedWeapon = (Weapon) equipmentList[6];
+            equipmentList[6] = null;
+            gui.newTextLine("You sheath your " + ((Item) sheathedWeapon).getItemText() + "!");
+        }
+    }
+
+    public void unSheathWeapon()
+    {
+        if (sheathedWeapon != null)
+        {
+            equipmentList[6] = (Item)sheathedWeapon;
+            sheathedWeapon = null;
+            gui.newTextLine("You unsheathe your " + equipmentList[6].getItemText() + "!");
         }
     }
 
@@ -364,8 +396,15 @@ public class PlayerObject : MonoBehaviour {
 		if(equipmentIn is Equipable){
 			if(((Equipable) equipmentIn).getItemSlot() == "Main Hand"){
 				if(equipmentList[6] == null){
-				 equipmentList[6] = equipmentIn;
-                 inventoryRemove(i);
+                    if (isWeaponSheathed())
+                    {
+                        sheathedWeapon = (Weapon) equipmentIn;
+                    }
+                    else 
+                    { 
+				    equipmentList[6] = equipmentIn;
+                    }
+                    inventoryRemove(i);
 				}else{
 					inventoryRemove(i);
 					inventoryAdd(equipmentList[6]);
@@ -375,7 +414,7 @@ public class PlayerObject : MonoBehaviour {
 				if(equipmentList[7] == null){
                     equipmentList[7] = equipmentIn;
                     setProtections(equipmentIn.getProtections(), true);
-                     inventoryRemove(i);
+                    inventoryRemove(i);
 				}else{
 					inventoryRemove(i);
 					inventoryAdd(equipmentList[7]);
@@ -400,10 +439,10 @@ public class PlayerObject : MonoBehaviour {
                 }
 			}else if(((Equipable) equipmentIn).getItemSlot() == "Torso"){
 				if(equipmentList[1] == null){
-                      equipmentList[1] = equipmentIn;
-					  inventoryRemove(i);
-                      setProtections(equipmentIn.getProtections(), true);
-                      setEncumbrance(((Armor)equipmentIn).getEncumbrance());
+                    equipmentList[1] = equipmentIn;
+					inventoryRemove(i);
+                    setProtections(equipmentIn.getProtections(), true);
+                    setEncumbrance(((Armor)equipmentIn).getEncumbrance());
 				}else{
 					inventoryRemove(i);
 					inventoryAdd(equipmentList[1]);
@@ -416,9 +455,9 @@ public class PlayerObject : MonoBehaviour {
 			}else if(((Equipable) equipmentIn).getItemSlot() == "Legs"){
 				if(equipmentList[4] == null){
                     equipmentList[4] = equipmentIn;
-                     inventoryRemove(i);
-                     setProtections(equipmentIn.getProtections(), true);
-                     setEncumbrance(((Armor)equipmentIn).getEncumbrance());
+                    inventoryRemove(i);
+                    setProtections(equipmentIn.getProtections(), true);
+                    setEncumbrance(((Armor)equipmentIn).getEncumbrance());
 				}else{
 					inventoryRemove(i);
                     inventoryAdd(equipmentList[4]);
@@ -446,9 +485,9 @@ public class PlayerObject : MonoBehaviour {
 			}else if(((Equipable) equipmentIn).getItemSlot() == "Hands"){
 				if(equipmentList[3] == null){
                     equipmentList[3] = equipmentIn;
-                     inventoryRemove(i);
-                     setProtections(equipmentIn.getProtections(), true);
-                     setEncumbrance(((Armor)equipmentIn).getEncumbrance());
+                    inventoryRemove(i);
+                    setProtections(equipmentIn.getProtections(), true);
+                    setEncumbrance(((Armor)equipmentIn).getEncumbrance());
 				}else{
                     inventoryRemove(i);
                     inventoryAdd(equipmentList[3]);
@@ -461,9 +500,9 @@ public class PlayerObject : MonoBehaviour {
 			}else if(((Equipable) equipmentIn).getItemSlot() == "Arms"){
 				if(equipmentList[2] == null){
                     equipmentList[2] = equipmentIn;
-                     inventoryRemove(i);
-                     setProtections(equipmentIn.getProtections(), true);
-                     setEncumbrance(((Armor)equipmentIn).getEncumbrance());
+                    inventoryRemove(i);
+                    setProtections(equipmentIn.getProtections(), true);
+                    setEncumbrance(((Armor)equipmentIn).getEncumbrance());
 				}else{
                     inventoryRemove(i);
                     inventoryAdd(equipmentList[2]);
@@ -564,11 +603,11 @@ public class PlayerObject : MonoBehaviour {
     {
         if (damage == 0 && !regen)
         {
-            Debug.Log("You were healed for " + healing.ToString("0.00"));
+            gui.newTextLine("You were healed for " + healing.ToString("0.00"));
         }
         else if(healing == 0 && !regen)
         {
-            Debug.Log("You took " + damage.ToString("0.00") + " "+ type +" damage!");
+            gui.newTextLine("You took " + damage.ToString("0.00") + " "+ type +" damage!");
         }
         tempHealth -= damage;
         tempHealth += healing;
@@ -719,7 +758,6 @@ public class PlayerObject : MonoBehaviour {
     public void setActiveSkill(Castable skill)
     {
         activeSkill = skill;
-        Debug.Log(((Skill)activeSkill).getSkillText());
     }
 
     public Castable getActiveSkill()

@@ -14,6 +14,8 @@ public class Skill_Passive_General_Willpower : SkillEntity, Skill
     private static float effect = 0f;
     public static Player playerInstance;
     private Npc npcInstance;
+    private GuiFunction gui;
+
 
     public Skill_Passive_General_Willpower() :
 		base(id, skillName)
@@ -65,13 +67,13 @@ public class Skill_Passive_General_Willpower : SkillEntity, Skill
         skillLevel += change;
         if (Mathf.Floor(oldSkillLevel) < Mathf.Floor(skillLevel))
         {
-            Debug.Log("Skill level in " + getSkillText() + " has increased to " + Mathf.Floor(skillLevel) + "!");
+            gui.newTextLine("Skill level in " + getSkillText() + " has increased to " + Mathf.Floor(skillLevel) + "!");
         }
         if (skillLevel >= 100)
         {
             if (Mathf.Floor(oldSkillLevel) < 100)
             {
-                Debug.Log(getSkillText() + " is surging!");
+                gui.newTextLine(getSkillText() + " is surging!");
                 playerInstance.player.setProtections(new float[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.05f, 0 }, true);
             }
             skillLevel = 100;
@@ -81,7 +83,7 @@ public class Skill_Passive_General_Willpower : SkillEntity, Skill
         {
             if (Mathf.Floor(oldSkillLevel) < 75)
             {
-                Debug.Log(getSkillText() + " has reached a new level!");
+                gui.newTextLine(getSkillText() + " has reached a new level!");
                 playerInstance.player.setProtections(new float[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.05f, 0 }, true);
             }
         }
@@ -89,7 +91,7 @@ public class Skill_Passive_General_Willpower : SkillEntity, Skill
         {
             if (Mathf.Floor(oldSkillLevel) < 50)
             {
-                Debug.Log(getSkillText() + " has reached a new level!");
+                gui.newTextLine(getSkillText() + " has reached a new level!");
                 playerInstance.player.setProtections(new float[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.05f, 0 }, true);
             }
         }
@@ -97,7 +99,7 @@ public class Skill_Passive_General_Willpower : SkillEntity, Skill
         {
             if (Mathf.Floor(oldSkillLevel) < 25)
             {
-                Debug.Log(getSkillText() + " has reached a new level!");
+                gui.newTextLine(getSkillText() + " has reached a new level!");
                 playerInstance.player.setProtections(new float[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.05f, 0 }, true);
             }
         }
@@ -111,5 +113,11 @@ public class Skill_Passive_General_Willpower : SkillEntity, Skill
     {
         playerInstance = player;
         npcInstance = npc;
+    }
+
+    public void setGuiInstance(GuiFunction guiIn, bool player)
+    {
+        if (player)
+            gui = guiIn;
     }
 }
