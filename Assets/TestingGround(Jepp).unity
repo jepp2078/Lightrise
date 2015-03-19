@@ -1248,7 +1248,7 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -325.399994, y: -193.600006}
+  m_AnchoredPosition: {x: -325.399994, y: -191.899994}
   m_SizeDelta: {x: -257, y: 78}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &414328521
@@ -1398,7 +1398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Texture: {fileID: 2800000, guid: 45ff6efcec16b274abd92a3c711b66dc, type: 3}
+  m_Texture: {fileID: 2800000, guid: 558d55d208e2bf7438694925eacfa0d5, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1636,7 +1636,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Texture: {fileID: 2800000, guid: 8845cdcfa5622d8449e7c3a1fef9f00d, type: 3}
+  m_Texture: {fileID: 2800000, guid: 6236c2295c1296a428592fb5ff6f8d46, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -2330,7 +2330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Texture: {fileID: 2800000, guid: 49ba63e4b8d429941be31a5d1dbb0d2c, type: 3}
+  m_Texture: {fileID: 2800000, guid: 005d262207507084a8c80ed91e1682f7, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -3338,7 +3338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Texture: {fileID: 2800000, guid: b933e2cb5e756a6438c63535aa9104f8, type: 3}
+  m_Texture: {fileID: 2800000, guid: c854f3d7b4c81b243abff66a678b657f, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -3812,7 +3812,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Texture: {fileID: 2800000, guid: 9f401a0b9dab20c4aa4b1d0926eef517, type: 3}
+  m_Texture: {fileID: 2800000, guid: 7c5a153ff4cf25c4a830653cfde71835, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -4154,7 +4154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Texture: {fileID: 2800000, guid: 95f106c575fae354b971c7282863094e, type: 3}
+  m_Texture: {fileID: 2800000, guid: 7223b541d83dc144aa413b3361324bfa, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -5134,7 +5134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Texture: {fileID: 2800000, guid: 0d01d8e30f4e40445a8d532b48a81c31, type: 3}
+  m_Texture: {fileID: 2800000, guid: 52c33d0f76f19784fbecbd2ff276b1bc, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -5254,7 +5254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Texture: {fileID: 2800000, guid: b82d468d38f3e574f9a6d08a3d29d6a1, type: 3}
+  m_Texture: {fileID: 2800000, guid: 4dc0df44668f2ec4d9fb58df7067f896, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -6215,7 +6215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Texture: {fileID: 2800000, guid: f7c6e67ddd2b24047b47a3216c5c3418, type: 3}
+  m_Texture: {fileID: 2800000, guid: a8a47f6b23ec43d4281ad2bd655ad878, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -6395,7 +6395,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Texture: {fileID: 2800000, guid: 7772d35b8b8751c41b71f52c6494c445, type: 3}
+  m_Texture: {fileID: 2800000, guid: b4e0c1b79f16a5e4ab7334ffc4319049, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -6515,7 +6515,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 289553417}
   m_HandleRect: {fileID: 289553416}
   m_Direction: 2
-  m_Value: .999988258
+  m_Value: 1
   m_Size: .995013237
   m_NumberOfSteps: 0
   m_OnValueChanged:
