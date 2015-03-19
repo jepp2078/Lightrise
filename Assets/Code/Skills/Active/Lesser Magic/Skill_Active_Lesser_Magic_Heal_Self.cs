@@ -24,6 +24,7 @@ public class Skill_Active_Lesser_Magic_Heal_Self : SkillEntity, Skill, HotbarAbl
     private static float currentCooldown = 0f;
     private static float castTime = 3;
     Texture texture;
+    GameObject particle;
     private Player playerInstance;
     private Npc npcInstance;
     private GuiFunction gui;
@@ -33,6 +34,7 @@ public class Skill_Active_Lesser_Magic_Heal_Self : SkillEntity, Skill, HotbarAbl
 		base(id, skillName)
 	{
         texture = Resources.Load("lessermagic_healself01", typeof(Texture)) as Texture;
+        particle = Resources.Load("BeingHealedEffect", typeof(GameObject)) as GameObject;
     }
 
     public int getSkillID()
@@ -137,6 +139,7 @@ public class Skill_Active_Lesser_Magic_Heal_Self : SkillEntity, Skill, HotbarAbl
     public void cast()
     {
         playerInstance.player.setHealth(0, effect, false, "");
+        Instantiate(particle, playerInstance.playerObject.transform.position - (new Vector3(0, 1, 0)), playerInstance.playerObject.transform.rotation);
     }
 
     public void stopEffect()

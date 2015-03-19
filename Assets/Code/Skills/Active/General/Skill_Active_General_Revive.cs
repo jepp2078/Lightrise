@@ -24,6 +24,7 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
     private static float currentCooldown = 0f;
     private static float castTime = 5;
     Texture texture;
+    GameObject particle;
     private Player playerInstance;
     private Npc npcInstance;
     private GuiFunction gui;
@@ -33,6 +34,7 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
 		base(id, skillName)
 	{
         texture = Resources.Load("misc_revive", typeof(Texture)) as Texture;
+        particle = Resources.Load("ResurrectionEffect", typeof(GameObject)) as GameObject;
     }
 
     public int getSkillID()
@@ -136,7 +138,7 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
 
     public void cast()
     {
-        
+        Instantiate(particle, playerInstance.playerObject.transform.position-(new Vector3(0,1,0)), playerInstance.playerObject.transform.rotation);
     }
 
     public void stopEffect()

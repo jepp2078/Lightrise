@@ -81,6 +81,10 @@ public class Function : MonoBehaviour {
             {
                 playerInstance.addSpellDuration(skill);
             }
+            else
+            {
+                skill.cast();
+            }
             skill.setCurrentCooldown(skill.getCooldown());
             playerInstance.instance.addCooldown(skill);
             skill.updateGainPrCast();
