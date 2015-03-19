@@ -61,6 +61,7 @@ public class PlayerObject : MonoBehaviour {
                 case 17: skillList.Insert(17, new Skill_Passive_Weapon_Skill_Great_Sword()); skillList[17].setPlayerInstance(playerInstance, null); skillList[17].setGuiInstance(gui, true); break;
                 //18 = Skill_Passive_Combat_Great_Sword_Mastery()     
                 case 19: skillList.Insert(19, new Skill_Passive_Weapon_Skill_Archery()); skillList[19].setPlayerInstance(playerInstance, null); skillList[19].setGuiInstance(gui, true); break;
+                case 20: skillList.Insert(20, new Skill_Active_Lesser_Magic_Heal_Self()); skillList[20].setPlayerInstance(playerInstance, null); skillList[20].setGuiInstance(gui, true); break;
             }
         }
 
@@ -762,7 +763,10 @@ public class PlayerObject : MonoBehaviour {
 
     public Castable getActiveSkill()
     {
-        return activeSkill;
+        if (activeSkill != null)
+            return activeSkill;
+        else
+            return null;
     }
 
     public float getLungCapacity()

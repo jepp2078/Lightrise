@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Castable  {
+public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Castable, Spell  {
 
 	private static int id = 14;
     private static string type = "active";
@@ -14,14 +14,15 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
     private static float effect = 0f;
     private static int inventoryID = 9999;
     private static int hotbarSlot;
-    private static float castingCost = 0;
+    private static float castingCost = 0.1f;
     private static float duration = 0;
     private static float currentDuration = 0;
     private static bool activated = false;
-    private static string castMsg = "You begin reviving";
+    private static string castMsg = "Revive";
     private static float gainPrCast = 1.0f;
     private static float cooldown = 20f;
     private static float currentCooldown = 0f;
+    private static float castTime = 5;
     Texture texture;
     private Player playerInstance;
     private Npc npcInstance;
@@ -86,6 +87,7 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
             if (Mathf.Floor(oldSkillLevel) < 100)
             {
                 gui.newTextLine(getSkillText() + " is surging!");
+                castTime = 4;
             }
             skillLevel = 100;
             return false;
@@ -95,6 +97,7 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
             if (Mathf.Floor(oldSkillLevel) < 75)
             {
                 gui.newTextLine(getSkillText() + " has reached a new level!");
+                castTime = 4.25f;
             }
         }
         else if (skillLevel >= 50)
@@ -102,6 +105,7 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
             if (Mathf.Floor(oldSkillLevel) < 50)
             {
                 gui.newTextLine(getSkillText() + " has reached a new level!");
+                castTime = 4.50f;
             }
         }
         else if (skillLevel >= 25)
@@ -109,6 +113,7 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
             if (Mathf.Floor(oldSkillLevel) < 25)
             {
                 gui.newTextLine(getSkillText() + " has reached a new level!");
+                castTime = 4.75f;
             } 
         }
         return true;
@@ -246,6 +251,11 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
     {
         if (player)
             gui = guiIn;
+    }
+
+    public float getCastTime()
+    {
+        return castTime;
     }
 }
 

@@ -73,23 +73,23 @@ public class Function : MonoBehaviour {
         }
     }
 
-    public string performAction()
+    public string performAction(Skill skillIn)
     {
-        Castable skill = playerInstance.player.getActiveSkill();
-        if (skill.getCurrentCooldown() == 0)
-        {
-            skill.cast();
+        Castable skill = (Castable)skillIn;
+        if(playerInstance.player.setMana(skill.getCastingCost(), 0)){
+            if (skill.getDuration() != 0)
+            {
+                playerInstance.addSpellDuration(skill);
+            }
             skill.setCurrentCooldown(skill.getCooldown());
             playerInstance.instance.addCooldown(skill);
             skill.updateGainPrCast();
             playerInstance.instance.gainSkill(skill.getGainPrCast(), ((Skill)skill).getSkillID());
             playerInstance.player.setActiveSkill(null);
             gui.setActiveSkillIcon(null, true);
-            return skill.getCastMsg();
-        }
-        else
-        {
-            return "Skill " + ((Skill)skill).getSkillText() + " is on cooldown!";
+            return "You cast "+skill.getCastMsg();
+        }else{
+            return "Not enough mana to cast "+skill.getCastMsg();
         }
     }
 
@@ -132,9 +132,6 @@ public class Function : MonoBehaviour {
             info.damageType = damageType;
             info.playerInstance = playerInstance;
             info.weapon = weapon;
-
-            float speed = ((weapon.getAttackspeed() * 5) - (0.008f * playerInstance.player.getStat("quick") + 0.003f * playerInstance.player.getWeaponSkill(null, weapon.getType())));
-            playerInstance.instance.addAttackCooldown(speed);
         }
 
     }
@@ -159,5 +156,18 @@ public class Function : MonoBehaviour {
         }
         playerInstance.player.setHealth(damage, 0, false, damageType);
     }
-   
+
+    public float getCastTime(string type)
+    {
+        float speed;
+        Weapon weapon = (Weapon) playerInstance.player.getEquipment(6);
+        switch (type)
+        {
+            case "ranged": speed = ((weapon.getAttackspeed() * 5) - (0.008f * playerInstance.player.getStat("quick") + 0.003f * playerInstance.player.getWeaponSkill(null, weapon.getType()))); return speed;
+            case "spell": speed = ((Spell)playerInstance.player.getActiveSkill()).getCastTime()-((0.008f * playerInstance.player.getStat("int") + 0.003f )); return speed;
+        }
+
+        return 0;
+    }
+
 }

@@ -1,37 +1,40 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
 
-public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castable  {
+public class Skill_Active_Lesser_Magic_Heal_Self : SkillEntity, Skill, HotbarAble, Castable, Spell
+{
 
-	private static int id = 1;
-    private static string type = "active-passive";
-    private static string group = "general";
-    private static string skillName = "Rest";
-    private static string skillDescription = "Rest is a skill that increases regeneration while resting";
+	private static int id = 20;
+    private static string type = "active";
+    private static string group = "lesser magic";
+    private static string skillName = "Heal Self";
+    private static string skillDescription = "Caster regains a small amount of Health. This spell does not require any reagents to cast.";
     private static int price = 0;
     private static float skillLevel = 1f;
-    private static float effect = 0.125f;
+    private static float effect = 3.5f;
     private static int inventoryID = 9999;
     private static int hotbarSlot;
-    private static float castingCost = 0.1f;
-    private static float duration = 0;
-    private static float currentDuration = 0;
+    private static float castingCost = 30;
+    private static float duration = 3f;
+    private static float currentDuration = 2f;
     private static bool activated = false;
-    private static string castMsg = "Rest";
+    private static string castMsg = "Heal Self";
     private static float gainPrCast = 1.0f;
-    private static float cooldown = 5f;
+    private static float cooldown = 15f;
     private static float currentCooldown = 0f;
+    private static float castTime = 3;
     Texture texture;
     private Player playerInstance;
     private Npc npcInstance;
     private GuiFunction gui;
 
-    public Skill_Active_General_Rest() :
+
+    public Skill_Active_Lesser_Magic_Heal_Self() :
 		base(id, skillName)
 	{
-        texture = Resources.Load("misc_rest", typeof(Texture)) as Texture;
+        texture = Resources.Load("lessermagic_healself01", typeof(Texture)) as Texture;
     }
+
     public int getSkillID()
     {
         return id;
@@ -78,13 +81,15 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
         if (Mathf.Floor(oldSkillLevel) < Mathf.Floor(skillLevel))
         {
             gui.newTextLine("Skill level in " + getSkillText() + " has increased to " + Mathf.Floor(skillLevel)+"!");
+            effect += 0.01f;
         }
         if (skillLevel >= 100)
         {
             if (Mathf.Floor(oldSkillLevel) < 100)
             {
                 gui.newTextLine(getSkillText() + " is surging!");
-            } effect = 0.625f;
+                duration = 5;
+            }
             skillLevel = 100;
             return false;
         }
@@ -93,14 +98,16 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
             if (Mathf.Floor(oldSkillLevel) < 75)
             {
                 gui.newTextLine(getSkillText() + " has reached a new level!");
-            } effect = 0.50f;
+            }
         }
         else if (skillLevel >= 50)
         {
             if (Mathf.Floor(oldSkillLevel) < 50)
             {
                 gui.newTextLine(getSkillText() + " has reached a new level!");
-            } effect = 0.375f;
+                castTime = 4.50f;
+                duration = 4f;
+            }
         }
         else if (skillLevel >= 25)
         {
@@ -108,11 +115,6 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
             {
                 gui.newTextLine(getSkillText() + " has reached a new level!");
             } 
-            effect = 0.25f;
-        }
-        else
-        {
-            effect = 0.125f;
         }
         return true;
     }
@@ -134,24 +136,11 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
 
     public void cast()
     {
-        if (!activated)
-        {
-            playerInstance.player.setRegenModifiers(1, effect);
-            playerInstance.player.setRegenModifiers(2, effect);
-            playerInstance.player.setRegenModifiers(3, effect);
-            activated = true;
-        }
+        playerInstance.player.setHealth(0, effect, false, "");
     }
 
     public void stopEffect()
     {
-        if (activated)
-        {
-            playerInstance.player.setRegenModifiers(1, -effect);
-            playerInstance.player.setRegenModifiers(2, -effect);
-            playerInstance.player.setRegenModifiers(3, -effect);
-            activated = false;
-        }
     }
 
     public float getCastingCost()
@@ -216,24 +205,21 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
 
     public bool setCurrentDuration(float durationChange)
     {
-        if (durationChange == duration)
+        float oldCurrentDuration = currentDuration;
+        currentDuration -= durationChange;
+        if (currentDuration < Mathf.Floor(oldCurrentDuration))
+        {
+            cast();
+        }
+        if (currentDuration <= 0)
         {
             currentDuration = duration;
-            return false;
+            stopEffect();
+            return true;
         }
         else
         {
-            currentDuration -= durationChange;
-            if (currentDuration <= 0)
-            {
-                currentDuration = 0;
-                stopEffect();
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return false;
         }
     }
 
@@ -253,17 +239,20 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
         return texture;
     }
 
-
     public void setPlayerInstance(Player player, Npc npc)
     {
         playerInstance = player;
         npcInstance = npc;
     }
-
-
     public void setGuiInstance(GuiFunction guiIn, bool player)
     {
         if (player)
             gui = guiIn;
     }
+
+    public float getCastTime()
+    {
+        return castTime;
+    }
 }
+

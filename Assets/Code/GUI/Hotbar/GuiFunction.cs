@@ -5,15 +5,17 @@ using System;
 
 public class GuiFunction : MonoBehaviour {
     public RawImage hotbar0, hotbar1, hotbar2, hotbar3, hotbar4, hotbar5, hotbar6, hotbar7, hotbar8, hotbar9, activeSkill, activeWeapon, activeWeaponBg;
-    public Text consoleText;
+    public Text consoleText, castTime;
+    public RawImage[] castBar = new RawImage[5];
     Texture tempIcon;
-    string tempString;
+    string tempMessageString, tempCastString;
     int hotbarIndex, lines = 0;
-    bool hotbarCall = false, activeSkillCall = false, activeWeaponCall = false, drawWeaponCall = false, textCall = false;
+    bool hotbarCall = false, activeSkillCall = false, activeWeaponCall = false, drawWeaponCall = false, textCall = false, castTimeCall = false, casting = false;
     Color alpha, bg;
 
     void Start()
     {
+        hideCastBar();
         //setHotbarIcon(0, (Texture) Resources.Load("troll_clubber"), false); //Test with this
     }
     public void setHotbarIcon(int hotbarSlot, Texture icon, bool transparent)
@@ -81,11 +83,49 @@ public class GuiFunction : MonoBehaviour {
             consoleText.text = "";
             lines = 1;
         }
-        tempString = "[" + DateTime.Now.ToString("hh:mm:ss tt") + "] " + input + "\n";
+        tempMessageString = "[" + DateTime.Now.ToString("hh:mm:ss") + "] " + input + "\n";
         textCall = true;
         OnGUI();
     }
 
+    public void setCastTime(float input)
+    {
+        if (casting == false)
+        {
+            showCastBar();
+            casting = true;
+        }
+        if (input != 0) 
+        { 
+        TimeSpan t = TimeSpan.FromSeconds(Convert.ToDouble(input));
+
+        tempCastString = string.Format("{0:D2}:{1:D3}s",
+                        t.Seconds,
+                        t.Milliseconds);
+        }
+        else
+        {
+            tempCastString = "";
+            hideCastBar();
+            casting = false;
+        }
+        castTimeCall = true;
+        OnGUI();
+    }
+    public void showCastBar()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            castBar[i].color = new Color(255, 255, 255, 255);
+        }
+    }
+    public void hideCastBar()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            castBar[i].color = new Color(255, 255, 255, 0);
+        }
+    }
     void OnGUI()
     {
         if (hotbarCall)
@@ -121,10 +161,14 @@ public class GuiFunction : MonoBehaviour {
             activeWeapon.color = alpha;
             activeWeaponCall = false;
         }
-
-        if (textCall)
+        else if (textCall)
         {
-            consoleText.text += tempString;
+            consoleText.text += tempMessageString;
+            textCall = false;
+        }
+        else if (castTimeCall)
+        {
+            castTime.text = tempCastString;
             textCall = false;
         }
     }

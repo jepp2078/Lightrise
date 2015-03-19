@@ -10,6 +10,10 @@ public class Player : MonoBehaviour {
     private List<Castable> cooldownList = new List<Castable>();
     private List<Castable> spellDurationList = new List<Castable>();
     private float attackCooldown = 0f;
+    private float castTime = 0f;
+    private bool casting;
+    private Skill currentlyCasting;
+    public bool doneCasting;
     public Player instance;
     public int serverTicks = 0;
     private float guiHelper = 0.3333f;
@@ -25,6 +29,10 @@ public class Player : MonoBehaviour {
         func.putOnHotbar((HotbarAble)player.getInventoryItem(1), 1);
         func.putOnHotbar((HotbarAble)player.getSkill(1), 2);
         func.putOnHotbar((HotbarAble)player.getSkill(14), 3);
+        func.putOnHotbar((HotbarAble)player.getSkill(20), 4);
+        gui.newTextLine("Welcome to lightrise!");
+        doneCasting = false;
+        casting = false;
         InvokeRepeating("serverTick", 0, 0.0825F); //TEMP value. We might need to change how fast the server ticks? 1/12 of a sec right now.
     }
 
@@ -48,20 +56,75 @@ public class Player : MonoBehaviour {
             guiHelperNext = Time.time + guiHelper;
             if (player.getActiveSkill() != null && !(player.getEquipment(6) is Weapon))
             {
-                gui.newTextLine(func.performAction());
+                if (!casting)
+                {
+                    if (player.getActiveSkill().getCurrentCooldown() == 0)
+                    {
+                        if (player.getActiveSkill() is Spell)
+                        {
+                            castTime = func.getCastTime("spell");
+                            addCastTime(castTime);
+                            currentlyCasting = (Skill) player.getActiveSkill();
+                        }
+                        else
+                        {
+                            gui.newTextLine(func.performAction((Skill)player.getActiveSkill()));
+                        }
+                    }
+                    else
+                    {
+                        gui.newTextLine("Skill " + ((Skill)player.getActiveSkill()).getSkillText() + " is on cooldown!");
+                    }
+                }
+                else
+                {
+                    gui.newTextLine("Action already in progress!");
+                }
             }
-            else if (player.getEquipment(6) is Weapon && attackCooldown == 0)
+            else if (player.getEquipment(6) is Weapon && player.getEquipment(6) is Melee && attackCooldown == 0 && !casting)
             {
                 func.performAttack((Weapon)player.getEquipment(6));
             }
+            else if (player.getEquipment(6) is Ranged)
+            {
+                if (!casting)
+                {
+                    if ((player.getActiveSkill()) == null || player.getActiveSkill().getCurrentCooldown() == 0)
+                    {
+                        castTime = func.getCastTime("ranged");
+                        addCastTime(castTime);
+                    }
+                    else
+                    {
+                        gui.newTextLine("Skill " + ((Skill)player.getActiveSkill()).getSkillText() + " is on cooldown!");
+                    }
+                }
+                else
+                {
+                    gui.newTextLine("Action already in progress!");
+                }
+            }
 
+        }
+        if (doneCasting && !(Input.GetButtonDown("action")))
+        {
+            if (player.getEquipment(6) is Ranged)
+            {
+                func.performAttack((Weapon)player.getEquipment(6));
+                doneCasting = false;
+            }
+            else
+            {
+                gui.newTextLine(func.performAction(currentlyCasting));
+                currentlyCasting = null;
+                doneCasting = false;
+            }
         }
         if (Input.GetButton("Hotbar1") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
         {
             guiHelperNext = Time.time + guiHelper;
             func.hotbarUse(0);
         }
-
         if (Input.GetButton("Hotbar2") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
         {
             guiHelperNext = Time.time + guiHelper;
@@ -82,7 +145,6 @@ public class Player : MonoBehaviour {
             guiHelperNext = Time.time + guiHelper;
             func.hotbarUse(4);
         }
-
         if (Input.GetButton("Hotbar6") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
         {
             guiHelperNext = Time.time + guiHelper;
@@ -153,6 +215,10 @@ public class Player : MonoBehaviour {
         updateCooldowns();
         updateSpellDurations();
         updateAttackCooldown();
+        if (casting)
+        {
+            updateCastTime();
+        }
         serverTicks++;
         if (serverTicks > 100000)
         {
@@ -192,9 +258,32 @@ public class Player : MonoBehaviour {
         {
             attackCooldown -= 0.0825F;
         }
-        if (attackCooldown < 0)
+        else if (attackCooldown <= 0)
         {
             attackCooldown = 0f;
+        }
+    }
+
+    public void updateCastTime()
+    {
+        if (castTime > 0)
+        {
+            castTime -= 0.0825F;
+            if (castTime <= 0)
+            {
+              gui.setCastTime(0);
+            }
+            else
+            {
+                gui.setCastTime(castTime);
+            }
+        }
+        else if (castTime <= 0)
+        {
+            castTime = 0f;
+            casting = false;
+            gui.setCastTime(0);
+            doneCasting = true;
         }
     }
 
@@ -202,9 +291,30 @@ public class Player : MonoBehaviour {
     {
         cooldownList.Add(skill);
     }
+
+    public void addSpellDuration(Castable skill)
+    {
+        spellDurationList.Add(skill);
+    }
+
     public void addAttackCooldown(float cooldown)
     {
         attackCooldown += cooldown;
+    }
+
+    public void addCastTime(float time)
+    {
+        if (time != 0)
+        {
+            castTime = time;
+            casting = true;
+            gui.setCastTime(time);
+        }
+        else
+        {
+            doneCasting = true;
+            casting = false;
+        }
     }
 
     //void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
