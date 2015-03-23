@@ -18,6 +18,10 @@ public class Player : MonoBehaviour {
     public int serverTicks = 0;
     private float guiHelper = 0.3333f;
     private float guiHelperNext = 0.0f;
+    public AudioSource[] audioMisc = new AudioSource[1];
+    public AudioSource[] audioMagicCharge = new AudioSource[1];
+    public AudioSource[] audioArrow = new AudioSource[3];
+    public AudioSource[] audioAmbience = new AudioSource[1];
 
     public RPG_Camera rpgCamera;
 
@@ -31,6 +35,7 @@ public class Player : MonoBehaviour {
         func.putOnHotbar((HotbarAble)player.getSkill(14), 3);
         func.putOnHotbar((HotbarAble)player.getSkill(20), 4);
         gui.newTextLine("Welcome to lightrise!");
+        audioAmbience[0].Play();
         doneCasting = false;
         casting = false;
         InvokeRepeating("serverTick", 0, 0.0825F); //TEMP value. We might need to change how fast the server ticks? 1/12 of a sec right now.
@@ -65,6 +70,7 @@ public class Player : MonoBehaviour {
                             castTime = func.getCastTime("spell");
                             addCastTime(castTime);
                             currentlyCasting = (Skill) player.getActiveSkill();
+                            audioMagicCharge[0].Play();
                         }
                         else
                         {
@@ -93,6 +99,8 @@ public class Player : MonoBehaviour {
                     {
                         castTime = func.getCastTime("ranged");
                         addCastTime(castTime);
+                        audioArrow[0].Play();
+                        audioArrow[1].PlayDelayed(1.247f);
                     }
                     else
                     {
@@ -112,12 +120,15 @@ public class Player : MonoBehaviour {
             {
                 func.performAttack((Weapon)player.getEquipment(6));
                 doneCasting = false;
+                audioArrow[1].Stop();
+                audioArrow[2].Play();
             }
             else
             {
                 gui.newTextLine(func.performAction(currentlyCasting));
                 currentlyCasting = null;
                 doneCasting = false;
+                audioMagicCharge[0].Stop();
             }
         }
         if (Input.GetButton("Hotbar1") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
@@ -228,7 +239,10 @@ public class Player : MonoBehaviour {
 
     public void gainSkill(float gain, int skillID)
     {
-        player.skillGain(gain, skillID);
+        if (player.skillGain(gain, skillID))
+        {
+            audioMisc[0].Play();
+        }
     }
 
     public void updateCooldowns()
@@ -317,18 +331,4 @@ public class Player : MonoBehaviour {
         }
     }
 
-    //void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
-    //{
-    //    Vector3 syncPosition = Vector3.zero;
-    //    if (stream.isWriting)
-    //    {
-    //        syncPosition = this.gameObject.transform.position;
-    //        stream.Serialize(ref syncPosition);
-    //    }
-    //    else
-    //    {
-    //        stream.Serialize(ref syncPosition);
-    //        this.gameObject.transform.position = syncPosition;
-    //    }
-    //}
 }

@@ -65,6 +65,7 @@ public class Skill_Passive_General_Perseverance : SkillEntity, Skill, Learnable
     {
         float oldSkillLevel = getSkillLevel();
         skillLevel += change;
+        bool skillUp = false;
         switch (Mathf.FloorToInt(skillLevel))
         {
             case 10: if (effect < 1) effect = 1; playerInstance.player.changeStats(0, 0, 0, 0, 0, 0, 0, 1, 0); break;
@@ -82,6 +83,7 @@ public class Skill_Passive_General_Perseverance : SkillEntity, Skill, Learnable
         if (Mathf.Floor(oldSkillLevel) < Mathf.Floor(skillLevel))
         {
             gui.newTextLine("Skill level in " + getSkillText() + " has increased to " + Mathf.Floor(skillLevel) + "!");
+            skillUp = true;
         }
         if (skillLevel >= 100)
         {
@@ -90,7 +92,6 @@ public class Skill_Passive_General_Perseverance : SkillEntity, Skill, Learnable
                 gui.newTextLine(getSkillText() + " is surging!");
             }
             skillLevel = 100;
-            return false;
         }
         else if (skillLevel >= 75)
         {
@@ -113,7 +114,7 @@ public class Skill_Passive_General_Perseverance : SkillEntity, Skill, Learnable
                 gui.newTextLine(getSkillText() + " has reached a new level!");
             }
         }
-        return true;
+        return skillUp;
     }
 
     public bool canLearn()

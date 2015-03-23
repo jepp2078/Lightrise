@@ -153,15 +153,6 @@ public class RPG_Camera : MonoBehaviour
             RPG_Controller.instance.transform.rotation = Quaternion.Euler(RPG_Controller.instance.transform.eulerAngles.x, cameraInstance.transform.eulerAngles.y, RPG_Controller.instance.transform.eulerAngles.z);
 
         }
-
-        desiredDistance = desiredDistance - Input.GetAxis("Mouse ScrollWheel") * mouseScroll;
-
-        if (desiredDistance > distanceMax)
-            desiredDistance = distanceMax;
-
-        if (desiredDistance < 0.05)
-            desiredDistance = 0.05f;
-
     }
 
 
@@ -195,6 +186,11 @@ public class RPG_Camera : MonoBehaviour
         lastDistance = distance;
 
         desiredPosition = GetCameraPosition(mouseYSmooth, mouseXSmooth, distance); // if the camera view was blocked, then this is the new "forced" position
+    }
+
+    public void setDesiredDistance(float distance)
+    {
+        desiredDistance = distance;
     }
 
 

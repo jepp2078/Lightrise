@@ -25,10 +25,10 @@ public class Npc : MonoBehaviour
 
     void Update()
     {
-        if (attackCooldown == 0)
-        {
-            func.performAttack((Weapon)npc.getEquipment(6));
-        }
+        //if (attackCooldown == 0)
+        //{
+        //    func.performAttack((Weapon)npc.getEquipment(6));
+        //}
     }
 
     void gameLogic()

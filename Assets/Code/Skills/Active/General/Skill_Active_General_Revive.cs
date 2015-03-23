@@ -80,9 +80,11 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
     {
         float oldSkillLevel = getSkillLevel();
         skillLevel += change;
+        bool skillUp = false;
         if (Mathf.Floor(oldSkillLevel) < Mathf.Floor(skillLevel))
         {
             gui.newTextLine("Skill level in " + getSkillText() + " has increased to " + Mathf.Floor(skillLevel)+"!");
+            skillUp = true;
         }
         if (skillLevel >= 100)
         {
@@ -92,7 +94,6 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
                 castTime = 4;
             }
             skillLevel = 100;
-            return false;
         }
         else if (skillLevel >= 75)
         {
@@ -118,7 +119,7 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
                 castTime = 4.75f;
             } 
         }
-        return true;
+        return skillUp;
     }
 
     public void setHotbarSlot(int slot)

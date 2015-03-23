@@ -19,8 +19,14 @@ public class RPG_Controller : MonoBehaviour
     private Vector3 rotation = Vector3.zero;
     private int serverTickIn;
     private int serverTickCurrent = 0;
+    private int serverTickCurrentAudio = 0;
     public Player playerInstance;
     public Camera cameraInstance;
+
+    public AudioSource[] audio = new AudioSource[4];
+    private int audioState = 0;
+    private bool didPlay = false;
+    private int lastPlayed = 0;
 
     void Awake()
     {
@@ -50,12 +56,20 @@ public class RPG_Controller : MonoBehaviour
 
     void GetInput()
     {
-
-        //MovementKeys():
-
         float horizontalStrafe = 0f;
         float vertical = 0f;
-
+        if (walkSpeed < 7)
+        {
+            audioState = 12;
+        }
+        else if (walkSpeed < 10)
+        {
+            audioState = 6;
+        }
+        else
+        {
+            audioState = 3;
+        }
         if (Input.GetButton("Horizontal Strafe"))
         {
             if (((Castable)playerInstance.player.getSkill(1)).getState())
@@ -64,13 +78,33 @@ public class RPG_Controller : MonoBehaviour
             }
             horizontalStrafe = Input.GetAxis("Horizontal Strafe") < 0 ? -1f : Input.GetAxis("Horizontal Strafe") > 0 ? 1f : 0f;
             serverTickIn = playerInstance.instance.serverTicks;
+            serverTickCurrentAudio = serverTickIn;
+            if (serverTickCurrentAudio % audioState == 0 && characterController.isGrounded)
+            {
+                if (serverTickCurrent != serverTickIn)
+                {
+                    didPlay = false;
+                }
+                if (!didPlay)
+                {
+                    int current;
+                    do
+                    {
+                    current = Random.Range(0, 4);
+                    }
+                    while(current == lastPlayed);
+                    lastPlayed = current;
+                    audio[current].Play();
+                    didPlay = true;
+                }
+            }
             if (serverTickCurrent != serverTickIn)
             {
                 if (!Input.GetButton("Crouch") && !Input.GetButton("Sprint"))
                 {
                     playerInstance.instance.gainSkill(0.0833f / 60f, 0);
-                    serverTickCurrent = serverTickIn;
                 }
+                serverTickCurrent = serverTickIn;
             }
         }
 
@@ -82,13 +116,33 @@ public class RPG_Controller : MonoBehaviour
             }
             vertical = Input.GetAxis("Vertical") < 0 ? -1f : Input.GetAxis("Vertical") > 0 ? 1f : 0f;
             serverTickIn = playerInstance.instance.serverTicks;
+            serverTickCurrentAudio = serverTickIn;
+            if (serverTickCurrentAudio % audioState == 0 && characterController.isGrounded)
+            {
+                if (serverTickCurrent != serverTickIn)
+                {
+                    didPlay = false;
+                }
+                if (!didPlay)
+                {
+                    int current;
+                    do
+                    {
+                        current = Random.Range(0, 4);
+                    }
+                    while (current == lastPlayed);
+                    lastPlayed = current;
+                    audio[current].Play();
+                    didPlay = true;
+                }
+            }
             if (serverTickCurrent != serverTickIn)
             {
                 if (!Input.GetButton("Crouch") && !Input.GetButton("Sprint"))
                 {
                     playerInstance.instance.gainSkill(0.0833f / 60f, 0);
-                    serverTickCurrent = serverTickIn;
                 }
+                serverTickCurrent = serverTickIn;
             }
         }
 

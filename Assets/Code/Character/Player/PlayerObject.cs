@@ -21,6 +21,7 @@ public class PlayerObject : MonoBehaviour {
     private int arrows = 0, gold = 0;//, mandrake = 0, ash = 0, sulfur = 0, raisin = 0, nacra = 0, bone = 0;
     public Player playerInstance;
     public GuiFunction gui;
+    public RPG_Camera camera;
 
 	// Use this for initialization
     void Start () 
@@ -88,6 +89,7 @@ public class PlayerObject : MonoBehaviour {
             sheathedWeapon = (Weapon) equipmentList[6];
             equipmentList[6] = null;
             gui.newTextLine("You sheath your " + ((Item) sheathedWeapon).getItemText() + "!");
+            camera.setDesiredDistance(6);
         }
     }
 
@@ -98,6 +100,14 @@ public class PlayerObject : MonoBehaviour {
             equipmentList[6] = (Item)sheathedWeapon;
             sheathedWeapon = null;
             gui.newTextLine("You unsheathe your " + equipmentList[6].getItemText() + "!");
+            if (equipmentList[6].getType() == "bow")
+            {
+                camera.setDesiredDistance(0.05f);
+            }
+            else
+            {
+                camera.setDesiredDistance(6);
+            }
         }
     }
 
@@ -405,11 +415,27 @@ public class PlayerObject : MonoBehaviour {
                     { 
 				    equipmentList[6] = equipmentIn;
                     }
+                    if (equipmentList[6].getType() == "bow")
+                    {
+                        camera.setDesiredDistance(0.05f);
+                    }
+                    else
+                    {
+                        camera.setDesiredDistance(6);
+                    }
                     inventoryRemove(i);
 				}else{
 					inventoryRemove(i);
 					inventoryAdd(equipmentList[6]);
                     equipmentList[6] = equipmentIn;
+                    if (equipmentList[6].getType() == "bow")
+                    {
+                        camera.setDesiredDistance(0.05f);
+                    }
+                    else
+                    {
+                        camera.setDesiredDistance(6);
+                    }
 				}
 			}else if(((Equipable) equipmentIn).getItemSlot() == "Off Hand"){
 				if(equipmentList[7] == null){

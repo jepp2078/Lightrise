@@ -65,9 +65,12 @@ public class Skill_Passive_General_Willpower : SkillEntity, Skill
     {
         float oldSkillLevel = getSkillLevel();
         skillLevel += change;
+        bool skillUp = false;
+
         if (Mathf.Floor(oldSkillLevel) < Mathf.Floor(skillLevel))
         {
             gui.newTextLine("Skill level in " + getSkillText() + " has increased to " + Mathf.Floor(skillLevel) + "!");
+            skillUp = true;
         }
         if (skillLevel >= 100)
         {
@@ -77,8 +80,7 @@ public class Skill_Passive_General_Willpower : SkillEntity, Skill
                 playerInstance.player.setProtections(new float[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.05f, 0 }, true);
             }
             skillLevel = 100;
-            return false;
-        }
+         }
         else if (skillLevel >= 75)
         {
             if (Mathf.Floor(oldSkillLevel) < 75)
@@ -107,7 +109,7 @@ public class Skill_Passive_General_Willpower : SkillEntity, Skill
         {
             effect = 0f;
         }
-        return true;
+        return skillUp;
     }
     public void setPlayerInstance(Player player, Npc npc)
     {
