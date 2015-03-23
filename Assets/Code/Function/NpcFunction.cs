@@ -3,6 +3,8 @@ using System.Collections;
 
 public class NpcFunction : MonoBehaviour
 {
+    public AudioSource[] audioSwing = new AudioSource[4];
+    public AudioSource[] audioDamage = new AudioSource[11]; 
     public Npc npcInstance;
     public string equipItem(Item item)
     {
@@ -76,6 +78,10 @@ public class NpcFunction : MonoBehaviour
             WeaponHitInfo info = hitbox.GetComponentInChildren<WeaponHitInfo>();
             info.damage = damage;
             info.damageType = damageType;
+            switch (damageType)
+            {
+                //case "slashing": audioSwing[Random.Range(0, 4)].Play(); break;
+            }
             float speed = ((weapon.getAttackspeed() * 5) - (0.008f * npcInstance.npc.getStat("quick") + 0.003f * npcInstance.npc.getWeaponSkill(null,weapon.getType())));
             npcInstance.instance.addAttackCooldown(speed);
         }
@@ -83,6 +89,12 @@ public class NpcFunction : MonoBehaviour
 
     public void takeDamage(float damage, string damageType)
     {
+        switch (damageType)
+        {
+            //case "slashing": audioDamage[Random.Range(0, 4)].Play(); break;
+            //case "arrow": audioDamage[Random.Range(7, 10)].Play(); break;
+        }
+        //audioDamage[Random.Range(4, 6)].Play();
         npcInstance.npc.setHealth(damage, 0, false, damageType);
     }
 

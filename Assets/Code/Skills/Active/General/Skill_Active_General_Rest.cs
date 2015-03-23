@@ -75,9 +75,11 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
     {
         float oldSkillLevel = getSkillLevel();
         skillLevel += change;
+        bool skillUp = false;
         if (Mathf.Floor(oldSkillLevel) < Mathf.Floor(skillLevel))
         {
             gui.newTextLine("Skill level in " + getSkillText() + " has increased to " + Mathf.Floor(skillLevel)+"!");
+            skillUp = true;
         }
         if (skillLevel >= 100)
         {
@@ -86,7 +88,6 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
                 gui.newTextLine(getSkillText() + " is surging!");
             } effect = 0.625f;
             skillLevel = 100;
-            return false;
         }
         else if (skillLevel >= 75)
         {
@@ -114,7 +115,7 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
         {
             effect = 0.125f;
         }
-        return true;
+        return skillUp;
     }
 
     public void setHotbarSlot(int slot)

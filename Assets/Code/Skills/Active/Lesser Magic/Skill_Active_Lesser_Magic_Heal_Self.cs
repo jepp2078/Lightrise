@@ -80,10 +80,12 @@ public class Skill_Active_Lesser_Magic_Heal_Self : SkillEntity, Skill, HotbarAbl
     {
         float oldSkillLevel = getSkillLevel();
         skillLevel += change;
+        bool skillUp = false;
         if (Mathf.Floor(oldSkillLevel) < Mathf.Floor(skillLevel))
         {
             gui.newTextLine("Skill level in " + getSkillText() + " has increased to " + Mathf.Floor(skillLevel)+"!");
             effect += 0.01f;
+            skillUp = true;
         }
         if (skillLevel >= 100)
         {
@@ -93,7 +95,6 @@ public class Skill_Active_Lesser_Magic_Heal_Self : SkillEntity, Skill, HotbarAbl
                 duration = 5;
             }
             skillLevel = 100;
-            return false;
         }
         else if (skillLevel >= 75)
         {
@@ -118,7 +119,7 @@ public class Skill_Active_Lesser_Magic_Heal_Self : SkillEntity, Skill, HotbarAbl
                 gui.newTextLine(getSkillText() + " has reached a new level!");
             } 
         }
-        return true;
+        return skillUp;
     }
 
     public void setHotbarSlot(int slot)

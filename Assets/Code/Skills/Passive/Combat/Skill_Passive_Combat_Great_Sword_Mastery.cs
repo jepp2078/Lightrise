@@ -65,9 +65,11 @@ public class Skill_Passive_Combat_Great_Sword_Mastery : SkillEntity, Skill, Lear
         float oldSkillLevel = getSkillLevel();
         skillLevel += change;
         effect = 0.03f * Mathf.Floor(skillLevel);
+        bool skillUp = false;
         if (Mathf.Floor(oldSkillLevel) < Mathf.Floor(skillLevel))
         {
             gui.newTextLine("Skill level in " + getSkillText() + " has increased to " + Mathf.Floor(skillLevel) + "!");
+            skillUp = true;
         }
         if (skillLevel >= 100)
         {
@@ -76,7 +78,6 @@ public class Skill_Passive_Combat_Great_Sword_Mastery : SkillEntity, Skill, Lear
                 gui.newTextLine(getSkillText() + " is surging!");
             }
             skillLevel = 100;
-            return false;
         }
         else if (skillLevel >= 75)
         {
@@ -99,7 +100,7 @@ public class Skill_Passive_Combat_Great_Sword_Mastery : SkillEntity, Skill, Lear
                 gui.newTextLine(getSkillText() + " has reached a new level!");
             }
         }
-        return true;
+        return skillUp;
     }
     public void setPlayerInstance(Player player, Npc npc)
     {

@@ -87234,7 +87234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924dd98252707ee4e8a41240da6b0130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterController: {fileID: 0}
+  characterController: {fileID: 1335961806}
   walkSpeed: 7
   baseWalkSpeed: 7
   turnSpeed: 0
@@ -87243,6 +87243,11 @@ MonoBehaviour:
   fallingThreshold: -6
   playerInstance: {fileID: 1335961804}
   cameraInstance: {fileID: 1713381178}
+  audio:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1335961803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87256,6 +87261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInstance: {fileID: 1335961804}
   gui: {fileID: 921749526}
+  camera: {fileID: 1713381174}
 --- !u!114 &1335961804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87274,6 +87280,16 @@ MonoBehaviour:
   doneCasting: 1
   instance: {fileID: 1335961804}
   serverTicks: 0
+  audioMisc:
+  - {fileID: 0}
+  audioMagicCharge:
+  - {fileID: 0}
+  audioArrow:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  audioAmbience:
+  - {fileID: 0}
   rpgCamera: {fileID: 1713381174}
 --- !u!114 &1335961805
 MonoBehaviour:
@@ -87288,6 +87304,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInstance: {fileID: 1335961804}
   gui: {fileID: 921749526}
+  audioSwing:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  audioDamage:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  audioMagic:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!143 &1335961806
+CharacterController:
+  m_PrefabParentObject: {fileID: 14385034, guid: cc33268e4c44b3f43b96020fad78d94d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1976526241}
 --- !u!1001 &1339817169
 Prefab:
   m_ObjectHideFlags: 0
@@ -87702,7 +87761,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 0, y: -.324966431}
+  m_AnchoredPosition: {x: 0, y: -.325012207}
   m_SizeDelta: {x: 454, y: 130.350006}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1482364864
@@ -88931,7 +88990,7 @@ MonoBehaviour:
   mouseSpeed: 8
   mouseScroll: 15
   mouseSmoothingFactor: 0
-  camDistanceSpeed: .699999988
+  camDistanceSpeed: .00100000005
   camBottomDistance: 1
   firstPersonThreshold: .800000012
   characterFadeThreshold: 1.79999995
@@ -90541,7 +90600,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 289553417}
   m_HandleRect: {fileID: 289553416}
   m_Direction: 2
-  m_Value: .999929607
+  m_Value: .999988258
   m_Size: .995013237
   m_NumberOfSteps: 0
   m_OnValueChanged:

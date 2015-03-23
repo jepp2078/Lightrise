@@ -11,7 +11,7 @@ public class GuiFunction : MonoBehaviour {
     Texture tempIcon;
     string tempMessageString, tempCastString;
     int hotbarIndex, lines = 0;
-    bool hotbarCall = false, activeSkillCall = false, activeWeaponCall = false, drawWeaponCall = false, textCall = false, castTimeCall = false, casting = false;
+    bool hotbarCall = false, activeSkillCall = false, activeWeaponCall = false, drawWeaponCall = false, textCall = false, clearText = false, castTimeCall = false, casting = false;
     Color alpha, bg;
     public Player player;
 
@@ -80,14 +80,16 @@ public class GuiFunction : MonoBehaviour {
     public void newTextLine(string input)
     {
         lines++;
-        if (lines > 8)
+        if (lines > 7)
         {
-            consoleText.text = "";
+            clearText = true;
             lines = 1;
         }
         tempMessageString = "[" + DateTime.Now.ToString("hh:mm:ss") + "] " + input + "\n";
         textCall = true;
         OnGUI();
+
+
     }
 
     public void setCastTime(float input)
@@ -165,6 +167,11 @@ public class GuiFunction : MonoBehaviour {
         }
         else if (textCall)
         {
+            if (clearText)
+            {
+                consoleText.text = "";
+                clearText = false;
+            }
             consoleText.text += tempMessageString;
             textCall = false;
         }

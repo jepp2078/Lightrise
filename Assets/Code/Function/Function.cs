@@ -4,6 +4,9 @@ using System.Collections;
 public class Function : MonoBehaviour {
     public Player playerInstance;
     public GuiFunction gui;
+    public AudioSource[] audioSwing = new AudioSource[4];
+    public AudioSource[] audioDamage = new AudioSource[11];
+    public AudioSource[] audioMagic = new AudioSource[20]; 
 
     public string equipItem(Item item)
     {
@@ -91,6 +94,8 @@ public class Function : MonoBehaviour {
             playerInstance.instance.gainSkill(skill.getGainPrCast(), ((Skill)skill).getSkillID());
             playerInstance.player.setActiveSkill(null);
             gui.setActiveSkillIcon(null, true);
+            //if (audioMagic[((Skill)skill).getSkillID() - 1] != null)
+            //    audioMagic[((Skill)skill).getSkillID() - 1].Play();
             return "You cast "+skill.getCastMsg();
         }else{
             return "Not enough mana to cast "+skill.getCastMsg();
@@ -115,6 +120,10 @@ public class Function : MonoBehaviour {
             info.damageType = damageType;
             info.playerInstance = playerInstance;
             info.weapon = weapon;
+            switch (damageType)
+            {
+                //case "slashing": audioSwing[Random.Range(0, 4)].Play(); break;
+            }
             float speed = ((weapon.getAttackspeed() * 5) - (0.008f * playerInstance.player.getStat("quick") + 0.003f * playerInstance.player.getWeaponSkill(null, weapon.getType())));
             playerInstance.instance.addAttackCooldown(speed);
          }
@@ -158,6 +167,7 @@ public class Function : MonoBehaviour {
             case "impact": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(8) / 100)), 8); break;
             case "lightning": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(8) / 100)), 8); break;
         }
+        //audioDamage[Random.Range(4, 6)].Play();
         playerInstance.player.setHealth(damage, 0, false, damageType);
     }
 
