@@ -108,7 +108,6 @@ public class Skill_Active_Lesser_Magic_Heal_Self : SkillEntity, Skill, HotbarAbl
             if (Mathf.Floor(oldSkillLevel) < 50)
             {
                 gui.newTextLine(getSkillText() + " has reached a new level!");
-                castTime = 4.50f;
                 duration = 4f;
             }
         }

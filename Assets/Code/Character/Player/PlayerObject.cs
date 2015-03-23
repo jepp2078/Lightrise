@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class PlayerObject : MonoBehaviour {
+    private string name;
     private List<Item> inventory = new List<Item>();
     private List<Item> equipmentList = new List<Item>();
     private List<Skill> skillList = new List<Skill>();
@@ -71,6 +72,17 @@ public class PlayerObject : MonoBehaviour {
             hotbar.Add(null);
         }
     }
+
+    public string getName()
+    {
+        return name;
+    }
+
+    public void setName(string nameIn)
+    {
+        name = nameIn;
+    }
+
     public bool isWeaponSheathed()
     {
         if (sheathedWeapon != null)

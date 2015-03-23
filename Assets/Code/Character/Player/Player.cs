@@ -29,6 +29,7 @@ public class Player : MonoBehaviour {
 	void Start () {
         player.changeStats(20, 20, 20, 20, 20, 20, 0, 0, 0);
         player.refillVitals();
+        player.setName("The one god");
         func.putOnHotbar((HotbarAble)player.getInventoryItem(0), 0);
         func.putOnHotbar((HotbarAble)player.getInventoryItem(1), 1);
         func.putOnHotbar((HotbarAble)player.getSkill(1), 2);
@@ -155,6 +156,7 @@ public class Player : MonoBehaviour {
         {
             guiHelperNext = Time.time + guiHelper;
             func.hotbarUse(4);
+            gainSkill(1, 20);
         }
         if (Input.GetButton("Hotbar6") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
         {

@@ -5,20 +5,19 @@ using System;
 
 public class GuiFunction : MonoBehaviour {
     public RawImage hotbar0, hotbar1, hotbar2, hotbar3, hotbar4, hotbar5, hotbar6, hotbar7, hotbar8, hotbar9, activeSkill, activeWeapon, activeWeaponBg;
-    public Text consoleText, castTime;
+    public Text consoleText, castTime, name;
     public RawImage[] castBar = new RawImage[5];
     public Image health, stamina, mana;
     Texture tempIcon;
     string tempMessageString, tempCastString;
     int hotbarIndex, lines = 0;
-    bool hotbarCall = false, activeSkillCall = false, activeWeaponCall = false, drawWeaponCall = false, textCall = false, clearText = false, castTimeCall = false, casting = false;
+    bool nameCall = true, hotbarCall = false, activeSkillCall = false, activeWeaponCall = false, drawWeaponCall = false, textCall = false, clearText = false, castTimeCall = false, casting = false;
     Color alpha, bg;
     public Player player;
 
     void Start()
     {
         hideCastBar();
-        //setHotbarIcon(0, (Texture) Resources.Load("troll_clubber"), false); //Test with this
     }
     public void setHotbarIcon(int hotbarSlot, Texture icon, bool transparent)
     {
@@ -80,7 +79,7 @@ public class GuiFunction : MonoBehaviour {
     public void newTextLine(string input)
     {
         lines++;
-        if (lines > 7)
+        if (lines > 9)
         {
             clearText = true;
             lines = 1;
@@ -179,6 +178,10 @@ public class GuiFunction : MonoBehaviour {
         {
             castTime.text = tempCastString;
             textCall = false;
+        }
+        else if (nameCall)
+        {
+            name.text = player.player.getName();
         }
 
         health.fillAmount = player.player.getTempHealthFloat() / player.player.getHealthFloat();

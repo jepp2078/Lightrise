@@ -86,7 +86,7 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
             if (Mathf.Floor(oldSkillLevel) < 100)
             {
                 gui.newTextLine(getSkillText() + " is surging!");
-            } effect = 0.625f;
+            } effect = 1f;
             skillLevel = 100;
         }
         else if (skillLevel >= 75)
@@ -94,14 +94,14 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
             if (Mathf.Floor(oldSkillLevel) < 75)
             {
                 gui.newTextLine(getSkillText() + " has reached a new level!");
-            } effect = 0.50f;
+            } effect = 0.75f;
         }
         else if (skillLevel >= 50)
         {
             if (Mathf.Floor(oldSkillLevel) < 50)
             {
                 gui.newTextLine(getSkillText() + " has reached a new level!");
-            } effect = 0.375f;
+            } effect = 0.50f;
         }
         else if (skillLevel >= 25)
         {
