@@ -94,7 +94,7 @@ public class RPG_Controller : MonoBehaviour
                     }
                     while(current == lastPlayed);
                     lastPlayed = current;
-                    audio[current].Play();
+                    //audio[current].Play();
                     didPlay = true;
                 }
             }
@@ -132,7 +132,7 @@ public class RPG_Controller : MonoBehaviour
                     }
                     while (current == lastPlayed);
                     lastPlayed = current;
-                    audio[current].Play();
+                    //audio[current].Play();
                     didPlay = true;
                 }
             }

@@ -35,7 +35,7 @@ public class Player : MonoBehaviour {
         func.putOnHotbar((HotbarAble)player.getSkill(14), 3);
         func.putOnHotbar((HotbarAble)player.getSkill(20), 4);
         gui.newTextLine("Welcome to lightrise!");
-        audioAmbience[0].Play();
+        //audioAmbience[0].Play();
         doneCasting = false;
         casting = false;
         InvokeRepeating("serverTick", 0, 0.0825F); //TEMP value. We might need to change how fast the server ticks? 1/12 of a sec right now.
@@ -70,7 +70,7 @@ public class Player : MonoBehaviour {
                             castTime = func.getCastTime("spell");
                             addCastTime(castTime);
                             currentlyCasting = (Skill) player.getActiveSkill();
-                            audioMagicCharge[0].Play();
+                            //audioMagicCharge[0].Play();
                         }
                         else
                         {
@@ -99,8 +99,8 @@ public class Player : MonoBehaviour {
                     {
                         castTime = func.getCastTime("ranged");
                         addCastTime(castTime);
-                        audioArrow[0].Play();
-                        audioArrow[1].PlayDelayed(1.247f);
+                        //audioArrow[0].Play();
+                        //audioArrow[1].PlayDelayed(1.247f);
                     }
                     else
                     {
@@ -120,15 +120,15 @@ public class Player : MonoBehaviour {
             {
                 func.performAttack((Weapon)player.getEquipment(6));
                 doneCasting = false;
-                audioArrow[1].Stop();
-                audioArrow[2].Play();
+                //audioArrow[1].Stop();
+                //audioArrow[2].Play();
             }
             else
             {
                 gui.newTextLine(func.performAction(currentlyCasting));
                 currentlyCasting = null;
                 doneCasting = false;
-                audioMagicCharge[0].Stop();
+                //audioMagicCharge[0].Stop();
             }
         }
         if (Input.GetButton("Hotbar1") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
@@ -241,7 +241,7 @@ public class Player : MonoBehaviour {
     {
         if (player.skillGain(gain, skillID))
         {
-            audioMisc[0].Play();
+            //audioMisc[0].Play();
         }
     }
 

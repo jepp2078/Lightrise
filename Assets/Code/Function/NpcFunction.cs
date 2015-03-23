@@ -80,7 +80,7 @@ public class NpcFunction : MonoBehaviour
             info.damageType = damageType;
             switch (damageType)
             {
-                case "slashing": audioSwing[Random.Range(0, 4)].Play(); break;
+                //case "slashing": audioSwing[Random.Range(0, 4)].Play(); break;
             }
             float speed = ((weapon.getAttackspeed() * 5) - (0.008f * npcInstance.npc.getStat("quick") + 0.003f * npcInstance.npc.getWeaponSkill(null,weapon.getType())));
             npcInstance.instance.addAttackCooldown(speed);
@@ -91,10 +91,10 @@ public class NpcFunction : MonoBehaviour
     {
         switch (damageType)
         {
-            case "slashing": audioDamage[Random.Range(0, 4)].Play(); break;
-            case "arrow": audioDamage[Random.Range(7, 10)].Play(); break;
+            //case "slashing": audioDamage[Random.Range(0, 4)].Play(); break;
+            //case "arrow": audioDamage[Random.Range(7, 10)].Play(); break;
         }
-        audioDamage[Random.Range(4, 6)].Play();
+        //audioDamage[Random.Range(4, 6)].Play();
         npcInstance.npc.setHealth(damage, 0, false, damageType);
     }
 
