@@ -7,11 +7,13 @@ public class GuiFunction : MonoBehaviour {
     public RawImage hotbar0, hotbar1, hotbar2, hotbar3, hotbar4, hotbar5, hotbar6, hotbar7, hotbar8, hotbar9, activeSkill, activeWeapon, activeWeaponBg;
     public Text consoleText, castTime;
     public RawImage[] castBar = new RawImage[5];
+    public Image health, stamina, mana;
     Texture tempIcon;
     string tempMessageString, tempCastString;
     int hotbarIndex, lines = 0;
     bool hotbarCall = false, activeSkillCall = false, activeWeaponCall = false, drawWeaponCall = false, textCall = false, castTimeCall = false, casting = false;
     Color alpha, bg;
+    public Player player;
 
     void Start()
     {
@@ -171,6 +173,10 @@ public class GuiFunction : MonoBehaviour {
             castTime.text = tempCastString;
             textCall = false;
         }
+
+        health.fillAmount = player.player.getTempHealthFloat() / player.player.getHealthFloat();
+        stamina.fillAmount = player.player.getTempStaminaFloat() / player.player.getStaminaFloat();
+        mana.fillAmount = player.player.getTempManaFloat() / player.player.getManaFloat();
     }
 
 }

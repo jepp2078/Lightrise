@@ -204,10 +204,28 @@ public class PlayerObject : MonoBehaviour {
     {
         return stamina;
     }
+    public float getTempStaminaFloat()
+    {
+        return tempStamina;
+    }
+
 
     public float getHealthFloat()
     {
         return health;
+    }
+    public float getTempHealthFloat()
+    {
+        return tempHealth;
+    }
+    public float getManaFloat()
+    {
+        return mana;
+    }
+
+    public float getTempManaFloat()
+    {
+        return tempMana;
     }
 
     public void setBonusStamina(float change)
@@ -215,10 +233,6 @@ public class PlayerObject : MonoBehaviour {
         changeStats(0, 0, 0, 0, 0, 0, 0, change, 0);
     }
 
-    public float getManaInt()
-    {
-        return tempMana;
-    }
 
     public void setEncumbrance(float change)
     {
