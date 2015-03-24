@@ -14,7 +14,9 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
     private static float effect = 0.125f;
     private static int inventoryID = 9999;
     private static int hotbarSlot;
-    private static float castingCost = 0.1f;
+    private static float manaCost = 0.1f;
+    private static float staminaCost = 0.1f;
+    private static float healthCost = 0.1f;
     private static float duration = 0;
     private static float currentDuration = 0;
     private static bool activated = false;
@@ -133,7 +135,7 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
         return inventoryID;
     }
 
-    public void cast()
+    public GameObject cast()
     {
         if (!activated)
         {
@@ -142,6 +144,7 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
             playerInstance.player.setRegenModifiers(3, effect);
             activated = true;
         }
+        return null;
     }
 
     public void stopEffect()
@@ -153,11 +156,6 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
             playerInstance.player.setRegenModifiers(3, -effect);
             activated = false;
         }
-    }
-
-    public float getCastingCost()
-    {
-        return castingCost;
     }
 
     public float getDuration()
@@ -266,5 +264,20 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
     {
         if (player)
             gui = guiIn;
+    }
+
+    public float getManaCost()
+    {
+        return manaCost;
+    }
+
+    public float getStaminaCost()
+    {
+        return staminaCost;
+    }
+
+    public float getHealthCost()
+    {
+        return healthCost;
     }
 }

@@ -2,59 +2,38 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class Item_Weapon_Troll_Clubber : Weapon, Item, Equipable, HotbarAble, Melee
+public class Item_Weapon_Mirdain_Spellstaff : Weapon, Item, Equipable, HotbarAble, Ranged
 {
-	private int id = 999;
-    private string itemName = "Troll Clubber";
-	private string itemDescription = "A great sword made for slashing trolls!";
-	private int price = 20;
+    private int id = 999;
+    private string itemName = "Mirdain Spellstaff";
+    private string itemDescription = "A mirdain staff";
+    private int price = 20;
     private int hotbarSlot = 0;
-    private float damage = 0.42f;
-    private float attackSpeed = 0.40f;
+    private float damage = 0.10f;
+    private float attackSpeed = 0.50f;
     private float durability = 60f;
     private float weaponRank = 0.0f;
     private float weight = 3.3f;
     private int inventoryID = 999;
-    private float reachFloat = 0.5f;
-    private GameObject reach;
+    private float projectileSpeed = 10; //Change this later
+    private GameObject projectile;
     Texture texture;
 
-	
-	public Item_Weapon_Troll_Clubber()
+    public Item_Weapon_Mirdain_Spellstaff()
     {
-        reach = (GameObject) Resources.Load("GreatSword_Reach");
-        texture = Resources.Load("troll_clubber", typeof(Texture)) as Texture;
+        projectile = (GameObject)Resources.Load("Archery_Projectile");
+        texture = Resources.Load("waw_staff_mirdain_02", typeof(Texture)) as Texture;
     }
-	
+
     public Texture getIcon()
     {
         return texture;
     }
 
-    public Object getWeaponHitbox()
-    {
-        return reach;
-    }
-
-    public float getWeaponReachFloat()
-    {
-        return reachFloat;
-    }
-
-    Object Melee.getWeaponHitbox()
-    {
-        return reach;
-    }
-
-    float Melee.getWeaponReachFloat()
-    {
-        return reachFloat;
-    }
-
     string Equipable.getItemSlot()
     {
         string type = "Main Hand";
-		return type;
+        return type;
     }
 
     float Equipable.getDurability()
@@ -74,7 +53,7 @@ public class Item_Weapon_Troll_Clubber : Weapon, Item, Equipable, HotbarAble, Me
 
     string Weapon.getType()
     {
-        string type = "great sword";
+        string type = "staff";
         return type;
     }
 
@@ -90,7 +69,7 @@ public class Item_Weapon_Troll_Clubber : Weapon, Item, Equipable, HotbarAble, Me
 
     string Weapon.getDamageType()
     {
-        string damageType = "slashing";
+        string damageType = "";
         return damageType;
     }
 
@@ -123,7 +102,7 @@ public class Item_Weapon_Troll_Clubber : Weapon, Item, Equipable, HotbarAble, Me
 
     string Item.getType()
     {
-        string type = "great sword";
+        string type = "staff";
         return type;
     }
 
@@ -186,5 +165,15 @@ public class Item_Weapon_Troll_Clubber : Weapon, Item, Equipable, HotbarAble, Me
     public int getSkillID()
     {
         return 999;
+    }
+
+    public float getProjectileSpeed()
+    {
+        return projectileSpeed;
+    }
+
+    public Object getProjectile()
+    {
+        return projectile;
     }
 }

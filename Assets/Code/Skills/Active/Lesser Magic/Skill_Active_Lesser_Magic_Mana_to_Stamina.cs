@@ -1,30 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Skill_Active_Lesser_Magic_Heal_Self : SkillEntity, Skill, HotbarAble, Castable, Spell
+public class Skill_Active_Lesser_Magic_Mana_to_Stamina : SkillEntity, Skill, HotbarAble, Castable, Spell
 {
 
-	private static int id = 20;
+    private static int id = 21;
     private static string type = "active";
     private static string group = "lesser magic";
-    private static string skillName = "Heal Self";
-    private static string skillDescription = "Caster regains a small amount of Health. This spell does not require any reagents to cast.";
+    private static string skillName = "Mana To Stamina";
+    private static string skillDescription = "Caster increases his own Stamina, at the cost of losing Mana";
     private static int price = 0;
     private static float skillLevel = 1f;
-    private static float effect = 3.5f;
+    private static float effect = 3f;
     private static int inventoryID = 9999;
     private static int hotbarSlot;
-    private static float manaCost = 30;
+    private static float manaCost = 15;
     private static float staminaCost = 0.1f;
     private static float healthCost = 0.1f;
-    private static float duration = 3f;
+    private static float duration = 2f;
     private static float currentDuration = 2f;
     private static bool activated = false;
-    private static string castMsg = "Heal Self";
+    private static string castMsg = "Mana To Stamina";
     private static float gainPrCast = 1.0f;
-    private static float cooldown = 15f;
+    private static float cooldown = 7f;
     private static float currentCooldown = 0f;
-    private static float castTime = 3;
+    private static float castTime = 1.5f;
     Texture texture;
     GameObject particle;
     private Player playerInstance;
@@ -32,11 +32,11 @@ public class Skill_Active_Lesser_Magic_Heal_Self : SkillEntity, Skill, HotbarAbl
     private GuiFunction gui;
 
 
-    public Skill_Active_Lesser_Magic_Heal_Self() :
-		base(id, skillName)
-	{
-        texture = Resources.Load("lessermagic_healself01", typeof(Texture)) as Texture;
-        particle = Resources.Load("BeingHealedEffect", typeof(GameObject)) as GameObject;
+    public Skill_Active_Lesser_Magic_Mana_to_Stamina() :
+        base(id, skillName)
+    {
+        texture = Resources.Load("lessermagic_mana2stamina01", typeof(Texture)) as Texture;
+        particle = Resources.Load("StaminaRegeneration2", typeof(GameObject)) as GameObject;
     }
 
     public int getSkillID()
@@ -85,8 +85,8 @@ public class Skill_Active_Lesser_Magic_Heal_Self : SkillEntity, Skill, HotbarAbl
         bool skillUp = false;
         if (Mathf.Floor(oldSkillLevel) < Mathf.Floor(skillLevel))
         {
-            gui.newTextLine("Skill level in " + getSkillText() + " has increased to " + Mathf.Floor(skillLevel)+"!");
-            effect += 0.01f;
+            gui.newTextLine("Skill level in " + getSkillText() + " has increased to " + Mathf.Floor(skillLevel) + "!");
+            effect += 0.02f;
             skillUp = true;
         }
         if (skillLevel >= 100)
@@ -94,7 +94,6 @@ public class Skill_Active_Lesser_Magic_Heal_Self : SkillEntity, Skill, HotbarAbl
             if (Mathf.Floor(oldSkillLevel) < 100)
             {
                 gui.newTextLine(getSkillText() + " is surging!");
-                duration = 5;
             }
             skillLevel = 100;
         }
@@ -110,7 +109,6 @@ public class Skill_Active_Lesser_Magic_Heal_Self : SkillEntity, Skill, HotbarAbl
             if (Mathf.Floor(oldSkillLevel) < 50)
             {
                 gui.newTextLine(getSkillText() + " has reached a new level!");
-                duration = 4f;
             }
         }
         else if (skillLevel >= 25)
@@ -118,7 +116,7 @@ public class Skill_Active_Lesser_Magic_Heal_Self : SkillEntity, Skill, HotbarAbl
             if (Mathf.Floor(oldSkillLevel) < 25)
             {
                 gui.newTextLine(getSkillText() + " has reached a new level!");
-            } 
+            }
         }
         return skillUp;
     }
@@ -140,7 +138,7 @@ public class Skill_Active_Lesser_Magic_Heal_Self : SkillEntity, Skill, HotbarAbl
 
     public GameObject cast()
     {
-        playerInstance.player.setHealth(0, effect, false, "");
+        playerInstance.player.setStamina(0, effect);
         Instantiate(particle, playerInstance.playerObject.transform.position - (new Vector3(0, 1, 0)), playerInstance.playerObject.transform.rotation);
         return null;
     }
@@ -232,7 +230,7 @@ public class Skill_Active_Lesser_Magic_Heal_Self : SkillEntity, Skill, HotbarAbl
 
     public void updateGainPrCast()
     {
-        gainPrCast = 1.1f - (getSkillLevel()/100);
+        gainPrCast = 1.1f - (getSkillLevel() / 100);
     }
 
     public Texture getIcon()

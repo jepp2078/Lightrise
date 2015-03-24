@@ -30,11 +30,16 @@ public class Player : MonoBehaviour {
         player.changeStats(20, 20, 20, 20, 20, 20, 0, 0, 0);
         player.refillVitals();
         player.setName("The one god");
-        func.putOnHotbar((HotbarAble)player.getInventoryItem(0), 0);
-        func.putOnHotbar((HotbarAble)player.getInventoryItem(1), 1);
-        func.putOnHotbar((HotbarAble)player.getSkill(1), 2);
-        func.putOnHotbar((HotbarAble)player.getSkill(14), 3);
-        func.putOnHotbar((HotbarAble)player.getSkill(20), 4);
+        func.putOnHotbar((HotbarAble)player.getSkill(21), 0);
+        func.putOnHotbar((HotbarAble)player.getSkill(22), 1);
+        func.putOnHotbar((HotbarAble)player.getSkill(23), 2);
+        func.putOnHotbar((HotbarAble)player.getSkill(20), 3);
+        func.putOnHotbar((HotbarAble)player.getSkill(24), 4);
+        func.putOnHotbar((HotbarAble)player.getInventoryItem(0), 5);
+        func.putOnHotbar((HotbarAble)player.getInventoryItem(1), 6);
+        func.putOnHotbar((HotbarAble)player.getInventoryItem(2), 7);
+        func.putOnHotbar((HotbarAble)player.getSkill(14), 8);
+        func.putOnHotbar((HotbarAble)player.getSkill(1), 9);
         gui.newTextLine("Welcome to lightrise!");
         //audioAmbience[0].Play();
         doneCasting = false;
@@ -60,7 +65,7 @@ public class Player : MonoBehaviour {
         if (Input.GetButton("action") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
         {
             guiHelperNext = Time.time + guiHelper;
-            if (player.getActiveSkill() != null && !(player.getEquipment(6) is Weapon))
+            if (player.getActiveSkill() != null && (player.getEquipment(6).getType() == "staff"))
             {
                 if (!casting)
                 {
@@ -92,7 +97,7 @@ public class Player : MonoBehaviour {
             {
                 func.performAttack((Weapon)player.getEquipment(6));
             }
-            else if (player.getEquipment(6) is Ranged)
+            else if (player.getEquipment(6).getType() == "bow")
             {
                 if (!casting)
                 {
@@ -117,14 +122,14 @@ public class Player : MonoBehaviour {
         }
         if (doneCasting && !(Input.GetButtonDown("action")))
         {
-            if (player.getEquipment(6) is Ranged)
+            if (player.getEquipment(6).getType() == "bow")
             {
                 func.performAttack((Weapon)player.getEquipment(6));
                 doneCasting = false;
                 //audioArrow[1].Stop();
                 //audioArrow[2].Play();
             }
-            else
+            else if (player.getEquipment(6).getType() == "staff")
             {
                 gui.newTextLine(func.performAction(currentlyCasting));
                 currentlyCasting = null;
@@ -156,7 +161,6 @@ public class Player : MonoBehaviour {
         {
             guiHelperNext = Time.time + guiHelper;
             func.hotbarUse(4);
-            gainSkill(1, 20);
         }
         if (Input.GetButton("Hotbar6") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
         {
@@ -218,7 +222,6 @@ public class Player : MonoBehaviour {
         if (serverTicks % 24 == 0)
         {
             player.setStamina(0, (0.66f + player.getRegenModifiers(2))); // Think about skill to modify this?
-            Debug.Log(func.status());
         }
 	}
 

@@ -85476,7 +85476,7 @@ MonoBehaviour:
   hotbar6: {fileID: 378666874}
   hotbar7: {fileID: 301277250}
   hotbar8: {fileID: 884082744}
-  hotbar9: {fileID: 884082744}
+  hotbar9: {fileID: 353279258}
   activeSkill: {fileID: 161200433}
   activeWeapon: {fileID: 1678333955}
   activeWeaponBg: {fileID: 1531263215}
@@ -89784,6 +89784,10 @@ Prefab:
     - target: {fileID: 2048952, guid: cc33268e4c44b3f43b96020fad78d94d, type: 2}
       propertyPath: field of view
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 486826, guid: cc33268e4c44b3f43b96020fad78d94d, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11450446, guid: cc33268e4c44b3f43b96020fad78d94d, type: 2}

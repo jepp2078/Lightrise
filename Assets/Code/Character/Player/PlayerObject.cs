@@ -31,12 +31,9 @@ public class PlayerObject : MonoBehaviour {
         {
             equipmentList.Add(null);
         }
-        inventoryAdd(new Item_Weapon_Short_Bow(0, 0)); 
-        inventoryAdd(new Item_Weapon_Troll_Clubber(0, 0));
-        inventoryAdd(new Item_Armor_Scale_Helm(0, 0)); equip(2);
-        inventoryAdd(new Item_Armor_Scale_Cuirass(0, 0)); equip(3);
-        inventoryAdd(new Item_Armor_Scale_Leggings(0, 0)); equip(4);
-        inventoryAdd(new Item_Armor_Scale_Boots(0, 0)); equip(5);
+        inventoryAdd(new Item_Weapon_Mirdain_Spellstaff());
+        inventoryAdd(new Item_Weapon_Short_Bow());
+        inventoryAdd(new Item_Weapon_Troll_Clubber());
 
         for (int i = 0; i < 100; i++)
         {
@@ -64,6 +61,11 @@ public class PlayerObject : MonoBehaviour {
                 //18 = Skill_Passive_Combat_Great_Sword_Mastery()     
                 case 19: skillList.Insert(19, new Skill_Passive_Weapon_Skill_Archery()); skillList[19].setPlayerInstance(playerInstance, null); skillList[19].setGuiInstance(gui, true); break;
                 case 20: skillList.Insert(20, new Skill_Active_Lesser_Magic_Heal_Self()); skillList[20].setPlayerInstance(playerInstance, null); skillList[20].setGuiInstance(gui, true); break;
+                case 21: skillList.Insert(21, new Skill_Active_Lesser_Magic_Mana_to_Stamina()); skillList[21].setPlayerInstance(playerInstance, null); skillList[21].setGuiInstance(gui, true); break;
+                case 22: skillList.Insert(22, new Skill_Active_Lesser_Magic_Health_To_Mana()); skillList[22].setPlayerInstance(playerInstance, null); skillList[22].setGuiInstance(gui, true); break;
+                case 23: skillList.Insert(23, new Skill_Active_Lesser_Magic_Stamina_To_Health()); skillList[23].setPlayerInstance(playerInstance, null); skillList[23].setGuiInstance(gui, true); break;
+                case 24: skillList.Insert(24, new Skill_Active_Lesser_Magic_Mana_Missle()); skillList[24].setPlayerInstance(playerInstance, null); skillList[24].setGuiInstance(gui, true); break;
+
             }
         }
 
@@ -112,7 +114,7 @@ public class PlayerObject : MonoBehaviour {
             equipmentList[6] = (Item)sheathedWeapon;
             sheathedWeapon = null;
             gui.newTextLine("You unsheathe your " + equipmentList[6].getItemText() + "!");
-            if (equipmentList[6].getType() == "bow")
+            if (equipmentList[6] is Ranged)
             {
                 camera.setDesiredDistance(0.05f);
             }
@@ -439,9 +441,9 @@ public class PlayerObject : MonoBehaviour {
                     }
                     else 
                     { 
-				    equipmentList[6] = equipmentIn;
+				        equipmentList[6] = equipmentIn;
                     }
-                    if (equipmentList[6].getType() == "bow")
+                    if (equipmentList[6] is Ranged)
                     {
                         camera.setDesiredDistance(0.05f);
                     }

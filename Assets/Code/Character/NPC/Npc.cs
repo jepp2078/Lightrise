@@ -41,7 +41,6 @@ public class Npc : MonoBehaviour
         if (serverTicks % 24 == 0)
         {
             npc.setStamina(0, (0.66f + npc.getRegenModifiers(2))); // Think about skill to modify this?
-            Debug.Log(func.status());
         }
     }
 

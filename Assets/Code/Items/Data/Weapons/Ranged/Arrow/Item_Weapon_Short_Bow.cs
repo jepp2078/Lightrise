@@ -2,66 +2,152 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class Item_Weapon_Short_Bow : ItemEntity, Weapon, Item, Equipable, HotbarAble, Ranged
+public class Item_Weapon_Short_Bow : Weapon, Item, Equipable, HotbarAble, Ranged
 {
-	private static int id = 999;
-	private static string itemName = "Short Bow";
-	private static string itemDescription = "A beginners short bow";
-    private static int price = 20;
-    private static int hotbarSlot = 0;
-    private static float damage = 0.50f;
-    private static float attackSpeed = 0.50f;
-    private static float durability = 60f;
-    private static float weaponRank = 0.0f;
-    private static float weight = 3.3f;
-    private static int inventoryID = 999;
-    private static float projectileSpeed = 10; //Change this later
-    private static GameObject projectile;
+	private int id = 999;
+	private string itemName = "Short Bow";
+	private string itemDescription = "A beginners short bow";
+    private int price = 20;
+    private int hotbarSlot = 0;
+    private float damage = 0.50f;
+    private float attackSpeed = 0.50f;
+    private float durability = 60f;
+    private float weaponRank = 0.0f;
+    private float weight = 3.3f;
+    private int inventoryID = 999;
+    private float projectileSpeed = 10; //Change this later
+    private GameObject projectile;
     Texture texture;
 
 
-    public Item_Weapon_Short_Bow(int x, int y) :
-		base(id, itemName, x, y)
+    public Item_Weapon_Short_Bow()
     {
         projectile = (GameObject)Resources.Load("Archery_Projectile");
         texture = Resources.Load("short_bow", typeof(Texture)) as Texture;
 	}
-	
-	public float getDamage(){
-		return damage;
-		
-	}
-	
-	public string getType(){
-		string type = "bow";
-		return type;
-	}
-	
-	public string getItemSlot(){
-		string type = "Main Hand";
-		return type;
-	}
-	
-	public string getDamageType(){
-		string damageType = "arrow";
-		return damageType;
-	}
 
-	public string getItemText() {
-		return itemName;
-	}
 
-	public string getItemDescription() {
-		return itemDescription;
-	}
+    public Texture getIcon()
+    {
+        return texture;
+    }
 
-	public float[] getProtections() {
+    string Equipable.getItemSlot()
+    {
+        string type = "Main Hand";
+        return type;
+    }
+
+    float Equipable.getDurability()
+    {
+        return durability;
+    }
+
+    bool Equipable.setDurability(float change)
+    {
+        durability -= change;
+        if (durability <= 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    string Weapon.getType()
+    {
+        string type = "bow";
+        return type;
+    }
+
+    float Weapon.getDamage()
+    {
+        return damage;
+    }
+
+    float Weapon.getAttackspeed()
+    {
+        return attackSpeed;
+    }
+
+    string Weapon.getDamageType()
+    {
+        string damageType = "arrow";
+        return damageType;
+    }
+
+    string Weapon.getItemDescription()
+    {
+        return itemDescription;
+    }
+
+    string Weapon.getItemSlot()
+    {
+        string type = "Main Hand";
+        return type;
+    }
+
+    float Weapon.getWeaponRank()
+    {
+        return weaponRank;
+    }
+
+
+    public int getID()
+    {
+        return id;
+    }
+
+    string Item.getItemText()
+    {
+        return itemName;
+    }
+
+    string Item.getType()
+    {
+        string type = "bow";
+        return type;
+    }
+
+    int Item.getID()
+    {
+        return id;
+    }
+
+    string Item.getItemDescription()
+    {
+        return itemDescription;
+    }
+
+    string Item.getItemSlot()
+    {
+        string type = "Main Hand";
+        return type;
+    }
+
+    float[] Item.getProtections()
+    {
         return new float[0];
-	}
-	
-	public int getPrice() {
-		return price;
-	}
+    }
+
+    int Item.getPrice()
+    {
+        return price;
+    }
+
+    int Item.getInventoryID()
+    {
+        return inventoryID;
+    }
+
+    void Item.setInventoryID(int id)
+    {
+        inventoryID = id;
+    }
+
+    float Item.getWeight()
+    {
+        return weight;
+    }
 
     public void setHotbarSlot(int slot)
     {
@@ -72,58 +158,15 @@ public class Item_Weapon_Short_Bow : ItemEntity, Weapon, Item, Equipable, Hotbar
     {
         return hotbarSlot;
     }
-    public int getInventoryID()
+
+    int HotbarAble.getInventoryID()
     {
         return inventoryID;
-    }
-
-    public void setInventoryID(int id)
-    {
-        inventoryID = id;
     }
 
     public int getSkillID()
     {
         return 999;
-    }
-
-
-    public float getAttackspeed()
-    {
-        return attackSpeed;
-    }
-
-
-    public float getWeight()
-    {
-        return weight;
-    }
-
-
-    public float getDurability()
-    {
-        return durability;
-    }
-
-    public bool setDurability(float change)
-    {
-        durability -= change;
-        if (durability <= 0)
-        {
-            return true;
-        }
-        return false;
-    }
-
-
-    public float getWeaponRank()
-    {
-        return weaponRank;
-    }
-
-    public Texture getIcon()
-    {
-        return texture;
     }
 
     public float getProjectileSpeed()
@@ -135,5 +178,4 @@ public class Item_Weapon_Short_Bow : ItemEntity, Weapon, Item, Equipable, Hotbar
     {
         return projectile;
     }
-
 }

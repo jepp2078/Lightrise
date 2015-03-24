@@ -14,7 +14,9 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
     private static float effect = 0f;
     private static int inventoryID = 9999;
     private static int hotbarSlot;
-    private static float castingCost = 0.1f;
+    private static float manaCost = 15;
+    private static float staminaCost = 15;
+    private static float healthCost = 15;
     private static float duration = 0;
     private static float currentDuration = 0;
     private static bool activated = false;
@@ -137,18 +139,14 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
         return inventoryID;
     }
 
-    public void cast()
+    public GameObject cast()
     {
         Instantiate(particle, playerInstance.playerObject.transform.position-(new Vector3(0,1,0)), playerInstance.playerObject.transform.rotation);
+        return null;
     }
 
     public void stopEffect()
     {
-    }
-
-    public float getCastingCost()
-    {
-        return castingCost;
     }
 
     public float getDuration()
@@ -259,6 +257,25 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
     public float getCastTime()
     {
         return castTime;
+    }
+
+    public float getManaCost()
+    {
+        return manaCost;
+    }
+
+    public float getStaminaCost()
+    {
+        return staminaCost;
+    }
+
+    public float getHealthCost()
+    {
+        return healthCost;
+    }
+    public string getDamageType()
+    {
+        return "";
     }
 }
 

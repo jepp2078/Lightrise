@@ -79,24 +79,52 @@ public class Function : MonoBehaviour {
     public string performAction(Skill skillIn)
     {
         Castable skill = (Castable)skillIn;
-        if(playerInstance.player.setMana(skill.getCastingCost(), 0)){
-            if (skill.getDuration() != 0)
+        if(playerInstance.player.setMana(skill.getManaCost(), 0)){
+            if (playerInstance.player.setStamina(skill.getStaminaCost(), 0))
             {
-                playerInstance.addSpellDuration(skill);
+                if (!playerInstance.player.setHealth(skill.getHealthCost(), 0,true,""))
+                {
+                    if (skill.getDuration() != 0)
+                    {
+                        playerInstance.addSpellDuration(skill);
+                    }
+                    else
+                    {
+                        GameObject tempProjectile = skill.cast();
+                        float tempEffect = ((Skill)skill).getEffect() + ((0.2f * playerInstance.player.getStat("int")) * ((Weapon)playerInstance.player.getEquipment(6)).getDamage() * 5);
+                        Vector3 pos;
+                        pos = playerInstance.playerObject.transform.position;
+                        Vector3 tempOffset = playerInstance.playerObject.transform.forward;
+                        pos += tempOffset;
+                        pos += new Vector3(0f, 0.45f, 0f);
+                        Quaternion rot = playerInstance.playerObject.transform.rotation;
+                        Instantiate(tempProjectile, pos, rot);
+                        tempProjectile.GetComponent<Rigidbody>().AddForce(playerInstance.playerObject.GetComponentInChildren<Camera>().transform.forward * 500f);
+
+                        WeaponHitInfo info = tempProjectile.GetComponent<WeaponHitInfo>();
+                        info.damage = tempEffect;
+                        info.damageType = ((Spell)skill).getDamageType();
+                        info.playerInstance = playerInstance;
+                    }
+                    skill.setCurrentCooldown(skill.getCooldown());
+                    playerInstance.instance.addCooldown(skill);
+                    skill.updateGainPrCast();
+                    playerInstance.instance.gainSkill(skill.getGainPrCast(), ((Skill)skill).getSkillID());
+                    playerInstance.player.setActiveSkill(null);
+                    gui.setActiveSkillIcon(null, true);
+                    //if (audioMagic[((Skill)skill).getSkillID() - 1] != null)
+                    //    audioMagic[((Skill)skill).getSkillID() - 1].Play();
+                    return "You cast " + skill.getCastMsg();
+                }
+                else
+                {
+                    return "Not enough Health to cast " + skill.getCastMsg();
+                }
             }
             else
             {
-                skill.cast();
+                return "Not enough stamina to cast " + skill.getCastMsg();
             }
-            skill.setCurrentCooldown(skill.getCooldown());
-            playerInstance.instance.addCooldown(skill);
-            skill.updateGainPrCast();
-            playerInstance.instance.gainSkill(skill.getGainPrCast(), ((Skill)skill).getSkillID());
-            playerInstance.player.setActiveSkill(null);
-            gui.setActiveSkillIcon(null, true);
-            //if (audioMagic[((Skill)skill).getSkillID() - 1] != null)
-            //    audioMagic[((Skill)skill).getSkillID() - 1].Play();
-            return "You cast "+skill.getCastMsg();
         }else{
             return "Not enough mana to cast "+skill.getCastMsg();
         }
