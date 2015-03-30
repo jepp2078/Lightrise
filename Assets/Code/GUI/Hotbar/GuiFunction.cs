@@ -159,10 +159,9 @@ public class GuiFunction : MonoBehaviour {
 
     public void showInventory()
     {
-        for (int i = 0; i < 2; i++)
-        {
-            inventoryImage[i].color = new Color(255, 255, 255, 255);
-        }
+
+        inventoryImage[0].color = new Color(255, 255, 255, 255);
+        inventoryImage[1].color = new Color(0, 0, 0, 255);
 
         for (int i = 0; i < 21; i++)
         {
