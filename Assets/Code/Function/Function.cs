@@ -103,7 +103,7 @@ public class Function : MonoBehaviour {
                         pos += tempOffset;
                         pos += new Vector3(0f, 0.45f, 0f);
                         Quaternion rot = playerInstance.playerObject.transform.rotation;
-                        Instantiate(tempProjectile, pos, rot);
+                        tempProjectile = (GameObject)Instantiate(tempProjectile, pos, rot);
                         tempProjectile.GetComponent<Rigidbody>().AddForce(playerInstance.playerObject.GetComponentInChildren<Camera>().transform.forward * 500f);
 
                         WeaponHitInfo info = tempProjectile.GetComponent<WeaponHitInfo>();
