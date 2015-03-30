@@ -50,7 +50,7 @@ public class GuiFunction : MonoBehaviour {
     {
         inventoryIndex = inventorySlot;
         tempIconInventory = icon;
-        if (transparent)
+        if (transparent || !isInvShowing)
         {
             inventoryAlpha = new Color(255, 255, 255, 0);
         }

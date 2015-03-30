@@ -77,6 +77,29 @@ public class Function : MonoBehaviour {
         }
     }
 
+    public void harvest()
+    {
+        int raylenght = 10;
+        Camera tempCam = playerInstance.playerObject.GetComponentInChildren<Camera>();
+        RaycastHit hit;
+        
+        Ray ray = new Ray (tempCam.transform.position, tempCam.transform.forward);
+
+
+        if (Physics.Raycast(ray, out hit, raylenght))
+        {
+            Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.green, 10, true);
+            
+            Debug.Log("Hit: " + hit.rigidbody.tag);
+            if (hit.rigidbody && hit.rigidbody.tag == "resource" )
+            {
+
+                playerInstance.player.inventoryAdd(hit.rigidbody.transform.GetComponentInParent<ResourceSource>().harvest);
+            }
+        }
+
+    }
+
     public string performAction(Skill skillIn)
     {
         Castable skill = (Castable)skillIn;

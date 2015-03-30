@@ -41,7 +41,7 @@ public class Player : MonoBehaviour {
         func.putOnHotbar((HotbarAble)player.getSkill(1), 9);
         gui.init();
         gui.newTextLine("Welcome to lightrise!");
-        player.setName("Vindazul");
+        player.setName("Bubbles");
         //audioAmbience[0].Play();
         doneCasting = false;
         casting = false;
@@ -75,6 +75,13 @@ public class Player : MonoBehaviour {
             {
                 gui.showInventory();
             }
+        }
+
+        if (Input.GetKey(KeyCode.H) && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
+        {
+            guiHelperNext = Time.time + 0.3333f;
+
+            func.harvest();
         }
 
         if (Input.GetButton("action") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)

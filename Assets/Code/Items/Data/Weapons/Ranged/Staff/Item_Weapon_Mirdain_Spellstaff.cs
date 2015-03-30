@@ -107,11 +107,6 @@ public class Item_Weapon_Mirdain_Spellstaff : Weapon, Item, Equipable, HotbarAbl
         return type;
     }
 
-    int Item.getID()
-    {
-        return id;
-    }
-
     string Item.getItemDescription()
     {
         return itemDescription;

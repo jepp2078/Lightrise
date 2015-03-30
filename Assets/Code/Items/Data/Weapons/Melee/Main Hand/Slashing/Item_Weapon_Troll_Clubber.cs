@@ -128,11 +128,6 @@ public class Item_Weapon_Troll_Clubber : Weapon, Item, Equipable, HotbarAble, Me
         return type;
     }
 
-    int Item.getID()
-    {
-        return id;
-    }
-
     string Item.getItemDescription()
     {
         return itemDescription;

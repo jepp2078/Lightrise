@@ -5,7 +5,6 @@ public interface Item
 {
     string getItemText();
     string getType();
-    int getID();
     string getItemDescription();
     string getItemSlot();
     float[] getProtections();

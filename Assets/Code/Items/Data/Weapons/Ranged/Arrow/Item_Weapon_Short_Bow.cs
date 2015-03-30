@@ -108,12 +108,6 @@ public class Item_Weapon_Short_Bow : Weapon, Item, Equipable, HotbarAble, Ranged
         string type = "bow";
         return type;
     }
-
-    int Item.getID()
-    {
-        return id;
-    }
-
     string Item.getItemDescription()
     {
         return itemDescription;
