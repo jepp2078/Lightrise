@@ -14,7 +14,7 @@ public class Skill_Active_Lesser_Magic_Mana_to_Stamina : SkillEntity, Skill, Hot
     private static float effect = 3f;
     private static int inventoryID = 9999;
     private static int hotbarSlot;
-    private static float manaCost = 15;
+    private static float manaCost = 7.5f;
     private static float staminaCost = 0.1f;
     private static float healthCost = 0.1f;
     private static float duration = 2f;

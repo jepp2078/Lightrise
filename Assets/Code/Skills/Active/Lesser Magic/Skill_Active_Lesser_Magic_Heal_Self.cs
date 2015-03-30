@@ -14,7 +14,7 @@ public class Skill_Active_Lesser_Magic_Heal_Self : SkillEntity, Skill, HotbarAbl
     private static float effect = 3.5f;
     private static int inventoryID = 9999;
     private static int hotbarSlot;
-    private static float manaCost = 30;
+    private static float manaCost = 15;
     private static float staminaCost = 0.1f;
     private static float healthCost = 0.1f;
     private static float duration = 3f;

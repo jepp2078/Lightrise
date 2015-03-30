@@ -8,6 +8,7 @@ public class GuiFunction : MonoBehaviour {
     public Text consoleText, castTime, name;
     public RawImage[] castBar = new RawImage[5];
     public Image health, stamina, mana;
+    public Image[] skillCooldowns = new Image[10];
     Texture tempIcon;
     string tempMessageString, tempCastString;
     int hotbarIndex, lines = 0;
@@ -79,7 +80,7 @@ public class GuiFunction : MonoBehaviour {
     public void newTextLine(string input)
     {
         lines++;
-        if (lines > 9)
+        if (lines > 10)
         {
             clearText = true;
             lines = 1;
@@ -129,6 +130,12 @@ public class GuiFunction : MonoBehaviour {
             castBar[i].color = new Color(255, 255, 255, 0);
         }
     }
+
+    public void setSkillCooldown(float current, float total, int slot)
+    {
+        skillCooldowns[slot].fillAmount = current / total;
+    }
+
     void OnGUI()
     {
         if (hotbarCall)
@@ -182,6 +189,7 @@ public class GuiFunction : MonoBehaviour {
         else if (nameCall)
         {
             name.text = player.player.getName();
+            nameCall = false;
         }
 
         health.fillAmount = player.player.getTempHealthFloat() / player.player.getHealthFloat();

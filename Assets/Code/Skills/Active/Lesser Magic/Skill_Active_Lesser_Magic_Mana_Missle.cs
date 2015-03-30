@@ -38,6 +38,7 @@ public class Skill_Active_Lesser_Magic_Mana_Missle : SkillEntity, Skill, HotbarA
     {
         texture = Resources.Load("lessermagic_manamissile01", typeof(Texture)) as Texture;
         particle = Resources.Load("ManaMissile", typeof(GameObject)) as GameObject;
+
     }
 
     public int getSkillID()

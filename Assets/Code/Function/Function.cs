@@ -28,6 +28,7 @@ public class Function : MonoBehaviour {
         if (instance is HotbarAble)
         {
             playerInstance.player.hotbarAdd(instance, hotbarSlot);
+            instance.setHotbarSlot(hotbarSlot);
             gui.setHotbarIcon(hotbarSlot, instance.getIcon(), false);
         }
     }
@@ -87,6 +88,10 @@ public class Function : MonoBehaviour {
                     if (skill.getDuration() != 0)
                     {
                         playerInstance.addSpellDuration(skill);
+                    }
+                    else if (skillIn.getSkillGroup() == "general")
+                    {
+                        skill.cast();
                     }
                     else
                     {

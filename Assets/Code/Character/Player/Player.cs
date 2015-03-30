@@ -16,7 +16,7 @@ public class Player : MonoBehaviour {
     public bool doneCasting;
     public Player instance;
     public int serverTicks = 0;
-    private float guiHelper = 0.3333f;
+    private float guiHelper = 0.05f;
     private float guiHelperNext = 0.0f;
     public AudioSource[] audioMisc = new AudioSource[1];
     public AudioSource[] audioMagicCharge = new AudioSource[1];
@@ -29,7 +29,7 @@ public class Player : MonoBehaviour {
 	void Start () {
         player.changeStats(20, 20, 20, 20, 20, 20, 0, 0, 0);
         player.refillVitals();
-        player.setName("The one god");
+        player.setName("Vindazul");
         func.putOnHotbar((HotbarAble)player.getSkill(21), 0);
         func.putOnHotbar((HotbarAble)player.getSkill(22), 1);
         func.putOnHotbar((HotbarAble)player.getSkill(23), 2);
@@ -51,7 +51,7 @@ public class Player : MonoBehaviour {
     {
         if (Input.GetButton("toggleGUI") && Time.time > guiHelperNext)
         {
-            guiHelperNext = Time.time + guiHelper;
+            guiHelperNext = Time.time + 0.3333f;
             bool current = rpgCamera.instance.getGuiMode();
             if (current)
             {
@@ -64,8 +64,8 @@ public class Player : MonoBehaviour {
         }
         if (Input.GetButton("action") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
         {
-            guiHelperNext = Time.time + guiHelper;
-            if (player.getActiveSkill() != null && (player.getEquipment(6).getType() == "staff"))
+            guiHelperNext = Time.time + 0.3333f;
+            if (player.getActiveSkill() != null &&  ((Skill)player.getActiveSkill()).getSkillGroup() == "general" || (player.getEquipment(6).getType() == "staff"))
             {
                 if (!casting)
                 {
@@ -122,7 +122,13 @@ public class Player : MonoBehaviour {
         }
         if (doneCasting && !(Input.GetButtonDown("action")))
         {
-            if (player.getEquipment(6).getType() == "bow")
+            if (((Skill)player.getActiveSkill()).getSkillGroup() == "general")
+            {
+                gui.newTextLine(func.performAction(currentlyCasting));
+                currentlyCasting = null;
+                doneCasting = false;
+            }
+            else if (player.getEquipment(6).getType() == "bow")
             {
                 func.performAttack((Weapon)player.getEquipment(6));
                 doneCasting = false;
@@ -198,7 +204,7 @@ public class Player : MonoBehaviour {
 	void gameLogic () {
         if (Input.GetButton("Sprint") && !Input.GetButton("Crouch") && rpgCamera.instance.getGuiMode() == false)
         {
-            if (player.setStamina(0.225f-player.getSkillEffect(2), 0))
+            if (player.setStamina(0.125f-player.getSkillEffect(2), 0))
             {
                 instance.gainSkill(0.0833f/60f, 2);
                 RPG_Controller.instance.walkSpeed = 10;
@@ -214,14 +220,14 @@ public class Player : MonoBehaviour {
             RPG_Controller.instance.walkSpeed = RPG_Controller.instance.baseWalkSpeed + player.getSkillEffect(0); //See skillID identify pdf for skill id list
         }
 
-        if (serverTicks % 48 == 0)
-        {
-            player.setHealth(0, (0.66f + player.getRegenModifiers(1)), true,"self"); // Think about skill to modify this?
-            player.setMana(0, (0.66f + player.getRegenModifiers(3)));
-        }
         if (serverTicks % 24 == 0)
         {
-            player.setStamina(0, (0.66f + player.getRegenModifiers(2))); // Think about skill to modify this?
+            player.setHealth(0, (0.33f + player.getRegenModifiers(1)), true,"self"); // Think about skill to modify this?
+            player.setMana(0, (0.33f + player.getRegenModifiers(3)));
+        }
+        if (serverTicks % 12 == 0)
+        {
+            player.setStamina(0, (0.33f + player.getRegenModifiers(2))); // Think about skill to modify this?
         }
 	}
 
@@ -254,8 +260,10 @@ public class Player : MonoBehaviour {
     {
         for (int i = 0; i < cooldownList.Count;i++)
         {
+            gui.setSkillCooldown(((Castable)cooldownList[i]).getCurrentCooldown(), ((Castable)cooldownList[i]).getCooldown(), ((HotbarAble)cooldownList[i]).getHotbarSlot());
             if (cooldownList[i].setCurrentCooldown(0.0825F))
             {
+                gui.setSkillCooldown(0, ((Castable)cooldownList[i]).getCooldown(), ((HotbarAble)cooldownList[i]).getHotbarSlot());
                 cooldownList.RemoveAt(i);
             }
         }

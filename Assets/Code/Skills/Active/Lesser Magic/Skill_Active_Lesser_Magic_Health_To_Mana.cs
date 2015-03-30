@@ -16,7 +16,7 @@ public class Skill_Active_Lesser_Magic_Health_To_Mana : SkillEntity, Skill, Hotb
     private static int hotbarSlot;
     private static float manaCost = 0.1f;
     private static float staminaCost = 0.1f;
-    private static float healthCost = 15;
+    private static float healthCost = 7.5f;
     private static float duration = 2f;
     private static float currentDuration = 2f;
     private static bool activated = false;
@@ -37,6 +37,7 @@ public class Skill_Active_Lesser_Magic_Health_To_Mana : SkillEntity, Skill, Hotb
     {
         texture = Resources.Load("lessermagic_health2mana01", typeof(Texture)) as Texture;
         particle = Resources.Load("ManaRegenerationBlue", typeof(GameObject)) as GameObject;
+
     }
 
     public int getSkillID()
