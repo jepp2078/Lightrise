@@ -7,18 +7,28 @@ public class GuiFunction : MonoBehaviour {
     public RawImage hotbar0, hotbar1, hotbar2, hotbar3, hotbar4, hotbar5, hotbar6, hotbar7, hotbar8, hotbar9, activeSkill, activeWeapon, activeWeaponBg;
     public Text consoleText, castTime, name;
     public RawImage[] castBar = new RawImage[5];
+    public RawImage[] inventoryImage = new RawImage[2];
+    public RawImage[] inventory = new RawImage[21];
     public Image health, stamina, mana;
     public Image[] skillCooldowns = new Image[10];
-    Texture tempIcon;
-    string tempMessageString, tempCastString;
-    int hotbarIndex, lines = 0;
-    bool nameCall = true, hotbarCall = false, activeSkillCall = false, activeWeaponCall = false, drawWeaponCall = false, textCall = false, clearText = false, castTimeCall = false, casting = false;
-    Color alpha, bg;
+    Texture tempIcon, tempIconInventory;
+    string tempMessageString, tempCastString, tempNameString;
+    int hotbarIndex, inventoryIndex, lines = 0;
+    bool nameCall = false, hotbarCall = false, activeSkillCall = false, activeWeaponCall = false, drawWeaponCall = false, textCall = false, clearText = false, castTimeCall = false, inventoryCall = false, casting = false;
+    Color alpha, bg, inventoryAlpha;
     public Player player;
+    private bool isInvShowing = false;
 
-    void Start()
+    public void init()
     {
         hideCastBar();
+        hideInventory();
+    }
+
+    public void setName(string name)
+    {
+        tempNameString = name;
+        nameCall = true;
     }
     public void setHotbarIcon(int hotbarSlot, Texture icon, bool transparent)
     {
@@ -33,6 +43,22 @@ public class GuiFunction : MonoBehaviour {
             alpha = new Color(255, 255, 255, 255);
         }
         hotbarCall = true;
+        OnGUI();
+    }
+
+    public void setInventoryIcon(int inventorySlot, Texture icon, bool transparent)
+    {
+        inventoryIndex = inventorySlot;
+        tempIconInventory = icon;
+        if (transparent)
+        {
+            inventoryAlpha = new Color(255, 255, 255, 0);
+        }
+        else
+        {
+            inventoryAlpha = new Color(255, 255, 255, 255);
+        }
+        inventoryCall = true;
         OnGUI();
     }
 
@@ -131,6 +157,39 @@ public class GuiFunction : MonoBehaviour {
         }
     }
 
+    public void showInventory()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            inventoryImage[i].color = new Color(255, 255, 255, 255);
+        }
+
+        for (int i = 0; i < 21; i++)
+        {
+            if (inventory[i].texture != null)
+                inventory[i].color = new Color(255, 255, 255, 255);
+        }
+        isInvShowing = true;
+    }
+    public void hideInventory()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            inventoryImage[i].color = new Color(255, 255, 255, 0);
+        }
+
+        for (int t = 0; t < 21; t++)
+        {
+            
+            inventory[t].color = new Color(255, 255, 255, 0);
+        }
+        isInvShowing = false;
+    }
+
+    public bool isInventoryShowing()
+    {
+        return isInvShowing;
+    }
     public void setSkillCooldown(float current, float total, int slot)
     {
         skillCooldowns[slot].fillAmount = current / total;
@@ -155,13 +214,13 @@ public class GuiFunction : MonoBehaviour {
             }
             hotbarCall = false;
         }
-        else if(activeSkillCall)
+        if(activeSkillCall)
         {
             activeSkill.texture = tempIcon; 
             activeSkill.color = alpha;
             activeSkillCall = false;
         }
-        else if (activeWeaponCall)
+        if (activeWeaponCall)
         {
             activeWeaponBg.color = bg;
             if (drawWeaponCall == true)
@@ -171,7 +230,7 @@ public class GuiFunction : MonoBehaviour {
             activeWeapon.color = alpha;
             activeWeaponCall = false;
         }
-        else if (textCall)
+        if (textCall)
         {
             if (clearText)
             {
@@ -181,15 +240,21 @@ public class GuiFunction : MonoBehaviour {
             consoleText.text += tempMessageString;
             textCall = false;
         }
-        else if (castTimeCall)
+        if (castTimeCall)
         {
             castTime.text = tempCastString;
             textCall = false;
         }
-        else if (nameCall)
+        if (nameCall)
         {
-            name.text = player.player.getName();
+            name.text = tempNameString;
             nameCall = false;
+        }
+        if (inventoryCall)
+        {
+            inventory[inventoryIndex].texture = tempIconInventory; 
+            inventory[inventoryIndex].color = inventoryAlpha;
+            inventoryCall = false;
         }
 
         health.fillAmount = player.player.getTempHealthFloat() / player.player.getHealthFloat();

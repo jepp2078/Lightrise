@@ -13,7 +13,7 @@ public class PlayerObject : MonoBehaviour {
     private float str = 0, dex = 0, intel = 0, vit = 0, wis = 0, quick = 0;
     private float health, tempHealth, mana, tempMana, stamina, tempStamina, baseHealth = 0, baseMana = 0, baseStamina = 0,  bonusHealth = 0, bonusMana = 0, bonusStamina = 0;
     private float lungCapacity = 60;
-    private int invSize, baseInvSize = 200, inventoryIDCount = 0;
+    private int invSize, baseInvSize = 21, inventoryIDCount = 0;
     private float encumbrance = 0;
     private float[] protections = new float[15] { 1, 1, 1, 1, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0, 0, 0 }; //arrow, bludgeoning, piercing, slashing, acid, arcane, cold, fire, holy, impact, lightning, unholy, malediction, mental, infliction
     private float healthMod = 0, manaMod = 0, staminaMod = 0;  
@@ -83,6 +83,7 @@ public class PlayerObject : MonoBehaviour {
     public void setName(string nameIn)
     {
         name = nameIn;
+        gui.setName(name);
     }
 
     public bool isWeaponSheathed()
@@ -189,12 +190,17 @@ public class PlayerObject : MonoBehaviour {
         return 0;
     }
 
-    public float getInvSize()
+    public int getInvSize()
+    {
+        return inventory.Count;
+    }
+
+    public float getInvWeight()
     {
         float weight = 0;
         for (int i = 0; i < inventory.Count; i++)
         {
-           weight += inventory[i].getWeight();
+            weight += inventory[i].getWeight();
         }
         return weight;
     }
@@ -351,6 +357,16 @@ public class PlayerObject : MonoBehaviour {
     public bool inventoryAdd(Item e){
 		if(e is Item){
 			if(getInvSize() < baseInvSize){
+                if (e.getInventorySlot() == 999)
+                {
+                    if (inventory.Count == 0)
+                    {
+                        e.setInventorySlot(0);
+                    }else{
+                        e.setInventorySlot(inventory.Count);
+                    }
+                    gui.setInventoryIcon(e.getInventorySlot(), e.getIcon(), false);
+                }
 				inventory.Add(e);
                 if (e.getInventoryID() == 999)
                 {
@@ -396,7 +412,18 @@ public class PlayerObject : MonoBehaviour {
         {
             if (inventory[i].getInventoryID() == inventoryID)
             {
+                gui.setInventoryIcon(inventory[i].getInventorySlot(), null, true);
+                inventory[i].setInventorySlot(999);
                 inventory.RemoveAt(i);
+                for (int f = 0; f < inventory.Count; f++)
+                {
+                    inventory[f].setInventorySlot(f);
+                    gui.setInventoryIcon(inventory[f].getInventorySlot(), inventory[f].getIcon(), false);
+                }
+                for (int x = inventory.Count; x<21 ; x++)
+                {
+                    gui.setInventoryIcon(x, null, true);
+                }
                 if (getInvSize() < baseInvSize)
                 {
                     return true;

@@ -15,6 +15,7 @@ public class Item_Weapon_Troll_Clubber : Weapon, Item, Equipable, HotbarAble, Me
     private float weaponRank = 0.0f;
     private float weight = 3.3f;
     private int inventoryID = 999;
+    private int inventorySlot = 999;
     private float reachFloat = 0.5f;
     private GameObject reach;
     Texture texture;
@@ -186,5 +187,16 @@ public class Item_Weapon_Troll_Clubber : Weapon, Item, Equipable, HotbarAble, Me
     public int getSkillID()
     {
         return 999;
+    }
+
+
+    public int getInventorySlot()
+    {
+        return inventorySlot;
+    }
+
+    public void setInventorySlot(int id)
+    {
+        inventorySlot = id;
     }
 }

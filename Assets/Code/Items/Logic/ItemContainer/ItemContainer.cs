@@ -8,7 +8,7 @@ public class ItemContainer : MonoBehaviour{
     //public int test;
 	// Use this for initialization
 	void Start () {
-        Item test = new Item_Armor_Scale_Helm(0,0);
+        Item test = new Item_Weapon_Troll_Clubber();
         inventoryAdd(test);
 	}
 	

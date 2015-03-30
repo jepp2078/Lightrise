@@ -29,7 +29,6 @@ public class Player : MonoBehaviour {
 	void Start () {
         player.changeStats(20, 20, 20, 20, 20, 20, 0, 0, 0);
         player.refillVitals();
-        player.setName("Vindazul");
         func.putOnHotbar((HotbarAble)player.getSkill(21), 0);
         func.putOnHotbar((HotbarAble)player.getSkill(22), 1);
         func.putOnHotbar((HotbarAble)player.getSkill(23), 2);
@@ -40,7 +39,9 @@ public class Player : MonoBehaviour {
         func.putOnHotbar((HotbarAble)player.getInventoryItem(2), 7);
         func.putOnHotbar((HotbarAble)player.getSkill(14), 8);
         func.putOnHotbar((HotbarAble)player.getSkill(1), 9);
+        gui.init();
         gui.newTextLine("Welcome to lightrise!");
+        player.setName("Vindazul");
         //audioAmbience[0].Play();
         doneCasting = false;
         casting = false;
@@ -62,6 +63,20 @@ public class Player : MonoBehaviour {
                 rpgCamera.instance.setGuiMode(true);
             }
         }
+
+        if (Input.GetButton("bag") && Time.time > guiHelperNext)
+        {
+            guiHelperNext = Time.time + 0.3333f;
+            if (gui.isInventoryShowing())
+            {
+                gui.hideInventory();
+            }
+            else
+            {
+                gui.showInventory();
+            }
+        }
+
         if (Input.GetButton("action") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
         {
             guiHelperNext = Time.time + 0.3333f;
@@ -196,7 +211,7 @@ public class Player : MonoBehaviour {
 
         if (Input.GetButton("sheath") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
         {
-            guiHelperNext = Time.time + guiHelper;
+            guiHelperNext = Time.time + 0.3333f;
             func.sheathWeapon();
         }
     }

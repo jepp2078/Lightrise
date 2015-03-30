@@ -15,6 +15,7 @@ public class Item_Weapon_Short_Bow : Weapon, Item, Equipable, HotbarAble, Ranged
     private float weaponRank = 0.0f;
     private float weight = 3.3f;
     private int inventoryID = 999;
+    private int inventorySlot = 999;
     private float projectileSpeed = 10; //Change this later
     private GameObject projectile;
     Texture texture;
@@ -177,5 +178,15 @@ public class Item_Weapon_Short_Bow : Weapon, Item, Equipable, HotbarAble, Ranged
     public Object getProjectile()
     {
         return projectile;
+    }
+
+    public int getInventorySlot()
+    {
+        return inventorySlot;
+    }
+
+    public void setInventorySlot(int id)
+    {
+        inventorySlot = id;
     }
 }
