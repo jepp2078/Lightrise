@@ -28,11 +28,14 @@ public class WeaponHitInfo : MonoBehaviour {
             gui.newTextLine("You hit " + other.gameObject.name + " for " + damage + " " + damageType + " damage!");
             other.gameObject.GetComponent<NpcFunction>().takeDamage(damage, damageType);
 
-            playerInstance.gainSkill((1.1f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponSkillId(weapon.getType()));
-
-            if (playerInstance.player.getWeaponSkill(null, weapon.getType()) != 0)
+            if (weapon != null)
             {
-                playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponMasterySkillId(weapon.getType()));
+                playerInstance.gainSkill((1.1f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponSkillId(weapon.getType()));
+
+                if (playerInstance.player.getWeaponSkill(null, weapon.getType()) != 0)
+                {
+                    playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponMasterySkillId(weapon.getType()));
+                }
             }
 
         }
@@ -47,11 +50,15 @@ public class WeaponHitInfo : MonoBehaviour {
                     return;
                 }
                 gui = playerInstance.gui;
-                playerInstance.gainSkill((1.1f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponSkillId(weapon.getType()));
+                if (weapon != null)
+                 playerInstance.gainSkill((1.1f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponSkillId(weapon.getType()));
 
-                if (playerInstance.player.getWeaponSkill(null, weapon.getType()) != 0)
+                if (weapon != null)
                 {
-                    playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponMasterySkillId(weapon.getType()));
+                    if (playerInstance.player.getWeaponSkill(null, weapon.getType()) != 0)
+                    {
+                        playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponMasterySkillId(weapon.getType()));
+                    }
                 }
             }
 
