@@ -140,8 +140,9 @@ public class Skill_Active_Lesser_Magic_Mana_Missle : SkillEntity, Skill, HotbarA
 
     public GameObject cast()
     {
-        GameObject tempParticle = particle;
-        return tempParticle;
+        //GameObject tempParticle = particle;
+        //return tempParticle;
+        return particle;
     }
 
     public void stopEffect()
