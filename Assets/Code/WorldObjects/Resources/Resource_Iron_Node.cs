@@ -21,7 +21,7 @@ public class Resource_Iron_Node : Resource_Base_Node
             }
             else
             {
-                Debug.Log("Resource depleted... baka!");
+                Debug.Log("Resource depleted");
 
             }
 

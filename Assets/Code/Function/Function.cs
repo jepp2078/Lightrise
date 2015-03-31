@@ -90,11 +90,10 @@ public class Function : MonoBehaviour {
         {
             Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.green, 10, true);
             
-            Debug.Log("Hit: " + hit.rigidbody.tag);
             if (hit.rigidbody && hit.rigidbody.tag == "resource" )
             {
-
                 playerInstance.player.inventoryAdd(hit.rigidbody.transform.GetComponentInParent<ResourceSource>().harvest);
+                gui.newTextLine("You manage to extract some resources!");
             }
         }
 

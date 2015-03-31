@@ -65,6 +65,7 @@ public class PlayerObject : MonoBehaviour {
                 case 22: skillList.Insert(22, new Skill_Active_Lesser_Magic_Health_To_Mana()); skillList[22].setPlayerInstance(playerInstance, null); skillList[22].setGuiInstance(gui, true); break;
                 case 23: skillList.Insert(23, new Skill_Active_Lesser_Magic_Stamina_To_Health()); skillList[23].setPlayerInstance(playerInstance, null); skillList[23].setGuiInstance(gui, true); break;
                 case 24: skillList.Insert(24, new Skill_Active_Lesser_Magic_Mana_Missle()); skillList[24].setPlayerInstance(playerInstance, null); skillList[24].setGuiInstance(gui, true); break;
+                case 25: skillList.Insert(25, new Skill_Passive_Crafting_Skill_Mining()); skillList[25].setPlayerInstance(playerInstance, null); skillList[25].setGuiInstance(gui, true); break;
 
             }
         }
@@ -356,26 +357,71 @@ public class PlayerObject : MonoBehaviour {
     }
     public bool inventoryAdd(Item e){
 		if(e is Item){
-			if(getInvSize() < baseInvSize){
-                if (e.getInventorySlot() == 999)
+            if (e is Stackable)
+            {
+                string tempName = e.getItemText();
+                bool stacked = false;
+                for (int i = 0; i < inventory.Count; i++)
                 {
-                    if (inventory.Count == 0)
+                    if (inventory[i].getItemText().Equals(tempName))
                     {
-                        e.setInventorySlot(0);
-                    }else{
-                        e.setInventorySlot(inventory.Count);
+                        ((Stackable)inventory[i]).stackCount++;
+                        stacked = true;
                     }
-                    gui.setInventoryIcon(e.getInventorySlot(), e.getIcon(), false);
                 }
-				inventory.Add(e);
-                if (e.getInventoryID() == 999)
+                if (!stacked)
                 {
-                    e.setInventoryID(inventoryIDCount);
-                    inventoryIDCount++;
+                    if (getInvSize() < baseInvSize)
+                    {
+                        if (e.getInventorySlot() == 999)
+                        {
+                            if (inventory.Count == 0)
+                            {
+                                e.setInventorySlot(0);
+                            }
+                            else
+                            {
+                                e.setInventorySlot(inventory.Count);
+                            }
+                            gui.setInventoryIcon(e.getInventorySlot(), e.getIcon(), false);
+                        }
+                        inventory.Add(e);
+                        if (e.getInventoryID() == 999)
+                        {
+                            e.setInventoryID(inventoryIDCount);
+                            inventoryIDCount++;
+                        }
+                        bool spaceLeft = true;
+                        return spaceLeft;
+                    }
                 }
-				bool spaceLeft = true;
-				return spaceLeft;
-			}
+            }
+            else
+            {
+                if (getInvSize() < baseInvSize)
+                {
+                    if (e.getInventorySlot() == 999)
+                    {
+                        if (inventory.Count == 0)
+                        {
+                            e.setInventorySlot(0);
+                        }
+                        else
+                        {
+                            e.setInventorySlot(inventory.Count);
+                        }
+                        gui.setInventoryIcon(e.getInventorySlot(), e.getIcon(), false);
+                    }
+                    inventory.Add(e);
+                    if (e.getInventoryID() == 999)
+                    {
+                        e.setInventoryID(inventoryIDCount);
+                        inventoryIDCount++;
+                    }
+                    bool spaceLeft = true;
+                    return spaceLeft;
+                }
+            }
 		}
 		return false;
 	}

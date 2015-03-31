@@ -87,7 +87,53 @@ public class Player : MonoBehaviour {
         if (Input.GetButton("action") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
         {
             guiHelperNext = Time.time + 0.3333f;
-            if (player.getActiveSkill() != null &&  ((Skill)player.getActiveSkill()).getSkillGroup() == "general" || (player.getEquipment(6).getType() == "staff"))
+            if (player.getEquipment(6) is Weapon && player.getEquipment(6) is Melee && attackCooldown == 0 && !casting)
+            {
+                func.performAttack((Weapon)player.getEquipment(6));
+            }
+            else if (player.getEquipment(6).getType() == "bow")
+            {
+                if (!casting)
+                {
+                    if ((player.getActiveSkill()) == null || player.getActiveSkill().getCurrentCooldown() == 0)
+                    {
+                        castTime = func.getCastTime("ranged");
+                        addCastTime(castTime);
+                        //audioArrow[0].Play();
+                        //audioArrow[1].PlayDelayed(1.247f);
+                    }
+                    else
+                    {
+                        gui.newTextLine("Skill " + ((Skill)player.getActiveSkill()).getSkillText() + " is on cooldown!");
+                    }
+                }
+                else
+                {
+                    gui.newTextLine("Action already in progress!");
+                }
+            }
+            else if (player.getEquipment(6).getType() == "pickaxe")
+            {
+                if (!casting)
+                {
+                    if ((player.getActiveSkill()) == null || player.getActiveSkill().getCurrentCooldown() == 0)
+                    {
+                        castTime = 5 - player.getSkillEffect(25);
+                        addCastTime(castTime);
+                        //audioArrow[0].Play();
+                        //audioArrow[1].PlayDelayed(1.247f);
+                    }
+                    else
+                    {
+                        gui.newTextLine("Skill " + ((Skill)player.getActiveSkill()).getSkillText() + " is on cooldown!");
+                    }
+                }
+                else
+                {
+                    gui.newTextLine("Action already in progress!");
+                }
+            }
+            else if (player.getActiveSkill() != null &&  ((Skill)player.getActiveSkill()).getSkillGroup() == "general" || (player.getEquipment(6).getType() == "staff"))
             {
                 if (!casting)
                 {
@@ -115,42 +161,11 @@ public class Player : MonoBehaviour {
                     gui.newTextLine("Action already in progress!");
                 }
             }
-            else if (player.getEquipment(6) is Weapon && player.getEquipment(6) is Melee && attackCooldown == 0 && !casting)
-            {
-                func.performAttack((Weapon)player.getEquipment(6));
-            }
-            else if (player.getEquipment(6).getType() == "bow")
-            {
-                if (!casting)
-                {
-                    if ((player.getActiveSkill()) == null || player.getActiveSkill().getCurrentCooldown() == 0)
-                    {
-                        castTime = func.getCastTime("ranged");
-                        addCastTime(castTime);
-                        //audioArrow[0].Play();
-                        //audioArrow[1].PlayDelayed(1.247f);
-                    }
-                    else
-                    {
-                        gui.newTextLine("Skill " + ((Skill)player.getActiveSkill()).getSkillText() + " is on cooldown!");
-                    }
-                }
-                else
-                {
-                    gui.newTextLine("Action already in progress!");
-                }
-            }
 
         }
         if (doneCasting && !(Input.GetButtonDown("action")))
         {
-            if (((Skill)player.getActiveSkill()).getSkillGroup() == "general")
-            {
-                gui.newTextLine(func.performAction(currentlyCasting));
-                currentlyCasting = null;
-                doneCasting = false;
-            }
-            else if (player.getEquipment(6).getType() == "bow")
+            if (player.getEquipment(6).getType() == "bow")
             {
                 func.performAttack((Weapon)player.getEquipment(6));
                 doneCasting = false;
@@ -164,6 +179,24 @@ public class Player : MonoBehaviour {
                 doneCasting = false;
                 //audioMagicCharge[0].Stop();
             }
+            else if (player.getEquipment(6).getType() == "pickaxe")
+            {
+                func.harvest();
+                doneCasting = false;
+                gainSkill(0.333f, 25);
+                //audioMagicCharge[0].Stop();
+            }
+            else if (((Skill)player.getActiveSkill()).getSkillGroup() == "general")
+            {
+                gui.newTextLine(func.performAction(currentlyCasting));
+                currentlyCasting = null;
+                doneCasting = false;
+            }
+        }
+        if (Input.GetButton("sheath") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
+        {
+            guiHelperNext = Time.time + 0.3333f;
+            func.sheathWeapon();
         }
         if (Input.GetButton("Hotbar1") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
         {
@@ -216,11 +249,6 @@ public class Player : MonoBehaviour {
             func.hotbarUse(9);
         }
 
-        if (Input.GetButton("sheath") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
-        {
-            guiHelperNext = Time.time + 0.3333f;
-            func.sheathWeapon();
-        }
     }
 
 	void gameLogic () {

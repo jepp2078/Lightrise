@@ -7,12 +7,12 @@ public class Item_Resources_Iron_Ore : Item_Resources_BaseResource
 {
     public Item_Resources_Iron_Ore()
     {
-        //texture = Resources.Load("short_bow", typeof(Texture)) as Texture;
+        texture = Resources.Load("item_normal_iron", typeof(Texture)) as Texture;
         price = 1;
         weight = 1.0f;
         inventoryID = 999;
         inventorySlot = 999;
         itemName = "Iron Ore";
-        itemDescription = "This amazingly usefull ore can be smelted into iron";
+        itemDescription = "This usefull ore can be smelted into iron";
     }
 }

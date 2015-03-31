@@ -85316,6 +85316,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 677ba42a6b7a5884eb99b6c48c70a95e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _resourceCount: 100
+  _resourceMax: 100
+  _respawnCooldown: 600
 --- !u!64 &2100889995
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -85339,7 +85342,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
