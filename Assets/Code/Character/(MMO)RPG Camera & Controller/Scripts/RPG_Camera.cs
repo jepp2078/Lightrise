@@ -349,12 +349,13 @@ public class RPG_Camera : MonoBehaviour
         {
             guiMode = true;
             Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
         else
         {
             guiMode = false;
-            //Screen.lockCursor = true;
             Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 

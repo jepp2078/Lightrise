@@ -45,6 +45,7 @@ public class Player : MonoBehaviour {
         //audioAmbience[0].Play();
         doneCasting = false;
         casting = false;
+        rpgCamera.instance.setGuiMode(true);
         InvokeRepeating("serverTick", 0, 0.0825F); //TEMP value. We might need to change how fast the server ticks? 1/12 of a sec right now.
     }
 

@@ -383,7 +383,7 @@ public class PlayerObject : MonoBehaviour {
                             {
                                 e.setInventorySlot(inventory.Count);
                             }
-                            gui.setInventoryIcon(e.getInventorySlot(), e.getIcon(), false);
+                            gui.setInventoryIcon(e.getInventorySlot(), e.getIcon(), false, e);
                         }
                         inventory.Add(e);
                         if (e.getInventoryID() == 999)
@@ -410,7 +410,7 @@ public class PlayerObject : MonoBehaviour {
                         {
                             e.setInventorySlot(inventory.Count);
                         }
-                        gui.setInventoryIcon(e.getInventorySlot(), e.getIcon(), false);
+                        gui.setInventoryIcon(e.getInventorySlot(), e.getIcon(), false, e);
                     }
                     inventory.Add(e);
                     if (e.getInventoryID() == 999)
@@ -458,17 +458,17 @@ public class PlayerObject : MonoBehaviour {
         {
             if (inventory[i].getInventoryID() == inventoryID)
             {
-                gui.setInventoryIcon(inventory[i].getInventorySlot(), null, true);
+                gui.setInventoryIcon(inventory[i].getInventorySlot(), null, true, null);
                 inventory[i].setInventorySlot(999);
                 inventory.RemoveAt(i);
                 for (int f = 0; f < inventory.Count; f++)
                 {
                     inventory[f].setInventorySlot(f);
-                    gui.setInventoryIcon(inventory[f].getInventorySlot(), inventory[f].getIcon(), false);
+                    gui.setInventoryIcon(inventory[f].getInventorySlot(), inventory[f].getIcon(), false, inventory[f]);
                 }
                 for (int x = inventory.Count; x<21 ; x++)
                 {
-                    gui.setInventoryIcon(x, null, true);
+                    gui.setInventoryIcon(x, null, true, null);
                 }
                 if (getInvSize() < baseInvSize)
                 {
@@ -529,7 +529,7 @@ public class PlayerObject : MonoBehaviour {
 					inventoryRemove(i);
 					inventoryAdd(equipmentList[6]);
                     equipmentList[6] = equipmentIn;
-                    if (equipmentList[6].getType() == "bow")
+                    if (equipmentList[6] is Ranged)
                     {
                         camera.setDesiredDistance(0.05f);
                     }

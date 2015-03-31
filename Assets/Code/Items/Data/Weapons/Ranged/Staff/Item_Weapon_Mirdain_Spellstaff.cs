@@ -103,7 +103,7 @@ public class Item_Weapon_Mirdain_Spellstaff : Weapon, Item, Equipable, HotbarAbl
 
     string Item.getType()
     {
-        string type = "pickaxe";
+        string type = "staff";
         return type;
     }
 

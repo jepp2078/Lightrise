@@ -5,24 +5,28 @@ using System;
 
 public class GuiFunction : MonoBehaviour {
     public RawImage hotbar0, hotbar1, hotbar2, hotbar3, hotbar4, hotbar5, hotbar6, hotbar7, hotbar8, hotbar9, activeSkill, activeWeapon, activeWeaponBg;
-    public Text consoleText, castTime, name;
+    public Text consoleText, castTime, name, tooltipText;
     public RawImage[] castBar = new RawImage[5];
     public RawImage[] inventoryImage = new RawImage[2];
+    public RawImage[] tooltipImage = new RawImage[2];
     public RawImage[] inventory = new RawImage[21];
     public Image health, stamina, mana;
     public Image[] skillCooldowns = new Image[10];
+    public InventoryGuiFunction[] inventoryItems = new InventoryGuiFunction[21];
     Texture tempIcon, tempIconInventory;
-    string tempMessageString, tempCastString, tempNameString;
+    string tempMessageString, tempCastString, tempNameString, tempToolTip;
     int hotbarIndex, inventoryIndex, lines = 0;
-    bool nameCall = false, hotbarCall = false, activeSkillCall = false, activeWeaponCall = false, drawWeaponCall = false, textCall = false, clearText = false, castTimeCall = false, inventoryCall = false, casting = false;
+    bool toolTipCall = false, nameCall = false, hotbarCall = false, activeSkillCall = false, activeWeaponCall = false, drawWeaponCall = false, textCall = false, clearText = false, castTimeCall = false, inventoryCall = false, casting = false;
     Color alpha, bg, inventoryAlpha;
     public Player player;
-    private bool isInvShowing = false;
+    private bool isInvShowing = false, isTooltipShowing = false;
+    Item tempItem;
 
     public void init()
     {
         hideCastBar();
         hideInventory();
+        hideTooltip();
     }
 
     public void setName(string name)
@@ -46,10 +50,11 @@ public class GuiFunction : MonoBehaviour {
         OnGUI();
     }
 
-    public void setInventoryIcon(int inventorySlot, Texture icon, bool transparent)
+    public void setInventoryIcon(int inventorySlot, Texture icon, bool transparent, Item item)
     {
         inventoryIndex = inventorySlot;
         tempIconInventory = icon;
+        tempItem = item;
         if (transparent || !isInvShowing)
         {
             inventoryAlpha = new Color(255, 255, 255, 0);
@@ -182,12 +187,42 @@ public class GuiFunction : MonoBehaviour {
             
             inventory[t].color = new Color(255, 255, 255, 0);
         }
+        hideTooltip();
         isInvShowing = false;
+    }
+
+    public void showTooltip()
+    {
+
+        tooltipImage[0].color = new Color(255, 255, 255, 255);
+        tooltipImage[1].color = new Color(0, 0, 0, 255);
+        tooltipText.color = new Color(255, 255, 255, 255);
+        isTooltipShowing = true;
+    }
+    public void hideTooltip()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            tooltipImage[i].color = new Color(255, 255, 255, 0);
+        }
+        tooltipText.color = new Color(255, 255, 255, 0);
+        isTooltipShowing = false;
+    }
+
+    public void setToolTip(string input)
+    {
+        tempToolTip = input;
+        toolTipCall = true;
     }
 
     public bool isInventoryShowing()
     {
         return isInvShowing;
+    }
+
+    public bool isToolTShowing()
+    {
+        return isTooltipShowing;
     }
     public void setSkillCooldown(float current, float total, int slot)
     {
@@ -253,12 +288,25 @@ public class GuiFunction : MonoBehaviour {
         {
             inventory[inventoryIndex].texture = tempIconInventory; 
             inventory[inventoryIndex].color = inventoryAlpha;
+            inventoryItems[inventoryIndex].setItem(tempItem);
+
             inventoryCall = false;
+        }
+        if (toolTipCall)
+        {
+            tooltipText.text = tempToolTip;
+            toolTipCall = false;
         }
 
         health.fillAmount = player.player.getTempHealthFloat() / player.player.getHealthFloat();
         stamina.fillAmount = player.player.getTempStaminaFloat() / player.player.getStaminaFloat();
         mana.fillAmount = player.player.getTempManaFloat() / player.player.getManaFloat();
+
+    }
+
+    void OnMouseEnter()
+    {
+        Debug.Log("hit something");
     }
 
 }
