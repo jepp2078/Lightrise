@@ -10,17 +10,18 @@ public class GuiFunction : MonoBehaviour {
     public RawImage[] inventoryImage = new RawImage[2];
     public RawImage[] tooltipImage = new RawImage[2];
     public RawImage[] inventory = new RawImage[21];
-    public Image health, stamina, mana;
+    public Image health, stamina, mana, castProgress;
     public Image[] skillCooldowns = new Image[10];
     public InventoryGuiFunction[] inventoryItems = new InventoryGuiFunction[21];
     Texture tempIcon, tempIconInventory;
     string tempMessageString, tempCastString, tempNameString, tempToolTip;
-    int hotbarIndex, inventoryIndex, lines = 0;
+    int hotbarIndex, inventoryIndex, lines = 0, maxLines = 90;
     bool toolTipCall = false, nameCall = false, hotbarCall = false, activeSkillCall = false, activeWeaponCall = false, drawWeaponCall = false, textCall = false, clearText = false, castTimeCall = false, inventoryCall = false, casting = false;
     Color alpha, bg, inventoryAlpha;
     public Player player;
     private bool isInvShowing = false, isTooltipShowing = false;
     Item tempItem;
+    public Scrollbar scrollbar;
 
     public void init()
     {
@@ -111,11 +112,15 @@ public class GuiFunction : MonoBehaviour {
     public void newTextLine(string input)
     {
         lines++;
-        if (lines > 10)
+        if (lines > maxLines)
         {
             clearText = true;
             lines = 1;
         }
+        if (lines > 12)
+            scrollbar.value -= 0.01228f; //Mathf.Abs(1f - (((float)lines) / ((float)maxLines)) + 0.01f + 0.005f);
+        else
+            scrollbar.value = 1;
         tempMessageString = "[" + DateTime.Now.ToString("hh:mm:ss") + "] " + input + "\n";
         textCall = true;
         OnGUI();
@@ -123,7 +128,7 @@ public class GuiFunction : MonoBehaviour {
 
     }
 
-    public void setCastTime(float input)
+    public void setCastTime(float input, float total)
     {
         if (casting == false)
         {
@@ -132,17 +137,19 @@ public class GuiFunction : MonoBehaviour {
         }
         if (input != 0) 
         { 
-        TimeSpan t = TimeSpan.FromSeconds(Convert.ToDouble(input));
+        //TimeSpan t = TimeSpan.FromSeconds(Convert.ToDouble(input));
 
-        tempCastString = string.Format("{0:D2}:{1:D3}s",
-                        t.Seconds,
-                        t.Milliseconds);
+        //tempCastString = string.Format("{0:D2}:{1:D3}s",
+        //                t.Seconds,
+        //                t.Milliseconds);
+        castProgress.fillAmount = Mathf.Abs(1-(input/total));
         }
         else
         {
-            tempCastString = "";
+            //tempCastString = "";
             hideCastBar();
             casting = false;
+            castProgress.fillAmount = 0;
         }
         castTimeCall = true;
         OnGUI();
@@ -194,7 +201,7 @@ public class GuiFunction : MonoBehaviour {
     public void showTooltip()
     {
 
-        tooltipImage[0].color = new Color(255, 255, 255, 255);
+        tooltipImage[0].color = new Color(0, 0, 0, 255);
         tooltipImage[1].color = new Color(0, 0, 0, 255);
         tooltipText.color = new Color(255, 255, 255, 255);
         isTooltipShowing = true;
@@ -276,7 +283,7 @@ public class GuiFunction : MonoBehaviour {
         }
         if (castTimeCall)
         {
-            castTime.text = tempCastString;
+            //castTime.text = tempCastString;
             textCall = false;
         }
         if (nameCall)

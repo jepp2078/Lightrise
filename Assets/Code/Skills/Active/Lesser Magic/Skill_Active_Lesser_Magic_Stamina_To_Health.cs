@@ -36,7 +36,7 @@ public class Skill_Active_Lesser_Magic_Stamina_To_Health : SkillEntity, Skill, H
         base(id, skillName)
     {
         texture = Resources.Load("lessermagic_stamina2health01", typeof(Texture)) as Texture;
-        particle = Resources.Load("Cure", typeof(GameObject)) as GameObject;
+        particle = Resources.Load("stamina2health", typeof(GameObject)) as GameObject;
     }
 
     public int getSkillID()

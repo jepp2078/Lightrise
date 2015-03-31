@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
     private List<Castable> cooldownList = new List<Castable>();
     private List<Castable> spellDurationList = new List<Castable>();
     private float attackCooldown = 0f;
-    private float castTime = 0f;
+    private float castTime = 0f, totalCastTime = 0f;
     private bool casting;
     private Skill currentlyCasting;
     public bool doneCasting;
@@ -75,10 +75,11 @@ public class Player : MonoBehaviour {
             else
             {
                 gui.showInventory();
+                rpgCamera.instance.setGuiMode(true);
             }
         }
 
-        if (Input.GetKey(KeyCode.H) && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
+        if (Input.GetKey(KeyCode.H) && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false )
         {
             guiHelperNext = Time.time + 0.3333f;
 
@@ -88,18 +89,22 @@ public class Player : MonoBehaviour {
         if (Input.GetButton("action") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
         {
             guiHelperNext = Time.time + 0.3333f;
-            if (player.getEquipment(6) is Weapon && player.getEquipment(6) is Melee && attackCooldown == 0 && !casting)
+            if (player.getEquipment(6) is Weapon && player.getEquipment(6) is Melee && attackCooldown == 0 && !casting )
             {
                 func.performAttack((Weapon)player.getEquipment(6));
+                player.setStamina(4f, 0);
             }
-            else if (player.getEquipment(6).getType() == "bow")
+            else if (player.getEquipment(6) != null && player.getEquipment(6).getType() == "bow")
             {
                 if (!casting)
                 {
                     if ((player.getActiveSkill()) == null || player.getActiveSkill().getCurrentCooldown() == 0)
                     {
-                        castTime = func.getCastTime("ranged");
-                        addCastTime(castTime);
+                        if (!doneCasting)
+                        {
+                            castTime = func.getCastTime("ranged");
+                            addCastTime(castTime);
+                        }
                         //audioArrow[0].Play();
                         //audioArrow[1].PlayDelayed(1.247f);
                     }
@@ -110,31 +115,36 @@ public class Player : MonoBehaviour {
                 }
                 else
                 {
-                    gui.newTextLine("Action already in progress!");
+                    if (!(Input.GetButton("action")))
+                        gui.newTextLine("Action already in progress!");
                 }
             }
-            else if (player.getEquipment(6).getType() == "pickaxe")
+            else if (player.getEquipment(6) != null && player.getEquipment(6).getType() == "pickaxe")
             {
                 if (!casting)
                 {
                     if ((player.getActiveSkill()) == null || player.getActiveSkill().getCurrentCooldown() == 0)
                     {
-                        castTime = 5 - player.getSkillEffect(25);
-                        addCastTime(castTime);
-                        //audioArrow[0].Play();
-                        //audioArrow[1].PlayDelayed(1.247f);
+                        if (!doneCasting)
+                        {
+                            castTime = 5 - player.getSkillEffect(25);
+                            addCastTime(castTime);
+                            //audioArrow[0].Play();
+                            //audioArrow[1].PlayDelayed(1.247f);
+                        }
                     }
                     else
                     {
-                        gui.newTextLine("Skill " + ((Skill)player.getActiveSkill()).getSkillText() + " is on cooldown!");
+                            gui.newTextLine("Skill " + ((Skill)player.getActiveSkill()).getSkillText() + " is on cooldown!");
                     }
                 }
                 else
                 {
-                    gui.newTextLine("Action already in progress!");
+                    if (!(Input.GetButton("action")))
+                        gui.newTextLine("Action already in progress!");
                 }
             }
-            else if (player.getActiveSkill() != null &&  ((Skill)player.getActiveSkill()).getSkillGroup() == "general" || (player.getEquipment(6).getType() == "staff"))
+            else if (player.getActiveSkill() != null && ((Skill)player.getActiveSkill()).getSkillGroup() == "general" || player.getEquipment(6) != null && (player.getEquipment(6).getType() == "staff"))
             {
                 if (!casting)
                 {
@@ -142,10 +152,13 @@ public class Player : MonoBehaviour {
                     {
                         if (player.getActiveSkill() is Spell)
                         {
-                            castTime = func.getCastTime("spell");
-                            addCastTime(castTime);
-                            currentlyCasting = (Skill) player.getActiveSkill();
-                            //audioMagicCharge[0].Play();
+                            if (!doneCasting)
+                            {
+                                castTime = func.getCastTime("spell");
+                                addCastTime(castTime);
+                                currentlyCasting = (Skill)player.getActiveSkill();
+                                //audioMagicCharge[0].Play();
+                            }
                         }
                         else
                         {
@@ -159,32 +172,35 @@ public class Player : MonoBehaviour {
                 }
                 else
                 {
-                    gui.newTextLine("Action already in progress!");
+                    if (!(Input.GetButton("action")))
+                        gui.newTextLine("Action already in progress!");
                 }
             }
 
         }
-        if (doneCasting && !(Input.GetButtonDown("action")))
+        if (doneCasting && !(Input.GetButton("action")))
         {
-            if (player.getEquipment(6).getType() == "bow")
+            if (player.getEquipment(6) != null && player.getEquipment(6).getType() == "bow")
             {
                 func.performAttack((Weapon)player.getEquipment(6));
+                player.setStamina(4f, 0);
                 doneCasting = false;
                 //audioArrow[1].Stop();
                 //audioArrow[2].Play();
             }
-            else if (player.getEquipment(6).getType() == "staff")
+            else if (player.getEquipment(6) != null && player.getEquipment(6).getType() == "staff")
             {
                 gui.newTextLine(func.performAction(currentlyCasting));
                 currentlyCasting = null;
                 doneCasting = false;
                 //audioMagicCharge[0].Stop();
             }
-            else if (player.getEquipment(6).getType() == "pickaxe")
+            else if (player.getEquipment(6) != null && player.getEquipment(6).getType() == "pickaxe")
             {
                 func.harvest();
                 doneCasting = false;
                 gainSkill(0.333f, 25);
+                player.setStamina(7f, 0);
                 //audioMagicCharge[0].Stop();
             }
             else if (((Skill)player.getActiveSkill()).getSkillGroup() == "general")
@@ -194,57 +210,57 @@ public class Player : MonoBehaviour {
                 doneCasting = false;
             }
         }
-        if (Input.GetButton("sheath") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
+        if (Input.GetButton("sheath") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false && doneCasting == false)
         {
             guiHelperNext = Time.time + 0.3333f;
             func.sheathWeapon();
         }
-        if (Input.GetButton("Hotbar1") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
+        if (Input.GetButton("Hotbar1") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false && !(Input.GetButton("action")))
         {
             guiHelperNext = Time.time + guiHelper;
             func.hotbarUse(0);
         }
-        if (Input.GetButton("Hotbar2") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
+        if (Input.GetButton("Hotbar2") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false && !(Input.GetButton("action")))
         {
             guiHelperNext = Time.time + guiHelper;
             func.hotbarUse(1);
         }
-        if (Input.GetButton("Hotbar3") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
+        if (Input.GetButton("Hotbar3") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false && !(Input.GetButton("action")))
         {
             guiHelperNext = Time.time + guiHelper;
             func.hotbarUse(2);
         }
-        if (Input.GetButton("Hotbar4") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
+        if (Input.GetButton("Hotbar4") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false && !(Input.GetButton("action")))
         {
             guiHelperNext = Time.time + guiHelper;
             func.hotbarUse(3);
         }
-        if (Input.GetButton("Hotbar5") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
+        if (Input.GetButton("Hotbar5") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false && !(Input.GetButton("action")))
         {
             guiHelperNext = Time.time + guiHelper;
             func.hotbarUse(4);
         }
-        if (Input.GetButton("Hotbar6") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
+        if (Input.GetButton("Hotbar6") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false && !(Input.GetButton("action")))
         {
             guiHelperNext = Time.time + guiHelper;
             func.hotbarUse(5);
         }
-        if (Input.GetButton("Hotbar7") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
+        if (Input.GetButton("Hotbar7") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false && !(Input.GetButton("action")))
         {
             guiHelperNext = Time.time + guiHelper;
             func.hotbarUse(6);
         }
-        if (Input.GetButton("Hotbar8") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
+        if (Input.GetButton("Hotbar8") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false && !(Input.GetButton("action")))
         {
             guiHelperNext = Time.time + guiHelper;
             func.hotbarUse(7);
         }
-        if (Input.GetButton("Hotbar9") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
+        if (Input.GetButton("Hotbar9") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false && !(Input.GetButton("action")))
         {
             guiHelperNext = Time.time + guiHelper;
             func.hotbarUse(8);
         }
-        if (Input.GetButton("Hotbar0") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false)
+        if (Input.GetButton("Hotbar0") && Time.time > guiHelperNext && rpgCamera.instance.getGuiMode() == false && !(Input.GetButton("action")))
         {
             guiHelperNext = Time.time + guiHelper;
             func.hotbarUse(9);
@@ -349,18 +365,18 @@ public class Player : MonoBehaviour {
             castTime -= 0.0825F;
             if (castTime <= 0)
             {
-              gui.setCastTime(0);
+                gui.setCastTime(0, totalCastTime);
             }
             else
             {
-                gui.setCastTime(castTime);
+                gui.setCastTime(castTime, totalCastTime);
             }
         }
         else if (castTime <= 0)
         {
             castTime = 0f;
             casting = false;
-            gui.setCastTime(0);
+            gui.setCastTime(0,0);
             doneCasting = true;
         }
     }
@@ -384,9 +400,10 @@ public class Player : MonoBehaviour {
     {
         if (time != 0)
         {
+            totalCastTime = time;
             castTime = time;
             casting = true;
-            gui.setCastTime(time);
+            gui.setCastTime(time, time);
         }
         else
         {

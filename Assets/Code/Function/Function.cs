@@ -126,7 +126,7 @@ public class Function : MonoBehaviour {
                         pos += new Vector3(0f, 0.45f, 0f);
                         Quaternion rot = playerInstance.playerObject.transform.rotation;
                         tempProjectile = (GameObject)Instantiate(tempProjectile, pos, rot);
-                        tempProjectile.GetComponent<Rigidbody>().AddForce(playerInstance.playerObject.GetComponentInChildren<Camera>().transform.forward * 500f);
+                        tempProjectile.GetComponent<Rigidbody>().AddForce(playerInstance.playerObject.GetComponentInChildren<Camera>().transform.forward * 1500f);
 
                         WeaponHitInfo info = tempProjectile.GetComponent<WeaponHitInfo>();
                         info.damage = tempEffect;
@@ -137,8 +137,6 @@ public class Function : MonoBehaviour {
                     playerInstance.instance.addCooldown(skill);
                     skill.updateGainPrCast();
                     playerInstance.instance.gainSkill(skill.getGainPrCast(), ((Skill)skill).getSkillID());
-                    playerInstance.player.setActiveSkill(null);
-                    gui.setActiveSkillIcon(null, true);
                     //if (audioMagic[((Skill)skill).getSkillID() - 1] != null)
                     //    audioMagic[((Skill)skill).getSkillID() - 1].Play();
                     return "You cast " + skill.getCastMsg();
