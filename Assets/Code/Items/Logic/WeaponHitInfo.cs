@@ -25,7 +25,7 @@ public class WeaponHitInfo : MonoBehaviour {
                 case "arrow": armorValue = other.gameObject.GetComponent<NpcObject>().getProtection(damageType); break;
             }
             damage -= armorValue;
-            gui.newTextLine("You hit " + other.gameObject.name + " for " + damage + " " + damageType + " damage!");
+            gui.newTextLine("You hit <color=blue>" + other.gameObject.name + "</color> for <color=maroon>" + damage + "</color> " + damageType + " damage!");
             other.gameObject.GetComponent<NpcFunction>().takeDamage(damage, damageType);
 
             if (weapon != null)
@@ -70,6 +70,7 @@ public class WeaponHitInfo : MonoBehaviour {
                 case "arrow": armorValue = other.gameObject.GetComponent<PlayerObject>().getProtection(damageType); break;
             }
             damage -= armorValue;
+            gui.newTextLine("You hit <color=blue>" + other.gameObject.name + "</color> for <color=maroon>" + damage + "</color> " + damageType + " damage!");
             other.gameObject.GetComponent<Function>().takeDamage(damage, damageType);
         }
 

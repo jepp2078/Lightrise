@@ -29,7 +29,10 @@ public class Function : MonoBehaviour {
         {
             playerInstance.player.hotbarAdd(instance, hotbarSlot);
             instance.setHotbarSlot(hotbarSlot);
-            gui.setHotbarIcon(hotbarSlot, instance.getIcon(), false);
+            if(instance is Item)
+                gui.setHotbarIcon(hotbarSlot, instance.getIcon(), false, ((Item)instance),null);
+            else
+                gui.setHotbarIcon(hotbarSlot, instance.getIcon(), false, null, ((Skill)instance));
         }
     }
 

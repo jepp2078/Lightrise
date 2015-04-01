@@ -138,7 +138,7 @@ public class Skill_Active_Lesser_Magic_Stamina_To_Health : SkillEntity, Skill, H
 
     public GameObject cast()
     {
-        playerInstance.player.setHealth(0, effect, true,"");
+        playerInstance.player.setHealth(0, effect, false,"");
         Instantiate(particle, playerInstance.playerObject.transform.position - (new Vector3(0, 1, 0)), playerInstance.playerObject.transform.rotation);
         return null;
     }

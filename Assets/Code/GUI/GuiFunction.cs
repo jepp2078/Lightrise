@@ -13,6 +13,7 @@ public class GuiFunction : MonoBehaviour {
     public Image health, stamina, mana, castProgress;
     public Image[] skillCooldowns = new Image[10];
     public InventoryGuiFunction[] inventoryItems = new InventoryGuiFunction[21];
+    public hotbarGuiFunction[] hotbarSlots = new hotbarGuiFunction[10];
     Texture tempIcon, tempIconInventory;
     string tempMessageString, tempCastString, tempNameString, tempToolTip;
     int hotbarIndex, inventoryIndex, lines = 0, maxLines = 90;
@@ -20,7 +21,8 @@ public class GuiFunction : MonoBehaviour {
     Color alpha, bg, inventoryAlpha;
     public Player player;
     private bool isInvShowing = false, isTooltipShowing = false;
-    Item tempItem;
+    Item tempItem, tempItem1;
+    Skill tempSkill;
     public Scrollbar scrollbar;
 
     public void init()
@@ -35,10 +37,12 @@ public class GuiFunction : MonoBehaviour {
         tempNameString = name;
         nameCall = true;
     }
-    public void setHotbarIcon(int hotbarSlot, Texture icon, bool transparent)
+    public void setHotbarIcon(int hotbarSlot, Texture icon, bool transparent, Item item, Skill skill)
     {
         hotbarIndex = hotbarSlot;
         tempIcon = icon;
+        tempItem1 = item;
+        tempSkill = skill;
         if (transparent)
         {
             alpha = new Color(255, 255, 255, 0);
@@ -253,6 +257,11 @@ public class GuiFunction : MonoBehaviour {
                 case 8: hotbar8.texture = tempIcon; hotbar8.color = alpha; break;
                 case 9: hotbar9.texture = tempIcon; hotbar9.color = alpha; break;
             }
+            if (tempItem1 == null)
+                hotbarSlots[hotbarIndex].setSkill(tempSkill);
+            else
+                hotbarSlots[hotbarIndex].setItem(tempItem1);
+
             hotbarCall = false;
         }
         if(activeSkillCall)

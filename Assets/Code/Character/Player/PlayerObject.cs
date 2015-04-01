@@ -731,11 +731,11 @@ public class PlayerObject : MonoBehaviour {
     {
         if (damage == 0 && !regen)
         {
-            gui.newTextLine("You were healed for " + healing.ToString("0.00"));
+            gui.newTextLine("You were healed for <color=lime>" + healing.ToString("0.00")+"</color> ");
         }
         else if(healing == 0 && !regen)
         {
-            gui.newTextLine("You took " + damage.ToString("0.00") + " "+ type +" damage!");
+            gui.newTextLine("You took <color=red>" + damage.ToString("0.00") + "</color> "+ type +" damage!");
         }
         tempHealth -= damage;
         tempHealth += healing;
