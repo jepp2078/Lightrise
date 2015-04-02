@@ -15,6 +15,7 @@ public class WeaponHitInfo : MonoBehaviour {
 
     void calculateDamage(Collider other)
     {
+        Debug.Log(other.gameObject.tag);
         if (other.gameObject.tag == "npc" && playerInstance != null)
         {
             gui = playerInstance.gui;
@@ -42,9 +43,11 @@ public class WeaponHitInfo : MonoBehaviour {
 
         else if (other.gameObject.tag == "Player")
         {
+            Debug.Log(damage);
+            gui = playerInstance.gui;
             if (playerInstance != null)
             {
-                if (playerInstance == other.gameObject.GetComponent<Player>())
+                if (playerInstance == other.gameObject.GetComponentInChildren<Player>())
                 {
                     destroy();
                     return;
@@ -66,12 +69,12 @@ public class WeaponHitInfo : MonoBehaviour {
 
             switch (damageType)
             {
-                case "slashing": armorValue = other.gameObject.GetComponent<PlayerObject>().getProtection(damageType); break;
-                case "arrow": armorValue = other.gameObject.GetComponent<PlayerObject>().getProtection(damageType); break;
+                //case "slashing": armorValue = other.gameObject.GetComponent<PlayerObject>().getProtection(damageType); break;
+                //case "arrow": armorValue = other.gameObject.GetComponent<PlayerObject>().getProtection(damageType); break;
             }
-            damage -= armorValue;
+            //damage -= armorValue;
             gui.newTextLine("You hit <color=blue>" + other.gameObject.name + "</color> for <color=maroon>" + damage + "</color> " + damageType + " damage!");
-            other.gameObject.GetComponent<Function>().takeDamage(damage, damageType);
+            other.gameObject.GetComponentInChildren<PhotonView>().RPC("takeDamage", PhotonTargets.All, damage, damageType);//takeDamage(damage, damageType);
         }
 
         destroy();

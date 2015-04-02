@@ -3,9 +3,6 @@ using System.Collections;
 
 public class RPG_Controller : MonoBehaviour
 {
-
-    public static RPG_Controller instance;
-
     public CharacterController characterController;
     public float walkSpeed = 7f;
     public float baseWalkSpeed = 7f;
@@ -30,7 +27,6 @@ public class RPG_Controller : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
         characterController = GetComponent("CharacterController") as CharacterController;
 
         //RPG_Camera.CameraSetup();
@@ -77,7 +73,7 @@ public class RPG_Controller : MonoBehaviour
                 ((Castable)playerInstance.player.getSkill(1)).stopEffect();
             }
             horizontalStrafe = Input.GetAxis("Horizontal Strafe") < 0 ? -1f : Input.GetAxis("Horizontal Strafe") > 0 ? 1f : 0f;
-            serverTickIn = playerInstance.instance.serverTicks;
+            serverTickIn = playerInstance.serverTicks;
             serverTickCurrentAudio = serverTickIn;
             if (serverTickCurrentAudio % audioState == 0 && characterController.isGrounded)
             {
@@ -102,7 +98,7 @@ public class RPG_Controller : MonoBehaviour
             {
                 if (!Input.GetButton("Crouch") && !Input.GetButton("Sprint"))
                 {
-                    playerInstance.instance.gainSkill(0.0833f / 60f, 0);
+                    playerInstance.gainSkill(0.0833f / 60f, 0);
                 }
                 serverTickCurrent = serverTickIn;
             }
@@ -115,7 +111,7 @@ public class RPG_Controller : MonoBehaviour
                 ((Castable)playerInstance.player.getSkill(1)).stopEffect();
             }
             vertical = Input.GetAxis("Vertical") < 0 ? -1f : Input.GetAxis("Vertical") > 0 ? 1f : 0f;
-            serverTickIn = playerInstance.instance.serverTicks;
+            serverTickIn = playerInstance.serverTicks;
             serverTickCurrentAudio = serverTickIn;
             if (serverTickCurrentAudio % audioState == 0 && characterController.isGrounded)
             {
@@ -140,15 +136,15 @@ public class RPG_Controller : MonoBehaviour
             {
                 if (!Input.GetButton("Crouch") && !Input.GetButton("Sprint"))
                 {
-                    playerInstance.instance.gainSkill(0.0833f / 60f, 0);
+                    playerInstance.gainSkill(0.0833f / 60f, 0);
                 }
                 serverTickCurrent = serverTickIn;
             }
         }
 
         playerDir = horizontalStrafe * Vector3.right + vertical * Vector3.forward;
-        if (RPG_Animation.instance != null)
-            RPG_Animation.instance.SetCurrentMoveDir(playerDir);
+        //if (RPG_Animation.instance != null)
+        //    RPG_Animation.instance.SetCurrentMoveDir(playerDir);
 
         if (characterController.isGrounded)
         {
@@ -167,8 +163,8 @@ public class RPG_Controller : MonoBehaviour
                     ((Castable)playerInstance.player.getSkill(1)).stopEffect();
                 }
                 playerDirWorld.y = jumpHeight;
-                if (RPG_Animation.instance != null)
-                    RPG_Animation.instance.Jump(); // the pattern for calling animations is always the same: just add some lines under line 77 and write an if statement which
+                //if (RPG_Animation.instance != null)
+                //    RPG_Animation.instance.Jump(); // the pattern for calling animations is always the same: just add some lines under line 77 and write an if statement which
             }                                      // checks for an arbitrary key if it is pressed and, if true, calls "RPG_Animation.instance.YourAnimation()". After that you add
         }                                          // this method to the other animation clip methods in "RPG_Animation" (do not forget to make it public) 
 

@@ -6,7 +6,12 @@ public class Function : MonoBehaviour {
     public GuiFunction gui;
     public AudioSource[] audioSwing = new AudioSource[4];
     public AudioSource[] audioDamage = new AudioSource[11];
-    public AudioSource[] audioMagic = new AudioSource[20]; 
+    public AudioSource[] audioMagic = new AudioSource[20];
+
+    void Start()
+    {
+
+    }
 
     public string equipItem(Item item)
     {
@@ -128,7 +133,7 @@ public class Function : MonoBehaviour {
                         pos += tempOffset;
                         pos += new Vector3(0f, 0.45f, 0f);
                         Quaternion rot = playerInstance.playerObject.transform.rotation;
-                        tempProjectile = (GameObject)Instantiate(tempProjectile, pos, rot);
+                        tempProjectile = (GameObject)PhotonNetwork.Instantiate(tempProjectile.name, pos, rot, 0);
                         tempProjectile.GetComponent<Rigidbody>().AddForce(playerInstance.playerObject.GetComponentInChildren<Camera>().transform.forward * 1500f);
 
                         WeaponHitInfo info = tempProjectile.GetComponent<WeaponHitInfo>();
@@ -137,9 +142,9 @@ public class Function : MonoBehaviour {
                         info.playerInstance = playerInstance;
                     }
                     skill.setCurrentCooldown(skill.getCooldown());
-                    playerInstance.instance.addCooldown(skill);
+                    playerInstance.addCooldown(skill);
                     skill.updateGainPrCast();
-                    playerInstance.instance.gainSkill(skill.getGainPrCast(), ((Skill)skill).getSkillID());
+                    playerInstance.gainSkill(skill.getGainPrCast(), ((Skill)skill).getSkillID());
                     //if (audioMagic[((Skill)skill).getSkillID() - 1] != null)
                     //    audioMagic[((Skill)skill).getSkillID() - 1].Play();
                     return "You cast " + skill.getCastMsg();
@@ -162,7 +167,7 @@ public class Function : MonoBehaviour {
     {
         if (weapon is Melee) //damage formula weapon [ (0.2 * MS + 0.05 * WS + 0.03 * WM) + >((WD*10) - (AR*2)) ]
         {
-            GameObject hitbox = (GameObject)Instantiate(((Melee)weapon).getWeaponHitbox());
+            GameObject hitbox = (GameObject)PhotonNetwork.Instantiate(((Melee)weapon).getWeaponHitbox().name, playerInstance.playerObject.transform.position, playerInstance.playerObject.transform.rotation, 0);
             hitbox.transform.parent = playerInstance.playerObject.transform;
             hitbox.transform.position = playerInstance.playerObject.transform.position;
             Vector3 tempOffset = playerInstance.playerObject.transform.forward;
@@ -171,21 +176,20 @@ public class Function : MonoBehaviour {
             hitbox.transform.rotation = playerInstance.playerObject.transform.rotation;
             float damage = (0.2f * playerInstance.player.getStat("str") + playerInstance.player.getWeaponSkillEffect(weapon.getType(), null) + playerInstance.player.getWeaponSkillEffect(null,weapon.getType())) * weapon.getDamage()*10;
             string damageType = weapon.getDamageType();
-            WeaponHitInfo info = hitbox.GetComponentInChildren<WeaponHitInfo>();
-            info.damage = damage;
-            info.damageType = damageType;
-            info.playerInstance = playerInstance;
-            info.weapon = weapon;
+            hitbox.GetComponentInChildren<WeaponHitInfo>().damage = damage;
+            hitbox.GetComponentInChildren<WeaponHitInfo>().damageType = damageType;
+            hitbox.GetComponentInChildren<WeaponHitInfo>().playerInstance = playerInstance;
+            hitbox.GetComponentInChildren<WeaponHitInfo>().weapon = weapon;
             switch (damageType)
             {
                 //case "slashing": audioSwing[Random.Range(0, 4)].Play(); break;
             }
             float speed = ((weapon.getAttackspeed() * 5) - (0.008f * playerInstance.player.getStat("quick") + 0.003f * playerInstance.player.getWeaponSkill(null, weapon.getType())));
-            playerInstance.instance.addAttackCooldown(speed);
+            playerInstance.addAttackCooldown(speed);
          }
         else if (weapon is Ranged) //damage formula weapon [ (0.2 * MS + 0.05 * WS + 0.03 * WM) + >((WD*10) - (AR*2)) ]
         {
-            GameObject hitbox = (GameObject)Instantiate(((Ranged)weapon).getProjectile());
+            GameObject hitbox = (GameObject)PhotonNetwork.Instantiate(((Ranged)weapon).getProjectile().name, playerInstance.playerObject.transform.position, playerInstance.playerObject.transform.rotation, 0);
             hitbox.transform.position = playerInstance.playerObject.transform.position;
             Vector3 tempOffset = playerInstance.playerObject.transform.forward;
             hitbox.transform.position += tempOffset;
@@ -205,6 +209,7 @@ public class Function : MonoBehaviour {
 
     }
 
+    [RPC]
     public void takeDamage(float damage, string damageType)
     {
         playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(9) / 100)), 9);

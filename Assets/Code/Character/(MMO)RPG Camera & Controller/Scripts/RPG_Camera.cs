@@ -3,9 +3,6 @@ using System.Collections;
 
 public class RPG_Camera : MonoBehaviour
 {
-
-    public RPG_Camera instance;
-
     public Transform cameraPivot;
     public float distance = 5f;
     public float distanceMax = 6f;
@@ -41,10 +38,10 @@ public class RPG_Camera : MonoBehaviour
 
     private Player playerInstance;
     private Camera cameraInstance;
+    public RPG_Controller rpgController;
 
     void Awake()
     {
-        instance = this;
         cameraInstance = this.gameObject.GetComponent<Camera>();
     }
 
@@ -150,7 +147,7 @@ public class RPG_Camera : MonoBehaviour
 
         if (guiMode == false)
         {
-            RPG_Controller.instance.transform.rotation = Quaternion.Euler(RPG_Controller.instance.transform.eulerAngles.x, cameraInstance.transform.eulerAngles.y, RPG_Controller.instance.transform.eulerAngles.z);
+            rpgController.transform.rotation = Quaternion.Euler(rpgController.transform.eulerAngles.x, cameraInstance.transform.eulerAngles.y, rpgController.transform.eulerAngles.z);
 
         }
     }
@@ -205,29 +202,29 @@ public class RPG_Camera : MonoBehaviour
 
     void CharacterFade()
     {
-        if (RPG_Animation.instance == null)
-            return;
+        //if (RPG_Animation.instance == null)
+        //    return;
 
-        if (distance < firstPersonThreshold)
-            RPG_Animation.instance.GetComponent<Renderer>().enabled = false;
+        //if (distance < firstPersonThreshold)
+        //    RPG_Animation.instance.GetComponent<Renderer>().enabled = false;
 
-        else if (distance < characterFadeThreshold)
-        {
-            RPG_Animation.instance.GetComponent<Renderer>().enabled = true;
+        //else if (distance < characterFadeThreshold)
+        //{
+        //    RPG_Animation.instance.GetComponent<Renderer>().enabled = true;
 
-            float characterAlpha = 1 - (characterFadeThreshold - distance) / (characterFadeThreshold - firstPersonThreshold);
-            if (RPG_Animation.instance.GetComponent<Renderer>().material.color.a != characterAlpha)
-                RPG_Animation.instance.GetComponent<Renderer>().material.color = new Color(RPG_Animation.instance.GetComponent<Renderer>().material.color.r, RPG_Animation.instance.GetComponent<Renderer>().material.color.g, RPG_Animation.instance.GetComponent<Renderer>().material.color.b, characterAlpha);
+        //    float characterAlpha = 1 - (characterFadeThreshold - distance) / (characterFadeThreshold - firstPersonThreshold);
+        //    if (RPG_Animation.instance.GetComponent<Renderer>().material.color.a != characterAlpha)
+        //        RPG_Animation.instance.GetComponent<Renderer>().material.color = new Color(RPG_Animation.instance.GetComponent<Renderer>().material.color.r, RPG_Animation.instance.GetComponent<Renderer>().material.color.g, RPG_Animation.instance.GetComponent<Renderer>().material.color.b, characterAlpha);
 
-        }
-        else
-        {
+        //}
+        //else
+        //{
 
-            RPG_Animation.instance.GetComponent<Renderer>().enabled = true;
+        //    RPG_Animation.instance.GetComponent<Renderer>().enabled = true;
 
-            if (RPG_Animation.instance.GetComponent<Renderer>().material.color.a != 1)
-                RPG_Animation.instance.GetComponent<Renderer>().material.color = new Color(RPG_Animation.instance.GetComponent<Renderer>().material.color.r, RPG_Animation.instance.GetComponent<Renderer>().material.color.g, RPG_Animation.instance.GetComponent<Renderer>().material.color.b, 1);
-        }
+        //    if (RPG_Animation.instance.GetComponent<Renderer>().material.color.a != 1)
+        //        RPG_Animation.instance.GetComponent<Renderer>().material.color = new Color(RPG_Animation.instance.GetComponent<Renderer>().material.color.r, RPG_Animation.instance.GetComponent<Renderer>().material.color.g, RPG_Animation.instance.GetComponent<Renderer>().material.color.b, 1);
+        //}
     }
 
 
@@ -339,7 +336,7 @@ public class RPG_Camera : MonoBehaviour
 
     public void RotateWithCharacter()
     {
-        float rotation = Input.GetAxis("Horizontal") * RPG_Controller.instance.turnSpeed;
+        float rotation = Input.GetAxis("Horizontal") * rpgController.turnSpeed;
         mouseX += rotation;
     }
 
