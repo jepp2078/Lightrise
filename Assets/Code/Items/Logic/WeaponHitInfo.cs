@@ -83,11 +83,11 @@ public class WeaponHitInfo : MonoBehaviour {
     public void destroy()
     {
         if (this.transform.parent != null){
-            Destroy(this.transform.parent.gameObject);
+            PhotonNetwork.Destroy(this.transform.parent.gameObject);
         }
         else
         {
-            Destroy(this.transform.gameObject); 
+            PhotonNetwork.Destroy(this.transform.gameObject); 
 
         }
     }

@@ -28,15 +28,15 @@ Material:
         second: .25
       data:
         first:
+          name: _SquashAmount
+        second: 1
+      data:
+        first:
           name: _Occlusion
         second: 11.6791048
       data:
         first:
           name: _InvFade
-        second: 1
-      data:
-        first:
-          name: _SquashAmount
         second: 1
       data:
         first:
