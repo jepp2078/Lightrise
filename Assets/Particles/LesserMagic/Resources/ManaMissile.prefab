@@ -13,8 +13,6 @@ GameObject:
   - 54: {fileID: 5411636}
   - 135: {fileID: 13572262}
   - 114: {fileID: 11440132}
-  - 114: {fileID: 11410072}
-  - 114: {fileID: 11423086}
   m_Layer: 0
   m_Name: ManaMissile
   m_TagString: Untagged
@@ -46,8 +44,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 101802}
-  m_LocalRotation: {x: 0, y: .00349194836, z: 0, w: .99999392}
-  m_LocalPosition: {x: -7.05999994, y: 28.6700001, z: 8.10000038}
+  m_LocalRotation: {x: 0, y: .529919088, z: 0, w: .84804821}
+  m_LocalPosition: {x: -14.832222, y: 31.0456505, z: -10.9349718}
   m_LocalScale: {x: -.334595799, y: -.334595352, z: -.334595352}
   m_Children:
   - {fileID: 441796}
@@ -202,42 +200,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &11410072
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 101802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerId: 0
-  group: 0
-  prefixBackup: -1
-  observed: {fileID: 0}
-  synchronization: 3
-  onSerializeTransformOption: 3
-  onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 11423086}
-  ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
-  isRuntimeInstantiated: 0
---- !u!114 &11423086
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 101802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7082492e8cf199499fe7a9804b70397, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11440132
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -249,9 +211,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0815943a416a948498dce9763ccec1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  damageType: 
-  playerInstance: {fileID: 0}
+  damage: 17
+  damageType: arcane
+  viewID: 0
+  hitID: 0
+  force: {x: 0, y: 0, z: 0}
 --- !u!135 &13572262
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -50,6 +50,7 @@ public class NetworkManager : MonoBehaviour {
         myPlayerGO.GetComponentInChildren<Player>().enabled = true;
         myPlayerGO.GetComponentInChildren<Canvas>().enabled = true;
         myPlayerGO.GetComponentInChildren<GuiFunction>().enabled = true;
+        myPlayerGO.GetComponentInChildren<AudioListener>().enabled = true;
         Transform playerChar = myPlayerGO.transform.FindChild("PlayerChar");
     }
 }

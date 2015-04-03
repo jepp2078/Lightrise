@@ -140,7 +140,16 @@ public class Skill_Active_Lesser_Magic_Health_To_Mana : SkillEntity, Skill, Hotb
     public GameObject cast()
     {
         playerInstance.player.setMana(0, effect);
-        Instantiate(particle, playerInstance.playerObject.transform.position - (new Vector3(0, 1, 0)), playerInstance.playerObject.transform.rotation);
+        GameObject go = (GameObject)particle;
+        particle.transform.position = playerInstance.playerObject.transform.position - (new Vector3(0, 1, 0));
+        particle.transform.rotation = playerInstance.playerObject.transform.rotation;
+        foreach (PhotonView view in FindObjectsOfType<PhotonView>())
+        {
+            if (view.owner != null)
+            {
+                view.RPC("instanciateObject", PhotonTargets.All, go.name, go.transform.position, go.transform.rotation, Vector3.zero, 0f, "", 0, 0f);
+            }
+        }
         return null;
     }
 

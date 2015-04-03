@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Function : MonoBehaviour {
     public Player playerInstance;
@@ -7,6 +8,10 @@ public class Function : MonoBehaviour {
     public AudioSource[] audioSwing = new AudioSource[4];
     public AudioSource[] audioDamage = new AudioSource[11];
     public AudioSource[] audioMagic = new AudioSource[20];
+    private float objectID = 0.1f;
+    private float hitDetection = 0;
+    private float lastMsg = 0;
+
 
     void Start()
     {
@@ -133,13 +138,18 @@ public class Function : MonoBehaviour {
                         pos += tempOffset;
                         pos += new Vector3(0f, 0.45f, 0f);
                         Quaternion rot = playerInstance.playerObject.transform.rotation;
-                        tempProjectile = (GameObject)PhotonNetwork.Instantiate(tempProjectile.name, pos, rot, 0);
-                        tempProjectile.GetComponent<Rigidbody>().AddForce(playerInstance.playerObject.GetComponentInChildren<Camera>().transform.forward * 1500f);
+                        tempProjectile.transform.position = pos;
+                        tempProjectile.transform.rotation = rot;
+                        PhotonView viewThis = this.gameObject.GetComponent<PhotonView>();
 
-                        WeaponHitInfo info = tempProjectile.GetComponent<WeaponHitInfo>();
-                        info.damage = tempEffect;
-                        info.damageType = ((Spell)skill).getDamageType();
-                        info.playerInstance = playerInstance;
+                        foreach (PhotonView view in FindObjectsOfType<PhotonView>())
+                        {
+                            if (view.owner != null)
+                            {
+                                view.RPC("instanciateObject", PhotonTargets.All, tempProjectile.name, tempProjectile.transform.position, tempProjectile.transform.rotation, playerInstance.playerObject.GetComponentInChildren<Camera>().transform.forward * 1500f, tempEffect, ((Spell)skill).getDamageType(), viewThis.viewID, objectID);
+                                view.RPC("increaseObjectID", PhotonTargets.All);
+                            }
+                        }
                     }
                     skill.setCurrentCooldown(skill.getCooldown());
                     playerInstance.addCooldown(skill);
@@ -167,8 +177,7 @@ public class Function : MonoBehaviour {
     {
         if (weapon is Melee) //damage formula weapon [ (0.2 * MS + 0.05 * WS + 0.03 * WM) + >((WD*10) - (AR*2)) ]
         {
-            GameObject hitbox = (GameObject)PhotonNetwork.Instantiate(((Melee)weapon).getWeaponHitbox().name, playerInstance.playerObject.transform.position, playerInstance.playerObject.transform.rotation, 0);
-            hitbox.transform.parent = playerInstance.playerObject.transform;
+            GameObject hitbox = (GameObject)((Melee)weapon).getWeaponHitbox();
             hitbox.transform.position = playerInstance.playerObject.transform.position;
             Vector3 tempOffset = playerInstance.playerObject.transform.forward;
             tempOffset.Scale(new Vector3(1f, 0f, 1f));
@@ -176,62 +185,133 @@ public class Function : MonoBehaviour {
             hitbox.transform.rotation = playerInstance.playerObject.transform.rotation;
             float damage = (0.2f * playerInstance.player.getStat("str") + playerInstance.player.getWeaponSkillEffect(weapon.getType(), null) + playerInstance.player.getWeaponSkillEffect(null,weapon.getType())) * weapon.getDamage()*10;
             string damageType = weapon.getDamageType();
-            hitbox.GetComponentInChildren<WeaponHitInfo>().damage = damage;
-            hitbox.GetComponentInChildren<WeaponHitInfo>().damageType = damageType;
-            hitbox.GetComponentInChildren<WeaponHitInfo>().playerInstance = playerInstance;
-            hitbox.GetComponentInChildren<WeaponHitInfo>().weapon = weapon;
+            PhotonView viewThis = this.gameObject.GetComponent<PhotonView>();
+            foreach (PhotonView view in FindObjectsOfType<PhotonView>())
+            {
+                if (view.owner != null)
+                {
+                    view.RPC("instanciateObject", PhotonTargets.All, hitbox.name, hitbox.transform.position, hitbox.transform.rotation, Vector3.zero, damage, damageType, viewThis.viewID, objectID);
+                    view.RPC("increaseObjectID", PhotonTargets.All);
+                }
+            }
             switch (damageType)
             {
                 //case "slashing": audioSwing[Random.Range(0, 4)].Play(); break;
             }
             float speed = ((weapon.getAttackspeed() * 5) - (0.008f * playerInstance.player.getStat("quick") + 0.003f * playerInstance.player.getWeaponSkill(null, weapon.getType())));
             playerInstance.addAttackCooldown(speed);
+            playerInstance.gainSkill((1.1f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponSkillId(weapon.getType()));
+
+            if (playerInstance.player.getWeaponSkill(null, weapon.getType()) != 0)
+            {
+                playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponMasterySkillId(weapon.getType()));
+            }
          }
         else if (weapon is Ranged) //damage formula weapon [ (0.2 * MS + 0.05 * WS + 0.03 * WM) + >((WD*10) - (AR*2)) ]
         {
-            GameObject hitbox = (GameObject)PhotonNetwork.Instantiate(((Ranged)weapon).getProjectile().name, playerInstance.playerObject.transform.position, playerInstance.playerObject.transform.rotation, 0);
+            GameObject hitbox = (GameObject)((Ranged)weapon).getProjectile();
             hitbox.transform.position = playerInstance.playerObject.transform.position;
             Vector3 tempOffset = playerInstance.playerObject.transform.forward;
             hitbox.transform.position += tempOffset;
             hitbox.transform.position += new Vector3(0f, 0.60f, 0f);
             hitbox.transform.rotation = playerInstance.playerObject.transform.rotation;
-            hitbox.GetComponent<Rigidbody>().AddForce(playerInstance.playerObject.GetComponentInChildren<Camera>().transform.forward * 3000f);
             float damage = (0.2f * playerInstance.player.getStat("dex") + playerInstance.player.getWeaponSkillEffect(weapon.getType(), null) + playerInstance.player.getWeaponSkillEffect(null, weapon.getType())) * weapon.getDamage() * 10;
             string damageType = weapon.getDamageType();
+            PhotonView viewThis = this.gameObject.GetComponent<PhotonView>();
+            foreach (PhotonView view in FindObjectsOfType<PhotonView>())
+            {
+                if (view.owner != null)
+                {
+                    view.RPC("instanciateObject", PhotonTargets.All, hitbox.name, hitbox.transform.position, hitbox.transform.rotation, playerInstance.playerObject.GetComponentInChildren<Camera>().transform.forward * 2000f, damage, damageType, viewThis.viewID, objectID);
+                    view.RPC("increaseObjectID", PhotonTargets.All);
+                }
+            }
+            playerInstance.gainSkill((1.1f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponSkillId(weapon.getType()));
 
-
-            WeaponHitInfo info = hitbox.GetComponentInChildren<WeaponHitInfo>();
-            info.damage = damage;
-            info.damageType = damageType;
-            info.playerInstance = playerInstance;
-            info.weapon = weapon;
+            if (playerInstance.player.getWeaponSkill(null, weapon.getType()) != 0)
+            {
+                playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponMasterySkillId(weapon.getType()));
+            }
         }
 
     }
 
     [RPC]
-    public void takeDamage(float damage, string damageType)
+    public void takeDamage(float damage, string damageType, float hitID)
     {
-        playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(9) / 100)), 9);
-        switch (damageType)
+        bool hasHit = false;
+
+        if (hitDetection == hitID)
         {
-            case "mental": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(12) / 100)), 12); break;
-            case "infliction": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(6) / 100)), 6); break;
-            case "arrow": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(5) / 100)), 5); break;
-            case "piercing": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(5) / 100)), 5); break;
-            case "slashing": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(5) / 100)), 5); break;
-            case "bludgeoning": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(5) / 100)), 5); break;
-            case "acid": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(4) / 100)), 4); break;
-            case "unholy": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(4) / 100)), 4); break;
-            case "fire": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(8) / 100)), 8); break;
-            case "cold": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(8) / 100)), 8); break;
-            case "impact": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(8) / 100)), 8); break;
-            case "lightning": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(8) / 100)), 8); break;
+            hasHit = true;
         }
-        //audioDamage[Random.Range(4, 6)].Play();
-        playerInstance.player.setHealth(damage, 0, false, damageType);
+        if (!hasHit)
+        {
+            playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(9) / 100)), 9);
+            switch (damageType)
+            {
+                case "mental": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(12) / 100)), 12); break;
+                case "infliction": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(6) / 100)), 6); break;
+                case "arrow": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(5) / 100)), 5); break;
+                case "piercing": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(5) / 100)), 5); break;
+                case "slashing": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(5) / 100)), 5); break;
+                case "bludgeoning": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(5) / 100)), 5); break;
+                case "acid": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(4) / 100)), 4); break;
+                case "unholy": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(4) / 100)), 4); break;
+                case "fire": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(8) / 100)), 8); break;
+                case "cold": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(8) / 100)), 8); break;
+                case "impact": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(8) / 100)), 8); break;
+                case "lightning": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(8) / 100)), 8); break;
+            }
+            hitDetection = hitID;
+            playerInstance.player.setHealth(damage, 0, false, damageType);
+        }
+        //audioDamage[Random.Range(4, 6)].Play();objectID
     }
 
+    [RPC]
+    public void instanciateObject(string objectIn, Vector3 pos, Quaternion rot, Vector3 force, float damage, string damagetype, int view, float objectID)
+    {
+        GameObject go =(GameObject) Instantiate(Resources.Load(objectIn), pos, rot);
+        if (go.GetComponent<WeaponHitInfo>() != null)
+        {
+           WeaponHitInfo hit;
+           hit = go.GetComponent<WeaponHitInfo>();
+           hit.damage = damage;
+           hit.damageType = damagetype;
+           hit.viewID = view;
+           hit.hitID = objectID;
+           hit.force = force;
+        }
+        else if (go.GetComponentInChildren<WeaponHitInfo>() != null)
+        {
+            WeaponHitInfo hit;
+            hit = go.GetComponentInChildren<WeaponHitInfo>();
+            hit.damage = damage;
+            hit.damageType = damagetype;
+            hit.viewID = view;
+            hit.hitID = objectID;
+            hit.force = force;
+        }
+        if(force != Vector3.zero)
+            go.GetComponent<Rigidbody>().AddForce(force);
+    }
+
+    [RPC]
+    public void writeToGui(string msg, float id)
+    {
+        bool hasWritten = false;
+
+        if (lastMsg == id)
+        {
+            hasWritten = true;
+        }
+        if (!hasWritten)
+        {
+            gui.newTextLine(msg);
+            lastMsg = id;
+        }
+    }
     public float getCastTime(string type)
     {
         float speed;
@@ -243,6 +323,12 @@ public class Function : MonoBehaviour {
         }
 
         return 0;
+    }
+
+    [RPC]
+    public void increaseObjectID()
+    {
+        objectID += 0.1f;
     }
 
 }

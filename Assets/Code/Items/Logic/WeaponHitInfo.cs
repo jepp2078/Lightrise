@@ -4,9 +4,10 @@ using System.Collections;
 public class WeaponHitInfo : MonoBehaviour {
     public float damage;
     public string damageType;
-    public Player playerInstance;
     public Weapon weapon;
-    private GuiFunction gui;
+    public int viewID;
+    public float hitID;
+    public Vector3 force;
 	// Use this for initialization
 
     void OnTriggerStay(Collider other) {
@@ -15,10 +16,8 @@ public class WeaponHitInfo : MonoBehaviour {
 
     void calculateDamage(Collider other)
     {
-        Debug.Log(other.gameObject.tag);
-        if (other.gameObject.tag == "npc" && playerInstance != null)
+        if (other.gameObject.tag == "npc")
         {
-            gui = playerInstance.gui;
             float armorValue = 0;
             switch (damageType)
             {
@@ -26,68 +25,39 @@ public class WeaponHitInfo : MonoBehaviour {
                 case "arrow": armorValue = other.gameObject.GetComponent<NpcObject>().getProtection(damageType); break;
             }
             damage -= armorValue;
-            gui.newTextLine("You hit <color=blue>" + other.gameObject.name + "</color> for <color=maroon>" + damage + "</color> " + damageType + " damage!");
+            PhotonView.Find(viewID).RPC("writeToGui", PhotonTargets.All, "You hit <color=blue>" + other.gameObject.name + "</color> for <color=maroon>" + damage + "</color> " + damageType + " damage!");
             other.gameObject.GetComponent<NpcFunction>().takeDamage(damage, damageType);
-
-            if (weapon != null)
-            {
-                playerInstance.gainSkill((1.1f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponSkillId(weapon.getType()));
-
-                if (playerInstance.player.getWeaponSkill(null, weapon.getType()) != 0)
-                {
-                    playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponMasterySkillId(weapon.getType()));
-                }
-            }
-
+            destroy();
         }
 
-        else if (other.gameObject.tag == "Player")
+        else if (other.gameObject.tag == "Player" && other.gameObject.GetComponentInChildren<PhotonView>().viewID != viewID)
         {
-            Debug.Log(damage);
-            gui = playerInstance.gui;
-            if (playerInstance != null)
-            {
-                if (playerInstance == other.gameObject.GetComponentInChildren<Player>())
-                {
-                    destroy();
-                    return;
-                }
-                gui = playerInstance.gui;
-                if (weapon != null)
-                 playerInstance.gainSkill((1.1f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponSkillId(weapon.getType()));
-
-                if (weapon != null)
-                {
-                    if (playerInstance.player.getWeaponSkill(null, weapon.getType()) != 0)
-                    {
-                        playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponMasterySkillId(weapon.getType()));
-                    }
-                }
-            }
-
             float armorValue = 0;
 
             switch (damageType)
             {
-                //case "slashing": armorValue = other.gameObject.GetComponent<PlayerObject>().getProtection(damageType); break;
-                //case "arrow": armorValue = other.gameObject.GetComponent<PlayerObject>().getProtection(damageType); break;
+                case "slashing": armorValue = other.gameObject.GetComponent<PlayerObject>().getProtection(damageType); break;
+                case "arrow": armorValue = other.gameObject.GetComponent<PlayerObject>().getProtection(damageType); break;
             }
-            //damage -= armorValue;
-            gui.newTextLine("You hit <color=blue>" + other.gameObject.name + "</color> for <color=maroon>" + damage + "</color> " + damageType + " damage!");
-            other.gameObject.GetComponentInChildren<PhotonView>().RPC("takeDamage", PhotonTargets.All, damage, damageType);//takeDamage(damage, damageType);
+            damage -= armorValue;
+            other.gameObject.GetComponentInChildren<PhotonView>().RPC("takeDamage", PhotonTargets.All, damage, damageType, hitID);//takeDamage(damage, damageType);
+            PhotonView.Find(viewID).RPC("writeToGui", PhotonTargets.All, "You hit <color=blue>" + other.gameObject.name + "</color> for <color=maroon>" + damage + "</color> " + damageType + " damage!", hitID);
+            destroy();
         }
-
-        destroy();
+        if (force == Vector3.zero)
+        {
+            destroy();
+        }
     }
 
     public void destroy()
     {
         if (this.transform.parent != null){
-            PhotonNetwork.Destroy(this.transform.parent.gameObject);
+            Destroy(this.transform.parent.gameObject);
         }
         else
         {
-            PhotonNetwork.Destroy(this.transform.gameObject); 
+            Destroy(this.transform.gameObject); 
 
         }
     }

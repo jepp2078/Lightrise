@@ -34,4 +34,8 @@ MonoBehaviour:
   - RequestForPickupTimes
   - TaggedPlayer
   - takeDamage
+  - instanciateObject
+  - getGui
+  - writeToGui
+  - increaseObjectID
   DisableAutoOpenWizard: 0
