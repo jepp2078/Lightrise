@@ -274,17 +274,17 @@ public class Player : MonoBehaviour {
             if (player.setStamina(0.125f-player.getSkillEffect(2), 0))
             {
                 gainSkill(0.0833f/60f, 2);
-                rpgController.walkSpeed = 10;
+                rpgController.walkSpeedModifier = 3;
             }
         }
         else if (Input.GetButton("Crouch") && rpgCamera.getGuiMode() == false)
         {
                 gainSkill(0.0833f / 60f, 3);
-                rpgController.walkSpeed = 4 + player.getSkillEffect(3);
+                rpgController.walkSpeedModifier = 0;
         }
         else
         {
-            rpgController.walkSpeed = rpgController.baseWalkSpeed + player.getSkillEffect(0); //See skillID identify pdf for skill id list
+            rpgController.walkSpeedModifier = player.getSkillEffect(0) +0.000000001f;
         }
 
         if (serverTicks % 24 == 0)

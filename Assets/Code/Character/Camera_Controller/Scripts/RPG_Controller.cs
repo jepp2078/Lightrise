@@ -5,7 +5,6 @@ public class RPG_Controller : MonoBehaviour
 {
     public CharacterController characterController;
     public float walkSpeed = 7f;
-    public float baseWalkSpeed = 7f;
     public float turnSpeed = 0f;
     public float jumpHeight = 10f;
     public float gravity = 35f;
@@ -24,6 +23,8 @@ public class RPG_Controller : MonoBehaviour
     private int audioState = 0;
     private bool didPlay = false;
     private int lastPlayed = 0;
+    public float walkSpeedModifier = 0;
+    public float baseCrouchSpeed = 4f, baseWalkSpeed = 7f, baseSprintSpeed = 10f, basePaddlePenalty = 1f;
 
     void Awake()
     {
@@ -58,7 +59,7 @@ public class RPG_Controller : MonoBehaviour
         {
             audioState = 12;
         }
-        else if (walkSpeed < 10)
+        else if (walkSpeed <= 10)
         {
             audioState = 6;
         }
@@ -73,6 +74,25 @@ public class RPG_Controller : MonoBehaviour
                 ((Castable)playerInstance.player.getSkill(1)).stopEffect();
             }
             horizontalStrafe = Input.GetAxis("Horizontal Strafe") < 0 ? -1f : Input.GetAxis("Horizontal Strafe") > 0 ? 1f : 0f;
+            if (horizontalStrafe != 0)
+            {
+                if(walkSpeedModifier == 3)
+                    walkSpeed = baseSprintSpeed - 1;
+                else if (walkSpeedModifier >0)
+                    walkSpeed = baseWalkSpeed - 1 + walkSpeedModifier;
+                else
+                    walkSpeed = baseCrouchSpeed - 1  + playerInstance.player.getSkillEffect(3);
+            }
+            else
+            {
+                if (walkSpeedModifier == 3)
+                    walkSpeed = baseSprintSpeed + walkSpeedModifier;
+                else if (walkSpeedModifier > 0)
+                    walkSpeed = baseWalkSpeed + walkSpeedModifier;
+                else
+                    walkSpeed = baseCrouchSpeed + playerInstance.player.getSkillEffect(3);
+            }
+
             serverTickIn = playerInstance.serverTicks;
             serverTickCurrentAudio = serverTickIn;
             if (serverTickCurrentAudio % audioState == 0 && characterController.isGrounded)
@@ -111,6 +131,44 @@ public class RPG_Controller : MonoBehaviour
                 ((Castable)playerInstance.player.getSkill(1)).stopEffect();
             }
             vertical = Input.GetAxis("Vertical") < 0 ? -1f : Input.GetAxis("Vertical") > 0 ? 1f : 0f;
+
+            if (vertical < 0)
+            {
+                if (walkSpeedModifier == 3)
+                    if (horizontalStrafe == 0)
+                        walkSpeed = baseWalkSpeed - 1;
+                    else
+                        walkSpeed = baseWalkSpeed - 2;
+                else if (walkSpeedModifier > 0)
+                    if (horizontalStrafe == 0)
+                        walkSpeed = baseWalkSpeed - 1 + playerInstance.player.getSkillEffect(0);
+                    else
+                        walkSpeed = baseWalkSpeed - 2 + playerInstance.player.getSkillEffect(0);
+                else
+                    if (horizontalStrafe == 0)
+                        walkSpeed = baseCrouchSpeed - 1 + playerInstance.player.getSkillEffect(3);
+                    else
+                        walkSpeed = baseCrouchSpeed - 2 + playerInstance.player.getSkillEffect(3);
+            }
+            else
+            {
+                if (walkSpeedModifier == 3)
+                    if (horizontalStrafe == 0)
+                        walkSpeed = baseSprintSpeed;
+                    else
+                        walkSpeed = baseSprintSpeed - 1;
+                else if (walkSpeedModifier > 0)
+                    if (horizontalStrafe == 0)
+                        walkSpeed = baseWalkSpeed + playerInstance.player.getSkillEffect(0);
+                    else
+                        walkSpeed = baseWalkSpeed - 1 + playerInstance.player.getSkillEffect(0);
+                else
+                    if (horizontalStrafe == 0)
+                        walkSpeed = baseCrouchSpeed + playerInstance.player.getSkillEffect(3);
+                    else
+                        walkSpeed = baseCrouchSpeed - 1 + playerInstance.player.getSkillEffect(3);
+            }
+
             serverTickIn = playerInstance.serverTicks;
             serverTickCurrentAudio = serverTickIn;
             if (serverTickCurrentAudio % audioState == 0 && characterController.isGrounded)
