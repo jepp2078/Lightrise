@@ -224,7 +224,13 @@ public class RPG_Controller : MonoBehaviour
                 //if (RPG_Animation.instance != null)
                 //    RPG_Animation.instance.Jump(); // the pattern for calling animations is always the same: just add some lines under line 77 and write an if statement which
             }                                      // checks for an arbitrary key if it is pressed and, if true, calls "RPG_Animation.instance.YourAnimation()". After that you add
-        }                                          // this method to the other animation clip methods in "RPG_Animation" (do not forget to make it public) 
+            gameObject.GetComponent<PhotonTransformView>().SetSynchronizedValues(playerDirWorld, 0f);
+        }
+        else 
+        {
+            gameObject.GetComponent<PhotonTransformView>().SetSynchronizedValues(playerDirWorld, 0f);
+        }
+            // this method to the other animation clip methods in "RPG_Animation" (do not forget to make it public) 
 
         rotation.y = Input.GetAxis("Horizontal") * turnSpeed;
     }

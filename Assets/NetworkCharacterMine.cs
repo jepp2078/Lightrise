@@ -17,8 +17,8 @@ public class NetworkCharacterMine :Photon.MonoBehaviour {
         }
         else
         {
-            transform.position = Vector3.Lerp(transform.position, realPosition, 0.1f);
-            transform.rotation = Quaternion.Lerp(transform.rotation, realRotation, 0.1f);
+            transform.position = Vector3.Lerp(transform.position, realPosition, Time.deltaTime * 5);
+            transform.rotation = Quaternion.Lerp(transform.rotation, realRotation, Time.deltaTime * 5);
         }
 	}
 

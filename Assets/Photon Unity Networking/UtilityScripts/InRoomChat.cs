@@ -5,6 +5,7 @@ using System.Collections;
 [RequireComponent(typeof(PhotonView))]
 public class InRoomChat : Photon.MonoBehaviour 
 {
+    private RectTransform parent;
     public Rect GuiRect = new Rect(0,0, 250,300);
     public bool IsVisible = true;
     public bool AlignBottom = false;
@@ -16,6 +17,8 @@ public class InRoomChat : Photon.MonoBehaviour
 
     public void Start()
     {
+        parent = this.gameObject.GetComponent<RectTransform>();
+        GuiRect.position = parent.transform.position;
         if (this.AlignBottom)
         {
             this.GuiRect.y = Screen.height - this.GuiRect.height;

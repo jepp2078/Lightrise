@@ -141,12 +141,13 @@ public class Function : MonoBehaviour {
                         tempProjectile.transform.position = pos;
                         tempProjectile.transform.rotation = rot;
                         PhotonView viewThis = this.gameObject.GetComponent<PhotonView>();
-
+                        Vector3 forward = playerInstance.playerObject.GetComponentInChildren<Camera>().transform.forward;
+                        Vector3 force = forward * 1500f;
                         foreach (PhotonView view in FindObjectsOfType<PhotonView>())
                         {
                             if (view.owner != null)
                             {
-                                view.RPC("instanciateObject", PhotonTargets.All, tempProjectile.name, tempProjectile.transform.position, tempProjectile.transform.rotation, playerInstance.playerObject.GetComponentInChildren<Camera>().transform.forward * 1500f, tempEffect, ((Spell)skill).getDamageType(), viewThis.viewID, objectID);
+                                view.RPC("instanciateObject", PhotonTargets.All, tempProjectile.name, tempProjectile.transform.position, tempProjectile.transform.rotation, force, tempEffect, ((Spell)skill).getDamageType(), viewThis.viewID, objectID);
                                 view.RPC("increaseObjectID", PhotonTargets.All);
                             }
                         }
@@ -184,6 +185,7 @@ public class Function : MonoBehaviour {
             hitbox.transform.position += tempOffset;
             hitbox.transform.rotation = playerInstance.playerObject.transform.rotation;
             float damage = (0.2f * playerInstance.player.getStat("str") + playerInstance.player.getWeaponSkillEffect(weapon.getType(), null) + playerInstance.player.getWeaponSkillEffect(null,weapon.getType())) * weapon.getDamage()*10;
+            Debug.Log(damage);
             string damageType = weapon.getDamageType();
             PhotonView viewThis = this.gameObject.GetComponent<PhotonView>();
             foreach (PhotonView view in FindObjectsOfType<PhotonView>())
@@ -222,7 +224,7 @@ public class Function : MonoBehaviour {
             {
                 if (view.owner != null)
                 {
-                    view.RPC("instanciateObject", PhotonTargets.All, hitbox.name, hitbox.transform.position, hitbox.transform.rotation, playerInstance.playerObject.GetComponentInChildren<Camera>().transform.forward * 2000f, damage, damageType, viewThis.viewID, objectID);
+                    view.RPC("instanciateObject", PhotonTargets.All, hitbox.name, hitbox.transform.position, hitbox.transform.rotation, playerInstance.playerObject.GetComponentInChildren<Camera>().transform.forward * 3000f, damage, damageType, viewThis.viewID, objectID);
                     view.RPC("increaseObjectID", PhotonTargets.All);
                 }
             }

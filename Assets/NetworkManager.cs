@@ -12,6 +12,7 @@ public class NetworkManager : MonoBehaviour {
     {
         Debug.Log("Connect");
         PhotonNetwork.ConnectUsingSettings("0.1.0");
+
     }
 
     void OnDisconnectedFromPhoton()
@@ -41,7 +42,7 @@ public class NetworkManager : MonoBehaviour {
     void spawnPlayer()
     {
         Debug.Log("spawning player");
-        GameObject myPlayerGO = PhotonNetwork.Instantiate("_Player", new Vector3(-4.2f, 53.9f, -5.7f), Quaternion.identity, 0);
+        GameObject myPlayerGO = PhotonNetwork.Instantiate("_Player", new Vector3(-4f, 31f, -7.5f), Quaternion.identity, 0);
         myPlayerGO.GetComponentInChildren<RPG_Controller>().enabled = true;
         myPlayerGO.GetComponentInChildren<RPG_Camera>().enabled = true;
         myPlayerGO.GetComponentInChildren<Camera>().enabled = true;
