@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -116,7 +116,7 @@ public class PlayerObject : MonoBehaviour {
             equipmentList[6] = (Item)sheathedWeapon;
             sheathedWeapon = null;
             gui.newTextLine("You unsheathe your " + equipmentList[6].getItemText() + "!");
-            if (equipmentList[6] is Ranged)
+            if (equipmentList[6] is RangedWeapon)
             {
                 camera.viewMode("firstPerson");
             }
@@ -516,7 +516,7 @@ public class PlayerObject : MonoBehaviour {
                     { 
 				        equipmentList[6] = equipmentIn;
                     }
-                    if (equipmentList[6] is Ranged)
+                    if (equipmentList[6] is RangedWeapon)
                     {
                         camera.viewMode("firstPerson");
                     }
@@ -529,7 +529,7 @@ public class PlayerObject : MonoBehaviour {
 					inventoryRemove(i);
 					inventoryAdd(equipmentList[6]);
                     equipmentList[6] = equipmentIn;
-                    if (equipmentList[6] is Ranged)
+                    if (equipmentList[6] is RangedWeapon)
                     {
                         camera.viewMode("firstPerson");
                     }

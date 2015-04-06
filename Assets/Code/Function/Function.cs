@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -172,9 +172,9 @@ public class Function : MonoBehaviour {
 
     public void performAttack(Weapon weapon)
     {
-        if (weapon is Melee) //damage formula weapon [ (0.2 * MS + 0.05 * WS + 0.03 * WM) + >((WD*10) - (AR*2)) ]
+        if (weapon is MeleeWeapon) //damage formula weapon [ (0.2 * MS + 0.05 * WS + 0.03 * WM) + >((WD*10) - (AR*2)) ]
         {
-            GameObject hitbox = (GameObject)((Melee)weapon).getWeaponHitbox();
+            GameObject hitbox = (GameObject)((MeleeWeapon)weapon).getWeaponHitbox();
             hitbox.transform.position = playerInstance.playerObject.transform.position;
             Vector3 tempOffset = playerInstance.playerObject.transform.forward;
             tempOffset.Scale(new Vector3(1f, 0f, 1f));
@@ -201,9 +201,9 @@ public class Function : MonoBehaviour {
                 playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponMasterySkillId(weapon.getType()));
             }
          }
-        else if (weapon is Ranged) //damage formula weapon [ (0.2 * MS + 0.05 * WS + 0.03 * WM) + >((WD*10) - (AR*2)) ]
+        else if (weapon is RangedWeapon) //damage formula weapon [ (0.2 * MS + 0.05 * WS + 0.03 * WM) + >((WD*10) - (AR*2)) ]
         {
-            GameObject hitbox = (GameObject)((Ranged)weapon).getProjectile();
+            GameObject hitbox = (GameObject)((RangedWeapon)weapon).getProjectile();
             hitbox.transform.position = playerInstance.playerObject.transform.position;
             Vector3 tempOffset = playerInstance.playerObject.transform.forward;
             hitbox.transform.position += tempOffset;

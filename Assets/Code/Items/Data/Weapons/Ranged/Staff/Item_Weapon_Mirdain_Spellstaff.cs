@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
-public class Item_Weapon_Mirdain_Spellstaff : Weapon, Item, Equipable, HotbarAble, Ranged
+public class Item_Weapon_Mirdain_Spellstaff : RangedWeapon
 {
     private int id = 999;
     private string itemName = "Mirdain Spellstaff";

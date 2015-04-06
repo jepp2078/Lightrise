@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface Melee
+public interface MeleeWeapon : Weapon
 {
     Object getWeaponHitbox();
     float getWeaponReachFloat();

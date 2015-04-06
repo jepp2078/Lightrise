@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class Item_Weapon_Troll_Clubber : Weapon, Item, Equipable, HotbarAble, Melee
+public class Item_Weapon_Troll_Clubber : MeleeWeapon
 {
 	private int id = 999;
     private string itemName = "Troll Clubber";
@@ -42,12 +42,12 @@ public class Item_Weapon_Troll_Clubber : Weapon, Item, Equipable, HotbarAble, Me
         return reachFloat;
     }
 
-    Object Melee.getWeaponHitbox()
+    Object MeleeWeapon.getWeaponHitbox()
     {
         return reach;
     }
 
-    float Melee.getWeaponReachFloat()
+    float MeleeWeapon.getWeaponReachFloat()
     {
         return reachFloat;
     }

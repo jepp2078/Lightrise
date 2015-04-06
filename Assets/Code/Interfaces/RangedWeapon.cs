@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface Ranged
+public interface RangedWeapon : Weapon
 {
     float getProjectileSpeed();
     Object getProjectile();

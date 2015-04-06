@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -89,7 +89,7 @@ public class Player : MonoBehaviour {
         if (Input.GetButton("action") && Time.time > guiHelperNext && rpgCamera.getGuiMode() == false)
         {
             guiHelperNext = Time.time + 0.3333f;
-            if (player.getEquipment(6) is Weapon && player.getEquipment(6) is Melee && attackCooldown == 0 && !casting )
+            if (player.getEquipment(6) is Weapon && player.getEquipment(6) is MeleeWeapon && attackCooldown == 0 && !casting )
             {
                 func.performAttack((Weapon)player.getEquipment(6));
                 player.setStamina(4f, 0);

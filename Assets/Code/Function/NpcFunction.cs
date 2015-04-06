@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class NpcFunction : MonoBehaviour
@@ -61,9 +61,9 @@ public class NpcFunction : MonoBehaviour
 
     public void performAttack(Weapon weapon)
     {
-        if (weapon is Melee) //damage formula weapon [ (0.2 * MS + 0.05 * WS + 0.03 * WM) * (WD*10) - (AR) ]
+        if (weapon is MeleeWeapon) //damage formula weapon [ (0.2 * MS + 0.05 * WS + 0.03 * WM) * (WD*10) - (AR) ]
         {
-            GameObject hitbox = (GameObject)Instantiate(((Melee)weapon).getWeaponHitbox());
+            GameObject hitbox = (GameObject)Instantiate(((MeleeWeapon)weapon).getWeaponHitbox());
             hitbox.transform.parent = npcInstance.npcObject.transform;
             hitbox.transform.position = npcInstance.npcObject.transform.position;
 
