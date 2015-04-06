@@ -7,6 +7,7 @@ TagManager:
   - npc
   - dirt
   - resource
+  - nonCollide
   layers:
   - Default
   - TransparentFX

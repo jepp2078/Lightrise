@@ -8,7 +8,16 @@ public class WeaponHitInfo : MonoBehaviour {
     public int viewID;
     public float hitID;
     public Vector3 force;
+    private float lifeTime = 10;
+    public bool collider = false;
 	// Use this for initialization
+
+    void Update()
+    {
+        lifeTime -= Time.deltaTime;
+        if (lifeTime <= 0)
+            destroy();
+    }
 
     void OnTriggerStay(Collider other) {
         calculateDamage(other);
@@ -18,33 +27,40 @@ public class WeaponHitInfo : MonoBehaviour {
     {
         if (other.gameObject.tag == "npc")
         {
-            float armorValue = 0;
-            switch (damageType)
+            if (collider)
             {
-                case "slashing": armorValue = other.gameObject.GetComponent<NpcObject>().getProtection(damageType); break;
-                case "arrow": armorValue = other.gameObject.GetComponent<NpcObject>().getProtection(damageType); break;
+                float armorValue = 0;
+                switch (damageType)
+                {
+                    case "slashing": armorValue = other.gameObject.GetComponent<NpcObject>().getProtection(damageType); break;
+                    case "arrow": armorValue = other.gameObject.GetComponent<NpcObject>().getProtection(damageType); break;
+                }
+                damage -= armorValue;
+                other.gameObject.GetComponent<NpcFunction>().takeDamage(damage, damageType);
             }
-            damage -= armorValue;
-            PhotonView.Find(viewID).RPC("writeToGui", PhotonTargets.All, "You hit <color=blue>" + other.gameObject.name + "</color> for <color=maroon>" + damage + "</color> " + damageType + " damage!");
-            other.gameObject.GetComponent<NpcFunction>().takeDamage(damage, damageType);
+            other.gameObject.GetComponentInParent<PhotonView>().RPC("takeDamage", PhotonTargets.All, damage, damageType, hitID, viewID);//takeDamage(damage, damageType);
             destroy();
         }
-
-        else if (other.gameObject.tag == "Player" && other.gameObject.GetComponentInChildren<PhotonView>().viewID != viewID)
+        else if (other.gameObject.tag == "Player" && other.gameObject.GetComponentInParent<PhotonView>().viewID != viewID)
         {
-            float armorValue = 0;
-
-            switch (damageType)
+            if (collider)
             {
-                case "slashing": armorValue = other.gameObject.GetComponent<PlayerObject>().getProtection(damageType); break;
-                case "arrow": armorValue = other.gameObject.GetComponent<PlayerObject>().getProtection(damageType); break;
+                float armorValue = 0;
+                switch (damageType)
+                {
+                    case "slashing": armorValue = other.gameObject.GetComponentInParent<PlayerObject>().getProtection(damageType); break;
+                    case "arrow": armorValue = other.gameObject.GetComponentInParent<PlayerObject>().getProtection(damageType); break;
+                }
+                damage -= armorValue;
+                other.gameObject.GetComponentInParent<PhotonView>().RPC("takeDamage", PhotonTargets.All, damage, damageType, hitID, viewID);//takeDamage(damage, damageType);
             }
-            damage -= armorValue;
-            other.gameObject.GetComponentInChildren<PhotonView>().RPC("takeDamage", PhotonTargets.All, damage, damageType, hitID);//takeDamage(damage, damageType);
-            PhotonView.Find(viewID).RPC("writeToGui", PhotonTargets.All, "You hit <color=blue>" + other.gameObject.name + "</color> for <color=maroon>" + damage + "</color> " + damageType + " damage!", hitID);
             destroy();
         }
         if (force == Vector3.zero)
+        {
+            destroy();
+        }
+        else if (force != Vector3.zero && other.gameObject.tag != "nonCollide")
         {
             destroy();
         }

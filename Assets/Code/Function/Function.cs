@@ -143,14 +143,10 @@ public class Function : MonoBehaviour {
                         PhotonView viewThis = this.gameObject.GetComponent<PhotonView>();
                         Vector3 forward = playerInstance.playerObject.GetComponentInChildren<Camera>().transform.forward;
                         Vector3 force = forward * 1500f;
-                        foreach (PhotonView view in FindObjectsOfType<PhotonView>())
-                        {
-                            if (view.owner != null)
-                            {
-                                view.RPC("instanciateObject", PhotonTargets.All, tempProjectile.name, tempProjectile.transform.position, tempProjectile.transform.rotation, force, tempEffect, ((Spell)skill).getDamageType(), viewThis.viewID, objectID);
-                                view.RPC("increaseObjectID", PhotonTargets.All);
-                            }
-                        }
+
+                        instanciateObject(tempProjectile.name, tempProjectile.transform.position, tempProjectile.transform.rotation, force, tempEffect, ((Spell)skill).getDamageType(), viewThis.viewID, objectID, true);
+                        viewThis.RPC("instanciateObject", PhotonTargets.All, tempProjectile.name, tempProjectile.transform.position, tempProjectile.transform.rotation, force, tempEffect, ((Spell)skill).getDamageType(), viewThis.viewID, objectID, false);
+                        viewThis.RPC("increaseObjectID", PhotonTargets.All);
                     }
                     skill.setCurrentCooldown(skill.getCooldown());
                     playerInstance.addCooldown(skill);
@@ -185,17 +181,13 @@ public class Function : MonoBehaviour {
             hitbox.transform.position += tempOffset;
             hitbox.transform.rotation = playerInstance.playerObject.transform.rotation;
             float damage = (0.2f * playerInstance.player.getStat("str") + playerInstance.player.getWeaponSkillEffect(weapon.getType(), null) + playerInstance.player.getWeaponSkillEffect(null,weapon.getType())) * weapon.getDamage()*10;
-            Debug.Log(damage);
             string damageType = weapon.getDamageType();
             PhotonView viewThis = this.gameObject.GetComponent<PhotonView>();
-            foreach (PhotonView view in FindObjectsOfType<PhotonView>())
-            {
-                if (view.owner != null)
-                {
-                    view.RPC("instanciateObject", PhotonTargets.All, hitbox.name, hitbox.transform.position, hitbox.transform.rotation, Vector3.zero, damage, damageType, viewThis.viewID, objectID);
-                    view.RPC("increaseObjectID", PhotonTargets.All);
-                }
-            }
+
+            instanciateObject(hitbox.name, hitbox.transform.position, hitbox.transform.rotation, Vector3.zero, damage, damageType, viewThis.viewID, objectID, true);
+            viewThis.RPC("instanciateObject", PhotonTargets.Others, hitbox.name, hitbox.transform.position, hitbox.transform.rotation, Vector3.zero, damage, damageType, viewThis.viewID, objectID, false);
+            viewThis.RPC("increaseObjectID", PhotonTargets.All);
+
             switch (damageType)
             {
                 //case "slashing": audioSwing[Random.Range(0, 4)].Play(); break;
@@ -220,14 +212,11 @@ public class Function : MonoBehaviour {
             float damage = (0.2f * playerInstance.player.getStat("dex") + playerInstance.player.getWeaponSkillEffect(weapon.getType(), null) + playerInstance.player.getWeaponSkillEffect(null, weapon.getType())) * weapon.getDamage() * 10;
             string damageType = weapon.getDamageType();
             PhotonView viewThis = this.gameObject.GetComponent<PhotonView>();
-            foreach (PhotonView view in FindObjectsOfType<PhotonView>())
-            {
-                if (view.owner != null)
-                {
-                    view.RPC("instanciateObject", PhotonTargets.All, hitbox.name, hitbox.transform.position, hitbox.transform.rotation, playerInstance.playerObject.GetComponentInChildren<Camera>().transform.forward * 3000f, damage, damageType, viewThis.viewID, objectID);
-                    view.RPC("increaseObjectID", PhotonTargets.All);
-                }
-            }
+
+            instanciateObject(hitbox.name, hitbox.transform.position, hitbox.transform.rotation, Vector3.zero, damage, damageType, viewThis.viewID, objectID, true);
+            viewThis.RPC("instanciateObject", PhotonTargets.Others, hitbox.name, hitbox.transform.position, hitbox.transform.rotation, Vector3.zero, damage, damageType, viewThis.viewID, objectID, false);
+            viewThis.RPC("increaseObjectID", PhotonTargets.All);
+
             playerInstance.gainSkill((1.1f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponSkillId(weapon.getType()));
 
             if (playerInstance.player.getWeaponSkill(null, weapon.getType()) != 0)
@@ -239,16 +228,17 @@ public class Function : MonoBehaviour {
     }
 
     [RPC]
-    public void takeDamage(float damage, string damageType, float hitID)
+    public void takeDamage(float damage, string damageType, float hitID, int viewID)
     {
         bool hasHit = false;
-
         if (hitDetection == hitID)
         {
             hasHit = true;
         }
         if (!hasHit)
         {
+            if(viewID != null)
+                PhotonView.Find(viewID).RPC("writeToGui", PhotonTargets.All, "You hit for <color=maroon>" + damage + "</color> " + damageType + " damage!", hitID);
             playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(9) / 100)), 9);
             switch (damageType)
             {
@@ -264,6 +254,7 @@ public class Function : MonoBehaviour {
                 case "cold": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(8) / 100)), 8); break;
                 case "impact": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(8) / 100)), 8); break;
                 case "lightning": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(8) / 100)), 8); break;
+                case "arcane": break;
             }
             hitDetection = hitID;
             playerInstance.player.setHealth(damage, 0, false, damageType);
@@ -272,7 +263,7 @@ public class Function : MonoBehaviour {
     }
 
     [RPC]
-    public void instanciateObject(string objectIn, Vector3 pos, Quaternion rot, Vector3 force, float damage, string damagetype, int view, float objectID)
+    public void instanciateObject(string objectIn, Vector3 pos, Quaternion rot, Vector3 force, float damage, string damagetype, int view, float objectID, bool collide)
     {
         GameObject go =(GameObject) Instantiate(Resources.Load(objectIn), pos, rot);
         if (go.GetComponent<WeaponHitInfo>() != null)
@@ -284,6 +275,7 @@ public class Function : MonoBehaviour {
            hit.viewID = view;
            hit.hitID = objectID;
            hit.force = force;
+           hit.collider = collide;
         }
         else if (go.GetComponentInChildren<WeaponHitInfo>() != null)
         {
@@ -294,6 +286,7 @@ public class Function : MonoBehaviour {
             hit.viewID = view;
             hit.hitID = objectID;
             hit.force = force;
+            hit.collider = collide;
         }
         if(force != Vector3.zero)
             go.GetComponent<Rigidbody>().AddForce(force);

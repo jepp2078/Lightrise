@@ -15,7 +15,7 @@ GameObject:
   - 114: {fileID: 11471070}
   m_Layer: 0
   m_Name: GreatSword_Reach
-  m_TagString: Untagged
+  m_TagString: nonCollide
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,8 +26,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 154252}
-  m_LocalRotation: {x: 0, y: .342015743, z: 0, w: -.939694226}
-  m_LocalPosition: {x: -11.5230932, y: 30.6615543, z: 5.5600462}
+  m_LocalRotation: {x: 0, y: .857167542, z: 0, w: -.515037656}
+  m_LocalPosition: {x: -46.9247971, y: 32.5266571, z: -30.5697041}
   m_LocalScale: {x: 2.46132517, y: .857934654, z: 1.96799433}
   m_Children: []
   m_Father: {fileID: 0}
@@ -89,11 +89,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0815943a416a948498dce9763ccec1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  damageType: 
-  viewID: 0
-  hitID: 0
+  damage: 17.0100002
+  damageType: slashing
+  viewID: 2002
+  hitID: .100000001
   force: {x: 0, y: 0, z: 0}
+  collider: 1
 --- !u!136 &13648018
 CapsuleCollider:
   m_ObjectHideFlags: 1

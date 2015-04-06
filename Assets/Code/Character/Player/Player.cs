@@ -266,6 +266,20 @@ public class Player : MonoBehaviour {
             func.hotbarUse(9);
         }
 
+        if (Input.GetButton("autorun") && Time.time > guiHelperNext && rpgCamera.getGuiMode() == false && !(Input.GetButton("action")))
+        {
+            guiHelperNext = Time.time + 0.3333f;
+            if (rpgController.autorun){
+                rpgController.autorun = false;
+                gui.newTextLine("Autorun OFF!");
+            }
+            else
+            {
+                rpgController.autorun = true;
+                gui.newTextLine("Autorun ON!");
+            }
+        }
+
     }
 
 	void gameLogic () {

@@ -22,6 +22,7 @@ public class RPG_Controller : MonoBehaviour
     public AudioSource[] audio = new AudioSource[4];
     private int audioState = 0;
     private bool didPlay = false;
+    public bool autorun = false;
     private int lastPlayed = 0;
     public float walkSpeedModifier = 0;
     public float baseCrouchSpeed = 4f, baseWalkSpeed = 7f, baseSprintSpeed = 10f, basePaddlePenalty = 1f;
@@ -124,14 +125,15 @@ public class RPG_Controller : MonoBehaviour
             }
         }
 
-        if (Input.GetButton("Vertical"))
+        if (Input.GetButton("Vertical") || autorun)
         {
             if (((Castable)playerInstance.player.getSkill(1)).getState())
             {
                 ((Castable)playerInstance.player.getSkill(1)).stopEffect();
             }
             vertical = Input.GetAxis("Vertical") < 0 ? -1f : Input.GetAxis("Vertical") > 0 ? 1f : 0f;
-
+            if (autorun)
+                vertical = 1f;
             if (vertical < 0)
             {
                 if (walkSpeedModifier == 3)
