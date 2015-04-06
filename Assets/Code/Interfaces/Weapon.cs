@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-public interface Weapon
+
+public interface Weapon : Equipable, HotbarAble
 {
     string getType();
     float getDamage();

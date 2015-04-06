@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface Equipable {
+public interface Equipable : Item {
 
     string getItemSlot();
     float getDurability();
     bool setDurability(float change);
-
 }

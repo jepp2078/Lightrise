@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface Armor
+public interface Armor : Equipable
 {
     string getItemSlot();
     float[] getProtections();

@@ -12,6 +12,11 @@ public class Skill_Passive_General_Constitution : SkillEntity, Skill
     private static int price = 0;
     private static float skillLevel = 1f;
     private static float effect = 0f;
+    public static Player playerInstance;
+    public static Npc npcInstance;
+    private GuiFunction gui;
+
+
 
     public Skill_Passive_General_Constitution() :
 		base(id, skillName)
@@ -61,48 +66,60 @@ public class Skill_Passive_General_Constitution : SkillEntity, Skill
     {
         float oldSkillLevel = getSkillLevel();
         skillLevel += change;
+        bool skillUp = false;
         if (Mathf.Floor(oldSkillLevel) < Mathf.Floor(skillLevel))
         {
-            Debug.Log("Skill level in " + getSkillText() + " has increased to " + Mathf.Floor(skillLevel) + "!");
+            gui.newTextLine("Skill level in " + getSkillText() + " has increased to " + Mathf.Floor(skillLevel) + "!");
+            skillUp = true;
         }
         if (skillLevel >= 100)
         {
             if (Mathf.Floor(oldSkillLevel) < 100)
             {
-                Debug.Log(getSkillText() + " is surging!");
-                Player.player.setProtections(new float[15] { 0, 0, 0, 0, 0.05f, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, true);
+                gui.newTextLine(getSkillText() + " is surging!");
+                playerInstance.player.setProtections(new float[15] { 0, 0, 0, 0, 0.05f, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, true);
             }
             skillLevel = 100;
-            return false;
         }
         else if (skillLevel >= 75)
         {
             if (Mathf.Floor(oldSkillLevel) < 75)
             {
-                Debug.Log(getSkillText() + " has reached a new level!");
-                Player.player.setProtections(new float[15] { 0, 0, 0, 0, 0.05f, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, true);
+                gui.newTextLine(getSkillText() + " has reached a new level!");
+                playerInstance.player.setProtections(new float[15] { 0, 0, 0, 0, 0.05f, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, true);
             }
         }
         else if (skillLevel >= 50)
         {
             if (Mathf.Floor(oldSkillLevel) < 50)
             {
-                Debug.Log(getSkillText() + " has reached a new level!");
-                Player.player.setProtections(new float[15] { 0, 0, 0, 0, 0.05f, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, true);
+                gui.newTextLine(getSkillText() + " has reached a new level!");
+                playerInstance.player.setProtections(new float[15] { 0, 0, 0, 0, 0.05f, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, true);
             }
         }
         else if (skillLevel >= 25)
         {
             if (Mathf.Floor(oldSkillLevel) < 25)
             {
-                Debug.Log(getSkillText() + " has reached a new level!");
-                Player.player.setProtections(new float[15] { 0, 0, 0, 0, 0.05f, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, true);
+                gui.newTextLine(getSkillText() + " has reached a new level!");
+                playerInstance.player.setProtections(new float[15] { 0, 0, 0, 0, 0.05f, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, true);
             }
         }
         else
         {
             effect = 0f;
         }
-        return true;
+        return skillUp;
+    }
+    public void setPlayerInstance(Player player, Npc npc)
+    {
+        playerInstance = player;
+        npcInstance = npc;
+    }
+
+    public void setGuiInstance(GuiFunction guiIn, bool player)
+    {
+        if (player)
+            gui = guiIn;
     }
 }

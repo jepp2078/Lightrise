@@ -12,6 +12,10 @@ public class Skill_Passive_General_Survivalist : SkillEntity, Skill, Learnable
     private static int price = 200;
     private static float skillLevel = 1f;
     private static float effect = 0f;
+    public static Player playerInstance;
+    private Npc npcInstance;
+    private GuiFunction gui;
+
 
     public Skill_Passive_General_Survivalist() :
 		base(id, skillName)
@@ -61,6 +65,7 @@ public class Skill_Passive_General_Survivalist : SkillEntity, Skill, Learnable
     {
         float oldSkillLevel = getSkillLevel();
         skillLevel += change;
+        bool skillUp = false;
         switch (Mathf.FloorToInt(skillLevel))
         {
             case 10: if (effect < 1.0375) effect = 1.0375f; break;
@@ -77,47 +82,58 @@ public class Skill_Passive_General_Survivalist : SkillEntity, Skill, Learnable
         }
         if (Mathf.Floor(oldSkillLevel) < Mathf.Floor(skillLevel))
         {
-            Debug.Log("Skill level in " + getSkillText() + " has increased to " + Mathf.Floor(skillLevel) + "!");
+            gui.newTextLine("Skill level in " + getSkillText() + " has increased to " + Mathf.Floor(skillLevel) + "!");
+            skillUp = true;
         }
         if (skillLevel >= 100)
         {
             if (Mathf.Floor(oldSkillLevel) < 100)
             {
-                Debug.Log(getSkillText() + " is surging!");
+                gui.newTextLine(getSkillText() + " is surging!");
             }
             skillLevel = 100;
-            return false;
-        }
+         }
         else if (skillLevel >= 75)
         {
             if (Mathf.Floor(oldSkillLevel) < 75)
             {
-                Debug.Log(getSkillText() + " has reached a new level!");
+                gui.newTextLine(getSkillText() + " has reached a new level!");
             }
         }
         else if (skillLevel >= 50)
         {
             if (Mathf.Floor(oldSkillLevel) < 50)
             {
-                Debug.Log(getSkillText() + " has reached a new level!");
+                gui.newTextLine(getSkillText() + " has reached a new level!");
             }
         }
         else if (skillLevel >= 25)
         {
             if (Mathf.Floor(oldSkillLevel) < 25)
             {
-                Debug.Log(getSkillText() + " has reached a new level!");
+                gui.newTextLine(getSkillText() + " has reached a new level!");
             }
         }
-        return true;
+        return skillUp;
     }
 
     public bool canLearn()
     {
-        if (Player.player.getStat("wis") >= 30)
+        if (playerInstance.player.getStat("wis") >= 30)
         {
             return true;
         }
         return false;
+    }
+    public void setPlayerInstance(Player player, Npc npc)
+    {
+        playerInstance = player;
+        npcInstance = npc;
+    }
+
+    public void setGuiInstance(GuiFunction guiIn, bool player)
+    {
+        if (player)
+            gui = guiIn;
     }
 }

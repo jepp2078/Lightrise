@@ -8,6 +8,6 @@ public interface HotbarAble {
     int getHotbarSlot();
     int getInventoryID();
     int getSkillID();
-    RawImage getIcon();
+    Texture getIcon();
 	
 }

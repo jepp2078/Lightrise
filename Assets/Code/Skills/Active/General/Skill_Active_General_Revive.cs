@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Castable  {
+public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Castable, Spell  {
 
 	private static int id = 14;
     private static string type = "active";
@@ -14,20 +14,29 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
     private static float effect = 0f;
     private static int inventoryID = 9999;
     private static int hotbarSlot;
-    private static float castingCost = 0;
+    private static float manaCost = 15;
+    private static float staminaCost = 15;
+    private static float healthCost = 15;
     private static float duration = 0;
     private static float currentDuration = 0;
     private static bool activated = false;
-    private static string castMsg = "You begin reviving";
+    private static string castMsg = "Revive";
     private static float gainPrCast = 1.0f;
     private static float cooldown = 20f;
     private static float currentCooldown = 0f;
-    private static RawImage icon;
+    private static float castTime = 5;
     Texture texture;
+    GameObject particle;
+    private Player playerInstance;
+    private Npc npcInstance;
+    private GuiFunction gui;
+
 
     public Skill_Active_General_Revive() :
 		base(id, skillName)
 	{
+        texture = Resources.Load("misc_revive", typeof(Texture)) as Texture;
+        particle = Resources.Load("ResurrectionEffect", typeof(GameObject)) as GameObject;
     }
 
     public int getSkillID()
@@ -73,41 +82,46 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
     {
         float oldSkillLevel = getSkillLevel();
         skillLevel += change;
+        bool skillUp = false;
         if (Mathf.Floor(oldSkillLevel) < Mathf.Floor(skillLevel))
         {
-            Debug.Log("Skill level in " + getSkillText() + " has increased to " + Mathf.Floor(skillLevel)+"!");
+            gui.newTextLine("Skill level in " + getSkillText() + " has increased to " + Mathf.Floor(skillLevel)+"!");
+            skillUp = true;
         }
         if (skillLevel >= 100)
         {
             if (Mathf.Floor(oldSkillLevel) < 100)
             {
-                Debug.Log(getSkillText() + " is surging!");
+                gui.newTextLine(getSkillText() + " is surging!");
+                castTime = 4;
             }
             skillLevel = 100;
-            return false;
         }
         else if (skillLevel >= 75)
         {
             if (Mathf.Floor(oldSkillLevel) < 75)
             {
-                Debug.Log(getSkillText() + " has reached a new level!");
+                gui.newTextLine(getSkillText() + " has reached a new level!");
+                castTime = 4.25f;
             }
         }
         else if (skillLevel >= 50)
         {
             if (Mathf.Floor(oldSkillLevel) < 50)
             {
-                Debug.Log(getSkillText() + " has reached a new level!");
+                gui.newTextLine(getSkillText() + " has reached a new level!");
+                castTime = 4.50f;
             }
         }
         else if (skillLevel >= 25)
         {
             if (Mathf.Floor(oldSkillLevel) < 25)
             {
-                Debug.Log(getSkillText() + " has reached a new level!");
+                gui.newTextLine(getSkillText() + " has reached a new level!");
+                castTime = 4.75f;
             } 
         }
-        return true;
+        return skillUp;
     }
 
     public void setHotbarSlot(int slot)
@@ -125,18 +139,14 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
         return inventoryID;
     }
 
-    public void cast()
+    public GameObject cast()
     {
-        
+        Instantiate(particle, playerInstance.playerObject.transform.position-(new Vector3(0,1,0)), playerInstance.playerObject.transform.rotation);
+        return null;
     }
 
     public void stopEffect()
     {
-    }
-
-    public float getCastingCost()
-    {
-        return castingCost;
     }
 
     public float getDuration()
@@ -227,8 +237,45 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
     {
         gainPrCast = 1.1f - (getSkillLevel()/100);
     }
-    public RawImage getIcon()
+
+    public Texture getIcon()
     {
-        return icon;
+        return texture;
+    }
+
+    public void setPlayerInstance(Player player, Npc npc)
+    {
+        playerInstance = player;
+        npcInstance = npc;
+    }
+    public void setGuiInstance(GuiFunction guiIn, bool player)
+    {
+        if (player)
+            gui = guiIn;
+    }
+
+    public float getCastTime()
+    {
+        return castTime;
+    }
+
+    public float getManaCost()
+    {
+        return manaCost;
+    }
+
+    public float getStaminaCost()
+    {
+        return staminaCost;
+    }
+
+    public float getHealthCost()
+    {
+        return healthCost;
+    }
+    public string getDamageType()
+    {
+        return "";
     }
 }
+

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ItemEntity : MonoBehaviour
+public class ItemEntity
 {
     private string name;
     private int x, y, id;

@@ -14,26 +14,25 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
     private static float effect = 0.125f;
     private static int inventoryID = 9999;
     private static int hotbarSlot;
-    private static float castingCost = 0;
+    private static float manaCost = 0.1f;
+    private static float staminaCost = 0.1f;
+    private static float healthCost = 0.1f;
     private static float duration = 0;
     private static float currentDuration = 0;
     private static bool activated = false;
-    private static string castMsg = "You begin resting";
+    private static string castMsg = "Rest";
     private static float gainPrCast = 1.0f;
     private static float cooldown = 5f;
     private static float currentCooldown = 0f;
-    private static RawImage icon;
     Texture texture;
+    private Player playerInstance;
+    private Npc npcInstance;
+    private GuiFunction gui;
 
     public Skill_Active_General_Rest() :
 		base(id, skillName)
 	{
         texture = Resources.Load("misc_rest", typeof(Texture)) as Texture;
-    }
-
-    void OnGUI()
-    {
-        icon.texture = texture;
     }
     public int getSkillID()
     {
@@ -78,38 +77,39 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
     {
         float oldSkillLevel = getSkillLevel();
         skillLevel += change;
+        bool skillUp = false;
         if (Mathf.Floor(oldSkillLevel) < Mathf.Floor(skillLevel))
         {
-            Debug.Log("Skill level in " + getSkillText() + " has increased to " + Mathf.Floor(skillLevel)+"!");
+            gui.newTextLine("Skill level in " + getSkillText() + " has increased to " + Mathf.Floor(skillLevel)+"!");
+            skillUp = true;
         }
         if (skillLevel >= 100)
         {
             if (Mathf.Floor(oldSkillLevel) < 100)
             {
-                Debug.Log(getSkillText() + " is surging!");
-            } effect = 0.625f;
+                gui.newTextLine(getSkillText() + " is surging!");
+            } effect = 1f;
             skillLevel = 100;
-            return false;
         }
         else if (skillLevel >= 75)
         {
             if (Mathf.Floor(oldSkillLevel) < 75)
             {
-                Debug.Log(getSkillText() + " has reached a new level!");
-            } effect = 0.50f;
+                gui.newTextLine(getSkillText() + " has reached a new level!");
+            } effect = 0.75f;
         }
         else if (skillLevel >= 50)
         {
             if (Mathf.Floor(oldSkillLevel) < 50)
             {
-                Debug.Log(getSkillText() + " has reached a new level!");
-            } effect = 0.375f;
+                gui.newTextLine(getSkillText() + " has reached a new level!");
+            } effect = 0.50f;
         }
         else if (skillLevel >= 25)
         {
             if (Mathf.Floor(oldSkillLevel) < 25)
             {
-                Debug.Log(getSkillText() + " has reached a new level!");
+                gui.newTextLine(getSkillText() + " has reached a new level!");
             } 
             effect = 0.25f;
         }
@@ -117,7 +117,7 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
         {
             effect = 0.125f;
         }
-        return true;
+        return skillUp;
     }
 
     public void setHotbarSlot(int slot)
@@ -135,31 +135,27 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
         return inventoryID;
     }
 
-    public void cast()
+    public GameObject cast()
     {
         if (!activated)
         {
-            Player.player.setRegenModifiers(1, effect);
-            Player.player.setRegenModifiers(2, effect);
-            Player.player.setRegenModifiers(3, effect);
+            playerInstance.player.setRegenModifiers(1, effect);
+            playerInstance.player.setRegenModifiers(2, effect);
+            playerInstance.player.setRegenModifiers(3, effect);
             activated = true;
         }
+        return null;
     }
 
     public void stopEffect()
     {
         if (activated)
         {
-            Player.player.setRegenModifiers(1, -effect);
-            Player.player.setRegenModifiers(2, -effect);
-            Player.player.setRegenModifiers(3, -effect);
+            playerInstance.player.setRegenModifiers(1, -effect);
+            playerInstance.player.setRegenModifiers(2, -effect);
+            playerInstance.player.setRegenModifiers(3, -effect);
             activated = false;
         }
-    }
-
-    public float getCastingCost()
-    {
-        return castingCost;
     }
 
     public float getDuration()
@@ -251,8 +247,37 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
         gainPrCast = 1.1f - (getSkillLevel()/100);
     }
 
-    public RawImage getIcon()
+    public Texture getIcon()
     {
-        return icon;
+        return texture;
+    }
+
+
+    public void setPlayerInstance(Player player, Npc npc)
+    {
+        playerInstance = player;
+        npcInstance = npc;
+    }
+
+
+    public void setGuiInstance(GuiFunction guiIn, bool player)
+    {
+        if (player)
+            gui = guiIn;
+    }
+
+    public float getManaCost()
+    {
+        return manaCost;
+    }
+
+    public float getStaminaCost()
+    {
+        return staminaCost;
+    }
+
+    public float getHealthCost()
+    {
+        return healthCost;
     }
 }

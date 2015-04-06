@@ -3,9 +3,11 @@ using System.Collections;
 
 public interface Castable
 {
-    void cast();
+    GameObject cast();
     void stopEffect();
-    float getCastingCost();
+    float getManaCost();
+    float getStaminaCost();
+    float getHealthCost();
     float getDuration();
     bool setCurrentDuration(float durationChange);
     bool getState();
