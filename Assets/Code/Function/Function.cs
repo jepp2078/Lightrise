@@ -212,9 +212,11 @@ public class Function : MonoBehaviour {
             float damage = (0.2f * playerInstance.player.getStat("dex") + playerInstance.player.getWeaponSkillEffect(weapon.getType(), null) + playerInstance.player.getWeaponSkillEffect(null, weapon.getType())) * weapon.getDamage() * 10;
             string damageType = weapon.getDamageType();
             PhotonView viewThis = this.gameObject.GetComponent<PhotonView>();
+            Vector3 forward = playerInstance.playerObject.GetComponentInChildren<Camera>().transform.forward;
+            Vector3 force = forward * 3000f;
 
-            instanciateObject(hitbox.name, hitbox.transform.position, hitbox.transform.rotation, Vector3.zero, damage, damageType, viewThis.viewID, objectID, true);
-            viewThis.RPC("instanciateObject", PhotonTargets.Others, hitbox.name, hitbox.transform.position, hitbox.transform.rotation, Vector3.zero, damage, damageType, viewThis.viewID, objectID, false);
+            instanciateObject(hitbox.name, hitbox.transform.position, hitbox.transform.rotation, force, damage, damageType, viewThis.viewID, objectID, true);
+            viewThis.RPC("instanciateObject", PhotonTargets.Others, hitbox.name, hitbox.transform.position, hitbox.transform.rotation, force, damage, damageType, viewThis.viewID, objectID, false);
             viewThis.RPC("increaseObjectID", PhotonTargets.All);
 
             playerInstance.gainSkill((1.1f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponSkillId(weapon.getType()));

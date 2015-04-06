@@ -266,18 +266,11 @@ public class Player : MonoBehaviour {
             func.hotbarUse(9);
         }
 
-        if (Input.GetButton("autorun") && Time.time > guiHelperNext && rpgCamera.getGuiMode() == false && !(Input.GetButton("action")))
+        if (Input.GetButton("clearActiveSkill") && Time.time > guiHelperNext && rpgCamera.getGuiMode() == false && !(Input.GetButton("action")))
         {
-            guiHelperNext = Time.time + 0.3333f;
-            if (rpgController.autorun){
-                rpgController.autorun = false;
-                gui.newTextLine("Autorun OFF!");
-            }
-            else
-            {
-                rpgController.autorun = true;
-                gui.newTextLine("Autorun ON!");
-            }
+            guiHelperNext = Time.time + guiHelper;
+            player.setActiveSkill(null);
+            gui.setActiveSkillIcon(null, true);
         }
 
     }

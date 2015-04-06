@@ -105,7 +105,7 @@ public class PlayerObject : MonoBehaviour {
             sheathedWeapon = (Weapon) equipmentList[6];
             equipmentList[6] = null;
             gui.newTextLine("You sheath your " + ((Item) sheathedWeapon).getItemText() + "!");
-            camera.setDesiredDistance(6);
+            camera.viewMode("thirdPerson");
         }
     }
 
@@ -118,11 +118,11 @@ public class PlayerObject : MonoBehaviour {
             gui.newTextLine("You unsheathe your " + equipmentList[6].getItemText() + "!");
             if (equipmentList[6] is Ranged)
             {
-                camera.setDesiredDistance(0.05f);
+                camera.viewMode("firstPerson");
             }
             else
             {
-                camera.setDesiredDistance(6);
+                camera.viewMode("thirdPerson");
             }
         }
     }
@@ -518,7 +518,7 @@ public class PlayerObject : MonoBehaviour {
                     }
                     if (equipmentList[6] is Ranged)
                     {
-                        camera.setDesiredDistance(0.05f);
+                        camera.viewMode("firstPerson");
                     }
                     else
                     {
@@ -531,13 +531,15 @@ public class PlayerObject : MonoBehaviour {
                     equipmentList[6] = equipmentIn;
                     if (equipmentList[6] is Ranged)
                     {
-                        camera.setDesiredDistance(0.05f);
+                        camera.viewMode("firstPerson");
                     }
                     else
                     {
-                        camera.setDesiredDistance(6);
+                        camera.viewMode("thirdPerson");
                     }
 				}
+                setActiveSkill(null);
+                gui.setActiveSkillIcon(null, true);
 			}else if(((Equipable) equipmentIn).getItemSlot() == "Off Hand"){
 				if(equipmentList[7] == null){
                     equipmentList[7] = equipmentIn;

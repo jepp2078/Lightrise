@@ -227,6 +227,14 @@ public class RPG_Camera : MonoBehaviour
         //}
     }
 
+    public void viewMode(string mode)
+    {
+        switch (mode)
+        {
+            case "firstPerson": if (distance != 0.05f) desiredDistance = 0.05f; break;
+            case "thirdPerson": if (distance != 6f) desiredDistance = 6f; break; 
+        }
+    }
 
     Vector3 GetCameraPosition(float xAxis, float yAxis, float distance)
     {
@@ -256,22 +264,22 @@ public class RPG_Camera : MonoBehaviour
         Debug.DrawLine(from + transform.right * halfPlaneWidth - transform.up * halfPlaneHeight, clipPlane.LowerRight, Color.cyan);
 
 
-        if (Physics.Linecast(from, to, out hitInfo) && hitInfo.collider.tag != "Player")
+        if (Physics.Linecast(from, to, out hitInfo) && hitInfo.collider.tag != "PlayerObject")
             closestDistance = hitInfo.distance - cameraInstance.nearClipPlane;
 
-        if (Physics.Linecast(from - transform.right * halfPlaneWidth + transform.up * halfPlaneHeight, clipPlane.UpperLeft, out hitInfo) && hitInfo.collider.tag != "Player")
+        if (Physics.Linecast(from - transform.right * halfPlaneWidth + transform.up * halfPlaneHeight, clipPlane.UpperLeft, out hitInfo) && hitInfo.collider.tag != "PlayerObject")
             if (hitInfo.distance < closestDistance || closestDistance == -1)
                 closestDistance = Vector3.Distance(hitInfo.point + transform.right * halfPlaneWidth - transform.up * halfPlaneHeight, from);
 
-        if (Physics.Linecast(from + transform.right * halfPlaneWidth + transform.up * halfPlaneHeight, clipPlane.UpperRight, out hitInfo) && hitInfo.collider.tag != "Player")
+        if (Physics.Linecast(from + transform.right * halfPlaneWidth + transform.up * halfPlaneHeight, clipPlane.UpperRight, out hitInfo) && hitInfo.collider.tag != "PlayerObject")
             if (hitInfo.distance < closestDistance || closestDistance == -1)
                 closestDistance = Vector3.Distance(hitInfo.point - transform.right * halfPlaneWidth - transform.up * halfPlaneHeight, from);
 
-        if (Physics.Linecast(from - transform.right * halfPlaneWidth - transform.up * halfPlaneHeight, clipPlane.LowerLeft, out hitInfo) && hitInfo.collider.tag != "Player")
+        if (Physics.Linecast(from - transform.right * halfPlaneWidth - transform.up * halfPlaneHeight, clipPlane.LowerLeft, out hitInfo) && hitInfo.collider.tag != "PlayerObject")
             if (hitInfo.distance < closestDistance || closestDistance == -1)
                 closestDistance = Vector3.Distance(hitInfo.point + transform.right * halfPlaneWidth + transform.up * halfPlaneHeight, from);
 
-        if (Physics.Linecast(from + transform.right * halfPlaneWidth - transform.up * halfPlaneHeight, clipPlane.LowerRight, out hitInfo) && hitInfo.collider.tag != "Player")
+        if (Physics.Linecast(from + transform.right * halfPlaneWidth - transform.up * halfPlaneHeight, clipPlane.LowerRight, out hitInfo) && hitInfo.collider.tag != "PlayerObject")
             if (hitInfo.distance < closestDistance || closestDistance == -1)
                 closestDistance = Vector3.Distance(hitInfo.point - transform.right * halfPlaneWidth + transform.up * halfPlaneHeight, from);
 

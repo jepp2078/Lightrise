@@ -22,7 +22,6 @@ public class RPG_Controller : MonoBehaviour
     public AudioSource[] audio = new AudioSource[4];
     private int audioState = 0;
     private bool didPlay = false;
-    public bool autorun = false;
     private int lastPlayed = 0;
     public float walkSpeedModifier = 0;
     public float baseCrouchSpeed = 4f, baseWalkSpeed = 7f, baseSprintSpeed = 10f, basePaddlePenalty = 1f;
@@ -125,15 +124,13 @@ public class RPG_Controller : MonoBehaviour
             }
         }
 
-        if (Input.GetButton("Vertical") || autorun)
+        if (Input.GetButton("Vertical"))
         {
             if (((Castable)playerInstance.player.getSkill(1)).getState())
             {
                 ((Castable)playerInstance.player.getSkill(1)).stopEffect();
             }
             vertical = Input.GetAxis("Vertical") < 0 ? -1f : Input.GetAxis("Vertical") > 0 ? 1f : 0f;
-            if (autorun)
-                vertical = 1f;
             if (vertical < 0)
             {
                 if (walkSpeedModifier == 3)
@@ -226,11 +223,6 @@ public class RPG_Controller : MonoBehaviour
                 //if (RPG_Animation.instance != null)
                 //    RPG_Animation.instance.Jump(); // the pattern for calling animations is always the same: just add some lines under line 77 and write an if statement which
             }                                      // checks for an arbitrary key if it is pressed and, if true, calls "RPG_Animation.instance.YourAnimation()". After that you add
-            gameObject.GetComponent<PhotonTransformView>().SetSynchronizedValues(playerDirWorld, 0f);
-        }
-        else 
-        {
-            gameObject.GetComponent<PhotonTransformView>().SetSynchronizedValues(playerDirWorld, 0f);
         }
             // this method to the other animation clip methods in "RPG_Animation" (do not forget to make it public) 
 

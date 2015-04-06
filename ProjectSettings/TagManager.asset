@@ -8,6 +8,7 @@ TagManager:
   - dirt
   - resource
   - nonCollide
+  - PlayerObject
   layers:
   - Default
   - TransparentFX
