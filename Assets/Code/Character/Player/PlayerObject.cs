@@ -7,6 +7,11 @@ public class PlayerObject : MonoBehaviour {
     private List<Item> inventory = new List<Item>();
     private List<Item> equipmentList = new List<Item>();
     private List<Skill> skillList = new List<Skill>();
+    private List<Skill> generalSkillList = new List<Skill>();
+    private List<Skill> lesserMagicSkillList = new List<Skill>();
+    private List<Skill> combatSkillList = new List<Skill>();
+    private List<Skill> craftingSkillList = new List<Skill>();
+    private List<Skill> weaponSkillList = new List<Skill>();
     private List<HotbarAble> hotbar = new List<HotbarAble>();
     private Castable activeSkill = null;
     private Weapon sheathedWeapon = null;
@@ -40,32 +45,33 @@ public class PlayerObject : MonoBehaviour {
             skillList.Add(null);
             switch (i)
             {
-                case 0: skillList.Insert(0, new Skill_Passive_General_Run()); skillList[0].setPlayerInstance(playerInstance, null); skillList[0].setGuiInstance(gui, true); break;
-                case 1: skillList.Insert(1, new Skill_Active_General_Rest()); skillList[1].setPlayerInstance(playerInstance, null); skillList[1].setGuiInstance(gui, true); break;
-                case 2: skillList.Insert(2, new Skill_Passive_General_Sprint()); skillList[2].setPlayerInstance(playerInstance, null); skillList[2].setGuiInstance(gui, true); break;
-                case 3: skillList.Insert(3, new Skill_Passive_General_Crouch_Walk()); skillList[3].setPlayerInstance(playerInstance, null); skillList[3].setGuiInstance(gui, true); break;
-                case 4: skillList.Insert(4, new Skill_Passive_General_Constitution()); skillList[4].setPlayerInstance(playerInstance, null); skillList[4].setGuiInstance(gui, true); break;
-                case 5: skillList.Insert(5, new Skill_Passive_General_Defense()); skillList[5].setPlayerInstance(playerInstance, null); skillList[5].setGuiInstance(gui, true); break;
-                case 6: skillList.Insert(6, new Skill_Passive_General_Fortitude()); skillList[6].setPlayerInstance(playerInstance, null); skillList[6].setGuiInstance(gui, true); break;
+                case 0: addSkill(i, new Skill_Passive_General_Run()); break;
+                case 1: addSkill(i, new Skill_Active_General_Rest()); break;
+                case 2: addSkill(i, new Skill_Passive_General_Sprint()); break;
+                case 3: addSkill(i, new Skill_Passive_General_Crouch_Walk()); break;
+                case 4: addSkill(i, new Skill_Passive_General_Constitution()); break;
+                case 5: addSkill(i, new Skill_Passive_General_Defense()); break;
+                case 6: addSkill(i, new Skill_Passive_General_Fortitude()); break;
                 //7 = Skill_Passive_General_Preseverance()
-                case 8: skillList.Insert(8, new Skill_Passive_General_Reflex()); skillList[8].setPlayerInstance(playerInstance, null); skillList[8].setGuiInstance(gui, true); break;
-                case 9: skillList.Insert(9, new Skill_Passive_General_Rigor()); skillList[9].setPlayerInstance(playerInstance, null); skillList[9].setGuiInstance(gui, true); break;
+                case 8: addSkill(i, new Skill_Passive_General_Reflex()); break;
+                case 9: addSkill(i, new Skill_Passive_General_Rigor()); break;
                 //10 = Skill_Passive_General_Survivalist()
                 //11 = Skill_Passive_General_Thoughness()
-                case 12: skillList.Insert(12, new Skill_Passive_General_Willpower()); skillList[12].setPlayerInstance(playerInstance, null); skillList[12].setGuiInstance(gui, true); break;
-                case 13: skillList.Insert(13, new Skill_Passive_General_Diving()); skillList[13].setPlayerInstance(playerInstance, null); skillList[13].setGuiInstance(gui, true); break;
-                case 14: skillList.Insert(14, new Skill_Active_General_Revive()); skillList[14].setPlayerInstance(playerInstance, null); skillList[14].setGuiInstance(gui, true); break;
-                case 15: skillList.Insert(15, new Skill_Passive_General_Riding()); skillList[15].setPlayerInstance(playerInstance, null); skillList[15].setGuiInstance(gui, true); break;
-                case 16: skillList.Insert(16, new Skill_Passive_General_Swimming()); skillList[16].setPlayerInstance(playerInstance, null); skillList[16].setGuiInstance(gui, true); break;
-                case 17: skillList.Insert(17, new Skill_Passive_Weapon_Skill_Great_Sword()); skillList[17].setPlayerInstance(playerInstance, null); skillList[17].setGuiInstance(gui, true); break;
+                case 12: addSkill(i, new Skill_Passive_General_Willpower()); break;
+                //case 13: addSkill(i, new Skill_Passive_General_Diving()); break;
+                //case 14: addSkill(i, new Skill_Active_General_Revive()); break;
+                //case 15: addSkill(i, new Skill_Passive_General_Riding()); break;
+                //case 16: addSkill(i, new Skill_Passive_General_Swimming()); break;
+                case 17: addSkill(i, new Skill_Passive_Weapon_Skill_Great_Sword()); break;
                 //18 = Skill_Passive_Combat_Great_Sword_Mastery()     
-                case 19: skillList.Insert(19, new Skill_Passive_Weapon_Skill_Archery()); skillList[19].setPlayerInstance(playerInstance, null); skillList[19].setGuiInstance(gui, true); break;
-                case 20: skillList.Insert(20, new Skill_Active_Lesser_Magic_Heal_Self()); skillList[20].setPlayerInstance(playerInstance, null); skillList[20].setGuiInstance(gui, true); break;
-                case 21: skillList.Insert(21, new Skill_Active_Lesser_Magic_Mana_to_Stamina()); skillList[21].setPlayerInstance(playerInstance, null); skillList[21].setGuiInstance(gui, true); break;
-                case 22: skillList.Insert(22, new Skill_Active_Lesser_Magic_Health_To_Mana()); skillList[22].setPlayerInstance(playerInstance, null); skillList[22].setGuiInstance(gui, true); break;
-                case 23: skillList.Insert(23, new Skill_Active_Lesser_Magic_Stamina_To_Health()); skillList[23].setPlayerInstance(playerInstance, null); skillList[23].setGuiInstance(gui, true); break;
-                case 24: skillList.Insert(24, new Skill_Active_Lesser_Magic_Mana_Missle()); skillList[24].setPlayerInstance(playerInstance, null); skillList[24].setGuiInstance(gui, true); break;
-                case 25: skillList.Insert(25, new Skill_Passive_Crafting_Skill_Mining()); skillList[25].setPlayerInstance(playerInstance, null); skillList[25].setGuiInstance(gui, true); break;
+                case 19: addSkill(i, new Skill_Passive_Weapon_Skill_Archery()); break;
+                case 20: addSkill(i, new Skill_Active_Lesser_Magic_Heal_Self()); break;
+                case 21: addSkill(i, new Skill_Active_Lesser_Magic_Mana_to_Stamina()); break;
+                case 22: addSkill(i, new Skill_Active_Lesser_Magic_Health_To_Mana()); break;
+                case 23: addSkill(i, new Skill_Active_Lesser_Magic_Stamina_To_Health()); break;
+                case 24: addSkill(i, new Skill_Active_Lesser_Magic_Mana_Missle()); break;
+                case 25: addSkill(i, new Skill_Passive_Crafting_Skill_Mining()); break;
+                case 26: addSkill(i, new Skill_Passive_Lesser_Magic()); break;
 
             }
         }
@@ -426,14 +432,6 @@ public class PlayerObject : MonoBehaviour {
 		return false;
 	}
 
-    public void skillListAdd(Skill inputSkill)
-    {
-        if (inputSkill is Skill)
-        {
-            skillList.Insert(inputSkill.getSkillID(), inputSkill);    
-        }
-    }
-
     public void hotbarAdd(HotbarAble input, int hotbarSlot)
     {
         if (input is HotbarAble)
@@ -444,7 +442,7 @@ public class PlayerObject : MonoBehaviour {
 
     public void hotbarRemove(int hotbarSlot)
     {
-        hotbar.Insert(hotbarSlot, null);
+        hotbar[hotbarSlot] = null;
     }
 
     public HotbarAble getHotbarType(int hotbarSlot)
@@ -751,6 +749,9 @@ public class PlayerObject : MonoBehaviour {
         {
             tempHealth = health;
         }
+        if (!regen)
+            playerInstance.view.RPC("setHealth", PhotonTargets.AllBuffered, getHealthForTarget());
+        
         return false;
     }
 
@@ -865,6 +866,31 @@ public class PlayerObject : MonoBehaviour {
         return skillList[skillID].setSkillLevel(change);
     }
 
+    public void skillGainGroup(float change, string skillGroup)
+    {
+        switch (skillGroup)
+        {
+            case "lesser magic": skillList[26].setSkillLevel(change/skillList[26].getSkillLevel()); break;
+            default: break;
+        }
+    }
+
+    public void addSkill(int id, Skill skillIn)
+    {
+        skillList.Insert(id, skillIn);
+        skillList[id].setPlayerInstance(playerInstance, null);
+        skillList[id].setGuiInstance(gui, true);
+
+        switch (skillIn.getSkillGroup())
+        {
+            case "combat": combatSkillList.Add(skillIn);break;
+            case "crafting": craftingSkillList.Add(skillIn); break;
+            case "general": generalSkillList.Add(skillIn); break;
+            case "lesser magic": lesserMagicSkillList.Add(skillIn); break;
+            case "weapon skill": weaponSkillList.Add(skillIn); break;
+        }
+    }
+
     public string getSkillName(int skillID)
     {
         return skillList[skillID].getSkillText();
@@ -906,5 +932,22 @@ public class PlayerObject : MonoBehaviour {
     public void setLungCapacity(float change)
     {
         lungCapacity += change;
+    }
+
+    public void makeSkillWindow(string type)
+    {
+        switch (type)
+        {
+            case "combat": gui.makeSkillWindow(type,combatSkillList); break;
+            case "crafting": gui.makeSkillWindow(type,craftingSkillList); break;
+            case "general": gui.makeSkillWindow(type,generalSkillList); break;
+            case "lesser magic": gui.makeSkillWindow(type,lesserMagicSkillList); break;
+            case "weapon skill": gui.makeSkillWindow(type, weaponSkillList); break;
+        }
+    }
+
+    public float getHealthForTarget()
+    {
+        return tempHealth / health;
     }
 }

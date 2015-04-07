@@ -38,4 +38,6 @@ MonoBehaviour:
   - getGui
   - writeToGui
   - increaseObjectID
+  - setHealth
+  - setName
   DisableAutoOpenWizard: 0

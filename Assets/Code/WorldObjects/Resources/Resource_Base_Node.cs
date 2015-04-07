@@ -7,6 +7,7 @@ public abstract class Resource_Base_Node : MonoBehaviour, ResourceSource
     public int _resourceMax = 100;
     public float _respawnCooldown = 600;
     protected float _respawnCooldownCurrent = 0;
+    public string nodeName = "Default node name";
 
     public int resourceCount
     {
@@ -47,4 +48,15 @@ public abstract class Resource_Base_Node : MonoBehaviour, ResourceSource
         get { throw new System.NotImplementedException(); }
     }
 
+    string ResourceSource.nodeName
+    {
+        get
+        {
+            return nodeName;
+        }
+        set
+        {
+            nodeName = value;
+        }
+    }
 }

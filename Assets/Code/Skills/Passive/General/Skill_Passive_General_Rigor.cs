@@ -15,11 +15,19 @@ public class Skill_Passive_General_Rigor : SkillEntity, Skill
     public static Player playerInstance;
     private Npc npcInstance;
     private GuiFunction gui;
+    private Texture texture;
+
 
 
     public Skill_Passive_General_Rigor() :
 		base(id, skillName)
     {
+        texture = Resources.Load("misc_rigor", typeof(Texture)) as Texture;
+    }
+
+    public Texture getIcon()
+    {
+        return texture;
     }
 
     public int getSkillID()

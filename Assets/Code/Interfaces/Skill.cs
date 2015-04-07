@@ -15,4 +15,5 @@ public interface Skill
     bool setSkillLevel(float change);
     void setPlayerInstance(Player player, Npc npc);
     void setGuiInstance(GuiFunction guiIn, bool player);
+    Texture getIcon();
 }

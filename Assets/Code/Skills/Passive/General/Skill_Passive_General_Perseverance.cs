@@ -15,11 +15,19 @@ public class Skill_Passive_General_Perseverance : SkillEntity, Skill, Learnable
     public static Player playerInstance;
     private Npc npcInstance;
     private GuiFunction gui;
+    private Texture texture;
 
 
     public Skill_Passive_General_Perseverance() :
 		base(id, skillName)
     {
+        texture = Resources.Load("misc_perseverance", typeof(Texture)) as Texture;
+
+    }
+
+    public Texture getIcon()
+    {
+        return texture;
     }
 
     public int getSkillID()

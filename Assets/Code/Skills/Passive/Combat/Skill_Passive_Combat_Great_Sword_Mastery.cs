@@ -14,11 +14,13 @@ public class Skill_Passive_Combat_Great_Sword_Mastery : SkillEntity, Skill, Lear
     public static Player playerInstance;
     private Npc npcInstance;
     private GuiFunction gui;
+    Texture texture;
 
 
     public Skill_Passive_Combat_Great_Sword_Mastery() :
         base(id, skillName)
     {
+        texture = Resources.Load("combat_greatsword_mastery", typeof(Texture)) as Texture;
     }
 
     public int getSkillID()
@@ -121,5 +123,11 @@ public class Skill_Passive_Combat_Great_Sword_Mastery : SkillEntity, Skill, Lear
     {
         if (player)
             gui = guiIn;
+    }
+
+
+    public Texture getIcon()
+    {
+        return texture;
     }
 }

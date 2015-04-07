@@ -40,15 +40,16 @@ public class Function : MonoBehaviour {
             playerInstance.player.hotbarAdd(instance, hotbarSlot);
             instance.setHotbarSlot(hotbarSlot);
             if(instance is Item)
-                gui.setHotbarIcon(hotbarSlot, instance.getIcon(), false, ((Item)instance),null);
+                gui.setHotbarIcon(hotbarSlot, ((Item)instance).getIcon(), false, ((Item)instance), null);
             else
-                gui.setHotbarIcon(hotbarSlot, instance.getIcon(), false, null, ((Skill)instance));
+                gui.setHotbarIcon(hotbarSlot, ((Skill)instance).getIcon(), false, null, ((Skill)instance));
         }
     }
 
     public void removeFromHotbar(int hotbarSlot)
     {
         playerInstance.player.hotbarRemove(hotbarSlot);
+        gui.setHotbarIcon(hotbarSlot, null, true, null, null);
     }
 
     public void sheathWeapon()
@@ -75,13 +76,13 @@ public class Function : MonoBehaviour {
             if (playerInstance.player.getEquipmentIDinSlot(6) == -1 || hotbarType.getInventoryID() != playerInstance.player.getEquipmentIDinSlot(6))
             {
                 gui.newTextLine(equipItem(playerInstance.player.getInventoryItem(hotbarType.getInventoryID())));
-                gui.setActiveWeaponIcon(hotbarType.getIcon(), playerInstance.player.isWeaponSheathed(), false);
+                gui.setActiveWeaponIcon(((Weapon)hotbarType).getIcon(), playerInstance.player.isWeaponSheathed(), false);
 			}
         }
         else if (hotbarType is Castable)
         {
             playerInstance.player.setActiveSkill((Castable)hotbarType);
-            gui.setActiveSkillIcon(hotbarType.getIcon(), false);
+            gui.setActiveSkillIcon(((Skill)hotbarType).getIcon(), false);
         }
         else
         {
@@ -136,7 +137,7 @@ public class Function : MonoBehaviour {
                         pos = playerInstance.playerObject.transform.position;
                         Vector3 tempOffset = playerInstance.playerObject.transform.forward;
                         pos += tempOffset;
-                        pos += new Vector3(0f, 0.45f, 0f);
+                        pos += new Vector3(0f, 0.90f, 0f);
                         Quaternion rot = playerInstance.playerObject.transform.rotation;
                         tempProjectile.transform.position = pos;
                         tempProjectile.transform.rotation = rot;
@@ -145,13 +146,14 @@ public class Function : MonoBehaviour {
                         Vector3 force = forward * 1500f;
 
                         instanciateObject(tempProjectile.name, tempProjectile.transform.position, tempProjectile.transform.rotation, force, tempEffect, ((Spell)skill).getDamageType(), viewThis.viewID, objectID, true);
-                        viewThis.RPC("instanciateObject", PhotonTargets.All, tempProjectile.name, tempProjectile.transform.position, tempProjectile.transform.rotation, force, tempEffect, ((Spell)skill).getDamageType(), viewThis.viewID, objectID, false);
+                        viewThis.RPC("instanciateObject", PhotonTargets.Others, tempProjectile.name, tempProjectile.transform.position, tempProjectile.transform.rotation, force, tempEffect, ((Spell)skill).getDamageType(), viewThis.viewID, objectID, false);
                         viewThis.RPC("increaseObjectID", PhotonTargets.All);
                     }
                     skill.setCurrentCooldown(skill.getCooldown());
                     playerInstance.addCooldown(skill);
                     skill.updateGainPrCast();
                     playerInstance.gainSkill(skill.getGainPrCast(), ((Skill)skill).getSkillID());
+                    playerInstance.player.skillGainGroup(0.25f, ((Skill)skill).getSkillGroup());
                     //if (audioMagic[((Skill)skill).getSkillID() - 1] != null)
                     //    audioMagic[((Skill)skill).getSkillID() - 1].Play();
                     return "You cast " + skill.getCastMsg();
@@ -194,11 +196,11 @@ public class Function : MonoBehaviour {
             }
             float speed = ((weapon.getAttackspeed() * 5) - (0.008f * playerInstance.player.getStat("quick") + 0.003f * playerInstance.player.getWeaponSkill(null, weapon.getType())));
             playerInstance.addAttackCooldown(speed);
-            playerInstance.gainSkill((1.1f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponSkillId(weapon.getType()));
+            playerInstance.gainSkill((0.25f / (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType())))), playerInstance.player.getWeaponSkillId(weapon.getType()));
 
             if (playerInstance.player.getWeaponSkill(null, weapon.getType()) != 0)
             {
-                playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponMasterySkillId(weapon.getType()));
+                playerInstance.gainSkill((0.125f / (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType())))), playerInstance.player.getWeaponMasterySkillId(weapon.getType()));
             }
          }
         else if (weapon is RangedWeapon) //damage formula weapon [ (0.2 * MS + 0.05 * WS + 0.03 * WM) + >((WD*10) - (AR*2)) ]
@@ -207,7 +209,7 @@ public class Function : MonoBehaviour {
             hitbox.transform.position = playerInstance.playerObject.transform.position;
             Vector3 tempOffset = playerInstance.playerObject.transform.forward;
             hitbox.transform.position += tempOffset;
-            hitbox.transform.position += new Vector3(0f, 0.60f, 0f);
+            hitbox.transform.position += new Vector3(0f, 0.90f, 0f);
             hitbox.transform.rotation = playerInstance.playerObject.transform.rotation;
             float damage = (0.2f * playerInstance.player.getStat("dex") + playerInstance.player.getWeaponSkillEffect(weapon.getType(), null) + playerInstance.player.getWeaponSkillEffect(null, weapon.getType())) * weapon.getDamage() * 10;
             string damageType = weapon.getDamageType();
@@ -216,14 +218,14 @@ public class Function : MonoBehaviour {
             Vector3 force = forward * 3000f;
 
             instanciateObject(hitbox.name, hitbox.transform.position, hitbox.transform.rotation, force, damage, damageType, viewThis.viewID, objectID, true);
-            viewThis.RPC("instanciateObject", PhotonTargets.Others, hitbox.name, hitbox.transform.position, hitbox.transform.rotation, force, damage, damageType, viewThis.viewID, objectID, false);
+            viewThis.RPC("instanciateObject", PhotonTargets.Others, hitbox.name, hitbox.transform.position, hitbox.transform.rotation, force, damage, damageType, viewThis.viewID, objectID, true);
             viewThis.RPC("increaseObjectID", PhotonTargets.All);
 
-            playerInstance.gainSkill((1.1f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponSkillId(weapon.getType()));
+            playerInstance.gainSkill((0.25f / (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType())))), playerInstance.player.getWeaponSkillId(weapon.getType()));
 
             if (playerInstance.player.getWeaponSkill(null, weapon.getType()) != 0)
             {
-                playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType()) / 100))), playerInstance.player.getWeaponMasterySkillId(weapon.getType()));
+                playerInstance.gainSkill((0.125f / (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType())))), playerInstance.player.getWeaponMasterySkillId(weapon.getType()));
             }
         }
 

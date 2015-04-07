@@ -3,11 +3,14 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class hotbarGuiFunction : MonoBehaviour {
+public class hotbarGuiFunction : MonoBehaviour, IEndDragHandler
+{
 
     private Item item = null;
     private Skill skill = null;
     public GuiFunction gui;
+    public Function func;
+    public int slot;
 
     public void OnHoverHandler(BaseEventData e)
     {
@@ -41,5 +44,15 @@ public class hotbarGuiFunction : MonoBehaviour {
     public void setSkill(Skill skillIn)
     {
         skill = skillIn;
+    }
+
+    public void dropHotbarAble(HotbarAble input)
+    {
+        func.putOnHotbar(input, slot);
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        func.removeFromHotbar(slot);
     }
 }

@@ -41,7 +41,7 @@ public class WeaponHitInfo : MonoBehaviour {
             other.gameObject.GetComponentInParent<PhotonView>().RPC("takeDamage", PhotonTargets.All, damage, damageType, hitID, viewID);//takeDamage(damage, damageType);
             destroy();
         }
-        else if (other.gameObject.tag == "Player" && other.gameObject.GetComponentInParent<PhotonView>().viewID != viewID)
+        else if (other.gameObject.tag == "PlayerCapsule" && other.gameObject.GetComponentInParent<PhotonView>().viewID != viewID)
         {
             if (collider)
             {

@@ -142,13 +142,11 @@ public class Skill_Active_Lesser_Magic_Mana_to_Stamina : SkillEntity, Skill, Hot
         GameObject go = (GameObject)particle;
         particle.transform.position = playerInstance.playerObject.transform.position - (new Vector3(0, 1, 0));
         particle.transform.rotation = playerInstance.playerObject.transform.rotation;
-        foreach (PhotonView view in FindObjectsOfType<PhotonView>())
-        {
-            if (view.owner != null)
-            {
-                view.RPC("instanciateObject", PhotonTargets.All, go.name, go.transform.position, go.transform.rotation, Vector3.zero, 0f, "", 0, 0f);
-            }
-        }
+
+        playerInstance.func.instanciateObject(go.name, go.transform.position, go.transform.rotation, Vector3.zero, 0f, "", 0, 0f, false);
+        PhotonView viewThis = playerInstance.playerObject.GetComponent<PhotonView>();
+        viewThis.RPC("instanciateObject", PhotonTargets.Others, go.name, go.transform.position, go.transform.rotation, Vector3.zero, 0f, "", 0, 0f, false);
+
         return null;
     }
 

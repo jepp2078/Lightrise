@@ -15,11 +15,18 @@ public class Skill_Passive_Crafting_Skill_Mining :SkillEntity, Skill
     public static Player playerInstance;
     private Npc npcInstance;
     private GuiFunction gui;
+    private Texture texture;
 
 
     public Skill_Passive_Crafting_Skill_Mining() :
 		base(id, skillName)
 	{
+        texture = Resources.Load("crafting_mining", typeof(Texture)) as Texture;
+    }
+
+    public Texture getIcon()
+    {
+        return texture;
     }
 
     public int getSkillID()

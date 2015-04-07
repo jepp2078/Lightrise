@@ -84,10 +84,19 @@ public class Item_Resources_BaseResource : Item, Stackable
         }
     }
 
+    public string getItemName
+    {
+        get
+        {
+            return itemName;
+        }
+    }
+
     public int stackMax
     {
         get { return _stackMax; }
     }
+
 
 
     public float[] getProtections()

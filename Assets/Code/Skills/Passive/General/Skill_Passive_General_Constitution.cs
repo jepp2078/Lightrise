@@ -15,12 +15,15 @@ public class Skill_Passive_General_Constitution : SkillEntity, Skill
     public static Player playerInstance;
     public static Npc npcInstance;
     private GuiFunction gui;
+    private Texture texture;
 
 
 
     public Skill_Passive_General_Constitution() :
 		base(id, skillName)
 	{
+        texture = Resources.Load("leveling_constitutionbonus01", typeof(Texture)) as Texture;
+
     }
 
     public int getSkillID()
@@ -121,5 +124,11 @@ public class Skill_Passive_General_Constitution : SkillEntity, Skill
     {
         if (player)
             gui = guiIn;
+    }
+
+
+    public Texture getIcon()
+    {
+        return texture;
     }
 }

@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class InventoryGuiFunction : MonoBehaviour
+public class InventoryGuiFunction : MonoBehaviour, IEndDragHandler
 {
     private Item item;
     public GuiFunction gui;
+
     public void OnHoverHandler(BaseEventData e)
     {
         if (!gui.isToolTShowing() && gui.isInventoryShowing() && item != null)
@@ -29,5 +29,10 @@ public class InventoryGuiFunction : MonoBehaviour
     public void setItem(Item itemIn)
     {
         item = itemIn;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        eventData.pointerEnter.GetComponent<hotbarGuiFunction>().dropHotbarAble((HotbarAble)item);
     }
 }

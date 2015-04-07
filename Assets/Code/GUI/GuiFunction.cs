@@ -2,15 +2,25 @@
 using System.Collections;
 using UnityEngine.UI;
 using System;
+using System.Collections.Generic;
 
 public class GuiFunction : MonoBehaviour {
     public RawImage hotbar0, hotbar1, hotbar2, hotbar3, hotbar4, hotbar5, hotbar6, hotbar7, hotbar8, hotbar9, activeSkill, activeWeapon, activeWeaponBg;
-    public Text consoleText, castTime, name, tooltipText;
+    public Text consoleText, castTime, name, tooltipText, targetName;
     public RawImage[] castBar = new RawImage[5];
     public RawImage[] inventoryImage = new RawImage[2];
     public RawImage[] tooltipImage = new RawImage[2];
     public RawImage[] inventory = new RawImage[21];
-    public Image health, stamina, mana, castProgress;
+    public RawImage[] skillWindowIcons = new RawImage[12];
+    public skillWindowFunction[] skillWindowSkills = new skillWindowFunction[12];
+    public Text[] skillWindowNames = new Text[12];
+    public Text[] skillWindowDescriptions = new Text[12];
+    public Text[] skillWindowLevels = new Text[12];
+    public GameObject[] skillWindowSkillEntity = new GameObject[12];
+    public GameObject[] skillWindowEntity = new GameObject[2];
+    public Text[] skillWindowGroupText = new Text[2];
+    public RawImage[] skillWindowGroupIcon = new RawImage[1];
+    public Image health, stamina, mana, castProgress, targetHealth;
     public Image[] skillCooldowns = new Image[10];
     public InventoryGuiFunction[] inventoryItems = new InventoryGuiFunction[21];
     public hotbarGuiFunction[] hotbarSlots = new hotbarGuiFunction[10];
@@ -23,7 +33,15 @@ public class GuiFunction : MonoBehaviour {
     private bool isInvShowing = false, isTooltipShowing = false;
     Item tempItem, tempItem1;
     Skill tempSkill;
+    public GameObject target;
     public Scrollbar scrollbar;
+
+    public void clearGui()
+    {
+        hideInventory();
+        skillWindowEntity[0].SetActive(false);
+        skillWindowEntity[1].SetActive(false);
+    }
 
     public void init()
     {
@@ -36,6 +54,20 @@ public class GuiFunction : MonoBehaviour {
     {
         tempNameString = name;
         nameCall = true;
+    }
+
+    public void setTarget(string name, float health)
+    {
+        target.SetActive(true);
+        targetName.text = name;
+        targetHealth.fillAmount = health;
+    }
+
+    public void removeTarget()
+    {
+        target.SetActive(false);
+        targetName.text = "";
+        targetHealth.fillAmount = 0;
     }
     public void setHotbarIcon(int hotbarSlot, Texture icon, bool transparent, Item item, Skill skill)
     {
@@ -113,6 +145,32 @@ public class GuiFunction : MonoBehaviour {
         OnGUI();
     }
 
+    public void makeSkillWindow(string type, List<Skill> input)
+    {
+        for (int i = 0; i < 12; i++)
+        {
+            skillWindowSkillEntity[i].SetActive(false);
+        }
+        switch (type)
+        {
+            case "combat": skillWindowGroupIcon[0].texture = Resources.Load("combat", typeof(Texture)) as Texture; skillWindowGroupText[0].text = "Combat Skills"; skillWindowGroupText[1].text = ""; break;
+            case "crafting": skillWindowGroupIcon[0].texture = Resources.Load("crafting", typeof(Texture)) as Texture; skillWindowGroupText[0].text = "Crafting Skills"; skillWindowGroupText[1].text = ""; break;
+            case "general": skillWindowGroupIcon[0].texture = Resources.Load("general", typeof(Texture)) as Texture; skillWindowGroupText[0].text = "General Skills"; skillWindowGroupText[1].text = ""; break;
+            case "lesser magic": skillWindowGroupIcon[0].texture = Resources.Load("school_lessermagic", typeof(Texture)) as Texture; skillWindowGroupText[0].text = "Lesser Magic"; skillWindowGroupText[1].text = player.player.getSkill(26).getSkillLevel().ToString(); break;
+            case "weapon skill": skillWindowGroupIcon[0].texture = Resources.Load("weapon", typeof(Texture)) as Texture; skillWindowGroupText[0].text = "Weapon Skills"; skillWindowGroupText[1].text = ""; break;
+        }
+
+        for (int i = 0; i < input.Count; i++)
+        {
+            skillWindowSkillEntity[i].SetActive(true);
+            skillWindowIcons[i].texture = input[i].getIcon();
+            skillWindowNames[i].text = input[i].getSkillText();
+            skillWindowLevels[i].text = input[i].getSkillLevel().ToString();
+            skillWindowDescriptions[i].text = input[i].getSkillDescription();
+            skillWindowSkills[i].setSkill(input[i]);
+        }
+    }
+
     public void newTextLine(string input)
     {
         lines++;
@@ -171,6 +229,8 @@ public class GuiFunction : MonoBehaviour {
         {
             castBar[i].color = new Color(255, 255, 255, 0);
         }
+        casting = false;
+        castProgress.fillAmount = 0;
     }
 
     public void showInventory()

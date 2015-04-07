@@ -8,7 +8,7 @@ public class Skill_Active_Lesser_Magic_Mana_Missle : SkillEntity, Skill, HotbarA
     private static string type = "active";
     private static string group = "lesser magic";
     private static string skillName = "Mana missile";
-    private static string skillDescription = "Fires a missile that inflicts Arcane damage. It is the weakest damage spell available, but does not require reagents.";
+    private static string skillDescription = "Fires a missile that inflicts Arcane damage.";
     private static int price = 0;
     private static float skillLevel = 1f;
     private static float effect = 15f;

@@ -15,11 +15,14 @@ public class Skill_Passive_General_Crouch_Walk : SkillEntity, Skill
     public static Player playerInstance;
     private Npc npcInstance;
     private GuiFunction gui;
+    private Texture texture;
 
 
     public Skill_Passive_General_Crouch_Walk() :
 		base(id, skillName)
 	{
+        texture = Resources.Load("misc_crouch", typeof(Texture)) as Texture;
+
     }
 
     public int getSkillID()
@@ -117,6 +120,11 @@ public class Skill_Passive_General_Crouch_Walk : SkillEntity, Skill
     {
         if (player)
             gui = guiIn;
+    }
+
+    public Texture getIcon()
+    {
+        return texture;
     }
 }
 

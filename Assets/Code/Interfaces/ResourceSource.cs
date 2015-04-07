@@ -7,5 +7,6 @@ public interface ResourceSource
     int resourceMax { get; }
     float respawnCooldown { get;}
     float respawnCooldownCurrent { get; set; }
+    string nodeName { get; set; }
     Item_Resources_BaseResource harvest { get;}
 }

@@ -14,11 +14,19 @@ public class Skill_Passive_Weapon_Skill_Archery : SkillEntity, Skill
     public static Player playerInstance;
     private Npc npcInstance;
     private GuiFunction gui;
+    private Texture texture;
+
 
 
     public Skill_Passive_Weapon_Skill_Archery() :
         base(id, skillName)
     {
+        texture = Resources.Load("combat_archery01", typeof(Texture)) as Texture;
+    }
+
+    public Texture getIcon()
+    {
+        return texture;
     }
 
     public int getSkillID()

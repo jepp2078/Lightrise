@@ -23,22 +23,16 @@ public class Player : MonoBehaviour {
     public AudioSource[] audioAmbience = new AudioSource[1];
     public RPG_Controller rpgController;
     public RPG_Camera rpgCamera;
+    public networkPlayer networkPlayer;
+    Camera tempCam;
+    public PhotonView view;
 
 
 	// Use this for initialization and testing
 	void Start () {
+        tempCam = playerObject.GetComponentInChildren<Camera>();
         player.changeStats(20, 20, 20, 20, 20, 20, 0, 0, 0);
         player.refillVitals();
-        func.putOnHotbar((HotbarAble)player.getSkill(21), 0);
-        func.putOnHotbar((HotbarAble)player.getSkill(22), 1);
-        func.putOnHotbar((HotbarAble)player.getSkill(23), 2);
-        func.putOnHotbar((HotbarAble)player.getSkill(20), 3);
-        func.putOnHotbar((HotbarAble)player.getSkill(24), 4);
-        func.putOnHotbar((HotbarAble)player.getInventoryItem(0), 5);
-        func.putOnHotbar((HotbarAble)player.getInventoryItem(1), 6);
-        func.putOnHotbar((HotbarAble)player.getInventoryItem(2), 7);
-        func.putOnHotbar((HotbarAble)player.getSkill(14), 8);
-        func.putOnHotbar((HotbarAble)player.getSkill(1), 9);
         gui.init();
         gui.newTextLine("Welcome to lightrise!");
         player.setName("Bubbles");
@@ -46,6 +40,12 @@ public class Player : MonoBehaviour {
         doneCasting = false;
         casting = false;
         rpgCamera.setGuiMode(true);
+        view.RPC("setName", PhotonTargets.AllBuffered, player.getName());
+        view.RPC("setHealth", PhotonTargets.AllBuffered, 1);
+        func.putOnHotbar((HotbarAble)player.getInventoryItem(0), 0);
+        func.putOnHotbar((HotbarAble)player.getInventoryItem(1), 1);
+        func.putOnHotbar((HotbarAble)player.getInventoryItem(2), 2);
+        func.putOnHotbar((HotbarAble)player.getSkill(24), 3);
         InvokeRepeating("serverTick", 0, 0.0825F); //TEMP value. We might need to change how fast the server ticks? 1/12 of a sec right now.
     }
 
@@ -214,6 +214,7 @@ public class Player : MonoBehaviour {
         {
             guiHelperNext = Time.time + 0.3333f;
             func.sheathWeapon();
+            stopCasting();
         }
         if (Input.GetButton("Hotbar1") && Time.time > guiHelperNext && rpgCamera.getGuiMode() == false && !(Input.GetButton("action")))
         {
@@ -273,6 +274,20 @@ public class Player : MonoBehaviour {
             gui.setActiveSkillIcon(null, true);
         }
 
+        if (Input.GetButton("clearGui") && Time.time > guiHelperNext && !(Input.GetButton("action")))
+        {
+            guiHelperNext = Time.time + 0.3333f;
+            if (rpgCamera.getGuiMode() == false)
+            {
+                stopCasting();
+            }
+            else
+            {
+                gui.clearGui();
+                rpgCamera.setGuiMode(false);
+            }
+        }
+
     }
 
 	void gameLogic () {
@@ -298,11 +313,17 @@ public class Player : MonoBehaviour {
         {
             player.setHealth(0, (0.33f + player.getRegenModifiers(1)), true,"self"); // Think about skill to modify this?
             player.setMana(0, (0.33f + player.getRegenModifiers(3)));
+            view.RPC("setHealth", PhotonTargets.AllBuffered, player.getHealthForTarget());
         }
         if (serverTicks % 12 == 0)
         {
             player.setStamina(0, (0.33f + player.getRegenModifiers(2))); // Think about skill to modify this?
         }
+        if (serverTicks % 6 == 0)
+        {
+            checkForTarget();
+        }
+
 	}
 
     void serverTick()
@@ -419,4 +440,40 @@ public class Player : MonoBehaviour {
         }
     }
 
+    public void stopCasting()
+    {
+        currentlyCasting = null;
+        casting = false;
+        doneCasting = false;
+        gui.hideCastBar();
+    }
+
+    public void checkForTarget()
+    {
+        int raylenght = 50;
+        RaycastHit hit;
+
+        Ray ray = new Ray(tempCam.transform.position, tempCam.transform.forward);
+
+
+        if (Physics.Raycast(ray, out hit, raylenght))
+        {
+            if (hit.transform && hit.transform.tag == "PlayerCapsule" && view.viewID != hit.transform.GetComponentInParent<PhotonView>().viewID)
+            {
+                gui.setTarget(hit.transform.GetComponentInParent<networkPlayer>().networkPlayerName, hit.transform.gameObject.GetComponentInParent<networkPlayer>().networkPlayerHealth);
+            }
+            else if (hit.rigidbody && hit.rigidbody.tag == "resource")
+            {
+                gui.setTarget(hit.transform.GetComponent<ResourceSource>().nodeName, 0);
+            }
+            else
+            {
+                gui.removeTarget();
+            }
+        }
+        else
+        {
+            gui.removeTarget();
+        }
+    }
 }

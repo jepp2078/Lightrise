@@ -15,11 +15,19 @@ public class Skill_Passive_General_Toughness : SkillEntity, Skill, Learnable
     public static Player playerInstance;
     private Npc npcInstance;
     private GuiFunction gui;
+    private Texture texture;
+
 
 
     public Skill_Passive_General_Toughness() :
 		base(id, skillName)
 	{
+        texture = Resources.Load("misc_toughness", typeof(Texture)) as Texture;
+    }
+
+    public Texture getIcon()
+    {
+        return texture;
     }
 
     public int getSkillID()

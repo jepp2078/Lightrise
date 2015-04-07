@@ -133,6 +133,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &5483931
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -237,6 +238,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &17162841
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -341,6 +343,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &18146053
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -445,6 +448,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &29704047
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -549,6 +553,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &32160001
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -653,6 +658,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &35621237
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -757,6 +763,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &43566555
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -861,6 +868,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &48847766
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -965,6 +973,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &78588247
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1069,6 +1078,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &78834836
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1173,6 +1183,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &80581122
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1277,6 +1288,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &106722332
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1381,6 +1393,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &109177607
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1485,6 +1498,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &113028358
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1589,6 +1603,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &114325775
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1693,6 +1708,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &123683692
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1797,6 +1813,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &139276710
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1901,6 +1918,7 @@ MonoBehaviour:
   _resourceCount: 30
   _resourceMax: 30
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &145492518
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2005,6 +2023,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &151272570
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2109,6 +2128,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &153561096
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2213,6 +2233,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &159715083
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2317,6 +2338,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &165900483
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2421,6 +2443,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &186490381
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2525,6 +2548,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &186759537
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2931,6 +2955,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &208307483
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3035,6 +3060,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &213007039
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3139,6 +3165,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &236218319
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3243,6 +3270,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &244760618
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3347,6 +3375,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &246039815
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3451,6 +3480,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &255589713
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3555,6 +3585,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &261969290
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3659,6 +3690,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &265623008
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3763,6 +3795,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &266576907
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3867,6 +3900,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &274171305
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3971,6 +4005,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &274818479
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4075,6 +4110,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &287801456
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4179,6 +4215,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &288204984
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4283,6 +4320,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &294697258
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4387,6 +4425,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &298391209
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4491,6 +4530,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &299023045
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4595,6 +4635,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &305932592
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4699,6 +4740,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &328790986
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4803,6 +4845,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &333798435
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4907,6 +4950,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &341197949
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5015,6 +5059,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &348399747
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5119,6 +5164,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &352666516
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5223,6 +5269,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &374207396
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5327,6 +5374,7 @@ MonoBehaviour:
   _resourceCount: 30
   _resourceMax: 30
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &375153044
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5431,6 +5479,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &376064286
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5535,6 +5584,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &379310270
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5639,6 +5689,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &379899826
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5743,6 +5794,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &383390869
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5847,6 +5899,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &390742413
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5951,6 +6004,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &391014687
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6055,6 +6109,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &392385437
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6200,6 +6255,7 @@ MonoBehaviour:
   _resourceCount: 30
   _resourceMax: 30
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &440265968
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6304,6 +6360,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &485818847
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6408,6 +6465,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &486863798
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6512,6 +6570,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &487985391
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6616,6 +6675,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &499333925
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6733,7 +6793,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!1 &508275397
 GameObject:
   m_ObjectHideFlags: 0
@@ -6780,6 +6840,7 @@ MonoBehaviour:
   _resourceCount: 30
   _resourceMax: 30
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &508275400
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6884,6 +6945,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &513819629
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6988,6 +7050,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &528274730
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7092,6 +7155,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &539363746
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7196,6 +7260,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &555360430
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7300,6 +7365,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &584303689
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7404,6 +7470,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &590236562
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7508,6 +7575,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &603549616
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7612,6 +7680,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &619821077
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7716,6 +7785,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &627024171
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7820,6 +7890,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &627635640
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7924,6 +7995,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &638256226
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8028,6 +8100,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &639457689
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8132,6 +8205,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &652531414
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8236,6 +8310,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &660885806
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8340,6 +8415,7 @@ MonoBehaviour:
   _resourceCount: 30
   _resourceMax: 30
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &668395765
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8444,6 +8520,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &668721763
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8548,6 +8625,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &675736068
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8680,6 +8758,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &682748971
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8775,7 +8854,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 472908, guid: c7a51750cd474a8488fba78331279d7f, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 148878, guid: c7a51750cd474a8488fba78331279d7f, type: 2}
       propertyPath: m_TagString
@@ -8842,6 +8921,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &691060673
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8946,6 +9026,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &697302352
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9050,6 +9131,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &705226204
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9154,6 +9236,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &717275915
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9258,6 +9341,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &719243193
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9362,6 +9446,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &724393809
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9466,6 +9551,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &729861300
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9570,6 +9656,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &731270925
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9674,6 +9761,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &735857021
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9778,6 +9866,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &746816556
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9882,6 +9971,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &756746705
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9986,6 +10076,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &761309358
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10090,6 +10181,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &766185092
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10194,6 +10286,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &778438248
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10298,6 +10391,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &783719134
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10402,6 +10496,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &794042666
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10506,6 +10601,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &794215973
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10610,6 +10706,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &797534260
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10714,6 +10811,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &798617113
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10818,6 +10916,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &802624672
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10922,6 +11021,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &803918579
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11026,6 +11126,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &814841214
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11130,6 +11231,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &819582770
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11234,6 +11336,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &821426451
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11343,6 +11446,7 @@ MonoBehaviour:
   _resourceCount: 30
   _resourceMax: 30
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &832019606
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11447,6 +11551,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &840040418
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11551,6 +11656,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &845386708
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11655,6 +11761,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &849641452
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11759,6 +11866,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &851460705
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11863,6 +11971,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &852953047
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11967,6 +12076,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &854705251
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12071,6 +12181,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &857174434
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12175,6 +12286,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &872902071
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12279,6 +12391,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &881544527
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12383,6 +12496,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &886732796
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12487,6 +12601,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &892570666
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12591,6 +12706,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &895277603
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12695,6 +12811,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &897560304
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12799,6 +12916,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &899665490
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12903,6 +13021,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &899668085
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13007,6 +13126,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &907279044
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13111,6 +13231,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &907553047
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13215,6 +13336,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &909498056
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13319,6 +13441,7 @@ MonoBehaviour:
   _resourceCount: 30
   _resourceMax: 30
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &919962761
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13423,6 +13546,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &923981189
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13527,6 +13651,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &930307196
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13631,6 +13756,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &940644784
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13735,6 +13861,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &960544546
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13839,6 +13966,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &968976809
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13943,6 +14071,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &990180328
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14047,6 +14176,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &991288231
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14151,6 +14281,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &998727086
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14255,6 +14386,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1003005316
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14359,6 +14491,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1009285874
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14463,6 +14596,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1014772123
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14567,6 +14701,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1016180826
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14671,6 +14806,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1022237345
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14775,6 +14911,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1030749905
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14939,6 +15076,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1050446026
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15043,6 +15181,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1062083053
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15147,6 +15286,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1066232916
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15251,6 +15391,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1067779557
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15355,6 +15496,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1077161397
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15486,6 +15628,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1087494593
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15590,6 +15733,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1106436325
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15694,6 +15838,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1109765757
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15798,6 +15943,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1112205796
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15902,6 +16048,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1115446279
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16006,6 +16153,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1116863575
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16110,6 +16258,7 @@ MonoBehaviour:
   _resourceCount: 30
   _resourceMax: 30
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1130075922
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16214,6 +16363,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1138066436
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16357,6 +16507,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1147247125
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16461,6 +16612,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1153452646
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16565,6 +16717,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1187988018
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16660,7 +16813,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 497416, guid: 214a7ff9bcfbef041aa5821089bada80, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 214a7ff9bcfbef041aa5821089bada80, type: 2}
@@ -16711,6 +16864,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1198968057
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16815,6 +16969,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1200657317
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16992,6 +17147,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1204575223
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17096,6 +17252,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1212358994
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17200,6 +17357,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1228455966
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17304,6 +17462,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1236778448
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17408,6 +17567,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1243249550
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17512,6 +17672,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1247367229
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17616,6 +17777,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1256013100
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17720,6 +17882,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1265233165
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17824,6 +17987,7 @@ MonoBehaviour:
   _resourceCount: 30
   _resourceMax: 30
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1273785551
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17928,6 +18092,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1287355996
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18032,6 +18197,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1304549226
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18136,6 +18302,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1307405160
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18240,6 +18407,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1308415254
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18344,6 +18512,7 @@ MonoBehaviour:
   _resourceCount: 30
   _resourceMax: 30
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1311293493
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18448,6 +18617,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1313577058
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18552,6 +18722,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1331651388
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18656,6 +18827,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1336502432
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18751,7 +18923,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 425988, guid: cc659741def68c84f9e340eb338ae29c, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 100384, guid: cc659741def68c84f9e340eb338ae29c, type: 2}
       propertyPath: m_Name
@@ -18806,6 +18978,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1347592643
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18910,6 +19083,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1366352989
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19014,6 +19188,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1373318975
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19118,6 +19293,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1376070889
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19222,6 +19398,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1377376359
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19326,6 +19503,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1404591132
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19430,6 +19608,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1409570281
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19534,6 +19713,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1412836599
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19638,6 +19818,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1413377835
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19742,6 +19923,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1418511777
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19846,6 +20028,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1420611940
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19950,6 +20133,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1436170498
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20054,6 +20238,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1438726498
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20158,6 +20343,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1447994239
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20267,6 +20453,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1456838936
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20371,6 +20558,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1477422361
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20475,6 +20663,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1481746998
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20579,6 +20768,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1499888319
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20683,6 +20873,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1507768304
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20787,6 +20978,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1549012369
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20891,6 +21083,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1554075991
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20995,6 +21188,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1557293962
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21099,6 +21293,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1563812717
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21203,6 +21398,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1570554642
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21307,6 +21503,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1571231298
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21411,6 +21608,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1571852220
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21515,6 +21713,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1585899594
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21619,6 +21818,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1597333202
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21723,6 +21923,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1606598057
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21827,6 +22028,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1612133643
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21931,6 +22133,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1612876332
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22035,6 +22238,7 @@ MonoBehaviour:
   _resourceCount: 30
   _resourceMax: 30
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1613475697
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22139,6 +22343,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1623726761
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22243,6 +22448,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1628901839
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22347,6 +22553,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1634084351
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22451,6 +22658,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1634115559
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22555,6 +22763,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1634917915
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22659,6 +22868,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1645824260
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22763,6 +22973,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1646554560
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22867,6 +23078,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1654835172
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22976,6 +23188,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1673528569
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23080,6 +23293,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1684072845
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23184,6 +23398,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1709265861
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23288,6 +23503,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1713907189
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23392,6 +23608,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1717750647
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23496,6 +23713,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1724472776
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23600,6 +23818,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1726551897
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23704,6 +23923,7 @@ MonoBehaviour:
   _resourceCount: 30
   _resourceMax: 30
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1729363085
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23808,6 +24028,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1733072350
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -26376,7 +26597,7 @@ MonoBehaviour:
       menu_rect:
         serializedVersion: 2
         x: 797
-        y: 3674
+        y: 3512
         width: 63
         height: 15
       curve:
@@ -26426,7 +26647,7 @@ MonoBehaviour:
       menu_rect:
         serializedVersion: 2
         x: 797
-        y: 3692
+        y: 3530
         width: 63
         height: 15
       curve:
@@ -49022,7 +49243,7 @@ MonoBehaviour:
       menu_rect:
         serializedVersion: 2
         x: 797
-        y: 2731
+        y: 2569
         width: 63
         height: 15
       curve:
@@ -49072,7 +49293,7 @@ MonoBehaviour:
       menu_rect:
         serializedVersion: 2
         x: 797
-        y: 2749
+        y: 2587
         width: 63
         height: 15
       curve:
@@ -49449,7 +49670,7 @@ MonoBehaviour:
       menu_rect:
         serializedVersion: 2
         x: 797
-        y: 2961
+        y: 2799
         width: 63
         height: 15
       curve:
@@ -49499,7 +49720,7 @@ MonoBehaviour:
       menu_rect:
         serializedVersion: 2
         x: 797
-        y: 2979
+        y: 2817
         width: 63
         height: 15
       curve:
@@ -49876,7 +50097,7 @@ MonoBehaviour:
       menu_rect:
         serializedVersion: 2
         x: 797
-        y: 3156
+        y: 2994
         width: 63
         height: 15
       curve:
@@ -49926,7 +50147,7 @@ MonoBehaviour:
       menu_rect:
         serializedVersion: 2
         x: 797
-        y: 3338
+        y: 3176
         width: 63
         height: 15
       curve:
@@ -50303,7 +50524,7 @@ MonoBehaviour:
       menu_rect:
         serializedVersion: 2
         x: 797
-        y: 3497
+        y: 3335
         width: 63
         height: 15
       curve:
@@ -50353,7 +50574,7 @@ MonoBehaviour:
       menu_rect:
         serializedVersion: 2
         x: 797
-        y: 3515
+        y: 3353
         width: 63
         height: 15
       curve:
@@ -57489,7 +57710,7 @@ MonoBehaviour:
       menu_rect:
         serializedVersion: 2
         x: 797
-        y: 2464
+        y: 2302
         width: 63
         height: 15
       curve:
@@ -57539,7 +57760,7 @@ MonoBehaviour:
       menu_rect:
         serializedVersion: 2
         x: 797
-        y: 2482
+        y: 2320
         width: 63
         height: 15
       curve:
@@ -86867,7 +87088,7 @@ MonoBehaviour:
       rect:
         serializedVersion: 2
         x: 47
-        y: 1538
+        y: 1376
         width: 146
         height: 16
       edit: 0
@@ -96636,7 +96857,7 @@ MonoBehaviour:
         rect:
           serializedVersion: 2
           x: 32
-          y: 1516
+          y: 1354
           width: 97
           height: 16
         layer_index: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b000000
@@ -96655,13 +96876,13 @@ MonoBehaviour:
     view_menu_rect:
       serializedVersion: 2
       x: 284
-      y: 1495
+      y: 1333
       width: 50
       height: 18
     menuRect:
       serializedVersion: 2
       x: 19
-      y: 1476
+      y: 1314
       width: 111
       height: 16
     view_heightmap_layer: 0
@@ -99631,7 +99852,7 @@ MonoBehaviour:
       object_resolution_active: 1
     splatPrototypes:
     - foldout: 0
-      texture: {fileID: 2800000, guid: 76e4160be4414f244bc6f935a6e76a8c, type: 3}
+      texture: {fileID: 2800000, guid: c4434978d0c6a03468350775207ce228, type: 3}
       tileSize: {x: 10, y: 10}
       tileSize_link: 1
       tileSize_old: {x: 0, y: 0}
@@ -99640,12 +99861,12 @@ MonoBehaviour:
       strength: 1
       strength_splat: 1
       normal_texture: {fileID: 2800000, guid: b20b7c2f30df42a46827c459ce554829, type: 3}
-      normalMap: {fileID: 2800000, guid: 3e2792d3f2f7f7c4ca5cf536be4bb3c4, type: 3}
+      normalMap: {fileID: 2800000, guid: ce39f24cec638794193f9c38c86a8eb3, type: 3}
       height_texture: {fileID: 2800000, guid: eed032e9a5f068f44af78179a0532132, type: 3}
       specular_texture: {fileID: 0}
       import_max_size_list: 5
     - foldout: 0
-      texture: {fileID: 2800000, guid: 49f2767ce13476e4eab6392349f42031, type: 3}
+      texture: {fileID: 2800000, guid: d40b20b438d67924eb8d6979f57a66f0, type: 3}
       tileSize: {x: 10, y: 10}
       tileSize_link: 1
       tileSize_old: {x: 0, y: 0}
@@ -99654,7 +99875,7 @@ MonoBehaviour:
       strength: 1
       strength_splat: 1
       normal_texture: {fileID: 2800000, guid: 51abdeebe2b65944db9673accfbb6164, type: 3}
-      normalMap: {fileID: 2800000, guid: a888e88dc94e64e4e81219216445d77e, type: 3}
+      normalMap: {fileID: 2800000, guid: c18f3892a28f8cb47a871bd47e816f4d, type: 3}
       height_texture: {fileID: 2800000, guid: 7b1b059f3a09b2745aa3d80fdf2f96b7, type: 3}
       specular_texture: {fileID: 0}
       import_max_size_list: 5
@@ -99987,8 +100208,8 @@ MonoBehaviour:
     splatmap_conversion: {x: 1.95694721, y: 1.95694721}
     heightmap_conversion: {x: 1.953125, y: 1.953125}
     detailmap_conversion: {x: 1.95694721, y: 1.95694721}
-    splat_foldout: 0
-    tree_foldout: 1
+    splat_foldout: 1
+    tree_foldout: 0
     tree_length: 0
     detail_foldout: 0
     detail_scale: 1
@@ -100087,7 +100308,7 @@ MonoBehaviour:
       object_resolution_active: 1
     splatPrototypes:
     - foldout: 0
-      texture: {fileID: 2800000, guid: 76e4160be4414f244bc6f935a6e76a8c, type: 3}
+      texture: {fileID: 2800000, guid: c4434978d0c6a03468350775207ce228, type: 3}
       tileSize: {x: 10, y: 10}
       tileSize_link: 1
       tileSize_old: {x: 0, y: 0}
@@ -100096,12 +100317,12 @@ MonoBehaviour:
       strength: 1
       strength_splat: 1
       normal_texture: {fileID: 0}
-      normalMap: {fileID: 2800000, guid: 3e2792d3f2f7f7c4ca5cf536be4bb3c4, type: 3}
+      normalMap: {fileID: 2800000, guid: ce39f24cec638794193f9c38c86a8eb3, type: 3}
       height_texture: {fileID: 0}
       specular_texture: {fileID: 0}
       import_max_size_list: 0
     - foldout: 0
-      texture: {fileID: 2800000, guid: 49f2767ce13476e4eab6392349f42031, type: 3}
+      texture: {fileID: 2800000, guid: d40b20b438d67924eb8d6979f57a66f0, type: 3}
       tileSize: {x: 10, y: 10}
       tileSize_link: 1
       tileSize_old: {x: 0, y: 0}
@@ -100110,7 +100331,7 @@ MonoBehaviour:
       strength: 1
       strength_splat: 1
       normal_texture: {fileID: 0}
-      normalMap: {fileID: 2800000, guid: a888e88dc94e64e4e81219216445d77e, type: 3}
+      normalMap: {fileID: 2800000, guid: c18f3892a28f8cb47a871bd47e816f4d, type: 3}
       height_texture: {fileID: 0}
       specular_texture: {fileID: 0}
       import_max_size_list: 0
@@ -100543,7 +100764,7 @@ MonoBehaviour:
       object_resolution_active: 1
     splatPrototypes:
     - foldout: 0
-      texture: {fileID: 2800000, guid: 76e4160be4414f244bc6f935a6e76a8c, type: 3}
+      texture: {fileID: 2800000, guid: c4434978d0c6a03468350775207ce228, type: 3}
       tileSize: {x: 10, y: 10}
       tileSize_link: 1
       tileSize_old: {x: 0, y: 0}
@@ -100552,12 +100773,12 @@ MonoBehaviour:
       strength: 1
       strength_splat: 1
       normal_texture: {fileID: 0}
-      normalMap: {fileID: 2800000, guid: 3e2792d3f2f7f7c4ca5cf536be4bb3c4, type: 3}
+      normalMap: {fileID: 2800000, guid: ce39f24cec638794193f9c38c86a8eb3, type: 3}
       height_texture: {fileID: 0}
       specular_texture: {fileID: 0}
       import_max_size_list: 0
     - foldout: 0
-      texture: {fileID: 2800000, guid: 49f2767ce13476e4eab6392349f42031, type: 3}
+      texture: {fileID: 2800000, guid: d40b20b438d67924eb8d6979f57a66f0, type: 3}
       tileSize: {x: 10, y: 10}
       tileSize_link: 1
       tileSize_old: {x: 0, y: 0}
@@ -100566,7 +100787,7 @@ MonoBehaviour:
       strength: 1
       strength_splat: 1
       normal_texture: {fileID: 0}
-      normalMap: {fileID: 2800000, guid: a888e88dc94e64e4e81219216445d77e, type: 3}
+      normalMap: {fileID: 2800000, guid: c18f3892a28f8cb47a871bd47e816f4d, type: 3}
       height_texture: {fileID: 0}
       specular_texture: {fileID: 0}
       import_max_size_list: 0
@@ -100999,7 +101220,7 @@ MonoBehaviour:
       object_resolution_active: 1
     splatPrototypes:
     - foldout: 0
-      texture: {fileID: 2800000, guid: 76e4160be4414f244bc6f935a6e76a8c, type: 3}
+      texture: {fileID: 2800000, guid: c4434978d0c6a03468350775207ce228, type: 3}
       tileSize: {x: 10, y: 10}
       tileSize_link: 1
       tileSize_old: {x: 0, y: 0}
@@ -101008,12 +101229,12 @@ MonoBehaviour:
       strength: 1
       strength_splat: 1
       normal_texture: {fileID: 0}
-      normalMap: {fileID: 2800000, guid: 3e2792d3f2f7f7c4ca5cf536be4bb3c4, type: 3}
+      normalMap: {fileID: 2800000, guid: ce39f24cec638794193f9c38c86a8eb3, type: 3}
       height_texture: {fileID: 0}
       specular_texture: {fileID: 0}
       import_max_size_list: 0
     - foldout: 0
-      texture: {fileID: 2800000, guid: 49f2767ce13476e4eab6392349f42031, type: 3}
+      texture: {fileID: 2800000, guid: d40b20b438d67924eb8d6979f57a66f0, type: 3}
       tileSize: {x: 10, y: 10}
       tileSize_link: 1
       tileSize_old: {x: 0, y: 0}
@@ -101022,7 +101243,7 @@ MonoBehaviour:
       strength: 1
       strength_splat: 1
       normal_texture: {fileID: 0}
-      normalMap: {fileID: 2800000, guid: a888e88dc94e64e4e81219216445d77e, type: 3}
+      normalMap: {fileID: 2800000, guid: c18f3892a28f8cb47a871bd47e816f4d, type: 3}
       height_texture: {fileID: 0}
       specular_texture: {fileID: 0}
       import_max_size_list: 0
@@ -103635,7 +103856,7 @@ MonoBehaviour:
   script_base: {fileID: 0}
   tree_script: {fileID: 0}
   grass_script: {fileID: 0}
-  tc_id: -4144
+  tc_id: -2970
   settings:
     example_display: 1
     terrainDataDisplay: 0
@@ -103943,6 +104164,7 @@ MonoBehaviour:
   _resourceCount: 30
   _resourceMax: 30
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1741721672
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -104047,6 +104269,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1762159539
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -104151,6 +104374,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1766897041
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -104255,6 +104479,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1769518982
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -104359,6 +104584,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1776924465
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -104463,6 +104689,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1782387661
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -104567,6 +104794,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1783721114
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -104671,6 +104899,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1797812599
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -104775,6 +105004,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1798229321
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -104879,6 +105109,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1823531058
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -104983,6 +105214,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1828886659
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -105087,6 +105319,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1832460665
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -105191,6 +105424,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1838690966
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -105295,6 +105529,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1840009543
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -105399,6 +105634,7 @@ MonoBehaviour:
   _resourceCount: 30
   _resourceMax: 30
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1861682029
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -105503,6 +105739,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1864523142
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -105607,6 +105844,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1864582046
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -105711,6 +105949,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1873318176
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -105815,6 +106054,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1873811935
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -105919,6 +106159,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1881851673
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -106023,6 +106264,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1887545940
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -106127,6 +106369,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1898269214
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -106231,6 +106474,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1898925436
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -106335,6 +106579,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1909394153
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -106439,6 +106684,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1912430532
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -106543,6 +106789,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1928366892
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -106647,6 +106894,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1940889242
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -106751,6 +106999,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1971834811
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -106855,6 +107104,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1984533888
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -106959,6 +107209,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1984814916
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -107063,6 +107314,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1994632887
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -107167,6 +107419,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &1996840262
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -107271,6 +107524,7 @@ MonoBehaviour:
   _resourceCount: 30
   _resourceMax: 30
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &2005922458
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -107375,6 +107629,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &2007183627
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -107479,6 +107734,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &2014580236
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -107583,6 +107839,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &2017791106
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -107687,6 +107944,7 @@ MonoBehaviour:
   _resourceCount: 30
   _resourceMax: 30
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &2019615965
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -107791,6 +108049,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &2021966059
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -107895,6 +108154,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &2025003630
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -107999,6 +108259,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &2026233972
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -108103,6 +108364,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &2028172423
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -108207,6 +108469,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &2031094297
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -108311,6 +108574,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &2060105589
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -108415,6 +108679,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &2064283753
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -108519,6 +108784,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &2078715928
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -108616,6 +108882,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &2093107385
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -108732,6 +108999,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &2098646109
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -108836,6 +109104,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &2105328863
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -108940,6 +109209,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &2105581535
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -109044,6 +109314,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &2109616522
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -109148,6 +109419,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &2109673649
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -109252,6 +109524,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &2116675449
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -109356,6 +109629,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &2123159668
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -109460,6 +109734,7 @@ MonoBehaviour:
   _resourceCount: 10
   _resourceMax: 10
   _respawnCooldown: 600
+  nodeName: Iron Node
 --- !u!54 &2123713658
 Rigidbody:
   m_ObjectHideFlags: 0
