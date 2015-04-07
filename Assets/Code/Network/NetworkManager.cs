@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class NetworkManager : MonoBehaviour {
-
+    public SpawnPoint newPlayerSpawn;
 	// Use this for initialization
 	void Start () {
         Connect();
@@ -36,12 +36,13 @@ public class NetworkManager : MonoBehaviour {
 
     void spawnPlayer()
     {
-        GameObject myPlayerGO = PhotonNetwork.Instantiate("_Player", new Vector3(-4f, 31f, -7.5f), Quaternion.identity, 0);
+        GameObject myPlayerGO = PhotonNetwork.Instantiate("_Player", newPlayerSpawn.getSpawnPoint(), Quaternion.identity, 0);
         myPlayerGO.GetComponentInChildren<RPG_Controller>().enabled = true;
         myPlayerGO.GetComponentInChildren<RPG_Camera>().enabled = true;
         myPlayerGO.GetComponentInChildren<Camera>().enabled = true;
         myPlayerGO.GetComponentInChildren<CharacterController>().enabled = true;
         myPlayerGO.GetComponentInChildren<PlayerObject>().enabled = true;
+        myPlayerGO.GetComponentInChildren<PlayerObject>().setSpawnPoint(newPlayerSpawn);
         myPlayerGO.GetComponentInChildren<Player>().enabled = true;
         myPlayerGO.GetComponentInChildren<Canvas>().enabled = true;
         myPlayerGO.GetComponentInChildren<GuiFunction>().enabled = true;

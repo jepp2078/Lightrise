@@ -28,6 +28,7 @@ public class PlayerObject : MonoBehaviour {
     public Player playerInstance;
     public GuiFunction gui;
     public RPG_Camera camera;
+    public SpawnPoint spawnStone;
 
 	// Use this for initialization
     void Start () 
@@ -80,6 +81,11 @@ public class PlayerObject : MonoBehaviour {
         {
             hotbar.Add(null);
         }
+    }
+
+    public void setSpawnPoint(SpawnPoint spawnPoint)
+    {
+        spawnStone = spawnPoint;
     }
 
     public string getName()

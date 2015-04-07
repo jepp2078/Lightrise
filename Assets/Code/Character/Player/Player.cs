@@ -41,7 +41,7 @@ public class Player : MonoBehaviour {
         casting = false;
         rpgCamera.setGuiMode(true);
         view.RPC("setName", PhotonTargets.AllBuffered, player.getName());
-        view.RPC("setHealth", PhotonTargets.AllBuffered, 1);
+        view.RPC("setHealth", PhotonTargets.AllBuffered, 1f);
         func.putOnHotbar((HotbarAble)player.getInventoryItem(0), 0);
         func.putOnHotbar((HotbarAble)player.getInventoryItem(1), 1);
         func.putOnHotbar((HotbarAble)player.getInventoryItem(2), 2);
