@@ -67,7 +67,7 @@ public class RPG_Controller : MonoBehaviour
         {
             audioState = 3;
         }
-        if (Input.GetButton("Horizontal Strafe"))
+        if (Input.GetButton("Horizontal Strafe") && playerInstance.rpgCamera.getGuiMode() == false)
         {
             if (((Castable)playerInstance.player.getSkill(1)).getState())
             {
@@ -119,12 +119,13 @@ public class RPG_Controller : MonoBehaviour
                 if (!Input.GetButton("Crouch") && !Input.GetButton("Sprint"))
                 {
                     playerInstance.gainSkill(0.0833f / 60f, 0);
+                    playerInstance.player.changeStats(0.005f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f);
                 }
                 serverTickCurrent = serverTickIn;
             }
         }
 
-        if (Input.GetButton("Vertical"))
+        if (Input.GetButton("Vertical") && playerInstance.rpgCamera.getGuiMode() == false)
         {
             if (((Castable)playerInstance.player.getSkill(1)).getState())
             {

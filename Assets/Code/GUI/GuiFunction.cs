@@ -24,6 +24,7 @@ public class GuiFunction : MonoBehaviour {
     public Image[] skillCooldowns = new Image[10];
     public InventoryGuiFunction[] inventoryItems = new InventoryGuiFunction[21];
     public hotbarGuiFunction[] hotbarSlots = new hotbarGuiFunction[10];
+    public Text[] characterSheet = new Text[25];
     Texture tempIcon, tempIconInventory;
     string tempMessageString, tempCastString, tempNameString, tempToolTip;
     int hotbarIndex, inventoryIndex, lines = 0, maxLines = 90;
@@ -33,7 +34,7 @@ public class GuiFunction : MonoBehaviour {
     private bool isInvShowing = false, isTooltipShowing = false;
     Item tempItem, tempItem1;
     Skill tempSkill;
-    public GameObject target;
+    public GameObject target, characterSheetWindow;
     public Scrollbar scrollbar;
 
     public void clearGui()
@@ -41,6 +42,7 @@ public class GuiFunction : MonoBehaviour {
         hideInventory();
         skillWindowEntity[0].SetActive(false);
         skillWindowEntity[1].SetActive(false);
+        characterSheetWindow.SetActive(false);
     }
 
     public void init()
@@ -69,6 +71,16 @@ public class GuiFunction : MonoBehaviour {
         targetName.text = "";
         targetHealth.fillAmount = 0;
     }
+
+    public void setCharacterSheet(string name, List<float> stats)
+    {
+        characterSheet[0].text = name;
+        for (int i = 0; i < stats.Count; i++)
+        {
+            characterSheet[i+1].text = stats[i].ToString();
+        }
+    }
+
     public void setHotbarIcon(int hotbarSlot, Texture icon, bool transparent, Item item, Skill skill)
     {
         hotbarIndex = hotbarSlot;

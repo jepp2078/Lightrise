@@ -3,7 +3,8 @@ using System.Collections;
 
 public class menuGui : MonoBehaviour {
     public GuiFunction gui;
-    public GameObject Console, Status, Hotbar, Skills0, Skills1;
+    public Function func;
+    public GameObject Console, Status, Hotbar, Skills0, Skills1, Character;
     public void toggleInventory()
     {
         if (gui.isInventoryShowing())
@@ -44,6 +45,17 @@ public class menuGui : MonoBehaviour {
         else
         {
             Skills0.SetActive(true);
+        }
+    }
+
+    public void toggleCharacter()
+    {
+        if (Character.active)
+            Character.SetActive(false);
+        else 
+        { 
+            func.playerInstance.player.setCharacterSheet();
+            Character.SetActive(true);
         }
     }
 }

@@ -293,16 +293,18 @@ public class Player : MonoBehaviour {
 	void gameLogic () {
         if (Input.GetButton("Sprint") && !Input.GetButton("Crouch") && rpgCamera.getGuiMode() == false)
         {
-            if (player.setStamina(0.125f-player.getSkillEffect(2), 0))
+            if (player.setStamina(0.125f - player.getSkillEffect(2), 0) && rpgCamera.getGuiMode() == false)
             {
                 gainSkill(0.0833f/60f, 2);
                 rpgController.walkSpeedModifier = 3;
+                player.changeStats(0.005f, 0f, 0f, 0f, 0f, 0.005f, 0f, 0f, 0f);
             }
         }
         else if (Input.GetButton("Crouch") && rpgCamera.getGuiMode() == false)
         {
                 gainSkill(0.0833f / 60f, 3);
                 rpgController.walkSpeedModifier = 0;
+                player.changeStats(0.005f, 0.005f, 0f, 0f, 0f, 0f, 0f, 0f, 0f);
         }
         else
         {

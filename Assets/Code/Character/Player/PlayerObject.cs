@@ -22,7 +22,6 @@ public class PlayerObject : MonoBehaviour {
     private float encumbrance = 0;
     private float[] protections = new float[15] { 1, 1, 1, 1, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0, 0, 0 }; //arrow, bludgeoning, piercing, slashing, acid, arcane, cold, fire, holy, impact, lightning, unholy, malediction, mental, infliction
     private float healthMod = 0, manaMod = 0, staminaMod = 0;  
-    private float rangedRange = 5;
     private float critChance = 1;
     private int arrows = 0, gold = 0;//, mandrake = 0, ash = 0, sulfur = 0, raisin = 0, nacra = 0, bone = 0;
     public Player playerInstance;
@@ -798,6 +797,18 @@ public class PlayerObject : MonoBehaviour {
         return "\nStrength: " + str + " " + "\nDexterity: " + dex + " " + "\nIntellect: " + intel + " " + "\nVitality: " + vit + " " + "\nWisdom: " + wis + "\nQuickness: " + quick;
     }
 
+    public float[] getStatsArray()
+    {
+        float[] stats = new float[6];
+        stats[0] = str;
+        stats[1] = dex;
+        stats[2] = intel;
+        stats[3] = vit;
+        stats[4] = wis;
+        stats[5] = quick;
+        return stats;
+    }
+
     public float getStat(string stat)
     {
         switch (stat)
@@ -820,16 +831,6 @@ public class PlayerObject : MonoBehaviour {
     public void setCritChance(float critChance)
     {
         this.critChance = critChance;
-    }
-
-    public float getRangedRange()
-    {
-        return rangedRange;
-    }
-
-    public void setRangedRange(float rangedRange)
-    {
-        this.rangedRange = rangedRange;
     }
 
     public int getArrows()
@@ -955,5 +956,16 @@ public class PlayerObject : MonoBehaviour {
     public float getHealthForTarget()
     {
         return tempHealth / health;
+    }
+
+    public void setCharacterSheet()
+    {
+        List<float> info = new List<float>();
+        info.AddRange(getStatsArray());
+        info.Add(health);
+        info.Add(stamina);
+        info.Add(mana);
+        info.AddRange(getProtections());
+        gui.setCharacterSheet(name, info);
     }
 }

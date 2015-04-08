@@ -153,6 +153,7 @@ public class Function : MonoBehaviour {
                     playerInstance.addCooldown(skill);
                     skill.updateGainPrCast();
                     playerInstance.gainSkill(skill.getGainPrCast(), ((Skill)skill).getSkillID());
+                    playerInstance.player.changeStats(0f, 0f, 0.05f, 0f, 0.025f, 0f, 0f, 0f, 0f);
                     playerInstance.player.skillGainGroup(0.25f, ((Skill)skill).getSkillGroup());
                     //if (audioMagic[((Skill)skill).getSkillID() - 1] != null)
                     //    audioMagic[((Skill)skill).getSkillID() - 1].Play();
@@ -197,7 +198,7 @@ public class Function : MonoBehaviour {
             float speed = ((weapon.getAttackspeed() * 5) - (0.008f * playerInstance.player.getStat("quick") + 0.003f * playerInstance.player.getWeaponSkill(null, weapon.getType())));
             playerInstance.addAttackCooldown(speed);
             playerInstance.gainSkill((0.25f / (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType())))), playerInstance.player.getWeaponSkillId(weapon.getType()));
-
+            playerInstance.player.changeStats(0.05f, 0f, 0f, 0.025f, 0f, 0f, 0f, 0f, 0f);
             if (playerInstance.player.getWeaponSkill(null, weapon.getType()) != 0)
             {
                 playerInstance.gainSkill((0.125f / (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType())))), playerInstance.player.getWeaponMasterySkillId(weapon.getType()));
@@ -222,7 +223,7 @@ public class Function : MonoBehaviour {
             viewThis.RPC("increaseObjectID", PhotonTargets.All);
 
             playerInstance.gainSkill((0.25f / (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType())))), playerInstance.player.getWeaponSkillId(weapon.getType()));
-
+            playerInstance.player.changeStats(0f, 0.05f, 0f, 0f, 0f, 0.025f, 0f, 0f, 0f);
             if (playerInstance.player.getWeaponSkill(null, weapon.getType()) != 0)
             {
                 playerInstance.gainSkill((0.125f / (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType())))), playerInstance.player.getWeaponMasterySkillId(weapon.getType()));
@@ -244,6 +245,7 @@ public class Function : MonoBehaviour {
             if(viewID != null)
                 PhotonView.Find(viewID).RPC("writeToGui", PhotonTargets.All, "You hit for <color=maroon>" + damage + "</color> " + damageType + " damage!", hitID);
             playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(9) / 100)), 9);
+            playerInstance.player.changeStats(0f, 0f, 0f, 0.005f, 0f, 0f, 0f, 0f, 0f);
             switch (damageType)
             {
                 case "mental": playerInstance.gainSkill((1.05f - (playerInstance.player.getSkillLevel(12) / 100)), 12); break;
