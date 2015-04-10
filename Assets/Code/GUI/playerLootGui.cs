@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using System.Collections;
+
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventoryGuiFunction : MonoBehaviour, IEndDragHandler
+public class playerLootGui : MonoBehaviour, IEndDragHandler
 {
     private Item item;
     public GuiFunction gui;
@@ -22,12 +25,12 @@ public class InventoryGuiFunction : MonoBehaviour, IEndDragHandler
                 gui.setToolTip(item.getItemText());
             }
 
-        } 
+        }
     }
 
     public void OnExitHandler(BaseEventData e)
     {
-            gui.hideTooltip();
+        gui.hideTooltip();
     }
 
     public void setItem(Item itemIn)
@@ -37,12 +40,9 @@ public class InventoryGuiFunction : MonoBehaviour, IEndDragHandler
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (eventData.pointerEnter.GetComponent<hotbarGuiFunction>() != null)
-            eventData.pointerEnter.GetComponent<hotbarGuiFunction>().dropHotbarAble((HotbarAble)item);
-    }
-
-    public void putInInventory(Item e)
-    {
-        gui.player.player.inventoryAdd(e);
+        if (eventData.pointerEnter.GetComponent<InventoryGuiFunction>() != null)
+        {
+            eventData.pointerEnter.GetComponent<InventoryGuiFunction>().putInInventory(item);
+        }
     }
 }

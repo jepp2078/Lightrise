@@ -10,7 +10,7 @@ TagManager:
   - nonCollide
   - PlayerObject
   - PlayerCapsule
-  - SpawnStone
+  - Interactable
   layers:
   - Default
   - TransparentFX

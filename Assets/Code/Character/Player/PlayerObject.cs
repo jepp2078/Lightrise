@@ -82,9 +82,17 @@ public class PlayerObject : MonoBehaviour {
         }
     }
 
-    public void setSpawnPoint(SpawnPoint spawnPoint)
+    public bool setSpawnPoint(SpawnPoint spawnPoint)
     {
-        spawnStone = spawnPoint;
+        if (spawnPoint != spawnStone)
+        {
+            spawnStone = spawnPoint;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public string getName()
@@ -225,6 +233,16 @@ public class PlayerObject : MonoBehaviour {
     public Item getInventory(int index)
     {
         return inventory[index];
+    }
+
+    public List<Item> getInventoryList()
+    {
+        return inventory;
+    }
+
+    public void removeInventory()
+    {
+        inventory.Clear();
     }
 
     public string getHealth()

@@ -274,6 +274,45 @@ public class Player : MonoBehaviour {
             gui.setActiveSkillIcon(null, true);
         }
 
+        if (Input.GetButton("use") && Time.time > guiHelperNext && rpgCamera.getGuiMode() == false && !(Input.GetButton("action")))
+        {
+            guiHelperNext = Time.time + 0.66666f;
+
+            int raylenght;
+            if (rpgCamera.distance > 2.5)
+                raylenght = 8;
+            else
+                raylenght = 3;
+
+            RaycastHit hit;
+
+            Ray ray = new Ray(tempCam.transform.position, tempCam.transform.forward);
+
+
+            if (Physics.Raycast(ray, out hit, raylenght))
+            {
+                if (hit.transform.tag == "Interactable")
+                {
+                    if (hit.transform.name == "Spawn Stone")
+                    {
+                        if (player.setSpawnPoint(hit.transform.GetComponentInParent<SpawnPoint>()))
+                        {
+                            gui.newTextLine("You have bound to the Spawn Stone of " + hit.transform.GetComponentInParent<SpawnPoint>().getSpawnStoneName());
+                        }
+                        else
+                        {
+                            gui.newTextLine("You're already bound to the Spawn Stone of " + hit.transform.GetComponentInParent<SpawnPoint>().getSpawnStoneName());
+                        }
+                    }
+                    else if (hit.transform.name == "PlayerTomb")
+                    {
+
+                    }
+                }
+            }
+            
+        }
+
         if (Input.GetButton("clearGui") && Time.time > guiHelperNext && !(Input.GetButton("action")))
         {
             guiHelperNext = Time.time + 0.3333f;

@@ -40,4 +40,5 @@ MonoBehaviour:
   - increaseObjectID
   - setHealth
   - setName
+  - playerDeath
   DisableAutoOpenWizard: 0

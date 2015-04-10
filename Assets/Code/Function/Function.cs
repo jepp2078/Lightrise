@@ -263,7 +263,14 @@ public class Function : MonoBehaviour {
                 case "arcane": break;
             }
             hitDetection = hitID;
-            playerInstance.player.setHealth(damage, 0, false, damageType);
+            if (playerInstance.player.setHealth(damage, 0, false, damageType))
+            {
+                Vector3 pos = playerInstance.playerObject.transform.position;
+                pos -= new Vector3(0f, 1f, 0f);
+                playerInstance.view.RPC("playerDeath", PhotonTargets.AllBufferedViaServer, "PlayerTomb", pos, playerInstance.playerObject.transform.rotation, playerInstance.view.viewID);
+                playerInstance.player.removeInventory();
+                respawn();
+            }
         }
         //audioDamage[Random.Range(4, 6)].Play();objectID
     }
@@ -299,6 +306,16 @@ public class Function : MonoBehaviour {
     }
 
     [RPC]
+    public void playerDeath(string objectIn, Vector3 pos, Quaternion rot, int viewID)
+    {
+        GameObject go = (GameObject)Instantiate(Resources.Load(objectIn), pos, rot);
+        playerGrave grave;
+        grave = go.GetComponent<playerGrave>();
+        grave.addItem(PhotonView.Find(viewID).GetComponent<PlayerObject>().getInventoryList());
+
+    }
+
+    [RPC]
     public void writeToGui(string msg, float id)
     {
         bool hasWritten = false;
@@ -330,6 +347,12 @@ public class Function : MonoBehaviour {
     public void increaseObjectID()
     {
         objectID += 0.1f;
+    }
+
+    public void respawn()
+    {
+        gui.newTextLine("You have died!");
+        playerInstance.playerObject.transform.position = playerInstance.player.spawnStone.getSpawnPoint();
     }
 
 }
