@@ -20,7 +20,7 @@ public class Skill_Passive_General_Run : SkillEntity, Skill
     public Skill_Passive_General_Run() :
 		base(id, skillName)
 	{
-        texture = Resources.Load("misc_run", typeof(Texture)) as Texture;
+        texture = Resources.Load("run", typeof(Texture)) as Texture;
     }
 
     public Texture getIcon()

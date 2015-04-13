@@ -20,7 +20,7 @@ public class Skill_Passive_General_Defense : SkillEntity, Skill
     public Skill_Passive_General_Defense() :
 		base(id, skillName)
 	{
-        texture = Resources.Load("leveling_defensebonus01", typeof(Texture)) as Texture;
+        texture = Resources.Load("defense", typeof(Texture)) as Texture;
     }
 
     public Texture getIcon()

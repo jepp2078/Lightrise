@@ -22,7 +22,7 @@ public class Skill_Passive_Lesser_Magic : SkillEntity, Skill
     public Skill_Passive_Lesser_Magic() :
 		base(id, skillName)
 	{
-        texture = Resources.Load("school_lessermagic", typeof(Texture)) as Texture;
+        texture = Resources.Load("lesser-magic", typeof(Texture)) as Texture;
     }
 
     public Texture getIcon()

@@ -22,7 +22,7 @@ public class Skill_Passive_General_Willpower : SkillEntity, Skill
     public Skill_Passive_General_Willpower() :
 		base(id, skillName)
 	{
-        texture = Resources.Load("leveling_willpowerbonus01", typeof(Texture)) as Texture;
+        texture = Resources.Load("DefaultIcon", typeof(Texture)) as Texture;
     }
 
     public Texture getIcon()

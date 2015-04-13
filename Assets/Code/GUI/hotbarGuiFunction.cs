@@ -18,9 +18,22 @@ public class hotbarGuiFunction : MonoBehaviour, IEndDragHandler
         {
             if (item != null)
             {
-                Weapon wep = ((Weapon)item);
-                gui.setToolTip(item.getItemText() + "\n" + "Rank: " + wep.getWeaponRank() + "\n" + "Damage: " + wep.getDamage() + "\n" + "Attackspeed: " + wep.getAttackspeed() + "\n" + "\n" + "\n" + item.getItemDescription());
-                gui.showTooltip();
+                if (item is Weapon)
+                {
+                    Weapon wep = ((Weapon)item);
+                    gui.setToolTip(item.getItemText() + "\n" + "Durability: " + ((Equipable)item).getDurability() + "\n" + "Rank: " + wep.getWeaponRank() + "\n" + "Damage: " + wep.getDamage() + "\n" + "Attackspeed: " + wep.getAttackspeed() + "\n" + "\n" + "\n" + item.getItemDescription());
+                    gui.showTooltip();
+                }
+                else if (item is Equipable)
+                {
+                    gui.setToolTip(item.getItemText() + "\n Durability: " + ((Equipable)item).getDurability() + "\n" + "\n" + item.getItemDescription());
+                    gui.showTooltip();
+                }
+                else
+                {
+                    gui.setToolTip(item.getItemText() + "\n" + "\n" + "\n" + item.getItemDescription());
+                    gui.showTooltip();
+                }
             }
 
             if (skill != null)

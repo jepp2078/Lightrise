@@ -22,7 +22,7 @@ public class Skill_Passive_General_Toughness : SkillEntity, Skill, Learnable
     public Skill_Passive_General_Toughness() :
 		base(id, skillName)
 	{
-        texture = Resources.Load("misc_toughness", typeof(Texture)) as Texture;
+        texture = Resources.Load("DefaultIcon", typeof(Texture)) as Texture;
     }
 
     public Texture getIcon()

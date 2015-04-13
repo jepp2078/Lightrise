@@ -45,7 +45,8 @@ public class Player : MonoBehaviour {
         func.putOnHotbar((HotbarAble)player.getInventoryItem(0), 0);
         func.putOnHotbar((HotbarAble)player.getInventoryItem(1), 1);
         func.putOnHotbar((HotbarAble)player.getInventoryItem(2), 2);
-        func.putOnHotbar((HotbarAble)player.getSkill(24), 3);
+        func.putOnHotbar((HotbarAble)player.getInventoryItem(3), 3);
+        func.putOnHotbar((HotbarAble)player.getSkill(24), 4);
         InvokeRepeating("serverTick", 0, 0.0825F); //TEMP value. We might need to change how fast the server ticks? 1/12 of a sec right now.
     }
 
@@ -77,13 +78,6 @@ public class Player : MonoBehaviour {
                 gui.showInventory();
                 rpgCamera.setGuiMode(true);
             }
-        }
-
-        if (Input.GetKey(KeyCode.H) && Time.time > guiHelperNext && rpgCamera.getGuiMode() == false )
-        {
-            guiHelperNext = Time.time + 0.3333f;
-
-            func.harvest();
         }
 
         if (Input.GetButton("action") && Time.time > guiHelperNext && rpgCamera.getGuiMode() == false)

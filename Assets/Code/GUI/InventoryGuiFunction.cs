@@ -14,12 +14,18 @@ public class InventoryGuiFunction : MonoBehaviour, IEndDragHandler
             if (item is Weapon)
             {
                 Weapon wep = ((Weapon)item);
-                gui.setToolTip(item.getItemText() + "\n" + "Rank: " + wep.getWeaponRank() + "\n" + "Damage: " + wep.getDamage() + "\n" + "Attackspeed: " + wep.getAttackspeed() + "\n" + "\n" + "\n" + item.getItemDescription());
+                gui.setToolTip(item.getItemText() + "\n" + "Durability: " + ((Equipable)item).getDurability() + "\n" + "Rank: " + wep.getWeaponRank() + "\n" + "Damage: " + wep.getDamage() + "\n" + "Attackspeed: " + wep.getAttackspeed() + "\n" + "\n" + "\n" + item.getItemDescription());
+                gui.showTooltip();
+            }
+            else if(item is Equipable)
+            {
+                gui.setToolTip(item.getItemText()+ "\n Durability: " + ((Equipable)item).getDurability() + "\n" + "\n" + item.getItemDescription());
                 gui.showTooltip();
             }
             else
             {
-                gui.setToolTip(item.getItemText());
+                gui.setToolTip(item.getItemText() + "\n" + "\n" + "\n" + item.getItemDescription());
+                gui.showTooltip();
             }
 
         } 

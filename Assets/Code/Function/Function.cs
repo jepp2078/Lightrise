@@ -71,12 +71,21 @@ public class Function : MonoBehaviour {
     public void hotbarUse(int hotbarSlot)
     {
         HotbarAble hotbarType = playerInstance.player.getHotbarType(hotbarSlot);
-        if (hotbarType is Weapon)
+        if (hotbarType is Equipable)
         {
             if (playerInstance.player.getEquipmentIDinSlot(6) == -1 || hotbarType.getInventoryID() != playerInstance.player.getEquipmentIDinSlot(6))
             {
-                gui.newTextLine(equipItem(playerInstance.player.getInventoryItem(hotbarType.getInventoryID())));
-                gui.setActiveWeaponIcon(((Weapon)hotbarType).getIcon(), playerInstance.player.isWeaponSheathed(), false);
+
+                if (playerInstance.player.getSheatedWeapon() != null && hotbarType.getInventoryID() != playerInstance.player.getSheatedWeapon().getInventoryID())
+                {
+                    gui.newTextLine(equipItem(playerInstance.player.getInventoryItem(hotbarType.getInventoryID())));
+                    gui.setActiveWeaponIcon(((Item)hotbarType).getIcon(), playerInstance.player.isWeaponSheathed(), false);
+                }
+                else if (playerInstance.player.getSheatedWeapon() == null)
+                {
+                    gui.newTextLine(equipItem(playerInstance.player.getInventoryItem(hotbarType.getInventoryID())));
+                    gui.setActiveWeaponIcon(((Item)hotbarType).getIcon(), playerInstance.player.isWeaponSheathed(), false);
+                }
 			}
         }
         else if (hotbarType is Castable)
@@ -101,13 +110,19 @@ public class Function : MonoBehaviour {
 
 
         if (Physics.Raycast(ray, out hit, raylenght))
-        {
-            Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.green, 10, true);
-            
+        {       
             if (hit.rigidbody && hit.rigidbody.tag == "resource" )
             {
-                playerInstance.player.inventoryAdd(hit.rigidbody.transform.GetComponentInParent<ResourceSource>().harvest);
+                Item_Resources_BaseResource harvestedResource = hit.rigidbody.transform.GetComponentInParent<ResourceSource>().harvest;
+                if (harvestedResource != null)
+                {
+                playerInstance.player.inventoryAdd(harvestedResource);
                 gui.newTextLine("You manage to extract some resources!");
+                }
+                else
+                {
+                    gui.newTextLine("Resource depleted! Wait for the resource to regenerate!");
+                }
             }
         }
 

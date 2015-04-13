@@ -14,7 +14,7 @@ public class PlayerObject : MonoBehaviour {
     private List<Skill> weaponSkillList = new List<Skill>();
     private List<HotbarAble> hotbar = new List<HotbarAble>();
     private Castable activeSkill = null;
-    private Weapon sheathedWeapon = null;
+    private Equipable sheathedWeapon = null;
     private float str = 0, dex = 0, intel = 0, vit = 0, wis = 0, quick = 0;
     private float health, tempHealth, mana, tempMana, stamina, tempStamina, baseHealth = 0, baseMana = 0, baseStamina = 0,  bonusHealth = 0, bonusMana = 0, bonusStamina = 0;
     private float lungCapacity = 60;
@@ -39,6 +39,7 @@ public class PlayerObject : MonoBehaviour {
         inventoryAdd(new Item_Weapon_Mirdain_Spellstaff());
         inventoryAdd(new Item_Weapon_Short_Bow());
         inventoryAdd(new Item_Weapon_Troll_Clubber());
+        inventoryAdd(new Item_Tool_Pickaxe());
 
         for (int i = 0; i < 100; i++)
         {
@@ -104,6 +105,11 @@ public class PlayerObject : MonoBehaviour {
     {
         name = nameIn;
         gui.setName(name);
+    }
+
+    public Item getSheatedWeapon()
+    {
+        return sheathedWeapon;
     }
 
     public bool isWeaponSheathed()
@@ -396,6 +402,7 @@ public class PlayerObject : MonoBehaviour {
                     {
                         ((Stackable)inventory[i]).stackCount++;
                         stacked = true;
+                        gui.setInventoryStackCount(inventory[i].getInventorySlot(), inventory[i], false);
                     }
                 }
                 if (!stacked)
@@ -413,6 +420,7 @@ public class PlayerObject : MonoBehaviour {
                                 e.setInventorySlot(inventory.Count);
                             }
                             gui.setInventoryIcon(e.getInventorySlot(), e.getIcon(), false, e);
+                            gui.setInventoryStackCount(e.getInventorySlot(), e, false);
                         }
                         inventory.Add(e);
                         if (e.getInventoryID() == 999)
@@ -440,6 +448,7 @@ public class PlayerObject : MonoBehaviour {
                             e.setInventorySlot(inventory.Count);
                         }
                         gui.setInventoryIcon(e.getInventorySlot(), e.getIcon(), false, e);
+                        gui.setInventoryStackCount(e.getInventorySlot(), e, false);
                     }
                     inventory.Add(e);
                     if (e.getInventoryID() == 999)
@@ -480,12 +489,14 @@ public class PlayerObject : MonoBehaviour {
             if (inventory[i].getInventoryID() == inventoryID)
             {
                 gui.setInventoryIcon(inventory[i].getInventorySlot(), null, true, null);
+                gui.setInventoryStackCount(inventory[i].getInventorySlot(), inventory[i], true);
                 inventory[i].setInventorySlot(999);
                 inventory.RemoveAt(i);
                 for (int f = 0; f < inventory.Count; f++)
                 {
                     inventory[f].setInventorySlot(f);
                     gui.setInventoryIcon(inventory[f].getInventorySlot(), inventory[f].getIcon(), false, inventory[f]);
+                    gui.setInventoryStackCount(inventory[f].getInventorySlot(), inventory[f], false);
                 }
                 for (int x = inventory.Count; x<21 ; x++)
                 {
@@ -531,10 +542,11 @@ public class PlayerObject : MonoBehaviour {
 				if(equipmentList[6] == null){
                     if (isWeaponSheathed())
                     {
-                        sheathedWeapon = (Weapon) equipmentIn;
+                        inventoryAdd(sheathedWeapon);
+                        sheathedWeapon = (Equipable) equipmentIn;
                     }
                     else 
-                    { 
+                    {
 				        equipmentList[6] = equipmentIn;
                     }
                     if (equipmentList[6] is RangedWeapon)
@@ -691,15 +703,29 @@ public class PlayerObject : MonoBehaviour {
 	}
 
     public string dequip(int i){
-		Item item = equipmentList[i];
-		if(item != null){
-			if(inventoryAdd(equipmentList[i]) == true){
-				equipmentList[i] = null;
-				return "You take off "+item.getItemText();
-			}else{
-				return "No space in inventory";
-			}
-		}
+        if(sheathedWeapon == null)
+        {
+		    Item item = equipmentList[i];
+		    if(item != null){
+			    if(inventoryAdd(equipmentList[i]) == true){
+				    equipmentList[i] = null;
+				    return "You take off "+item.getItemText();
+			    }else{
+				    return "No space in inventory";
+			    }
+		    }
+        }
+        else
+        {
+            if (inventoryAdd(sheathedWeapon) == true)
+            {
+                return "You take off " + sheathedWeapon.getItemText();
+            }
+            else
+            {
+                return "No space in inventory";
+            }
+        }
 		return "You can't take off nothing!";
 	}
 

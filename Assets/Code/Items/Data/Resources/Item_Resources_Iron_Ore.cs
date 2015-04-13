@@ -7,7 +7,7 @@ public class Item_Resources_Iron_Ore : Item_Resources_BaseResource
 {
     public Item_Resources_Iron_Ore()
     {
-        texture = Resources.Load("item_normal_iron", typeof(Texture)) as Texture;
+        texture = Resources.Load("DefaultIcon", typeof(Texture)) as Texture;
         price = 1;
         weight = 1.0f;
         inventoryID = 999;

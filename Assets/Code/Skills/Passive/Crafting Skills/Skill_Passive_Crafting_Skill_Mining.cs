@@ -21,7 +21,7 @@ public class Skill_Passive_Crafting_Skill_Mining :SkillEntity, Skill
     public Skill_Passive_Crafting_Skill_Mining() :
 		base(id, skillName)
 	{
-        texture = Resources.Load("crafting_mining", typeof(Texture)) as Texture;
+        texture = Resources.Load("mining", typeof(Texture)) as Texture;
     }
 
     public Texture getIcon()

@@ -35,7 +35,7 @@ public class Skill_Active_Lesser_Magic_Health_To_Mana : SkillEntity, Skill, Hotb
     public Skill_Active_Lesser_Magic_Health_To_Mana() :
         base(id, skillName)
     {
-        texture = Resources.Load("lessermagic_health2mana01", typeof(Texture)) as Texture;
+        texture = Resources.Load("health_to_mana", typeof(Texture)) as Texture;
         particle = Resources.Load("health2mana", typeof(GameObject)) as GameObject;
 
     }

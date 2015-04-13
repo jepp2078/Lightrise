@@ -20,7 +20,7 @@ public class Skill_Passive_Combat_Great_Sword_Mastery : SkillEntity, Skill, Lear
     public Skill_Passive_Combat_Great_Sword_Mastery() :
         base(id, skillName)
     {
-        texture = Resources.Load("combat_greatsword_mastery", typeof(Texture)) as Texture;
+        texture = Resources.Load("DefaultIcon", typeof(Texture)) as Texture;
     }
 
     public int getSkillID()

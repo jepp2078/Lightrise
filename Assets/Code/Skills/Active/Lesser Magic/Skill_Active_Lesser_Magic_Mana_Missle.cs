@@ -36,7 +36,7 @@ public class Skill_Active_Lesser_Magic_Mana_Missle : SkillEntity, Skill, HotbarA
     public Skill_Active_Lesser_Magic_Mana_Missle() :
         base(id, skillName)
     {
-        texture = Resources.Load("lessermagic_manamissile01", typeof(Texture)) as Texture;
+        texture = Resources.Load("manamissile", typeof(Texture)) as Texture;
         particle = Resources.Load("ManaMissile", typeof(GameObject)) as GameObject;
 
     }

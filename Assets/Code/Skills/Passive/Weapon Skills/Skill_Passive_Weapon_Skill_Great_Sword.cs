@@ -21,7 +21,7 @@ public class Skill_Passive_Weapon_Skill_Great_Sword : SkillEntity, Skill
     public Skill_Passive_Weapon_Skill_Great_Sword() :
         base(id, skillName)
     {
-        texture = Resources.Load("combat_greatsword", typeof(Texture)) as Texture;
+        texture = Resources.Load("sword", typeof(Texture)) as Texture;
     }
 
     public Texture getIcon()

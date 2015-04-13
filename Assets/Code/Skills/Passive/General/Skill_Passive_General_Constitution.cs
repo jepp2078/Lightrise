@@ -22,7 +22,7 @@ public class Skill_Passive_General_Constitution : SkillEntity, Skill
     public Skill_Passive_General_Constitution() :
 		base(id, skillName)
 	{
-        texture = Resources.Load("leveling_constitutionbonus01", typeof(Texture)) as Texture;
+        texture = Resources.Load("DefaultIcon", typeof(Texture)) as Texture;
 
     }
 

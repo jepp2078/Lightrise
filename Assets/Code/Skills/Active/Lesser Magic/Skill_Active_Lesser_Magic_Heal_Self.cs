@@ -35,7 +35,7 @@ public class Skill_Active_Lesser_Magic_Heal_Self : SkillEntity, Skill, HotbarAbl
     public Skill_Active_Lesser_Magic_Heal_Self() :
 		base(id, skillName)
 	{
-        texture = Resources.Load("lessermagic_healself01", typeof(Texture)) as Texture;
+        texture = Resources.Load("healself", typeof(Texture)) as Texture;
         particle = Resources.Load("healSelf", typeof(GameObject)) as GameObject;
     }
 

@@ -21,7 +21,7 @@ public class Skill_Passive_Weapon_Skill_Archery : SkillEntity, Skill
     public Skill_Passive_Weapon_Skill_Archery() :
         base(id, skillName)
     {
-        texture = Resources.Load("combat_archery01", typeof(Texture)) as Texture;
+        texture = Resources.Load("arrow", typeof(Texture)) as Texture;
     }
 
     public Texture getIcon()

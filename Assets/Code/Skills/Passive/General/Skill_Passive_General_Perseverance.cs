@@ -21,7 +21,7 @@ public class Skill_Passive_General_Perseverance : SkillEntity, Skill, Learnable
     public Skill_Passive_General_Perseverance() :
 		base(id, skillName)
     {
-        texture = Resources.Load("misc_perseverance", typeof(Texture)) as Texture;
+        texture = Resources.Load("DefaultIcon", typeof(Texture)) as Texture;
 
     }
 

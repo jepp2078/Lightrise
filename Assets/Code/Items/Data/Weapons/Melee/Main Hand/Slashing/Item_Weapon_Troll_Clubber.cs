@@ -9,7 +9,7 @@ public class Item_Weapon_Troll_Clubber : MeleeWeapon
 	private string itemDescription = "A great sword made for slashing trolls!";
 	private int price = 20;
     private int hotbarSlot = 0;
-    private float damage = 3.42f;
+    private float damage = 0.42f;
     private float attackSpeed = 0.40f;
     private float durability = 60f;
     private float weaponRank = 0.0f;

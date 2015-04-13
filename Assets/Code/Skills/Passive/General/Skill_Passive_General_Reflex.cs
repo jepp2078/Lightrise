@@ -21,7 +21,7 @@ public class Skill_Passive_General_Reflex : SkillEntity, Skill
     public Skill_Passive_General_Reflex() :
 		base(id, skillName)
 	{
-        texture = Resources.Load("leveling_reflexbonus01", typeof(Texture)) as Texture;
+        texture = Resources.Load("DefaultIcon", typeof(Texture)) as Texture;
     }
 
     public Texture getIcon()

@@ -21,7 +21,7 @@ public class Skill_Passive_General_Fortitude : SkillEntity, Skill
     public Skill_Passive_General_Fortitude() :
 		base(id, skillName)
 	{
-        texture = Resources.Load("leveling_fortitudebonus01", typeof(Texture)) as Texture;
+        texture = Resources.Load("DefaultIcon", typeof(Texture)) as Texture;
 
     }
 

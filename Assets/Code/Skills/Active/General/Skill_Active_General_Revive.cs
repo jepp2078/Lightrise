@@ -35,7 +35,7 @@ public class Skill_Active_General_Revive : SkillEntity, Skill, HotbarAble, Casta
     public Skill_Active_General_Revive() :
 		base(id, skillName)
 	{
-        texture = Resources.Load("misc_revive", typeof(Texture)) as Texture;
+        texture = Resources.Load("DefaultIcon", typeof(Texture)) as Texture;
         particle = Resources.Load("ResurrectionEffect", typeof(GameObject)) as GameObject;
     }
 

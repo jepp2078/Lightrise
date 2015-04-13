@@ -20,7 +20,7 @@ public class Skill_Passive_General_Sprint : SkillEntity, Skill
     public Skill_Passive_General_Sprint() :
 		base(id, skillName)
 	{
-        texture = Resources.Load("misc_sprint", typeof(Texture)) as Texture;
+        texture = Resources.Load("sprint", typeof(Texture)) as Texture;
     }
 
     public Texture getIcon()

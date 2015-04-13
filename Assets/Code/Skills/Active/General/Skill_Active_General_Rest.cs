@@ -32,7 +32,7 @@ public class Skill_Active_General_Rest : SkillEntity, Skill, HotbarAble, Castabl
     public Skill_Active_General_Rest() :
 		base(id, skillName)
 	{
-        texture = Resources.Load("misc_rest", typeof(Texture)) as Texture;
+        texture = Resources.Load("rest", typeof(Texture)) as Texture;
     }
     public int getSkillID()
     {

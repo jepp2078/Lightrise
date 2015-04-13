@@ -25,6 +25,7 @@ public class GuiFunction : MonoBehaviour {
     public InventoryGuiFunction[] inventoryItems = new InventoryGuiFunction[21];
     public hotbarGuiFunction[] hotbarSlots = new hotbarGuiFunction[10];
     public Text[] characterSheet = new Text[25];
+    public Text[] inventoryCount = new Text[21];
     Texture tempIcon, tempIconInventory;
     string tempMessageString, tempCastString, tempNameString, tempToolTip;
     int hotbarIndex, inventoryIndex, lines = 0, maxLines = 90;
@@ -116,6 +117,25 @@ public class GuiFunction : MonoBehaviour {
         OnGUI();
     }
 
+    public void setInventoryStackCount(int inventorySlot, Item item, bool hidden)
+    {
+        if (!hidden)
+        {
+            if (item is Stackable)
+            {
+                inventoryCount[inventorySlot].text = ((Stackable)item).stackCount.ToString();
+            }
+            else
+            {
+                inventoryCount[inventorySlot].text = "";
+            }
+        }
+        else
+        {
+            inventoryCount[inventorySlot].text = "";
+        }
+    }
+
     public void setActiveSkillIcon(Texture icon, bool transparent)
     {
         tempIcon = icon;
@@ -168,8 +188,8 @@ public class GuiFunction : MonoBehaviour {
             case "combat": skillWindowGroupIcon[0].texture = Resources.Load("combat", typeof(Texture)) as Texture; skillWindowGroupText[0].text = "Combat Skills"; skillWindowGroupText[1].text = ""; break;
             case "crafting": skillWindowGroupIcon[0].texture = Resources.Load("crafting", typeof(Texture)) as Texture; skillWindowGroupText[0].text = "Crafting Skills"; skillWindowGroupText[1].text = ""; break;
             case "general": skillWindowGroupIcon[0].texture = Resources.Load("general", typeof(Texture)) as Texture; skillWindowGroupText[0].text = "General Skills"; skillWindowGroupText[1].text = ""; break;
-            case "lesser magic": skillWindowGroupIcon[0].texture = Resources.Load("school_lessermagic", typeof(Texture)) as Texture; skillWindowGroupText[0].text = "Lesser Magic"; skillWindowGroupText[1].text = player.player.getSkill(26).getSkillLevel().ToString(); break;
-            case "weapon skill": skillWindowGroupIcon[0].texture = Resources.Load("weapon", typeof(Texture)) as Texture; skillWindowGroupText[0].text = "Weapon Skills"; skillWindowGroupText[1].text = ""; break;
+            case "lesser magic": skillWindowGroupIcon[0].texture = Resources.Load("lesser-magic", typeof(Texture)) as Texture; skillWindowGroupText[0].text = "Lesser Magic"; skillWindowGroupText[1].text = player.player.getSkill(26).getSkillLevel().ToString(); break;
+            case "weapon skill": skillWindowGroupIcon[0].texture = Resources.Load("weapon skill", typeof(Texture)) as Texture; skillWindowGroupText[0].text = "Weapon Skills"; skillWindowGroupText[1].text = ""; break;
         }
 
         for (int i = 0; i < input.Count; i++)
@@ -211,16 +231,11 @@ public class GuiFunction : MonoBehaviour {
         }
         if (input != 0) 
         { 
-        //TimeSpan t = TimeSpan.FromSeconds(Convert.ToDouble(input));
 
-        //tempCastString = string.Format("{0:D2}:{1:D3}s",
-        //                t.Seconds,
-        //                t.Milliseconds);
         castProgress.fillAmount = Mathf.Abs(1-(input/total));
         }
         else
         {
-            //tempCastString = "";
             hideCastBar();
             casting = false;
             castProgress.fillAmount = 0;

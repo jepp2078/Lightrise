@@ -21,7 +21,7 @@ public class Skill_Passive_General_Swimming : SkillEntity, Skill
     public Skill_Passive_General_Swimming() :
 		base(id, skillName)
 	{
-        texture = Resources.Load("misc_swimming", typeof(Texture)) as Texture;
+        texture = Resources.Load("DefaultIcon", typeof(Texture)) as Texture;
     }
 
     public Texture getIcon()

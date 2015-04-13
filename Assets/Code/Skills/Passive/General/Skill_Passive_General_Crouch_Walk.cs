@@ -21,7 +21,7 @@ public class Skill_Passive_General_Crouch_Walk : SkillEntity, Skill
     public Skill_Passive_General_Crouch_Walk() :
 		base(id, skillName)
 	{
-        texture = Resources.Load("misc_crouch", typeof(Texture)) as Texture;
+        texture = Resources.Load("DefaultIcon", typeof(Texture)) as Texture;
 
     }
 
