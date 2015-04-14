@@ -15,4 +15,5 @@ public interface Item
     void setInventoryID(int id);
     float getWeight();
     Texture getIcon();
+    int getItemID();
 }

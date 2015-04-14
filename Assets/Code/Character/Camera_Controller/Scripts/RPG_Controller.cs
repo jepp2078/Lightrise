@@ -74,6 +74,7 @@ public class RPG_Controller : MonoBehaviour
                 ((Castable)playerInstance.player.getSkill(1)).stopEffect();
             }
             horizontalStrafe = Input.GetAxis("Horizontal Strafe") < 0 ? -1f : Input.GetAxis("Horizontal Strafe") > 0 ? 1f : 0f;
+            playerInstance.stopActionsOnMovement();
             if (horizontalStrafe != 0)
             {
                 if(walkSpeedModifier == 3)
@@ -132,6 +133,7 @@ public class RPG_Controller : MonoBehaviour
                 ((Castable)playerInstance.player.getSkill(1)).stopEffect();
             }
             vertical = Input.GetAxis("Vertical") < 0 ? -1f : Input.GetAxis("Vertical") > 0 ? 1f : 0f;
+            playerInstance.stopActionsOnMovement();
             if (vertical < 0)
             {
                 if (walkSpeedModifier == 3)

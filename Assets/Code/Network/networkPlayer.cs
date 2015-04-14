@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class networkPlayer : MonoBehaviour {
     public float networkPlayerHealth;
@@ -11,9 +12,10 @@ public class networkPlayer : MonoBehaviour {
         networkPlayerName = nameIn;
     }
 
-     [RPC]
+    [RPC]
     public void setHealth(float healthIn)
     {
         networkPlayerHealth = healthIn;
     }
 }
+

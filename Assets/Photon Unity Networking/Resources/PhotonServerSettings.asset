@@ -41,4 +41,7 @@ MonoBehaviour:
   - setHealth
   - setName
   - playerDeath
+  - takePlayerItem
+  - lootPlayerItem
+  - setInventory
   DisableAutoOpenWizard: 0

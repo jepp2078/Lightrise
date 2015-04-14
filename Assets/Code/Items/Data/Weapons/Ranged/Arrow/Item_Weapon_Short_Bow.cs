@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Item_Weapon_Short_Bow : RangedWeapon
 {
-	private int id = 999;
+	private int id = 3;
 	private string itemName = "Short Bow";
 	private string itemDescription = "A beginners short bow";
     private int price = 20;
@@ -26,7 +26,6 @@ public class Item_Weapon_Short_Bow : RangedWeapon
         projectile = (GameObject)Resources.Load("Archery_Projectile");
         texture = Resources.Load("short_bow", typeof(Texture)) as Texture;
 	}
-
 
     public Texture getIcon()
     {
@@ -182,5 +181,15 @@ public class Item_Weapon_Short_Bow : RangedWeapon
     public void setInventorySlot(int id)
     {
         inventorySlot = id;
+    }
+
+
+    public int getItemID()
+    {
+        return id;
+    }
+    public void setStartingDurability(float start)
+    {
+        durability = start;
     }
 }

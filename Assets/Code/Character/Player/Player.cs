@@ -26,6 +26,7 @@ public class Player : MonoBehaviour {
     public networkPlayer networkPlayer;
     Camera tempCam;
     public PhotonView view;
+    public float currentlyLooting;
 
 
 	// Use this for initialization and testing
@@ -268,6 +269,12 @@ public class Player : MonoBehaviour {
             gui.setActiveSkillIcon(null, true);
         }
 
+        if (Input.GetButton("debug") && Time.time > guiHelperNext && rpgCamera.getGuiMode() == false && !(Input.GetButton("action")))
+        {
+            guiHelperNext = Time.time + 0.66666f;
+            func.takeDamage(210, "mental", 999f, view.viewID);
+        }
+
         if (Input.GetButton("use") && Time.time > guiHelperNext && rpgCamera.getGuiMode() == false && !(Input.GetButton("action")))
         {
             guiHelperNext = Time.time + 0.66666f;
@@ -298,9 +305,24 @@ public class Player : MonoBehaviour {
                             gui.newTextLine("You're already bound to the Spawn Stone of " + hit.transform.GetComponentInParent<SpawnPoint>().getSpawnStoneName());
                         }
                     }
-                    else if (hit.transform.name == "PlayerTomb")
+                    else if (hit.transform.name == "Grave(Clone)")
                     {
-
+                        if (hit.transform.GetChild(0).name == "PlayerTomb")
+                        {
+                            List<Item> grave = hit.transform.GetChild(0).gameObject.GetComponent<playerGrave>().getItems();
+                            currentlyLooting = hit.transform.GetChild(0).gameObject.GetComponent<playerGrave>().getGraveId();
+                            for (int i = 0; i < grave.Count; i++)
+                            {
+                                if (grave[i] != null)
+                                {
+                                    gui.setLootIcon(grave[i].getInventorySlot(), grave[i].getIcon(), false, grave[i]);
+                                    gui.setLootStackCount(i, grave[i], false);
+                                }
+                            }
+                            gui.showPlayerLoot();
+                            gui.showInventory();
+                            rpgCamera.setGuiMode(true);
+                        }
                     }
                 }
             }
@@ -510,5 +532,11 @@ public class Player : MonoBehaviour {
         {
             gui.removeTarget();
         }
+    }
+
+    public void stopActionsOnMovement()
+    {
+        gui.hidePlayerLoot();
+        currentlyLooting = 0f;
     }
 }

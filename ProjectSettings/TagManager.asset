@@ -11,6 +11,7 @@ TagManager:
   - PlayerObject
   - PlayerCapsule
   - Interactable
+  - PlayerGrave
   layers:
   - Default
   - TransparentFX

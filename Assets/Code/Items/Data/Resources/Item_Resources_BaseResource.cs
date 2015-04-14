@@ -13,6 +13,7 @@ public class Item_Resources_BaseResource : Item, Stackable
     protected int inventorySlot = 999;
     protected int _stackCount = 1;
     protected int _stackMax = 1024;
+    protected int itemID = 999;
     protected Texture texture;
 
     public Item_Resources_BaseResource()
@@ -102,6 +103,12 @@ public class Item_Resources_BaseResource : Item, Stackable
     public float[] getProtections()
     {
         throw new NotImplementedException();
+    }
+
+
+    public int getItemID()
+    {
+        return itemID;
     }
 }
 

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Item_Weapon_Troll_Clubber : MeleeWeapon
 {
-	private int id = 999;
+	private int id = 4;
     private string itemName = "Troll Clubber";
 	private string itemDescription = "A great sword made for slashing trolls!";
 	private int price = 20;
@@ -26,7 +26,7 @@ public class Item_Weapon_Troll_Clubber : MeleeWeapon
         reach = (GameObject) Resources.Load("GreatSword_Reach");
         texture = Resources.Load("troll_clubber", typeof(Texture)) as Texture;
     }
-	
+    
     public Texture getIcon()
     {
         return texture;
@@ -193,5 +193,16 @@ public class Item_Weapon_Troll_Clubber : MeleeWeapon
     public void setInventorySlot(int id)
     {
         inventorySlot = id;
+    }
+
+
+    public int getItemID()
+    {
+        return id;
+    }
+
+    public void setStartingDurability(float start)
+    {
+        durability = start;
     }
 }

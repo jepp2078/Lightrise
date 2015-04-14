@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Item_Tool_Pickaxe : Tool
 {
-    private int id = 999;
+    private int id = 1;
     private string itemName = "Pickaxe";
 	private string itemDescription = "A tool used to extract minerals from resource nodes";
 	private int price = 20;
@@ -19,7 +19,7 @@ public class Item_Tool_Pickaxe : Tool
     {
         texture = Resources.Load("defaultIcon", typeof(Texture)) as Texture;
     }
-	
+
     public Texture getIcon()
     {
         return texture;
@@ -127,5 +127,16 @@ public class Item_Tool_Pickaxe : Tool
     public void setInventorySlot(int id)
     {
         inventorySlot = id;
+    }
+
+
+    public int getItemID()
+    {
+        return id;
+    }
+
+    public void setStartingDurability(float start)
+    {
+        durability = start;
     }
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class Function : MonoBehaviour {
     public Player playerInstance;
@@ -205,7 +206,6 @@ public class Function : MonoBehaviour {
             instanciateObject(hitbox.name, hitbox.transform.position, hitbox.transform.rotation, Vector3.zero, damage, damageType, viewThis.viewID, objectID, true);
             viewThis.RPC("instanciateObject", PhotonTargets.Others, hitbox.name, hitbox.transform.position, hitbox.transform.rotation, Vector3.zero, damage, damageType, viewThis.viewID, objectID, false);
             viewThis.RPC("increaseObjectID", PhotonTargets.All);
-
             switch (damageType)
             {
                 //case "slashing": audioSwing[Random.Range(0, 4)].Play(); break;
@@ -236,7 +236,6 @@ public class Function : MonoBehaviour {
             instanciateObject(hitbox.name, hitbox.transform.position, hitbox.transform.rotation, force, damage, damageType, viewThis.viewID, objectID, true);
             viewThis.RPC("instanciateObject", PhotonTargets.Others, hitbox.name, hitbox.transform.position, hitbox.transform.rotation, force, damage, damageType, viewThis.viewID, objectID, true);
             viewThis.RPC("increaseObjectID", PhotonTargets.All);
-
             playerInstance.gainSkill((0.25f / (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType())))), playerInstance.player.getWeaponSkillId(weapon.getType()));
             playerInstance.player.changeStats(0f, 0.05f, 0f, 0f, 0f, 0.025f, 0f, 0f, 0f);
             if (playerInstance.player.getWeaponSkill(null, weapon.getType()) != 0)
@@ -281,9 +280,28 @@ public class Function : MonoBehaviour {
             if (playerInstance.player.setHealth(damage, 0, false, damageType))
             {
                 Vector3 pos = playerInstance.playerObject.transform.position;
-                pos -= new Vector3(0f, 1f, 0f);
-                playerInstance.view.RPC("playerDeath", PhotonTargets.AllBufferedViaServer, "PlayerTomb", pos, playerInstance.playerObject.transform.rotation, playerInstance.view.viewID);
+                pos -= new Vector3(0f, 0.3f, 0f);
                 playerInstance.player.removeInventory();
+                List<Item> itemList = new List<Item>();
+                itemList = playerInstance.player.getOldInventoryList();
+                int[] items = new int[itemList.Count];
+                float[] durability = new float[itemList.Count];
+                int[] count = new int[itemList.Count];
+                for (int i = 0; i < itemList.Count; i++)
+                {
+                    items[i] = itemList[i].getItemID();
+                    if(itemList[i] is Weapon)
+                        durability[i] = ((Weapon)itemList[i]).getDurability();
+                    else
+                        durability[i] = 0f;
+                    if(itemList[i] is Stackable)
+                        count[i] = ((Stackable)itemList[i]).stackCount;
+                    else
+                        count[i] = 0;
+                }
+                PhotonView viewThis = this.gameObject.GetComponent<PhotonView>();
+                viewThis.RPC("playerDeath", PhotonTargets.All, "Grave", pos, playerInstance.playerObject.transform.rotation, playerInstance.view.viewID, objectID, items, durability, count);
+                viewThis.RPC("increaseObjectID", PhotonTargets.All);
                 respawn();
             }
         }
@@ -321,13 +339,27 @@ public class Function : MonoBehaviour {
     }
 
     [RPC]
-    public void playerDeath(string objectIn, Vector3 pos, Quaternion rot, int viewID)
+    public void playerDeath(string objectIn, Vector3 pos, Quaternion rot, int viewID, float objectID, int[] items, float[] durability, int[] count)
     {
         GameObject go = (GameObject)Instantiate(Resources.Load(objectIn), pos, rot);
         playerGrave grave;
-        grave = go.GetComponent<playerGrave>();
-        grave.addItem(PhotonView.Find(viewID).GetComponent<PlayerObject>().getInventoryList());
-
+        grave = go.GetComponentInChildren<playerGrave>();
+        List<Item> itemsOut = new List<Item>();
+        for (int i = 0; i < items.Length; i++)
+        {
+            Item itemOut = (Item)Activator.CreateInstance(playerInstance.player.getGeneralItem(items[i]).GetType());
+            if (durability[i] != 0)
+            {
+                ((Equipable)itemOut).setStartingDurability(durability[i]);
+            }
+            if (count[i] != 0)
+            {
+                ((Stackable)itemOut).stackCount = count[i];
+            }
+            itemsOut.Add(itemOut);
+        }
+        grave.addItem(itemsOut);
+        grave.setGraveId(objectID);
     }
 
     [RPC]
@@ -368,6 +400,35 @@ public class Function : MonoBehaviour {
     {
         gui.newTextLine("You have died!");
         playerInstance.playerObject.transform.position = playerInstance.player.spawnStone.getSpawnPoint();
+        playerInstance.player.camera.viewMode("thirdPerson");
+        playerInstance.player.setActiveSkill(null);
+        gui.setActiveSkillIcon(null, true);
+        gui.hideActiveWeapon();
+        for(int i = 0; i<10;i++)
+        {
+            if (playerInstance.player.getHotbarType(i) is Equipable)
+            {
+                removeFromHotbar(i);
+            }
+        }
+    }
+
+    [RPC]
+    public void lootPlayerItem(float graveId, int itemID)
+    {
+        GameObject[] graves;
+        graves = GameObject.FindGameObjectsWithTag("PlayerGrave");
+
+        for (int i = 0; i < graves.Length; i++)
+        {
+            if (graveId == graves[i].GetComponent<playerGrave>().getGraveId())
+            {
+                if (graves[i].GetComponent<playerGrave>().takePlayerItem(itemID))
+                    gui.hidePlayerLoot();
+                gui.setLootIcon(itemID, null, true, null);
+                gui.setLootStackCount(itemID, null, true);
+            }
+        }
     }
 
 }

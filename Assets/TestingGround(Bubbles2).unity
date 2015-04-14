@@ -4899,7 +4899,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 341197946}
   m_Mesh: {fileID: 4300000, guid: 54535470b5b9cfa47a71eb0205e8f3d1, type: 3}
---- !u!4 &344726243
+--- !u!4 &344726243 stripped
 Transform:
   m_PrefabParentObject: {fileID: 472908, guid: c7a51750cd474a8488fba78331279d7f, type: 2}
   m_PrefabInternal: {fileID: 689740940}
@@ -11117,7 +11117,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 821426448}
   m_Mesh: {fileID: 4300000, guid: 7261f1d3ca38a744e8e321fecb862d1a, type: 3}
---- !u!218 &825958739
+--- !u!218 &825958739 stripped
 Terrain:
   m_PrefabParentObject: {fileID: 21891610, guid: c7a51750cd474a8488fba78331279d7f,
     type: 2}
@@ -19975,7 +19975,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1447994236}
   m_Mesh: {fileID: 4300000, guid: a114cbb42efcf5d438218e3c01e796a6, type: 3}
---- !u!218 &1452465610
+--- !u!218 &1452465610 stripped
 Terrain:
   m_PrefabParentObject: {fileID: 21844822, guid: c7a51750cd474a8488fba78331279d7f,
     type: 2}
@@ -22710,7 +22710,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1654835169}
   m_Mesh: {fileID: 4300000, guid: 546381db97fff8f47ab701eea48cae5e, type: 3}
---- !u!218 &1659025841
+--- !u!218 &1659025841 stripped
 Terrain:
   m_PrefabParentObject: {fileID: 21834206, guid: c7a51750cd474a8488fba78331279d7f,
     type: 2}
@@ -103796,7 +103796,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1741721669}
   m_Mesh: {fileID: 4300000, guid: 38f16958ab134ac4a910f10faee04ff7, type: 3}
---- !u!114 &1752767200
+--- !u!114 &1752767200 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11470706, guid: 3358d0fb22ca9b540890202c8fab881a,
     type: 2}
@@ -108464,7 +108464,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2078715925}
   m_Mesh: {fileID: 4300000, guid: 54535470b5b9cfa47a71eb0205e8f3d1, type: 3}
---- !u!218 &2088988426
+--- !u!218 &2088988426 stripped
 Terrain:
   m_PrefabParentObject: {fileID: 21845126, guid: c7a51750cd474a8488fba78331279d7f,
     type: 2}

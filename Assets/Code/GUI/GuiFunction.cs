@@ -11,6 +11,7 @@ public class GuiFunction : MonoBehaviour {
     public RawImage[] inventoryImage = new RawImage[2];
     public RawImage[] tooltipImage = new RawImage[2];
     public RawImage[] inventory = new RawImage[21];
+    public RawImage[] loot = new RawImage[21];
     public RawImage[] skillWindowIcons = new RawImage[12];
     public skillWindowFunction[] skillWindowSkills = new skillWindowFunction[12];
     public Text[] skillWindowNames = new Text[12];
@@ -23,19 +24,21 @@ public class GuiFunction : MonoBehaviour {
     public Image health, stamina, mana, castProgress, targetHealth;
     public Image[] skillCooldowns = new Image[10];
     public InventoryGuiFunction[] inventoryItems = new InventoryGuiFunction[21];
+    public playerLootGuiFunction[] lootItems = new playerLootGuiFunction[21];
     public hotbarGuiFunction[] hotbarSlots = new hotbarGuiFunction[10];
     public Text[] characterSheet = new Text[25];
     public Text[] inventoryCount = new Text[21];
-    Texture tempIcon, tempIconInventory;
+    public Text[] lootCount = new Text[21];
+    Texture tempIcon, tempIconInventory, tempIconLoot;
     string tempMessageString, tempCastString, tempNameString, tempToolTip;
-    int hotbarIndex, inventoryIndex, lines = 0, maxLines = 90;
-    bool toolTipCall = false, nameCall = false, hotbarCall = false, activeSkillCall = false, activeWeaponCall = false, drawWeaponCall = false, textCall = false, clearText = false, castTimeCall = false, inventoryCall = false, casting = false;
-    Color alpha, bg, inventoryAlpha;
+    int hotbarIndex, inventoryIndex, lootIndex, lines = 0, maxLines = 90;
+    bool lootCall = false, toolTipCall = false, nameCall = false, hotbarCall = false, activeSkillCall = false, activeWeaponCall = false, drawWeaponCall = false, textCall = false, clearText = false, castTimeCall = false, inventoryCall = false, casting = false;
+    Color alpha, bg, inventoryAlpha, lootAlpha;
     public Player player;
-    private bool isInvShowing = false, isTooltipShowing = false;
-    Item tempItem, tempItem1;
+    private bool isInvShowing = false, isTooltipShowing = false, isPlayerLootShowing = false;
+    Item tempItem, tempItem1, tempItem2;
     Skill tempSkill;
-    public GameObject target, characterSheetWindow;
+    public GameObject target, characterSheetWindow, playerLoot;
     public Scrollbar scrollbar;
 
     public void clearGui()
@@ -44,6 +47,7 @@ public class GuiFunction : MonoBehaviour {
         skillWindowEntity[0].SetActive(false);
         skillWindowEntity[1].SetActive(false);
         characterSheetWindow.SetActive(false);
+        hidePlayerLoot();
     }
 
     public void init()
@@ -117,6 +121,26 @@ public class GuiFunction : MonoBehaviour {
         OnGUI();
     }
 
+    public void setLootIcon(int inventorySlot, Texture icon, bool transparent, Item item)
+    {
+        if (!transparent)
+        {
+            tempIconLoot = icon;
+            lootItems[inventorySlot].setItem(item);
+            lootAlpha = new Color(255, 255, 255, 255);
+        }
+        else
+        {
+            tempIconLoot = null;
+            lootItems[inventorySlot].setItem(null);
+            lootAlpha = new Color(255, 255, 255, 0);
+        }
+
+        lootIndex = inventorySlot;
+        loot[lootIndex].texture = tempIconLoot;
+        loot[lootIndex].color = lootAlpha;
+    }
+
     public void setInventoryStackCount(int inventorySlot, Item item, bool hidden)
     {
         if (!hidden)
@@ -133,6 +157,41 @@ public class GuiFunction : MonoBehaviour {
         else
         {
             inventoryCount[inventorySlot].text = "";
+        }
+    }
+
+    public void showPlayerLoot()
+    {
+        playerLoot.SetActive(true);
+        isPlayerLootShowing = true;
+    }
+
+    public void hidePlayerLoot()
+    {
+        playerLoot.SetActive(false);
+        isPlayerLootShowing = false;
+    }
+
+    public bool isLootShowing()
+    {
+        return isPlayerLootShowing;
+    }
+    public void setLootStackCount(int inventorySlot, Item item, bool hidden)
+    {
+        if (!hidden)
+        {
+            if (item is Stackable)
+            {
+                lootCount[inventorySlot].text = ((Stackable)item).stackCount.ToString();
+            }
+            else
+            {
+                lootCount[inventorySlot].text = "";
+            }
+        }
+        else
+        {
+            lootCount[inventorySlot].text = "";
         }
     }
 
@@ -260,6 +319,12 @@ public class GuiFunction : MonoBehaviour {
         castProgress.fillAmount = 0;
     }
 
+    public void hideActiveWeapon()
+    {
+        activeWeapon.color = new Color(255, 255, 255, 0);
+        activeWeaponBg.color = new Color(255, 255, 255, 0);
+    }
+
     public void showInventory()
     {
 
@@ -379,7 +444,6 @@ public class GuiFunction : MonoBehaviour {
         }
         if (castTimeCall)
         {
-            //castTime.text = tempCastString;
             textCall = false;
         }
         if (nameCall)

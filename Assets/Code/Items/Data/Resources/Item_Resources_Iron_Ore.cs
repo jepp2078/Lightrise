@@ -12,7 +12,9 @@ public class Item_Resources_Iron_Ore : Item_Resources_BaseResource
         weight = 1.0f;
         inventoryID = 999;
         inventorySlot = 999;
+        itemID = 0;
         itemName = "Iron Ore";
         itemDescription = "This usefull ore can be smelted into iron";
     }
+
 }

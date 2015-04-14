@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Item_Weapon_Mirdain_Spellstaff : RangedWeapon
 {
-    private int id = 999;
+    private int id = 2;
     private string itemName = "Mirdain Spellstaff";
     private string itemDescription = "A mirdain staff";
     private int price = 20;
@@ -181,5 +181,16 @@ public class Item_Weapon_Mirdain_Spellstaff : RangedWeapon
     public void setInventorySlot(int id)
     {
         inventorySlot = id;
+    }
+
+    public int getItemID()
+    {
+        return id;
+    }
+
+
+    public void setStartingDurability(float start)
+    {
+        durability = start;
     }
 }
