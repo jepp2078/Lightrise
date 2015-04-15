@@ -5,9 +5,7 @@ using System;
 
 public class PlayerObject : MonoBehaviour {
     private string name;
-    public List<Item> itemList = new List<Item>();
     private List<Item> inventory = new List<Item>();
-    private List<Item> oldInventory = new List<Item>();
     private List<Item> equipmentList = new List<Item>();
     private List<Skill> skillList = new List<Skill>();
     private List<Skill> generalSkillList = new List<Skill>();
@@ -35,12 +33,6 @@ public class PlayerObject : MonoBehaviour {
 	// Use this for initialization
     void Start () 
     {
-
-        itemList.Add(new Item_Resources_Iron_Ore());
-        itemList.Add(new Item_Tool_Pickaxe());
-        itemList.Add(new Item_Weapon_Mirdain_Spellstaff());
-        itemList.Add(new Item_Weapon_Short_Bow());
-        itemList.Add(new Item_Weapon_Troll_Clubber());
         
         for (int i = 0; i < 10; i++)
         {
@@ -256,10 +248,6 @@ public class PlayerObject : MonoBehaviour {
         return inventory;
     }
 
-    public List<Item> getOldInventoryList()
-    {
-        return oldInventory;
-    }
 
     public void removeInventory()
     {
@@ -281,12 +269,10 @@ public class PlayerObject : MonoBehaviour {
             {
                 ((Stackable)item).stackCount = ((Stackable)inventory[0]).stackCount;
             }
-            oldInventory.Add(item);
             inventory.RemoveAt(0);
             gui.setInventoryIcon(i, null, true, null);
             gui.setInventoryStackCount(i, null, true);
         }
-        //playerInstance.networkPlayer
     }
 
     public string getHealth()
@@ -1049,10 +1035,5 @@ public class PlayerObject : MonoBehaviour {
         info.Add(mana);
         info.AddRange(getProtections());
         gui.setCharacterSheet(name, info);
-    }
-
-    public Item getGeneralItem(int id)
-    {
-        return itemList[id];
     }
 }

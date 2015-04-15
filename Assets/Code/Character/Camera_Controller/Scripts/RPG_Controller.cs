@@ -25,6 +25,7 @@ public class RPG_Controller : MonoBehaviour
     private int lastPlayed = 0;
     public float walkSpeedModifier = 0;
     public float baseCrouchSpeed = 4f, baseWalkSpeed = 7f, baseSprintSpeed = 10f, basePaddlePenalty = 1f;
+    public Animator anim;
 
     void Awake()
     {
@@ -155,15 +156,26 @@ public class RPG_Controller : MonoBehaviour
             else
             {
                 if (walkSpeedModifier == 3)
-                    if (horizontalStrafe == 0)
+                {
+                    if (horizontalStrafe == 0){
+                        anim.SetBool("run", true);
+                        anim.SetBool("walking", false);
                         walkSpeed = baseSprintSpeed;
+                    }
                     else
                         walkSpeed = baseSprintSpeed - 1;
+                }
                 else if (walkSpeedModifier > 0)
+                {
                     if (horizontalStrafe == 0)
+                    {
+                        anim.SetBool("walking", true);
+                        anim.SetBool("run", false);
                         walkSpeed = baseWalkSpeed + playerInstance.player.getSkillEffect(0);
+                    }
                     else
                         walkSpeed = baseWalkSpeed - 1 + playerInstance.player.getSkillEffect(0);
+                }
                 else
                     if (horizontalStrafe == 0)
                         walkSpeed = baseCrouchSpeed + playerInstance.player.getSkillEffect(3);
@@ -200,6 +212,11 @@ public class RPG_Controller : MonoBehaviour
                 }
                 serverTickCurrent = serverTickIn;
             }
+        }
+        else
+        {
+            anim.SetBool("walking", false);
+            anim.SetBool("run", false);
         }
 
         playerDir = horizontalStrafe * Vector3.right + vertical * Vector3.forward;

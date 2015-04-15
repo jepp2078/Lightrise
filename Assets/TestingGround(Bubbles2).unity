@@ -16184,7 +16184,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 1
 --- !u!1 &1147247122
 GameObject:
   m_ObjectHideFlags: 0
@@ -16537,7 +16537,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 497416, guid: 214a7ff9bcfbef041aa5821089bada80, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 214a7ff9bcfbef041aa5821089bada80, type: 2}
@@ -106569,7 +106569,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 458902, guid: eef01c2ef5a298c48a258de44b9f276c, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eef01c2ef5a298c48a258de44b9f276c, type: 2}

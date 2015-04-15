@@ -311,6 +311,7 @@ public class Player : MonoBehaviour {
                         {
                             List<Item> grave = hit.transform.GetChild(0).gameObject.GetComponent<playerGrave>().getItems();
                             currentlyLooting = hit.transform.GetChild(0).gameObject.GetComponent<playerGrave>().getGraveId();
+                            gui.clearPlayerLoot();
                             for (int i = 0; i < grave.Count; i++)
                             {
                                 if (grave[i] != null)

@@ -6,6 +6,7 @@ using System;
 public class Function : MonoBehaviour {
     public Player playerInstance;
     public GuiFunction gui;
+    public itemList generalItems;
     public AudioSource[] audioSwing = new AudioSource[4];
     public AudioSource[] audioDamage = new AudioSource[11];
     public AudioSource[] audioMagic = new AudioSource[20];
@@ -161,9 +162,9 @@ public class Function : MonoBehaviour {
                         Vector3 forward = playerInstance.playerObject.GetComponentInChildren<Camera>().transform.forward;
                         Vector3 force = forward * 1500f;
 
+                        viewThis.RPC("increaseObjectID", PhotonTargets.All);
                         instanciateObject(tempProjectile.name, tempProjectile.transform.position, tempProjectile.transform.rotation, force, tempEffect, ((Spell)skill).getDamageType(), viewThis.viewID, objectID, true);
                         viewThis.RPC("instanciateObject", PhotonTargets.Others, tempProjectile.name, tempProjectile.transform.position, tempProjectile.transform.rotation, force, tempEffect, ((Spell)skill).getDamageType(), viewThis.viewID, objectID, false);
-                        viewThis.RPC("increaseObjectID", PhotonTargets.All);
                     }
                     skill.setCurrentCooldown(skill.getCooldown());
                     playerInstance.addCooldown(skill);
@@ -203,9 +204,9 @@ public class Function : MonoBehaviour {
             string damageType = weapon.getDamageType();
             PhotonView viewThis = this.gameObject.GetComponent<PhotonView>();
 
+            viewThis.RPC("increaseObjectID", PhotonTargets.All);
             instanciateObject(hitbox.name, hitbox.transform.position, hitbox.transform.rotation, Vector3.zero, damage, damageType, viewThis.viewID, objectID, true);
             viewThis.RPC("instanciateObject", PhotonTargets.Others, hitbox.name, hitbox.transform.position, hitbox.transform.rotation, Vector3.zero, damage, damageType, viewThis.viewID, objectID, false);
-            viewThis.RPC("increaseObjectID", PhotonTargets.All);
             switch (damageType)
             {
                 //case "slashing": audioSwing[Random.Range(0, 4)].Play(); break;
@@ -233,9 +234,9 @@ public class Function : MonoBehaviour {
             Vector3 forward = playerInstance.playerObject.GetComponentInChildren<Camera>().transform.forward;
             Vector3 force = forward * 3000f;
 
+            viewThis.RPC("increaseObjectID", PhotonTargets.All);
             instanciateObject(hitbox.name, hitbox.transform.position, hitbox.transform.rotation, force, damage, damageType, viewThis.viewID, objectID, true);
             viewThis.RPC("instanciateObject", PhotonTargets.Others, hitbox.name, hitbox.transform.position, hitbox.transform.rotation, force, damage, damageType, viewThis.viewID, objectID, true);
-            viewThis.RPC("increaseObjectID", PhotonTargets.All);
             playerInstance.gainSkill((0.25f / (playerInstance.player.getSkillLevel(playerInstance.player.getWeaponSkillId(weapon.getType())))), playerInstance.player.getWeaponSkillId(weapon.getType()));
             playerInstance.player.changeStats(0f, 0.05f, 0f, 0f, 0f, 0.025f, 0f, 0f, 0f);
             if (playerInstance.player.getWeaponSkill(null, weapon.getType()) != 0)
@@ -281,9 +282,8 @@ public class Function : MonoBehaviour {
             {
                 Vector3 pos = playerInstance.playerObject.transform.position;
                 pos -= new Vector3(0f, 0.3f, 0f);
-                playerInstance.player.removeInventory();
                 List<Item> itemList = new List<Item>();
-                itemList = playerInstance.player.getOldInventoryList();
+                itemList = playerInstance.player.getInventoryList();
                 int[] items = new int[itemList.Count];
                 float[] durability = new float[itemList.Count];
                 int[] count = new int[itemList.Count];
@@ -299,9 +299,11 @@ public class Function : MonoBehaviour {
                     else
                         count[i] = 0;
                 }
+                playerInstance.player.removeInventory();
                 PhotonView viewThis = this.gameObject.GetComponent<PhotonView>();
-                viewThis.RPC("playerDeath", PhotonTargets.All, "Grave", pos, playerInstance.playerObject.transform.rotation, playerInstance.view.viewID, objectID, items, durability, count);
                 viewThis.RPC("increaseObjectID", PhotonTargets.All);
+                playerDeath("Grave", pos, playerInstance.playerObject.transform.rotation, playerInstance.view.viewID, objectID, items, durability, count, "self");
+                viewThis.RPC("playerDeath", PhotonTargets.Others, "Grave", pos, playerInstance.playerObject.transform.rotation, playerInstance.view.viewID, objectID, items, durability, count, "others");
                 respawn();
             }
         }
@@ -339,15 +341,16 @@ public class Function : MonoBehaviour {
     }
 
     [RPC]
-    public void playerDeath(string objectIn, Vector3 pos, Quaternion rot, int viewID, float objectID, int[] items, float[] durability, int[] count)
+    public void playerDeath(string objectIn, Vector3 pos, Quaternion rot, int viewID, float objectID, int[] items, float[] durability, int[] count, string owner)
     {
         GameObject go = (GameObject)Instantiate(Resources.Load(objectIn), pos, rot);
         playerGrave grave;
         grave = go.GetComponentInChildren<playerGrave>();
+        grave.setGraveId(objectID);
         List<Item> itemsOut = new List<Item>();
         for (int i = 0; i < items.Length; i++)
         {
-            Item itemOut = (Item)Activator.CreateInstance(playerInstance.player.getGeneralItem(items[i]).GetType());
+            Item itemOut = (Item)Activator.CreateInstance(generalItems.getGeneralItem(items[i]).GetType());
             if (durability[i] != 0)
             {
                 ((Equipable)itemOut).setStartingDurability(durability[i]);
@@ -359,7 +362,6 @@ public class Function : MonoBehaviour {
             itemsOut.Add(itemOut);
         }
         grave.addItem(itemsOut);
-        grave.setGraveId(objectID);
     }
 
     [RPC]

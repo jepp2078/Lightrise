@@ -50,6 +50,17 @@ public class GuiFunction : MonoBehaviour {
         hidePlayerLoot();
     }
 
+    public void clearPlayerLoot()
+    {
+        for (int i = 0; i < lootCount.Length; i++)
+        {
+            lootCount[i].text = "";
+            lootItems[i].setItem(null);
+            loot[i].texture = null;
+            loot[i].color = new Color(255, 255, 255, 0);
+        }
+    }
+
     public void init()
     {
         hideCastBar();
